@@ -113,85 +113,45 @@ You are a **spaceman** — a pilot in a shattered galaxy where ancient gates onc
 ## 🗓️ Development Phases & Milestones
 
 > [!IMPORTANT]
-> **Philosophy: Start Small.** Each phase must produce a playable build before the next phase begins. Prove the fun first.
+> **Philosophy: Start Small.** Each phase produces a playable build before the next phase starts. Prove the fun first.
 
-### Phase 1: Research & Planning ← _YOU ARE HERE_
+The full implementation is broken into **18 phases** with ~1,500+ atomic micro-steps:
 
-- [x] Genre research & competitive analysis
+| Phase | Milestone                              | Detailed Plan                                                           |
+| ----- | -------------------------------------- | ----------------------------------------------------------------------- |
+| 1–2   | Foundation & M1: Ship Flies            | [phase_01_02](technical/milestones/phase_01_02_foundation_ship.md)      |
+| 3     | M2: Combat Works                       | [phase_03](technical/milestones/phase_03_combat.md)                     |
+| 4     | M3: Run Structure                      | [phase_04](technical/milestones/phase_04_run_structure.md)              |
+| 5–6   | M4: Progression & M5: Co-op            | [phase_05_06](technical/milestones/phase_05_06_progression_coop.md)     |
+| 7–10  | Full Hulls, Weapons, Enemies, Drones   | [phase_07_10](technical/milestones/phase_07_10_content_expansion.md)    |
+| 11–14 | Heat System, Stations, Events, Endgame | [phase_11_14](technical/milestones/phase_11_14_systems_endgame.md)      |
+| 15–18 | Audio, Co-op Expansion, Stats, Release | [phase_15_18](technical/milestones/phase_15_18_audio_polish_release.md) |
+
+**3-level overview:** [implementation_milestones.md](technical/implementation_milestones.md)
+**MVP scope (first 5 milestones):** [prototype_scope.md](technical/prototype_scope.md)
+
+### Current Status
+
+- [x] Genre research & competitive analysis (24 game studies)
 - [x] AI toolchain research
-- [x] Game concept definition
-- [x] Confirm core decisions (perspective, co-op, art style, scope)
-- [ ] Finalize game design document
-- [ ] Set up UE5 project with C++ module structure
-- [ ] Establish AI tool accounts & pipelines
-
-### Phase 2: Minimum Viable Ship (Single Sector Prototype)
-
-> **Goal:** One sector, one ship, core loop working. Fun to play solo.
-
-- [ ] Ship movement — flight, boost dash, basic traversal in 3D space
-- [ ] Basic combat — primary weapon + mining laser
-- [ ] Asteroid Belt sector with procedural node-map generation
-- [ ] Hull + Profession selection screen (Interceptor/Corvette × Fighter/Miner)
-- [ ] 3–5 drone/fighter enemies
-- [ ] 1 boss fight (pirate captain or void entity)
-- [ ] Mining mechanic — mine asteroids for minerals
-- [ ] Basic Tech Card selection on level-up (5–10 cards)
-- [ ] Run loop — choose loadout, play, die, restart
-- [ ] Cartoonish art style applied to all prototype assets
-
-### Phase 3: Co-op & Core Systems
-
-> **Goal:** Get 4-player co-op working with the prototype content.
-
-- [ ] Networking — host/join, replication, RPCs
-- [ ] Co-op camera and player management
-- [ ] Revive system
-- [ ] Difficulty scaling for player count
-- [ ] 3-currency system (Minerals, Research Data, Power Cores)
-- [ ] Station systems — trade, upgrade, craft
-- [ ] 20+ Tech Cards and module upgrades
-- [ ] Meta-progression (basic unlock loop)
-
-### Phase 4: Content Expansion
-
-> **Goal:** Multiple sectors, full enemy roster, deep item pool, all hulls and professions.
-
-- [ ] 3 complete sectors with unique mechanics (Asteroid Belt, Nebula, Derelict Graveyard)
-- [ ] 50+ Tech Cards and module upgrades
-- [ ] All 6 ship hulls with unique abilities
-- [ ] All 5 professions with phase-based gameplay
-- [ ] Boss encounters for each sector
-- [ ] Achievement-based unlock progression system
-
-### Phase 5: Polish & Audio
-
-- [ ] AI-generated music for each sector + boss themes
-- [ ] Sound effects for all ship actions, weapons, mining, and abilities
-- [ ] VFX and particle polish (laser trails, shield flashes, mining sparks, warp effects)
-- [ ] UI/UX polish — hull/profession select screen, sector map, HUD, upgrade screens
-- [ ] Ship animation pass — engine glow, drift, damage states
-
-### Phase 6: Testing & Release
-
-- [ ] Playtesting and balancing (solo + co-op)
-- [ ] Performance optimization
-- [ ] Steam store page and marketing
-- [ ] Early Access release
+- [x] Game concept & vision (16 design documents)
+- [x] Confirm core decisions (70+ logged decisions)
+- [x] Technical architecture & scope
+- [x] Full implementation plan (18 phases, 4 levels deep)
+- [ ] **→ Next: Phase 1 — UE5 project setup**
 
 ---
 
 ## Next Steps
 
 > [!IMPORTANT]
-> **Immediate action items after this plan is approved:**
+> **Pre-production is complete.** All design, research, and planning is documented. Next actions:
 >
-> 1. Create a detailed Game Design Document (separate file) with specific numbers for damage, health, scaling curves
-> 2. Set up the UE5 project with C++ module structure and networking enabled
-> 3. Create accounts for key AI tools (Tripo AI, AIVA, Meshy)
-> 4. Generate concept art for ship hulls (Interceptor, Corvette) in cartoonish style
-> 5. Begin prototyping ship flight + boost dash mechanics in C++
-> 6. Design the Hull × Profession selection screen UI
+> 1. Set up UE5 5.5 project with C++ module structure (Phase 1.1)
+> 2. Initialize Git + Git LFS (Phase 1.2)
+> 3. Create base gameplay C++ classes (Phase 1.1.4)
+> 4. Begin ship movement prototype (Phase 2.1)
+> 5. Follow [phase_01_02](technical/milestones/phase_01_02_foundation_ship.md) micro-steps
 
 ---
 
