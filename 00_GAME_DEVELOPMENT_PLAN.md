@@ -89,11 +89,12 @@ You are a **spaceman** — a pilot in a shattered galaxy where ancient gates onc
 
 ## 🔧 Technical Documentation
 
-| Document                                              | Covers                                                           |
-| ----------------------------------------------------- | ---------------------------------------------------------------- |
-| [AI Toolchain](technical/ai_toolchain.md)             | Code gen, 3D models, textures, music, SFX, concept art pipelines |
-| [Architecture](technical/architecture.md)             | UE5 C++/Blueprint strategy, networking, plugin structure, perf   |
-| [Prototype & MVP Scope](technical/prototype_scope.md) | 5 milestones (Ship Flies → Co-op), ~14 weeks, content matrix     |
+| Document                                                            | Covers                                                           |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [AI Toolchain](technical/ai_toolchain.md)                           | Code gen, 3D models, textures, music, SFX, concept art pipelines |
+| [Architecture](technical/architecture.md)                           | UE5 C++/Blueprint strategy, networking, plugin structure, perf   |
+| [Prototype & MVP Scope](technical/prototype_scope.md)               | 5 milestones (Ship Flies → Co-op), ~14 weeks, content matrix     |
+| [Implementation Milestones](technical/implementation_milestones.md) | 18 phases, ~400+ sub-steps, full game build from zero to release |
 
 ---
 
