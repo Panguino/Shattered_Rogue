@@ -83,7 +83,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 | 4 | Pirate waves + flagship | Win by killing flagship; lose at 0 HP |
 | 5 | Debug sliders + juice | F8 tunes feel; muzzle/hit/shake exist |
 | 6 | Real Ace mesh + better VFX | Swap primitives; loop unchanged |
-| 7 | Settings polish / input remap stub | Options actually persist; remap can wait as a stub screen |
+| 7 | Settings polish / input remap stub | Options actually persist; remap can wait as a stub screen — volume, sensitivity, quality, and window mode now survive a restart; remap still deferred |
 
 ---
 
