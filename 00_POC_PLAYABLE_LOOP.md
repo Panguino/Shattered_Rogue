@@ -124,8 +124,8 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 
 ### Step 5 — Tune and juice
 
-22. F8 widget sliders → pawn movement + weapon + enemy HP multiplier.
-23. Minimal juice: muzzle flash, hit spark, camera shake, flagship death burst.
+22. ~~F8 widget sliders → pawn movement + weapon + enemy HP multiplier.~~ Done: max speed, forward acceleration, inertial damping, fire rate, projectile speed, enemy HP multiplier.
+23. ~~Minimal juice: muzzle flash, hit spark, camera shake, flagship death burst.~~ Done: muzzle light per shot, impact burst at hit point, camera kick on fire and on damage taken, scaled death burst (bigger for the flagship).
 24. Playtest pass: adjust defaults from F8, write the chosen numbers back into C++ defaults.
 
 **Step 4 done when:** you want another try after dying, and beating the flagship feels like a finish.
