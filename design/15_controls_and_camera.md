@@ -9,16 +9,18 @@
 
 ---
 
-## 1. Movement Model — Arcade Drift Hybrid
+## 1. Movement Model — 6DOF Inertial Flight
 
-Not pure twin-stick (too twitchy) and not Newtonian (too floaty). The ships use an **arcade drift hybrid**:
+The POC pivoted from a top-down movement plane to **Avorion-style full 3D flight**:
 
-- **Thrust** is directional — push a direction, ship accelerates that way
-- **Momentum** carries slightly — releasing thrust doesn't stop you instantly
-- **Drag** kicks in quickly — ships slow to a stop within ~0.5–1s (varies by hull)
-- **Rotation** is instant — the ship always faces the aim direction (no turn radius)
+- **W/S** applies forward/reverse engine thrust; **A/D** strafes laterally; **Space/C** strafes vertically.
+- Velocity is world-space and persists after thrust is released. Low passive damping keeps the ship controllable without erasing inertia.
+- **X** engages strong inertia dampeners for deliberate braking.
+- **Q/E** rolls the hull. Pitch and yaw are limited by turn responsiveness rather than snapping instantly.
+- The mouse controls the camera heading; the ship rotates toward that heading as quickly as its maneuverability allows.
+- Forward acceleration is stronger than lateral and vertical thrust. Later hull stats can vary engine, thruster, brake, and turn authority independently.
 
-This gives the feel of Asteroids-style drift but with tight, responsive control. Think _Hades_ character movement but in space.
+The target is approachable space combat rather than a rigid Newtonian simulator: inertia matters, but the ship remains readable and recoverable.
 
 ### Movement Parameters by Hull
 
@@ -41,14 +43,14 @@ This gives the feel of Asteroids-style drift but with tight, responsive control.
 
 **Mouse + Keyboard:**
 
-- Ship always faces the mouse cursor
-- Left click = primary weapon (hold to fire)
-- Right click = secondary weapon (hold to fire)
-- Aim is instant — no aim lag or smoothing
+- Mouse looks/aims in 3D; ship attitude follows the camera with maneuverability-limited lag.
+- Center crosshair is the weapon aim direction.
+- Left click = primary weapon (hold to fire).
+- Hull and weapon aim may briefly diverge while the ship rotates toward the view.
 
 **Controller:**
 
-- Right stick = aim direction (ship faces stick direction)
+- Right stick = camera/aim heading; ship follows with turn lag.
 - Right trigger = primary weapon
 - Left trigger = secondary weapon
 - **Aim assist:** Slight magnetism toward nearest enemy (15° cone, subtle)
@@ -70,21 +72,22 @@ This gives the feel of Asteroids-style drift but with tight, responsive control.
 
 ### Base Camera
 
-| Parameter      | Value                                               |
-| -------------- | --------------------------------------------------- |
-| **Angle**      | Top-down, ~55° from horizontal (not pure 90°)       |
-| **Height**     | ~2000 units above ship (adjustable per context)     |
-| **Follow**     | Smooth follow with slight lag (lerp, 0.1s)          |
-| **Look-ahead** | Camera leads slightly in aim direction (+200 units) |
-| **Aspect**     | Widescreen, full viewport                           |
+| Parameter | Value |
+| --- | --- |
+| **Default** | Third-person chase, approximately 850 units behind the hull |
+| **First-person** | F1 toggles a nose/cockpit-adjacent view |
+| **Aim** | Camera heading drives the center crosshair; hull turns toward it |
+| **Follow** | Smooth positional and rotational lag |
+| **Boost** | Chase arm pulls back to communicate speed |
+| **Collision** | Spring arm shortens around nearby asteroids |
 
 ### Dynamic Camera Behaviors
 
 | Trigger                  | Camera Response                                              |
 | ------------------------ | ------------------------------------------------------------ |
-| **Boosting**             | Slight zoom out (FOV +5°), pulls back in on stop             |
-| **Boss encounter**       | Zoom out further to show full arena                          |
-| **Dense asteroid field** | Slight zoom in for tighter navigation feel                   |
+| **Boosting**             | Chase camera pulls back; returns smoothly                    |
+| **Boss encounter**       | Keep normal chase framing; flagship scale provides context   |
+| **Dense asteroid field** | Spring-arm collision prevents camera clipping                |
 | **Taking heavy damage**  | Light red vignette + subtle shake                            |
 | **Low HP (<20%)**        | Persistent light screen pulse (heartbeat rhythm)             |
 | **Entering new sector**  | Brief cinematic pan showing sector layout, then snap to ship |
@@ -102,13 +105,18 @@ Each player has their own independent camera (online only — no split-screen). 
 
 | Action             | Default Binding | Notes                              |
 | ------------------ | --------------- | ---------------------------------- |
-| **Move**           | WASD            | Thrust in direction                |
-| **Aim**            | Mouse position  | Ship faces cursor                  |
+| **Forward/reverse**| W / S           | Main-engine thrust                 |
+| **Strafe**         | A / D           | Lateral thrusters                  |
+| **Vertical strafe**| Space / C       | Up/down thrusters                  |
+| **Roll**           | Q / E           | Roll acceleration with inertia     |
+| **Aim / steer**    | Mouse           | Camera heading; hull follows       |
 | **Primary fire**   | Left click      | Hold to auto-fire                  |
 | **Secondary fire** | Right click     | Hold to auto-fire                  |
-| **Boost/Dash**     | Shift           | Short burst, cooldown              |
-| **Hull ability**   | Space           | Unique per hull                    |
-| **Interact**       | E               | Dock at station, pick up items     |
+| **Boost/Dash**     | Shift           | Short thrust burst, cooldown       |
+| **Hard brake**     | X               | Strong inertia dampening           |
+| **Camera toggle**  | F1              | Third-person / first-person        |
+| **Hull ability**   | Unassigned      | POC reserves Space/C for vertical  |
+| **Interact**       | Unassigned      | Rebind when stations enter scope   |
 | **Map**            | Tab / M         | Toggle galaxy map                  |
 | **Inventory**      | I               | Toggle cargo/loadout screen        |
 | **Drone command**  | Q               | Carrier-only: cycle drone behavior |
