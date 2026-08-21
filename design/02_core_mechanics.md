@@ -93,6 +93,8 @@ Environments determine the **visual theme, environmental hazards, and ambient re
 | 🟣 Legendary | 🕳️ **Void Rift**         | Reality-warped, impossible geometry | Physics glitch, gravity reverses          | Void-tier resource nodes     |
 
 > Environments are rolled based on rarity weights. Most sectors are Common; 0–1 per grid will be Legendary.
+>
+> **POC implementation:** the asteroid-field look is generated at runtime from a seed — one lighting sun, 0–3 distant planets, dust shells, starfield, and colliding asteroids. Replay lives on the Flight Lab overlay. Contract and extension points: [18_procedural_environments.md](18_procedural_environments.md). Other environment types and hazards are not in the POC.
 
 ### Axis 2: Encounter Types (the objective + exit condition)
 

@@ -259,12 +259,12 @@ These systems exist in the full design but are intentionally excluded from the p
 
 | Layer            | Tool                                                       |
 | ---------------- | ---------------------------------------------------------- |
-| **Engine**       | Unreal Engine 5.5 (C++ primary, Blueprint for prototyping) |
-| **Networking**   | UE5 Replication + Listen Server (built-in)                 |
+| **Engine**       | Unreal Engine 5.8 (C++ primary, Blueprint for prototyping, Unreal MCP) |
+| **Networking**   | UE Replication + Listen Server (built-in)                  |
 | **UI**           | UMG (UE5 native) for all menus and HUD                     |
 | **VFX**          | Niagara particle system                                    |
 | **AI**           | UE5 Behavior Trees for enemy AI                            |
 | **Audio**        | MetaSounds for adaptive audio (placeholder tracks)         |
-| **3D Assets**    | AI-generated (Tripo/Meshy) + manual cleanup                |
-| **Code Gen**     | AI-assisted (Antigravity + Copilot) for C++ and BP         |
+| **3D Assets**    | AI-generated (Tripo Smart Mesh, Ace = 6k tris) + socket cleanup |
+| **Code Gen**     | Cursor + Unreal MCP (UE 5.8) + Copilot for C++ and BP      |
 | **Version Ctrl** | Git + Git LFS for binaries                                 |

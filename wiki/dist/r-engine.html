@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engine MCP Research · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group" open><summary>Research</summary><a class="active" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Engine MCP / AI Integration Research</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+<p><strong>Researched:</strong> 2026-08-19
+<strong>Decision:</strong> Stay on <strong>Unreal Engine 5.8</strong> (C++ primary). Do not switch to Unity or Godot.</p>
+</blockquote>
+<hr>
+<h2>1. Question</h2>
+<p>Which engine has the best MCP (Model Context Protocol) AI integration in 2026, and should Shattered Rogue switch off Unreal 5.5 before the project is created?</p>
+<hr>
+<h2>2. Snapshot (August 2026)</h2>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>First-party MCP</th>
+<th>Community depth</th>
+<th>AI writes gameplay</th>
+<th>4-player co-op</th>
+<th>Fit for this game</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Unreal 5.8</strong></td>
+<td>Official Experimental plugin (June 2026). Native Cursor / Claude Code / Codex config.</td>
+<td>StraySpark (commercial, 400+ tools), ChiR24, chongdashu</td>
+<td>Harder — C++ + Blueprints</td>
+<td>Best built-in replication</td>
+<td><strong>Winner for us</strong></td>
+</tr>
+<tr>
+<td><strong>Unity 6</strong></td>
+<td>Official <code>com.unity.ai.assistant</code> MCP bridge — still <strong>pre-release</strong></td>
+<td>Largest ecosystem (~20k combined stars). CoplayDev 13.4k, IvanMurzak 3.9k, AnkleBreaker 288 tools</td>
+<td>Easier — C#</td>
+<td>Good (NGO / Fish-Net), extra setup</td>
+<td>Best <em>tool count</em>, not best <em>game fit</em></td>
+</tr>
+<tr>
+<td><strong>Godot 4</strong></td>
+<td>None</td>
+<td>Strong: GoPeak 95+ tools, Coding-Solo ~5k stars, GDAI $19</td>
+<td>Easiest — GDScript + text <code>.tscn</code></td>
+<td>Weakest of the three</td>
+<td>Fastest solo prototype, weakest netcode</td>
+</tr>
+</tbody></table>
+<p>Roblox has the most <em>native</em> MCP (built into Studio, playtest automation), but it is not a candidate for this game.</p>
+<hr>
+<h2>3. Unreal Engine 5.8</h2>
+<p>Epic shipped <strong>Unreal MCP</strong> as an Experimental editor plugin in UE 5.8 (June 2026). Documented at <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-mcp-in-unreal-editor">Unreal MCP in Unreal Editor</a>. Unreal Fest Chicago 2026 covered MCP + native Agent Skills (<code>UAgentSkill</code>).</p>
+<p><strong>What it does</strong></p>
+<ul>
+<li>Embeds an MCP server inside the editor: <code>http://127.0.0.1:8000/mcp</code> (HTTP + SSE, loopback only).</li>
+<li>Cursor, Claude Code, VS Code, Gemini, Codex — <code>ModelContextProtocol.GenerateClientConfig Cursor</code> writes <code>.mcp.json</code>.</li>
+<li>Tools come from the Toolset Registry (Python or C++). Default path: enable <strong>Unreal MCP</strong> + <strong>All Toolsets</strong>.</li>
+<li>Tool-search mode keeps the schema small: <code>list_toolsets</code> → <code>describe_toolset</code> → <code>call_tool</code>.</li>
+<li>Custom tools: <code>UToolsetDefinition</code> + <code>UFUNCTION(meta = (AICallable))</code>, or Python <code>@tool_call</code>.</li>
+</ul>
+<p><strong>Limits (Experimental)</strong></p>
+<ul>
+<li>Incomplete; APIs can change.</li>
+<li>No auth. Loopback only. Not for shipping.</li>
+<li>Tools run serially on the game thread — no overlapping calls.</li>
+<li>No MCP Resources/Prompts from shipping toolsets.</li>
+<li><code>stdio</code> / WebSocket not supported (HTTP/SSE only).</li>
+</ul>
+<p><strong>Community / commercial (use if official toolsets are too thin)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://www.strayspark.studio/products/unreal-mcp-server">StraySpark Unreal MCP Server</a></td>
+<td>5.7 + 5.8 builds, 400+ tools / 60 categories, Cursor/Claude. Paid.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ChiR24/Unreal_mcp">ChiR24/Unreal_mcp</a></td>
+<td>Active OSS, UE 5.0–5.8, HTTP/SSE.</td>
+</tr>
+<tr>
+<td>chongdashu/unreal-mcp</td>
+<td>Most-starred OSS (~2k). Older; 5.5 starter. Fallback only.</td>
+</tr>
+</tbody></table>
+<p><strong>Setup we will use (Phase 1)</strong></p>
+<ol>
+<li>Create project on <strong>UE 5.8</strong>, Blank C++.</li>
+<li>Enable plugins: Unreal MCP, All Toolsets.</li>
+<li>Editor Preferences → Model Context Protocol → Auto Start Server.</li>
+<li>Console: <code>ModelContextProtocol.GenerateClientConfig Cursor</code></li>
+<li>Launch Cursor from the project root after the editor is up.</li>
+</ol>
+<hr>
+<h2>4. Unity 6</h2>
+<p>Unity’s official MCP lives in <code>com.unity.ai.assistant</code> (docs as of 2.16.0-pre). Unity acts as the server; a relay binary under <code>~/.unity/relay/</code> speaks MCP to Cursor / Claude. Custom tools via <code>[McpTool]</code>.</p>
+<p>Community still leads for production:</p>
+<ul>
+<li><strong>CoplayDev/unity-mcp</strong> — adoption leader, 13,400+ stars</li>
+<li><strong>IvanMurzak/Unity-MCP</strong> — deepest integration, runtime agents, 3,900+ stars</li>
+<li><strong>AnkleBreaker</strong> — 288 tools, Shader Graph / NavMesh / builds / profiling</li>
+</ul>
+<p><strong>Why we are not switching:</strong> official MCP is still pre-release; C# would be nicer for AI, but 4-player listen-server replication, Niagara, and MetaSound are already designed in Unreal. Rewriting ~1,500 milestone steps for more MCP <em>tools</em> is the wrong trade.</p>
+<hr>
+<h2>5. Godot 4</h2>
+<p>No first-party MCP. Best community options:</p>
+<ul>
+<li><strong>GoPeak</strong> (<code>npx gopeak</code>) — 95+ tools, compact/full profiles, editor + runtime + LSP/DAP</li>
+<li><strong>Coding-Solo/godot-mcp</strong> — most-starred (~5k)</li>
+<li><strong>GDAI MCP</strong> — $19 commercial</li>
+</ul>
+<p>GDScript + text scenes is the best “AI writes the whole game” loop. Online 4-player co-op, juicy VFX, and a long content pipeline are weaker than Unreal for this design.</p>
+<hr>
+<h2>6. Decision</h2>
+<p><strong>Stay Unreal. Bump 5.5 → 5.8.</strong> Project is not created yet, so the version bump is free.</p>
+<table>
+<thead>
+<tr>
+<th>Keep Unreal because</th>
+<th>Do not switch because</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Official MCP + Cursor config in 5.8</td>
+<td>Unity has more community tools, not a better co-op stack for us</td>
+</tr>
+<tr>
+<td>Built-in replication for 1–4 players</td>
+<td>Godot MCP is community-only; netcode is more DIY</td>
+</tr>
+<tr>
+<td>Niagara + MetaSound already in design</td>
+<td>Existing architecture/milestones are UE</td>
+</tr>
+<tr>
+<td>Custom MCP tools in C++/Python as we grow</td>
+<td>C++ is harder for AI — offset by MCP editor control + Cursor</td>
+</tr>
+</tbody></table>
+<p><strong>Fallback:</strong> if Epic’s Experimental plugin is too thin in practice, add ChiR24 (free) or StraySpark (paid) without changing engines.</p>
+<hr>
+<h2>7. Sources</h2>
+<ul>
+<li>Epic: <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-mcp-in-unreal-editor">Unreal MCP in Unreal Editor</a> (UE 5.8)</li>
+<li>Unity: <a href="https://docs.unity3d.com/Packages/com.unity.ai.assistant@2.16/manual/integration/unity-mcp-overview.html">AI client integration with Unity (MCP)</a></li>
+<li>Landscape review: <a href="https://chatforest.com/reviews/game-engine-3d-development-mcp-servers/">ChatForest game-engine MCP servers</a> (refreshed 2026)</li>
+<li>StraySpark: <a href="https://www.strayspark.studio/products/unreal-mcp-server">Unreal MCP Server</a></li>
+<li>GoPeak: <a href="https://github.com/HaD0Yun/Gopeak-godot-mcp">HaD0Yun/Gopeak-godot-mcp</a></li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enter the Gungeon · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="active" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Enter the Gungeon (2016) — Dodge Roll Games</h1>
+<blockquote>
+<p><strong>Genre:</strong> Bullet-hell Top-down Roguelike | <strong>Perspective:</strong> Top-down 2D | <strong>Players:</strong> 1–2 Local Co-op | <strong>Steam Rating:</strong> 95% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Descend into the Gungeon — a dungeon made of, about, and for guns — to find the legendary gun that can kill the past. Bullet-hell dodge-rolling combat with an absurd variety of creative firearms.</p>
+<h2>👤 Characters (Gungeoneers)</h2>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Starting Weapon</th>
+<th>Starting Item</th>
+<th>Passive</th>
+<th>Unlock</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Marine</strong></td>
+<td>Marine Sidearm</td>
+<td>Supply Drop (ammo)</td>
+<td>+1 Armor</td>
+<td>Default</td>
+</tr>
+<tr>
+<td><strong>Pilot</strong></td>
+<td>Rogue Special (inaccurate)</td>
+<td>Lockpick (50% lockpick)</td>
+<td>+2 Active slots</td>
+<td>Default</td>
+</tr>
+<tr>
+<td><strong>Convict</strong></td>
+<td>Budget Revolver + Sawed-Off</td>
+<td>Molotov</td>
+<td>Enraged (dmg after hit)</td>
+<td>Default</td>
+</tr>
+<tr>
+<td><strong>Hunter</strong></td>
+<td>Crossbow + Rusty Sidearm</td>
+<td>Dog (finds items)</td>
+<td>Dog companion</td>
+<td>Default</td>
+</tr>
+<tr>
+<td><strong>Bullet</strong></td>
+<td>Blasphemy (sword, no ammo)</td>
+<td>—</td>
+<td>Full HP = sword beams</td>
+<td>Rescue in Gungeon</td>
+</tr>
+<tr>
+<td><strong>Robot</strong></td>
+<td>Robot&#39;s Right Hand</td>
+<td>—</td>
+<td>Coolant Leak, can&#39;t use hearts</td>
+<td>Drag a part through 5 floors</td>
+</tr>
+<tr>
+<td><strong>Paradox</strong></td>
+<td>Random</td>
+<td>Random</td>
+<td>Random everything</td>
+<td>Find cosmic rift</td>
+</tr>
+<tr>
+<td><strong>Gunslinger</strong></td>
+<td>Slinger</td>
+<td>—</td>
+<td>All guns have synergies</td>
+<td>Beat as Paradox</td>
+</tr>
+</tbody></table>
+<h2>🔫 Weapons — 300+ Guns</h2>
+<h3>Gun Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pistols</strong></td>
+<td>Regular, Magnum, Derringer</td>
+<td>Standard sidearms</td>
+</tr>
+<tr>
+<td><strong>Shotguns</strong></td>
+<td>Regular, Old Goldie, Blunderbuss</td>
+<td>Close-range spread</td>
+</tr>
+<tr>
+<td><strong>Rifles</strong></td>
+<td>AK-47, M16, Sniper Rifle</td>
+<td>Mid-long range</td>
+</tr>
+<tr>
+<td><strong>Beam Weapons</strong></td>
+<td>Proton Backpack, Disintegrator</td>
+<td>Continuous fire</td>
+</tr>
+<tr>
+<td><strong>Explosive</strong></td>
+<td>RPG, Yari Launcher, Grenade</td>
+<td>AoE damage</td>
+</tr>
+<tr>
+<td><strong>Novelty</strong></td>
+<td>Banana, Mailbox, Trashcannon, Gunther</td>
+<td>Absurd joke weapons</td>
+</tr>
+<tr>
+<td><strong>Reference</strong></td>
+<td>Mega Buster, BSG, Fightsabre</td>
+<td>Pop culture references</td>
+</tr>
+</tbody></table>
+<h3>Notable Guns</h3>
+<ul>
+<li><strong>Casey</strong> — A baseball bat. Hit bullets back at enemies</li>
+<li><strong>The Kiln</strong> — Shoots pots that break into pottery shards</li>
+<li><strong>Mailbox</strong> — Delivers mail (damage)</li>
+<li><strong>Gunther</strong> — A gun that talks and evolves during the run</li>
+<li><strong>Makeshift Cannon</strong> — Single shot that kills almost anything, then becomes empty</li>
+</ul>
+<h3>Synergy System</h3>
+<ul>
+<li>330+ unique synergies between gun + item combinations</li>
+<li>Synergy creates visual and mechanical changes</li>
+<li>Example: Any fire weapon + Ring of Fire Resistance = no self-damage</li>
+<li>Gunslinger character: EVERY gun has active synergies</li>
+</ul>
+<h2>🧰 Items — Passive + Active</h2>
+<h3>Passive Items (250+)</h3>
+<ul>
+<li><strong>Ser Junkan</strong> — Junk companion that evolves (stronger per junk collected)</li>
+<li><strong>Riddle of Lead</strong> — Can survive fatal hits</li>
+<li><strong>Duct Tape</strong> — Literally tape two guns together</li>
+<li><strong>Spice</strong> — &quot;More!&quot; Increases stats with diminishing returns, then penalties</li>
+</ul>
+<h3>Active Items (100+)</h3>
+<ul>
+<li><strong>Blank</strong> — Clear all bullets on screen (limited uses per floor)</li>
+<li><strong>Teleporter</strong> — Random room teleport</li>
+<li><strong>Decoy</strong> — Draws enemy attention</li>
+</ul>
+<h2>🗺️ Floor Structure</h2>
+<pre><code>Floor 1: Keep of the Lead Lord → Boss
+Floor 2: Gungeon Proper → Boss
+Floor 3: Black Powder Mine → Boss
+Floor 4: Hollow → Boss
+Floor 5: Forge → Dragun (final boss)
+  ├─ Bullet Hell (secret Floor 6) → Lich (true final boss)
+  └─ Individual pasts (per character)
+</code></pre>
+<ul>
+<li>Secret floors: Oubliette, Abbey of the True Gun, Resourceful Rat lair</li>
+</ul>
+<h2>📈 Progression — NPC Rescue System</h2>
+<h3>Rescuable NPCs</h3>
+<table>
+<thead>
+<tr>
+<th>NPC</th>
+<th>Location</th>
+<th>Unlocks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tailor</strong></td>
+<td>Floor 2 cell</td>
+<td>Alternate skins</td>
+</tr>
+<tr>
+<td><strong>Trorc</strong></td>
+<td>Floor 2 cell</td>
+<td>Weapons in shop</td>
+</tr>
+<tr>
+<td><strong>Professor Goopton</strong></td>
+<td>Floor 3 cell</td>
+<td>Goop-based items</td>
+</tr>
+<tr>
+<td><strong>Cursula</strong></td>
+<td>Floor 4 cell</td>
+<td>Cursed items</td>
+</tr>
+<tr>
+<td><strong>Flynt</strong></td>
+<td>Floor 3 cell</td>
+<td>Keys for items shop</td>
+</tr>
+<tr>
+<td>+ more</td>
+<td>Various</td>
+<td>Expand item/weapon pools</td>
+</tr>
+</tbody></table>
+<h3>Hegemony Credits (Meta Currency)</h3>
+<ul>
+<li>Earned by killing bosses without taking damage (&quot;Master Round&quot;)</li>
+<li>Spent to unlock weapons and items at the shop NPCs</li>
+<li>More NPCs rescued = more items available</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Dodge Roll</strong> — Signature mechanic — iframe rolls through bullets, table flips for cover</li>
+<li><strong>Table Flipping</strong> — Kick tables to create bulletproof cover, then kick them at enemies</li>
+<li><strong>Absurd Gun Variety</strong> — Over 300 creative/joke weapons (gun that shoots guns)</li>
+<li><strong>Synergy System</strong> — 330+ hidden gun+item combos change behavior</li>
+<li><strong>Master Rounds</strong> — Perfect boss fights = permanent HP upgrade (high skill reward)</li>
+<li><strong>NPC Rescue Pool Expansion</strong> — Metagame of unlocking by rescuing NPCs</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;Dodge-rolling through a curtain of bullets never gets old&quot;</li>
+<li>&quot;Every gun is ridiculous and creative — I&#39;ve found a gun that shoots emails&quot;</li>
+<li>&quot;The synergy system means there&#39;s always a new combo to discover&quot;</li>
+<li>&quot;Table flipping is genius — simple mechanic, deep tactical use&quot;</li>
+<li>&quot;Master Rounds reward skill perfectly without feeling mandatory&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Guns:</strong> 300+</li>
+<li><strong>Items:</strong> 350+</li>
+<li><strong>Synergies:</strong> 330+</li>
+<li><strong>Bosses:</strong> 25+</li>
+<li><strong>Floors:</strong> 5 main + 3 secret</li>
+<li><strong>Average run:</strong> 40–60 minutes</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

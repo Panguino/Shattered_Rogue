@@ -47,6 +47,8 @@ Each enemy spawns with **1–3 traits** depending on difficulty tier. Traits sta
 | **Flanker** | Circles to attack from behind                  | Afterburner trail                  |
 | **Charger** | Rushes straight at player then retreats        | Red engine glow, wind-up sound     |
 | **Orbiter** | Maintains distance, strafes while firing       | Concentric ring trail              |
+
+> Movement traits are *per-ship flavor*. They must not all collapse into `steerToward(player)`. Squad intercept, attack slots, and pursuit limits live in [17_anti_kiting_combat.md](17_anti_kiting_combat.md). POC pirates still chase independently.
 | **Blinker** | Short-range teleport every few seconds         | Phase distortion shimmer           |
 | **Pack**    | Moves in tight formation with 2–3 others       | Tether lines between pack          |
 | **Stalker** | Hangs back until player is low HP, then rushes | Dim, almost invisible until moving |

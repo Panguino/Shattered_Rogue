@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>14 · Lore · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="active" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>📜 Lore &amp; Narrative</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>Avorion-inspired mystery.</strong> The player doesn&#39;t get a lore dump — they piece the story together through environmental details, station NPC fragments, event encounters, and artifact discoveries. The central question: <em>What broke the galaxy, and what&#39;s pouring through the wound?</em></p>
+</blockquote>
+<hr>
+<h2>1. The World — Before the Shattering</h2>
+<p>Centuries ago, the <strong>Linked Galaxy</strong> was connected by a network of ancient <strong>Resonance Gates</strong> — massive ring-shaped structures that allowed instant travel between star systems. No one knew who built them. They predated every known civilization. They simply <em>were</em>, and everyone used them.</p>
+<p>The Gates ran on <strong>Resonance Crystals</strong> — a rare mineral found deep in asteroid fields. The crystals hummed at a specific frequency that kept the Gates stable. Civilizations mined them, traded them, fought over them. The galaxy thrived.</p>
+<p>Then, roughly 200 years ago, something went wrong.</p>
+<hr>
+<h2>2. The Shattering</h2>
+<p>A research coalition called the <strong>Deepwell Consortium</strong> was experimenting with Resonance Crystals at the galactic core. They believed the Gates were not just transportation — they were <em>containment</em>. The Gate network was a massive cage, keeping something locked on the other side.</p>
+<p>They were right.</p>
+<p>The Consortium punched through. They opened a <strong>Breach</strong> — a wound in space-time at the very center of the galaxy. For a brief moment, they saw the other side: a dimension of hostile, alien geometry. Something <em>looked back</em>.</p>
+<p>The Breach destabilized every Resonance Gate simultaneously. They shattered — some exploded, some collapsed into spatial anomalies, some simply went dark. In an instant, the connected galaxy was severed into isolated pockets. Billions were stranded. Trade routes died. Civilizations fell.</p>
+<p>And from the Breach, <strong>they</strong> came.</p>
+<hr>
+<h2>3. The Corruption — What Came Through</h2>
+<p>The entities that pour from the Breach have no official name. Station survivors call them different things:</p>
+<table>
+<thead>
+<tr>
+<th>Name Used</th>
+<th>Who Uses It</th>
+<th>Connotation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>The Signal</strong></td>
+<td>Scientists, researchers</td>
+<td>They seem to follow some coordinated pattern</td>
+</tr>
+<tr>
+<td><strong>The Rot</strong></td>
+<td>Miners, haulers</td>
+<td>They spread like an infection across sectors</td>
+</tr>
+<tr>
+<td><strong>Hollow</strong></td>
+<td>Fighters, mercs</td>
+<td>They look like corrupted versions of real ships</td>
+</tr>
+<tr>
+<td><strong>Breach-born</strong></td>
+<td>Station NPCs</td>
+<td>Neutral, descriptive</td>
+</tr>
+<tr>
+<td><strong>The Swarm</strong></td>
+<td>Military remnants</td>
+<td>Emphasizes their endless numbers</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Player perspective:</strong> You don&#39;t learn the &quot;true&quot; name. Different NPCs use different terms. This creates the feeling that nobody truly understands what they&#39;re dealing with.</p>
+</blockquote>
+<h3>What Are They?</h3>
+<p>The Breach-born are <strong>parasites</strong> — a jellyfish-like ooze that latches onto ships and technology, consuming and puppeting them. They are not mechanical and not fully organic. They pulse, throb, and spread across hulls like a bioluminescent cancer.</p>
+<p>The parasite <strong>glows purple-to-red</strong> — a sickly luminescence that&#39;s visible from a distance. The glow intensifies the deeper into the galaxy you travel, because the corruption has had longer to take hold near the Breach.</p>
+<h3>Corruption Gradient by Ring</h3>
+<table>
+<thead>
+<tr>
+<th>Ring</th>
+<th>Corruption Level</th>
+<th>Visual Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Outer Rim</strong></td>
+<td>10–20%</td>
+<td>Ships look mostly normal. Faint purple veins along hull seams. Slight glow on weapon ports. You might mistake them for damaged ships at first glance.</td>
+</tr>
+<tr>
+<td><strong>Mid Ring</strong></td>
+<td>40–60%</td>
+<td>Obvious infection. Purple-red tendrils crawl across the hull. Jellyfish membrane visible through cracked plating. Ship silhouette still recognizable but <em>wrong</em>.</td>
+</tr>
+<tr>
+<td><strong>Inner Ring</strong></td>
+<td>70–90%</td>
+<td>More parasite than ship. The original hull is barely visible under pulsing ooze. Translucent jellyfish tendrils trail behind. Glowing red &quot;organs&quot; visible inside the mass.</td>
+</tr>
+<tr>
+<td><strong>The Core</strong></td>
+<td>100%</td>
+<td>Pure alien forms. No ship underneath — the parasite has fully digested the host and shaped itself into something new. Writhing, bioluminescent jellyfish horrors with no resemblance to anything built by known species.</td>
+</tr>
+</tbody></table>
+<blockquote class="callout-tip"><p><strong>Tip.</strong> <strong>The gradient is the storytelling.</strong> A player in the Outer Rim sees slightly off ships and thinks &quot;weird pirates.&quot; By the Inner Ring, they&#39;re fighting translucent ooze nightmares and <em>understanding</em> what they&#39;re heading toward. The Core reveals the truth: the ships were never the enemy — the parasite was always the real thing.</p>
+</blockquote>
+<p>Key characteristics:</p>
+<ul>
+<li><strong>They don&#39;t communicate.</strong> No signals, no demands, no warnings — just the pulsing glow.</li>
+<li><strong>They corrupt what they touch.</strong> The ooze spreads to debris, asteroids, even station hulls in infected sectors.</li>
+<li><strong>They never retreat.</strong> The parasite fights until the host is destroyed — then the ooze dissipates.</li>
+<li><strong>They&#39;re getting stronger.</strong> Closer to the core, the parasite has had centuries to evolve and the hosts are fully consumed.</li>
+<li><strong>More come every day.</strong> The Breach is widening, and the ooze is spreading outward ring by ring.</li>
+</ul>
+<blockquote>
+<p>This ties directly to the <a href="d06.html">enemy catalog</a>: the 6 chassis types are the host ships the parasite has consumed. Their procedural traits represent different stages and strains of infection — no two encounters are the same because the parasite mutates unpredictably.</p>
+</blockquote>
+<hr>
+<h2>4. The Outer Rim — Where You Start</h2>
+<p>The <strong>Outer Rim Station</strong> (your hub) is one of the last holdouts. It&#39;s a cobbled-together station built from Gate fragments and salvage, sitting at the very edge of the galaxy. It survives because the Breach-born haven&#39;t reached this far yet — <em>yet</em>.</p>
+<p>The people here are survivors:</p>
+<ul>
+<li><strong>Dock crews</strong> who used to work the Gate network</li>
+<li><strong>Researchers</strong> studying Resonance Crystal fragments for clues</li>
+<li><strong>Mercenaries</strong> running supplies between isolated settlements</li>
+<li><strong>Refugees</strong> from inner systems overrun by the Swarm</li>
+</ul>
+<p>Everyone on the station knows the same thing: <strong>the Breach is growing</strong>. If nobody closes it, the Rot will eventually reach the Outer Rim. There will be nowhere left to run.</p>
+<p>You are one of many pilots who volunteer to make the inward run. Most don&#39;t come back.</p>
+<hr>
+<h2>5. The Three Glyphs — Run Goal</h2>
+<p>The Breach is protected by <strong>three barriers</strong> — concentric walls of Breach energy that burn anything that tries to pass through. Each barrier can only be bypassed by presenting an artifact that resonates with it: an alien object covered in unknowable symbols.</p>
+<p>These <strong>Glyphs</strong> have no names — not in any language anyone speaks. They&#39;re fragments of whatever intelligence built the original Gates. Consortium records describe them only as &quot;the keys the builders left behind.&quot; Each one looks like a chunk of impossible geometry, covered in shifting alien symbols that glow when near the Breach.</p>
+<table>
+<thead>
+<tr>
+<th>Glyph</th>
+<th>Visual</th>
+<th>Location</th>
+<th>How to Obtain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◈ <strong>First Glyph</strong></td>
+<td>Angular, metallic, cold blue shimmer</td>
+<td>Mid Ring — Nebula sectors</td>
+<td>Dropped by a <strong>Glyph Guardian</strong> mini-boss</td>
+</tr>
+<tr>
+<td>◈ <strong>Second Glyph</strong></td>
+<td>Curved, crystalline, deep violet pulse</td>
+<td>Inner Ring — Void Rift</td>
+<td>Found in a special <strong>Vault Event</strong> encounter</td>
+</tr>
+<tr>
+<td>◈ <strong>Third Glyph</strong></td>
+<td>Organic-looking, warm red throb</td>
+<td>Inner Ring — Supernova</td>
+<td>Rewarded for defeating the <strong>ring boss</strong> holding it</td>
+</tr>
+</tbody></table>
+<blockquote class="callout-tip"><p><strong>Note.</strong> <strong>The Glyphs are never explained.</strong> The player doesn&#39;t get a tooltip saying &quot;Gate Fragment #2.&quot; They&#39;re alien objects with alien writing that do something you don&#39;t fully understand. You just know: <em>bring three of them to the Breach, and you can get through.</em></p>
+</blockquote>
+<h3>How Glyphs Work in Gameplay</h3>
+<table>
+<thead>
+<tr>
+<th>Mechanic</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Persistent across deaths</strong></td>
+<td>Glyphs are stored at the Hub station — displayed on a pedestal, not in inventory</td>
+</tr>
+<tr>
+<td><strong>One per run (max)</strong></td>
+<td>You can only obtain one Glyph per run — finding one is a significant event</td>
+</tr>
+<tr>
+<td><strong>Run must succeed</strong></td>
+<td>You must <strong>survive</strong> the run (reach a station or extract) to keep the Glyph</td>
+</tr>
+<tr>
+<td><strong>Barrier key</strong></td>
+<td>Each Glyph bypasses one of the three barriers protecting the Breach</td>
+</tr>
+<tr>
+<td><strong>All 3 = final run</strong></td>
+<td>Collecting all 3 unlocks the <strong>Breach Run</strong> — a special endgame run</td>
+</tr>
+</tbody></table>
+<h3>Glyph Passive Bonuses</h3>
+<p>Each Glyph displayed in the Hub subtly strengthens all future runs — the alien symbols <em>resonate</em> with the Breach energy in the galaxy, weakening it:</p>
+<table>
+<thead>
+<tr>
+<th>Glyph Collected</th>
+<th>Passive Bonus (All Future Runs)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>◈ First Glyph</td>
+<td>Fog of war reduced — can see 2 sectors ahead on the map</td>
+</tr>
+<tr>
+<td>◈ Second Glyph</td>
+<td>+1 Jump Range on all hulls</td>
+</tr>
+<tr>
+<td>◈ Third Glyph</td>
+<td>Breach-born deal 10% less damage</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Narrative payoff:</strong> The Glyphs don&#39;t explain themselves. They just <em>work</em>. The player feels the Breach weakening without understanding why — mirroring how everyone in the galaxy feels about the situation.</p>
+</blockquote>
+<hr>
+<h2>6. The Breach Run — Endgame</h2>
+<p>Once all 3 Glyphs are collected, the player can launch a <strong>Breach Run</strong> from the Hub. This is a special, unique run that replaces the normal galaxy grid:</p>
+<h3>Breach Run Structure</h3>
+<pre><code>OUTER RIM ──→ MID RING ──→ INNER RING ──→ THE CORE ──→ THE BREACH
+    │              │              │              │              │
+  Normal       Harder       Hardest     Shard Boss      FINAL BOSS
+  sectors      sectors      sectors    &quot;The Warden&quot;    &quot;The Architect&quot;
+  (3 sectors)  (3 sectors)  (2 sectors)  (1 sector)     (1 sector)
+</code></pre>
+<h3>The Warden (Penultimate Boss)</h3>
+<p>The <strong>Warden</strong> is the last protector of the Breach — a massive, corrupted construct that was once the Core Gate&#39;s defense system. It was built to protect the Gate, but the Breach corrupted it. Now it attacks anyone who approaches, friend or foe.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Phase 1</strong></td>
+<td>Shield-based defense — summons orbiting Shield Drones</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>Switches to aggressive — charging rams + sweeping beam attacks</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>Spawns Breach-born reinforcements while healing</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong></td>
+<td>Desperate — EMP pulses that disable player systems temporarily</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Thematic beat:</strong> The Warden isn&#39;t evil — it&#39;s <em>broken</em>. Environmental storytelling in the arena (Consortium logos on its hull, damaged Gate fragments orbiting it) tells the player this was once a protector that the Breach twisted.</p>
+</blockquote>
+<h3>The Architect (Final Boss)</h3>
+<p>The <strong>Architect</strong> is what the Consortium found on the other side. It is the entity that opened the Breach from its dimension — the thing that <em>looked back</em>. It doesn&#39;t have a ship form. It is <strong>the Breach itself</strong>, made manifest — a colossal jellyfish horror of pulsing ooze and impossible geometry, filling the entire arena.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Phase 1</strong></td>
+<td>Arena warps — gravity shifts, spatial distortion, projectiles curve</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>Summons evolution — copies of every enemy type you&#39;ve fought this run</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>Direct assault — massive tendrils sweep the arena, ooze pools form</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong></td>
+<td>Collapse — arena shrinks, damage ramps, Architect is vulnerable at center</td>
+</tr>
+<tr>
+<td><strong>Glyph Use</strong></td>
+<td>Each Glyph activates during a specific phase, burning away barriers</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>The mystery resolved:</strong> The Architect didn&#39;t invade — it was <em>summoned</em>. The Consortium&#39;s experiment was the real cause. The &quot;enemies&quot; are the Architect&#39;s immune response — the jellyfish ooze treats the galaxy as a foreign body and is trying to consume it. You&#39;re not saving the galaxy from an invasion — you&#39;re curing a parasitic infection that your own kind caused.</p>
+</blockquote>
+<hr>
+<h2>7. Environmental Storytelling</h2>
+<p>Lore is delivered through the environment, not cutscenes:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Example Content</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Wreckage scan data</strong></td>
+<td>Ship logs from Consortium expeditions — increasingly desperate</td>
+</tr>
+<tr>
+<td><strong>Station NPC dialogue</strong></td>
+<td>Each NPC has 2–3 line fragments about their past, the Shattering, rumors</td>
+</tr>
+<tr>
+<td><strong>Event encounters</strong></td>
+<td>Some events reference Gate ruins, Consortium caches, Breach anomalies</td>
+</tr>
+<tr>
+<td><strong>Boss arena details</strong></td>
+<td>Consortium logos, old Gate fragments, corrupted tech in boss zones</td>
+</tr>
+<tr>
+<td><strong>Glyph collection moments</strong></td>
+<td>Brief visual pulse — the Glyph&#39;s symbols flare, a barrier in the galaxy map cracks</td>
+</tr>
+<tr>
+<td><strong>Item flavor text</strong></td>
+<td>Weapons and modules have lore-relevant descriptions</td>
+</tr>
+<tr>
+<td><strong>Breach corruption visuals</strong></td>
+<td>Purple-red ooze on asteroids, pulsing tendrils on wreckage, jellyfish in the void</td>
+</tr>
+</tbody></table>
+<h3>Lore Fragment Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Found In</th>
+<th>Reveals</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Consortium Logs</strong></td>
+<td>12</td>
+<td>Wreckage scans, events</td>
+<td>What the Consortium was doing and why</td>
+</tr>
+<tr>
+<td><strong>Survivor Stories</strong></td>
+<td>8</td>
+<td>Station NPCs</td>
+<td>Personal accounts of the Shattering</td>
+</tr>
+<tr>
+<td><strong>Gate Codex</strong></td>
+<td>6</td>
+<td>Glyph events, hidden caches</td>
+<td>History of the Gate network, who built them</td>
+</tr>
+<tr>
+<td><strong>Breach Analysis</strong></td>
+<td>6</td>
+<td>Research Lab events, scans</td>
+<td>What the other dimension is, the parasite&#39;s nature</td>
+</tr>
+<tr>
+<td><strong>Old World Records</strong></td>
+<td>5</td>
+<td>Derelict sectors, vaults</td>
+<td>What the galaxy was like before the Shattering</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Total: 37 lore fragments.</strong> Collecting all of them is an achievement (&quot;Archivist&quot;) and unlocks an optional lore codex in the Trophy Room.</p>
+</blockquote>
+<hr>
+<h2>8. Post-Breach Content (Loop+ / New Game+)</h2>
+<p>After closing the Breach, the story doesn&#39;t end — it <em>shifts</em>:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Narrative</th>
+<th>Gameplay Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Breach Sealed</strong></td>
+<td>The Architect is defeated. The Breach closes. The galaxy begins healing.</td>
+<td>Credits roll. Unlock Loop+ mode.</td>
+</tr>
+<tr>
+<td><strong>Loop+ Runs</strong></td>
+<td>Something is wrong. Residual Breach energy lingers. New anomalies appear.</td>
+<td>Harder enemies, remixed traits, new modifiers.</td>
+</tr>
+<tr>
+<td><strong>The Echo</strong></td>
+<td>The Architect left something behind — an <em>echo</em> that&#39;s building toward reopening the Breach.</td>
+<td>New event types, corrupted stations, new boss variants.</td>
+</tr>
+<tr>
+<td><strong>True Ending</strong></td>
+<td>Complete a Loop+ run at Heat 16+ to face <strong>The Echo</strong> — a weakened but persistent fragment of the Architect.</td>
+<td>Unique boss fight, true ending cutscene, exclusive cosmetics.</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Why Loop+ narratively?</strong> The Breach didn&#39;t close cleanly. The infection left scars. This justifies why the galaxy is still dangerous after victory, and gives a narrative reason for escalating difficulty.</p>
+</blockquote>
+<hr>
+<h2>9. Naming Conventions</h2>
+<table>
+<thead>
+<tr>
+<th>Entity</th>
+<th>Name</th>
+<th>Origin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Galaxy</td>
+<td><strong>The Linked Galaxy</strong></td>
+<td>Named for the Gate network that connected it</td>
+</tr>
+<tr>
+<td>The catastrophe</td>
+<td><strong>The Shattering</strong></td>
+<td>When the Gates exploded/collapsed</td>
+</tr>
+<tr>
+<td>The wormhole</td>
+<td><strong>The Breach</strong></td>
+<td>Wound in space-time at the galactic core</td>
+</tr>
+<tr>
+<td>The enemy faction</td>
+<td><strong>Breach-born</strong> (neutral) / <strong>The Rot</strong> (informal)</td>
+<td>Multiple names — nobody agrees</td>
+</tr>
+<tr>
+<td>The parasite</td>
+<td><strong>The Ooze</strong> (informal)</td>
+<td>Jellyfish-like organism that puppets host ships</td>
+</tr>
+<tr>
+<td>The research group</td>
+<td><strong>Deepwell Consortium</strong></td>
+<td>They dug too deep into Gate technology</td>
+</tr>
+<tr>
+<td>The run goal artifacts</td>
+<td><strong>Glyphs</strong> (unnamed)</td>
+<td>Alien fragments with unknowable symbols</td>
+</tr>
+<tr>
+<td>The player hub</td>
+<td><strong>Outer Rim Station</strong></td>
+<td>Last holdout at galaxy&#39;s edge</td>
+</tr>
+<tr>
+<td>The crystal fuel</td>
+<td><strong>Resonance Crystals</strong></td>
+<td>What powered the Gates (now Warp Crystals in-game)</td>
+</tr>
+<tr>
+<td>The penultimate boss</td>
+<td><strong>The Warden</strong></td>
+<td>Corrupted Gate guardian</td>
+</tr>
+<tr>
+<td>The final boss</td>
+<td><strong>The Architect</strong></td>
+<td>Colossal jellyfish entity from the other dimension</td>
+</tr>
+<tr>
+<td>Post-game threat</td>
+<td><strong>The Echo</strong></td>
+<td>Residual fragment of the Architect</td>
+</tr>
+</tbody></table>
+<blockquote class="callout-tip"><p><strong>Tip.</strong> <strong>Warp Crystals = Resonance Crystals.</strong> The in-game currency is actually fragments of the same material that powered the Gates. The player is spending pieces of the old world to navigate the broken new one. This can be referenced in flavor text but never stated outright — let players connect the dots.</p>
+</blockquote>
+<blockquote class="callout-tip"><p><strong>Tip.</strong> <strong>The purple-red glow is your threat meter.</strong> If a player sees faint purple veins on a ship, they know it&#39;s Outer Rim-level danger. If they see a writhing red mass of tendrils, they know they&#39;re deep. The visual language teaches the player without a single word of UI text.</p>
+</blockquote>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

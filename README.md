@@ -6,47 +6,37 @@
 | -------------- | ----------------------------------------- |
 | **Genre**      | Top-down roguelite space shooter          |
 | **Players**    | 1–4 online co-op                          |
-| **Engine**     | Unreal Engine 5.5 (C++ primary)           |
+| **Engine**     | Unreal Engine 5.8 (C++ primary, Unreal MCP) |
 | **Art Style**  | Cartoonish (Mario / Zelda inspired)       |
 | **Run Length** | ~40–60 minutes                            |
 | **Ships**      | 6 Hulls × 5 Professions = 30 named combos |
 
 Choose your **hull** and **profession**, launch into procedural hex-grid galaxies. Mine asteroids, scan anomalies, trade at stations, fight jellyfish-like alien parasites. Upgrade with weapons, modules, and tech. Die, unlock new options, try again — solo or with up to 3 friends.
 
+**Active plan:** [POC playable loop](00_POC_PLAYABLE_LOOP.md) — Pirate Raid arena, menus, debug sliders. Unreal project lives in a **sibling** folder (`C:\Projects\_personal\Shattered\ShatteredRogue`). This repo is design, wiki, and art.
+
+**Browse the wiki:** [`wiki/dist/index.html`](wiki/dist/index.html) or `cd wiki && npm run serve` → http://localhost:4173 . Rebuild: `cd wiki && npm run build`.
+
 ---
 
 ## 📂 Repository Structure
 
 ```
-Shattered_Rogue/
-├── 📋 00_GAME_DEVELOPMENT_PLAN.md     ← Master catalog + confirmed decisions
-├── 📖 README.md                       ← You are here
-│
-├── 🎨 design/                         ← 16 game design documents
-│   ├── 01–02  Foundation & Mechanics
-│   ├── 03–04  Items & Progression
-│   ├── 05–08  World, Enemies, Stations, Hub
-│   ├── 09–10  Audio, Drones
-│   ├── 11–13  Difficulty, Combat, Stats
-│   └── 14–16  Lore, Controls, VFX
-│
-├── 🔬 research/                       ← Genre research & game studies
-│   ├── 01_ROGUELIKE_GENRE_RESEARCH.md
-│   └── games/                         ← 24 individual game deep-dives
-│
-└── ⚙️ technical/                      ← Architecture, scope & milestones
-    ├── ai_toolchain.md
-    ├── architecture.md
-    ├── prototype_scope.md
-    ├── implementation_milestones.md    ← 18-phase master plan (~400 sub-steps)
-    └── milestones/                    ← 4th-level micro-steps (~1,500+ tasks)
-        ├── phase_01_02   Foundation & Ship Flies
-        ├── phase_03      Combat Works
-        ├── phase_04      Run Structure
-        ├── phase_05_06   Progression & Co-op
-        ├── phase_07_10   Content Expansion
-        ├── phase_11_14   Systems & Endgame
-        └── phase_15_18   Audio, Polish & Release
+Shattered_Rogue/                    ← this repo (design + wiki + art)
+├── 00_POC_PLAYABLE_LOOP.md         ← ACTIVE plan (Pirate Raid POC)
+├── 00_GAME_DEVELOPMENT_PLAN.md     ← catalog index
+├── README.md
+├── wiki/
+├── art/
+├── design/                         ← 16 North Star design docs
+├── research/
+├── technical/
+│   ├── ai_toolchain.md
+│   └── architecture.md
+└── archive/full-game-roadmap-2026-08/   ← 18-phase plan snapshot
+
+Sibling (not in this repo yet):
+C:\Projects\_personal\Shattered\ShatteredRogue   ← UE 5.8 .uproject
 ```
 
 ---
@@ -106,32 +96,34 @@ Shattered_Rogue/
 
 ---
 
-## ⚙️ Technical Documentation
+## 🌐 Wiki & Art
 
-| Document                                                            | Covers                                                           |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [Architecture](technical/architecture.md)                           | UE5 C++/Blueprint strategy, networking, plugin structure, perf   |
-| [AI Toolchain](technical/ai_toolchain.md)                           | Code gen, 3D models, textures, music, SFX, concept art pipelines |
-| [Prototype & MVP Scope](technical/prototype_scope.md)               | 5 milestones (Ship Flies → Co-op), ~14 weeks, content matrix     |
-| [Implementation Milestones](technical/implementation_milestones.md) | 18 phases, ~400 sub-steps, full game build from zero to release  |
+| | |
+| --- | --- |
+| **Wiki home** | [`wiki/dist/index.html`](wiki/dist/index.html) |
+| **Ship prompts** | [`art/ship_prompts.md`](art/ship_prompts.md) |
 
-### 🗂️ Detailed Milestone Plans (4th-Level Micro-Steps)
+---
 
-Each file breaks phases into atomic, single-task micro-steps (~1,500+ total):
+## Technical documentation
 
-| File                                                                    | Phases | Covers                                                                            |
-| ----------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------- |
-| [phase_01_02](technical/milestones/phase_01_02_foundation_ship.md)      | 1–2    | Project init, Git/LFS, C++ classes, movement, camera, arena, HUD                  |
-| [phase_03](technical/milestones/phase_03_combat.md)                     | 3      | Weapons, projectiles, 3 enemy chassis, health, loot, waves, death                 |
-| [phase_04](technical/milestones/phase_04_run_structure.md)              | 4      | Galaxy map, sector transitions, combat/mining/station, cargo, boss, events        |
-| [phase_05_06](technical/milestones/phase_05_06_progression_coop.md)     | 5–6    | RD currency, Hub, unlocks, hex map, Gunship, professions, networking, revive      |
-| [phase_07_10](technical/milestones/phase_07_10_content_expansion.md)    | 7–10   | 6 hulls, 5 professions, weapons/modules, traits, corruption, environments, drones |
-| [phase_11_14](technical/milestones/phase_11_14_systems_endgame.md)      | 11–14  | Heat system, stations, events/lore, Glyphs, Breach Run, NG+                       |
-| [phase_15_18](technical/milestones/phase_15_18_audio_polish_release.md) | 15–18  | Adaptive audio, 4-player co-op, Steam, stats, balance, polish, shipping           |
+| Document | Covers |
+| --- | --- |
+| [POC playable loop](00_POC_PLAYABLE_LOOP.md) | **Active plan** — Pirate Raid, menus, settings, debug, steps 1–5 |
+| [Catalog](00_GAME_DEVELOPMENT_PLAN.md) | Index of design docs + status |
+| [Architecture](technical/architecture.md) | UE 5.8 C++/UMG, Unreal MCP, later net model |
+| [AI Toolchain](technical/ai_toolchain.md) | Tripo/Meshy, concept pipeline, MCP |
+| [Archived full roadmap](archive/full-game-roadmap-2026-08/) | 18-phase plan, M1–M5 scope, 70+ decisions |
 
 ---
 
 ## 🔬 Research Library
+
+### Technical Research
+
+| Document                                                                | Covers                                                          |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [Engine MCP / AI Integration](research/engine_mcp_ai_integration.md)    | UE vs Unity vs Godot MCP (2026-08) — stay on Unreal 5.8         |
 
 ### Genre Research
 
@@ -162,28 +154,26 @@ Each file breaks phases into atomic, single-task micro-steps (~1,500+ total):
 
 ### Recommended Reading Order
 
-1. **This README** — get the lay of the land
-2. **[Game Vision](design/01_game_vision.md)** — understand what we're building
-3. **[Core Mechanics](design/02_core_mechanics.md)** — how the game plays
-4. **[Prototype Scope](technical/prototype_scope.md)** — what to build first (5 milestones)
-5. **[Implementation Milestones](technical/implementation_milestones.md)** — the full 18-phase plan
-6. **Phase-specific file in `technical/milestones/`** — your atomic task list
+1. **This README**
+2. **[POC playable loop](00_POC_PLAYABLE_LOOP.md)** — what to build now
+3. **[Game Vision](design/01_game_vision.md)** — North Star fantasy
+4. **[Core Mechanics](design/02_core_mechanics.md)** — Pirate Raid lives here
+5. **[Controls](design/15_controls_and_camera.md)** — Interceptor feel numbers
+6. Archived 18-phase plan only when expanding past the POC
 
-### Key References
+### Key references
 
-- **Confirmed decisions**: bottom of [00_GAME_DEVELOPMENT_PLAN.md](00_GAME_DEVELOPMENT_PLAN.md#confirmed-decisions-log) (70+ decisions)
-- **Architecture & patterns**: [technical/architecture.md](technical/architecture.md)
-- **AI tool setup**: [technical/ai_toolchain.md](technical/ai_toolchain.md)
+- **Confirmed decisions (full list):** [archived plan](archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md#confirmed-decisions-log)
+- **Architecture:** [technical/architecture.md](technical/architecture.md)
+- **AI tool setup:** [technical/ai_toolchain.md](technical/ai_toolchain.md)
 
 ---
 
 ## 🚦 Project Status
 
-|                         |                                                             |
-| ----------------------- | ----------------------------------------------------------- |
-| **Current Phase**       | Pre-production complete — ready for Phase 1 (Project Setup) |
-| **Design Docs**         | ✅ 16/16 complete                                           |
-| **Research**            | ✅ Genre analysis + 24 game studies                         |
-| **Technical Docs**      | ✅ Architecture, toolchain, scope, milestones               |
-| **Implementation Plan** | ✅ 18 phases, ~1,500+ micro-steps                           |
-| **UE5 Project**         | ⬜ Not yet created                                          |
+| | |
+| --- | --- |
+| **Current work** | POC Pirate Raid loop — follow [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) |
+| **Design docs** | 16/16 North Star (not blocking the POC) |
+| **Full-game roadmap** | Archived 2026-08-20 |
+| **UE 5.8 project** | Not created yet (sibling `ShatteredRogue`) |

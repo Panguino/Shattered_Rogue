@@ -9,7 +9,7 @@
 
 ### 1.1 UE5 Project Initialization
 
-#### 1.1.1 Create UE5 blank project (C++ template, no starter content)
+#### 1.1.1 Create UE 5.8 blank project (C++ template, no starter content)
 
 #### 1.1.2 Configure project settings — target platform (PC), rendering (Forward+), frame rate (60fps cap)
 
@@ -18,6 +18,8 @@
 #### 1.1.4 Create GameInstance, GameMode, GameState, PlayerState base C++ classes
 
 #### 1.1.5 Create primary game module and register with build system
+
+#### 1.1.6 Enable Unreal MCP + All Toolsets, Auto Start Server, `GenerateClientConfig Cursor`
 
 ### 1.2 Version Control Setup
 

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FTL · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="active" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>FTL: Faster Than Light (2012) — Subset Games</h1>
+<blockquote>
+<p><strong>Genre:</strong> Space Strategy Roguelike | <strong>Perspective:</strong> Top-down 2D | <strong>Players:</strong> Solo | <strong>Steam Rating:</strong> 95% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Command a spaceship and its crew on a desperate mission to deliver vital intel to the Federation fleet, pursued by the advancing Rebel armada. Manage systems, crew, and resources across procedurally generated sectors.</p>
+<h2>🚀 Ships — 28 Layouts (10 Ships × Variants)</h2>
+<table>
+<thead>
+<tr>
+<th>Ship</th>
+<th>Type A</th>
+<th>Type B</th>
+<th>Type C</th>
+<th>Specialty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Kestrel</strong></td>
+<td>Balanced starter</td>
+<td>All missiles</td>
+<td>Dual Lasers + IB</td>
+<td>Jack of all trades</td>
+</tr>
+<tr>
+<td><strong>Engi</strong></td>
+<td>Ion + Drone focus</td>
+<td>Heavy Ion + Repair Drone</td>
+<td>—</td>
+<td>Drone specialist</td>
+</tr>
+<tr>
+<td><strong>Federation</strong></td>
+<td>Artillery Beam</td>
+<td>Burst II</td>
+<td>Flak</td>
+<td>Federation Artillery</td>
+</tr>
+<tr>
+<td><strong>Zoltan</strong></td>
+<td>Energy manipulation</td>
+<td>Pike Beam + Ion</td>
+<td>—</td>
+<td>Power management</td>
+</tr>
+<tr>
+<td><strong>Mantis</strong></td>
+<td>Boarding focused</td>
+<td>4-man Mantis crew</td>
+<td>—</td>
+<td>Boarding combat</td>
+</tr>
+<tr>
+<td><strong>Slug</strong></td>
+<td>Bio Beam + Anti-Bio</td>
+<td>Slug Repair Gel</td>
+<td>—</td>
+<td>Crew damage</td>
+</tr>
+<tr>
+<td><strong>Rock</strong></td>
+<td>Missiles + Fire</td>
+<td>Rock Plating</td>
+<td>Swarm Missiles</td>
+<td>Tanky</td>
+</tr>
+<tr>
+<td><strong>Stealth</strong></td>
+<td>No shields, cloaking</td>
+<td>Glaive Beam</td>
+<td>—</td>
+<td>Hit hard, dodge all</td>
+</tr>
+<tr>
+<td><strong>Lanius</strong></td>
+<td>Hacking</td>
+<td>Adv. Flak</td>
+<td>—</td>
+<td>O₂ drain tactics</td>
+</tr>
+<tr>
+<td><strong>Crystal</strong></td>
+<td>Crystal weapons</td>
+<td>Crystal vengeance</td>
+<td>—</td>
+<td>Hull damage</td>
+</tr>
+</tbody></table>
+<h2>🔫 Weapon Systems</h2>
+<h3>Weapon Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lasers</strong></td>
+<td>Burst Laser I/II/III, Dual Lasers</td>
+<td>Fires shots, no ammo cost</td>
+</tr>
+<tr>
+<td><strong>Beams</strong></td>
+<td>Halberd Beam, Pike Beam, Glaive Beam</td>
+<td>Swipe across rooms, penalized by shields</td>
+</tr>
+<tr>
+<td><strong>Missiles</strong></td>
+<td>Artemis, Breach Missile, Hermes</td>
+<td>Bypass shields, cost 1 missile each</td>
+</tr>
+<tr>
+<td><strong>Flak</strong></td>
+<td>Flak I, Flak II</td>
+<td>Scatter shots, random accuracy</td>
+</tr>
+<tr>
+<td><strong>Ions</strong></td>
+<td>Ion Blast I/II, Heavy Ion</td>
+<td>Disable enemy systems temporarily</td>
+</tr>
+<tr>
+<td><strong>Bombs</strong></td>
+<td>Small Bomb, Fire Bomb, Breach Bomb</td>
+<td>Bypass shields, damage systems/crew, cost missiles</td>
+</tr>
+</tbody></table>
+<h3>Weapon Synergy</h3>
+<ul>
+<li>Ion weapons disable shields → Beams deal full damage</li>
+<li>Flak strips shields → Burst lasers hit hull</li>
+<li>Fire bombs set fires → oxygen drains → crew dies</li>
+<li>Hacking pulls shields down → Glaive Beam wipes ship</li>
+</ul>
+<h2>🧑‍🚀 Crew System</h2>
+<h3>Races &amp; Abilities</h3>
+<table>
+<thead>
+<tr>
+<th>Race</th>
+<th>Special Ability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Human</strong></td>
+<td>No bonus (balanced)</td>
+</tr>
+<tr>
+<td><strong>Engi</strong></td>
+<td>2x repair speed, 0.5x combat</td>
+</tr>
+<tr>
+<td><strong>Mantis</strong></td>
+<td>1.5x combat, 0.5x repair</td>
+</tr>
+<tr>
+<td><strong>Rockman</strong></td>
+<td>Immune to fire, +100 HP</td>
+</tr>
+<tr>
+<td><strong>Zoltan</strong></td>
+<td>Provides 1 power to occupied system</td>
+</tr>
+<tr>
+<td><strong>Slug</strong></td>
+<td>Reveals adjacent rooms, immune to mind control</td>
+</tr>
+<tr>
+<td><strong>Lanius</strong></td>
+<td>Drains O₂ from room, no O₂ needed</td>
+</tr>
+<tr>
+<td><strong>Crystal</strong></td>
+<td>Lockdown ability, +25 HP</td>
+</tr>
+</tbody></table>
+<h3>Crew Skills</h3>
+<ul>
+<li><strong>Piloting</strong> — +5% dodge per skill level (max 2 levels)</li>
+<li><strong>Engines</strong> — +5% dodge per level</li>
+<li><strong>Weapons</strong> — Faster charge</li>
+<li><strong>Shields</strong> — Faster recharge</li>
+<li><strong>Repair</strong> — Faster repair</li>
+<li><strong>Combat</strong> — More damage in fights</li>
+</ul>
+<h2>⚙️ Ship Systems</h2>
+<h3>Core Systems (12)</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Function</th>
+<th>Power Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Shields</strong></td>
+<td>Block laser/flak shots</td>
+<td>2–8</td>
+</tr>
+<tr>
+<td><strong>Engines</strong></td>
+<td>Dodge chance + FTL charge</td>
+<td>1–5</td>
+</tr>
+<tr>
+<td><strong>Weapons</strong></td>
+<td>Power weapons</td>
+<td>Varies</td>
+</tr>
+<tr>
+<td><strong>Medbay</strong></td>
+<td>Heal crew</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Oxygen</strong></td>
+<td>O₂ supply</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Piloting</strong></td>
+<td>Enable dodge, navigation</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Sensors</strong></td>
+<td>See enemy ship/crew</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Doors</strong></td>
+<td>Blast doors (slow boarders)</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Drones</strong></td>
+<td>Deploy drones</td>
+<td>2–8</td>
+</tr>
+<tr>
+<td><strong>Cloaking</strong></td>
+<td>Invisibility (dodge boost)</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Teleporter</strong></td>
+<td>Board enemy ships</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Hacking</strong></td>
+<td>Disable/reverse enemy system</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Mind Control</strong></td>
+<td>Turn enemy crew temporarily</td>
+<td>1–3</td>
+</tr>
+<tr>
+<td><strong>Artillery</strong></td>
+<td>Auto-firing special weapon</td>
+<td>1–4</td>
+</tr>
+<tr>
+<td><strong>Backup Battery</strong></td>
+<td>Temporary extra power</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Power management is central — not enough reactor for everything, force tradeoffs.</p>
+<h2>🗺️ Sector Structure</h2>
+<pre><code>Sector 1 → Sector 2 → ... → Sector 8 (Rebel Flagship boss)
+</code></pre>
+<ul>
+<li>8 sectors, each with multiple nodes (15–25 per sector)</li>
+<li>Node types: store, empty, distress, nebula, quest</li>
+<li>Rebel Fleet advances each jump — creates time pressure</li>
+<li>Sector types: Civilian, Engi, Zoltan, Rebel, Mantis, Rock, Pirate, Slug, Uncharted, Nebula, Crystal</li>
+</ul>
+<h2>📈 Progression — Ship Unlocks</h2>
+<h3>Meta-Progression</h3>
+<ul>
+<li><strong>Ship unlocks</strong> — Complete achievements to unlock new ships/layouts</li>
+<li><strong>No permanent power</strong> — Each run starts fresh</li>
+<li><strong>Knowledge is power</strong> — Learn encounters, weapon synergies, event outcomes</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>&quot;Spaceship Captain&quot; Fantasy</strong> — Managing crew, systems, and combat simultaneously</li>
+<li><strong>Rebel Fleet Time Pressure</strong> — Constantly pursued; can&#39;t explore everything</li>
+<li><strong>Pausable Real-Time Combat</strong> — Pause, target, manage crew, unpause — tactical depth</li>
+<li><strong>System-Targeting</strong> — Target specific enemy rooms/systems (weapons, shields, engines)</li>
+<li><strong>Crew Management</strong> — Position crew for combat, repair, piloting, manning systems</li>
+<li><strong>Power Management</strong> — Redistribute reactor power in real-time based on needs</li>
+<li><strong>Events as Narrative</strong> — Text-based encounter events with meaningful choices</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;No other game captures the &#39;desperate spaceship captain&#39; feeling this well&quot;</li>
+<li>&quot;Every run tells a unique story&quot;</li>
+<li>&quot;The difficulty is brutal but fair — learning feels incredible&quot;</li>
+<li>&quot;Power management creates constant meaningful decisions&quot;</li>
+<li>&quot;The Rebel Fleet ensures you can never stop moving&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Ships:</strong> 10 (28 layouts)</li>
+<li><strong>Weapons:</strong> 30+</li>
+<li><strong>Sectors:</strong> 8</li>
+<li><strong>Crew races:</strong> 8</li>
+<li><strong>Average run:</strong> 30–60 minutes</li>
+<li><strong>Metacritic:</strong> 84/100</li>
+<li><strong>DLC:</strong> Advanced Edition (free)</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

@@ -4,9 +4,9 @@
 
 ## 1.1 UE5 Project Initialization
 
-### 1.1.1 Create UE5 blank project
+### 1.1.1 Create UE 5.8 blank project
 
-- a. Open Epic Games Launcher → Unreal Engine 5.5 → New Project
+- a. Open Epic Games Launcher → Unreal Engine **5.8** → New Project
 - b. Select "Blank" C++ template, uncheck "Starter Content"
 - c. Set project name to `ShatteredRogue`, set target directory
 - d. Choose target platform: Windows (Desktop)
@@ -49,6 +49,16 @@
 - c. Create `ShatteredRogue.h` and `ShatteredRogue.cpp` module files with `IMPLEMENT_PRIMARY_GAME_MODULE`
 - d. Build solution from IDE, verify clean compile with zero errors
 - e. Run editor from IDE, verify project opens with no warnings
+
+### 1.1.6 Enable Unreal MCP (Cursor)
+
+- a. Edit → Plugins → enable **Unreal MCP** and **All Toolsets**. Restart editor.
+- b. Edit → Editor Preferences → Model Context Protocol → enable **Auto Start Server** (default `http://127.0.0.1:8000/mcp`).
+- c. Output Log: confirm bind on port 8000. If conflict, change port in the same panel.
+- d. Editor console: `ModelContextProtocol.GenerateClientConfig Cursor` — writes/merges `.mcp.json` at project root.
+- e. Launch Cursor from the `.uproject` root **after** the editor is fully up. Confirm MCP `unreal-mcp` is connected.
+- f. Smoke test in Cursor: "What actors do I have selected?"
+- g. Do not enable MCP in shipping builds. Loopback only, no auth.
 
 ---
 

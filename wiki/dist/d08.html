@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>08 · Hub UI · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="active" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>🏠 Hub UI — Outer Rim Station</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>The main menu IS the station.</strong> All pre-run activities — ship selection, meta-progression, cosmetics, co-op lobby — take place in a fully 3D <strong>Outer Rim Station</strong> that the player walks/flies through. As you unlock content, the station visually evolves.</p>
+</blockquote>
+<hr>
+<h2>1. Station Layout (8 Areas)</h2>
+<pre><code>╔═══════════════════════════════════════════════════════════╗
+║                 OUTER RIM STATION — HUB MAP              ║
+╠═══════════════════════════════════════════════════════════╣
+║                                                           ║
+║    ┌──────────┐    ┌──────────┐    ┌──────────┐          ║
+║    │ HANGAR   │────│ CORRIDOR │────│ LOUNGE   │          ║
+║    │ (ships)  │    │ (walk)   │    │ (co-op)  │          ║
+║    └────┬─────┘    └────┬─────┘    └──────────┘          ║
+║         │               │                                 ║
+║    ┌────┴─────┐    ┌────┴─────┐    ┌──────────┐          ║
+║    │ WORKSHOP │    │ RESEARCH │────│ ARMORY   │          ║
+║    │ (cosmetics)│  │ LAB      │    │ (loadout)│          ║
+║    └──────────┘    └────┬─────┘    └──────────┘          ║
+║                         │                                 ║
+║    ┌──────────┐    ┌────┴─────┐                          ║
+║    │ TROPHY   │────│ COMMAND  │                          ║
+║    │ ROOM     │    │ BRIDGE   │                          ║
+║    │ (achieve) │   │ (launch) │                          ║
+║    └──────────┘    └──────────┘                          ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+</code></pre>
+<h3>Area Details</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Area</th>
+<th>Function</th>
+<th>Visual Theme</th>
+<th>Unlock State</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>🚀 <strong>Hangar Bay</strong></td>
+<td>Ship selection (Hull × Profession)</td>
+<td>Open bay, ships on platforms, launch tubes</td>
+<td>Ships appear as you unlock them</td>
+</tr>
+<tr>
+<td>2</td>
+<td>🔬 <strong>Research Lab</strong></td>
+<td>Meta-progression spending (Research Data)</td>
+<td>Tech lab, data terminals, holographic trees</td>
+<td>Terminals activate as content unlocks</td>
+</tr>
+<tr>
+<td>3</td>
+<td>⚔️ <strong>Armory</strong></td>
+<td>Starting loadout configuration</td>
+<td>Weapon racks, module shelves, ammo crates</td>
+<td>Racks fill as you unlock starter items</td>
+</tr>
+<tr>
+<td>4</td>
+<td>🎨 <strong>Workshop</strong></td>
+<td>Cosmetic shop (skins, trails, paint)</td>
+<td>Paint booth, mannequins, color swatches</td>
+<td>Displays unlock as you buy cosmetics</td>
+</tr>
+<tr>
+<td>5</td>
+<td>🍺 <strong>Crew Lounge</strong></td>
+<td>Co-op lobby, matchmaking, friends list</td>
+<td>Bar, tables, pilot NPCs milling about</td>
+<td>More NPCs appear based on play history</td>
+</tr>
+<tr>
+<td>6</td>
+<td>🏆 <strong>Trophy Room</strong></td>
+<td>Achievements, stats, lore fragments</td>
+<td>Display cases, holograms, trophies</td>
+<td>Cases fill as you complete achievements</td>
+</tr>
+<tr>
+<td>7</td>
+<td>🌌 <strong>Command Bridge</strong></td>
+<td>Launch run, galaxy overview, settings</td>
+<td>Captain&#39;s chair, star map, giant viewscreen</td>
+<td>Star map reveals more as you explore</td>
+</tr>
+<tr>
+<td>8</td>
+<td>🔧 <strong>Corridor</strong></td>
+<td>Walking path connecting areas</td>
+<td>Industrial, pipes, ambient sound, posters</td>
+<td>Posters/decorations change seasonally</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. Unlock Manifestation</h2>
+<p>The station is a <strong>physical representation of your progress.</strong> As you unlock content, the station changes:</p>
+<table>
+<thead>
+<tr>
+<th>Progress</th>
+<th>Station Change</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Unlock a new hull</strong></td>
+<td>A new ship appears in the Hangar Bay on its own platform</td>
+</tr>
+<tr>
+<td><strong>Unlock a new profession</strong></td>
+<td>A new NPC appears in the Lounge representing that profession</td>
+</tr>
+<tr>
+<td><strong>Buy a cosmetic skin</strong></td>
+<td>The Workshop displays it on a mannequin / wall mount</td>
+</tr>
+<tr>
+<td><strong>Complete an achievement</strong></td>
+<td>A trophy/hologram appears in the Trophy Room</td>
+</tr>
+<tr>
+<td><strong>Unlock all hulls</strong></td>
+<td>Hangar Bay gets an overhead light show + atmospheric upgrade</td>
+</tr>
+<tr>
+<td><strong>First Loop+ clear</strong></td>
+<td>Command Bridge gets a golden star chart + victory fanfare on entry</td>
+</tr>
+<tr>
+<td><strong>100% completion</strong></td>
+<td>Station exterior transforms — neon signs, particle effects, music</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>The station tells your story.</strong> A brand-new player sees an empty, dark station with 2 ships. A veteran sees a fully-lit station packed with trophies, all 6 ships gleaming, NPCs chatting, cosmetics displayed everywhere. It&#39;s the most visceral progress indicator possible.</p>
+</blockquote>
+<hr>
+<h2>3. Station Mood &amp; Atmosphere</h2>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lighting</strong></td>
+<td>Warm ambient, neon accent colors matching unlocked hull types</td>
+</tr>
+<tr>
+<td><strong>Music</strong></td>
+<td>Chill lo-fi / ambient space music. Changes based on area (Armory = military)</td>
+</tr>
+<tr>
+<td><strong>NPCs</strong></td>
+<td>Pilots, engineers, scientists mill about. More appear as you play</td>
+</tr>
+<tr>
+<td><strong>Ambient Sound</strong></td>
+<td>Hum of station, distant radio chatter, engine startup sounds from Hangar</td>
+</tr>
+<tr>
+<td><strong>Weather</strong></td>
+<td>Station windows show space weather — nebulae, asteroids drifting, stars</td>
+</tr>
+<tr>
+<td><strong>Interactables</strong></td>
+<td>Arcade machine (minigame), jukebox (music select), target range (practice)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Area-Specific UX</h2>
+<h3>🚀 Hangar Bay (Ship Select)</h3>
+<ul>
+<li>Ships sit on individual landing pads with holographic nameplates</li>
+<li>Walk up to a ship → holographic stat card appears showing Hull stats + unique mechanic</li>
+<li>Select Hull → then choose Profession from a terminal next to the ship</li>
+<li>Camera zooms into the cockpit → transition to Command Bridge for launch</li>
+</ul>
+<h3>🔬 Research Lab (Meta-Progression)</h3>
+<ul>
+<li>Large central holographic tech tree</li>
+<li>Walk up to a terminal → browse Content Unlocks, Toggle Pool, Cosmetic Shop</li>
+<li>Purchased items physically appear on shelves behind the terminal</li>
+<li>Scientist profession NPCs offer commentary and tips</li>
+</ul>
+<h3>⚔️ Armory (Loadout)</h3>
+<ul>
+<li>Weapon racks on walls, module shelves, specialty equipment cases</li>
+<li>Walk up to a rack → select starting weapon from unlocked options</li>
+<li>3D preview of each weapon with stats overlay</li>
+<li>Found weapons unlock as starter choices — new ones get a &quot;NEW&quot; tag</li>
+</ul>
+<h3>🏆 Trophy Room</h3>
+<ul>
+<li>Glass display cases line the walls</li>
+<li>Each achievement has a dedicated case with a holographic trophy</li>
+<li>Walking near a case triggers a brief replay of the achievement moment</li>
+<li>Stats terminal in the center shows lifetime stats, run history, leaderboards</li>
+</ul>
+<h3>🌌 Command Bridge (Launch)</h3>
+<ul>
+<li>Captain&#39;s chair in center, star map on floor/ceiling</li>
+<li>Sit in chair → galaxy grid overview appears</li>
+<li>&quot;LAUNCH RUN&quot; button — dramatic launch sequence</li>
+<li>Settings, audio, controls accessible from bridge terminals</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

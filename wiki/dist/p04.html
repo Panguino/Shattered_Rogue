@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 4 Run Structure · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group" open><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="active" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Phase 4 — M3: Run Structure</h1>
+<hr>
+<h2>4.1 Galaxy Map System</h2>
+<h3>4.1.1 Create UGalaxyMapSubsystem</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/GalaxyMapSubsystem.h</code> inheriting <code>UWorldSubsystem</code></li>
+<li>b. Add <code>UPROPERTY</code>: <code>TArray&lt;FSectorNode&gt; Sectors</code> — all sectors in current run</li>
+<li>c. Add <code>UPROPERTY</code>: <code>int32 CurrentSectorIndex</code> — player&#39;s current position</li>
+<li>d. Add <code>UPROPERTY</code>: <code>bool bMapIsOpen</code> — tracks if galaxy map UI is visible</li>
+<li>e. Add <code>UFUNCTION</code>: <code>GenerateMap(int32 Seed)</code>, <code>GetSector(int32 Index)</code>, <code>TravelToSector(int32 Index)</code></li>
+<li>f. Add delegates: <code>FOnSectorChanged</code>, <code>FOnMapRevealed</code></li>
+<li>g. Initialize in <code>AShatteredGameMode::StartPlay()</code> before first sector loads</li>
+</ul>
+<h3>4.1.2 Create FSectorNode struct</h3>
+<ul>
+<li>a. In <code>ShatteredCore/Public/Types/ShatteredSectorData.h</code> (already has FSectorData)</li>
+<li>b. Add/extend: <code>FVector2D MapPosition</code> — 2D coordinate on galaxy map display</li>
+<li>c. Add: <code>ESectorType SectorType</code> — Combat, Mining, Station, Boss, Event</li>
+<li>d. Add: <code>EShatteredEnvironment Environment</code> — visual theme of the sector</li>
+<li>e. Add: <code>TArray&lt;int32&gt; ConnectedSectors</code> — indices of adjacent sectors for travel</li>
+<li>f. Add: <code>bool bIsRevealed = false</code>, <code>bool bIsVisited = false</code>, <code>bool bIsCompleted = false</code></li>
+<li>g. Add: <code>int32 DifficultyTier</code> — 1-5, scales enemy budgets and loot quality</li>
+</ul>
+<h3>4.1.3 Generate linear 5-sector chain</h3>
+<ul>
+<li>a. In <code>GenerateMap()</code>: create 5 FSectorNode entries</li>
+<li>b. Sector 0 (Start): SectorType=Combat, Difficulty=1, Revealed=true, Visited=true</li>
+<li>c. Sectors 1-3: randomly assign Combat, Mining, or Station</li>
+<li>d. Sector 4 (Final): SectorType=Boss, Difficulty=3</li>
+<li>e. Connect linearly: Sector 0→1, 1→2, 2→3, 3→4</li>
+<li>f. Set MapPositions in ascending X for horizontal layout display</li>
+<li>g. Use <code>FRandomStream(Seed)</code> for deterministic generation — same seed = same map</li>
+</ul>
+<h3>4.1.4 Assign sector types</h3>
+<ul>
+<li>a. For sectors 1-3, create weighted random pool: Combat=50%, Mining=25%, Station=15%, Event=10%</li>
+<li>b. Roll for each sector using random stream</li>
+<li>c. Track assigned types — store for guarantee logic</li>
+<li>d. Also assign environment randomly: AsteroidField (MVP — only option initially)</li>
+<li>e. Set difficulty tier: Sector 1=1, Sector 2=2, Sector 3=2, Sector 4=3</li>
+</ul>
+<h3>4.1.5 Guarantee Station placement</h3>
+<ul>
+<li>a. After initial type assignment, check if any sector is Station type</li>
+<li>b. If no Station: force Sector 2 (middle) to Station type</li>
+<li>c. Log the override for debugging: <code>UE_LOG(LogShattered, Log, TEXT(&quot;Forced Station at Sector 2&quot;))</code></li>
+<li>d. This guarantees player always has at least one repair/shop opportunity per run</li>
+</ul>
+<h3>4.1.6 Create UGalaxyMapWidget</h3>
+<ul>
+<li>a. Create <code>ShatteredUI/Public/GalaxyMapWidget.h</code> inheriting <code>UUserWidget</code></li>
+<li>b. Create <code>WBP_GalaxyMap</code> Widget Blueprint</li>
+<li>c. Layout: dark background panel, sector nodes as clickable button/icon widgets</li>
+<li>d. Each node: circle icon with sector type symbol (swords=Combat, pickaxe=Mining, wrench=Station, skull=Boss, ?=Unknown)</li>
+<li>e. Draw lines between connected sectors using <code>UBorder</code> or custom paint override</li>
+<li>f. Color coding: grey=unrevealed, white=revealed, green=visited, gold=current, red=boss</li>
+<li>g. Full-screen overlay — toggle with Tab key (IA_ToggleMap)</li>
+</ul>
+<h3>4.1.7 Implement sector selection</h3>
+<ul>
+<li>a. On sector node click: check if sector is connected to current sector</li>
+<li>b. If connected and not current: highlight as selected, show &quot;Jump&quot; button</li>
+<li>c. On &quot;Jump&quot; confirm: call <code>GalaxyMapSubsystem-&gt;TravelToSector(SelectedIndex)</code></li>
+<li>d. If not connected: show &quot;Out of Range&quot; tooltip, do nothing</li>
+<li>e. Disable selection for already-completed sectors (optional: allow revisit for mining?)</li>
+<li>f. Close map widget after jump is confirmed</li>
+</ul>
+<h3>4.1.8 Implement fog of war</h3>
+<ul>
+<li>a. On map generation: only Sector 0 is revealed (<code>bIsRevealed = true</code>)</li>
+<li>b. All other sectors: show as &quot;?&quot; icon on map, type unknown</li>
+<li>c. When player visits a sector: reveal that sector + all connected sectors</li>
+<li>d. Set <code>bIsRevealed = true</code> for newly revealed sectors</li>
+<li>e. Revealed sectors show their type icon but remain grey until visited</li>
+<li>f. Boss sector (final): always reveal its existence but not its type until adjacent is visited</li>
+</ul>
+<hr>
+<h2>4.2 Sector Loading &amp; Transitions</h2>
+<h3>4.2.1 Create ASectorManager</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/SectorManager.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>UPROPERTY</code>: <code>FSectorNode CurrentSectorData</code> — active sector configuration</li>
+<li>c. Add <code>UPROPERTY</code>: <code>ESectorState State</code> — Loading, Active, Completed, Transitioning</li>
+<li>d. Add <code>UFUNCTION</code>: <code>LoadSector(FSectorNode Data)</code>, <code>CompleteSector()</code>, <code>BeginTransition()</code></li>
+<li>e. Responsible for spawning environment, enemies, stations based on sector type</li>
+<li>f. One SectorManager persists across sectors — reconfigures rather than respawns</li>
+</ul>
+<h3>4.2.2 Create sector level template</h3>
+<ul>
+<li>a. Create <code>Map_SectorTemplate</code> — base level with arena volume + skybox + lighting</li>
+<li>b. Add <code>AArenaVolume</code> at center, default size 10000×10000</li>
+<li>c. Add <code>ASpawnManager</code> with configurable wave definitions</li>
+<li>d. Add spawn points around perimeter (12 evenly spaced)</li>
+<li>e. Add <code>ASectorManager</code> — will configure everything at runtime based on sector data</li>
+<li>f. Template is reused for all sector types — sector-specific content is spawned dynamically</li>
+</ul>
+<h3>4.2.3 Implement jump gate actor</h3>
+<ul>
+<li>a. Create <code>AJumpGate</code> actor — visible gate structure at sector edge</li>
+<li>b. Add mesh: large ring/arch structure with energy field inside</li>
+<li>c. Add <code>USphereComponent* InteractRange</code> — radius 300, overlap triggers prompt</li>
+<li>d. On player overlap: show &quot;Press E to Jump&quot; prompt widget</li>
+<li>e. On interact: check sector is complete → if yes, call <code>SectorManager-&gt;BeginTransition()</code></li>
+<li>f. If sector not complete: show &quot;Clear all threats first&quot; message</li>
+<li>g. Gate mesh has idle VFX: shimmering portal effect inside the ring</li>
+</ul>
+<h3>4.2.4 Create warp transition</h3>
+<ul>
+<li>a. Create <code>WBP_WarpTransition</code> widget — full-screen effect</li>
+<li>b. Effect: star streak lines radiating from center (hyperspace effect)</li>
+<li>c. Duration: 0.5s — fast, doesn&#39;t break flow</li>
+<li>d. Sequence: fade to star streaks (0.2s) → hold (0.1s) → fade to new sector (0.2s)</li>
+<li>e. During transition: unload current sector content, load new sector content</li>
+<li>f. Use <code>UGameplayStatics::OpenLevel</code> with streaming or <code>StreamLevel</code> approach</li>
+<li>g. Play warp SFX: accelerating whoosh → tunnel rumble → deceleration whoosh</li>
+</ul>
+<h3>4.2.5 Implement sector entry cinematic</h3>
+<ul>
+<li>a. On sector load complete: brief camera pan showing the sector (2s)</li>
+<li>b. Camera starts zoomed out (+500 height), pans across sector highlights</li>
+<li>c. Shows environment type, asteroid density, any visible stations</li>
+<li>d. After 2s: camera snaps to player ship position, normal gameplay resumes</li>
+<li>e. Player input disabled during pan (auto-releases after 2s or skip with any button)</li>
+<li>f. Show sector name banner at top: &quot;SECTOR 3 — ASTEROID FIELD&quot; (fade in/out)</li>
+</ul>
+<h3>4.2.6 Track sector completion</h3>
+<ul>
+<li>a. Combat sector: completed when <code>SpawnManager-&gt;OnAllWavesCompleted</code> fires</li>
+<li>b. Mining sector: completed when all mineral-rich asteroids are broken OR timer expires</li>
+<li>c. Station sector: completed immediately on load (no combat requirement)</li>
+<li>d. Boss sector: completed when boss dies</li>
+<li>e. Event sector: completed when event is resolved (choice made, outcome played)</li>
+<li>f. On completion: set <code>CurrentSectorData.bIsCompleted = true</code> in galaxy map subsystem</li>
+<li>g. Activate jump gate highlight — glow intensifies, audio chime plays</li>
+</ul>
+<h3>4.2.7 Show jump gate highlight</h3>
+<ul>
+<li>a. On sector complete: enable <code>NS_JumpGateReady</code> VFX on gate — bright pulse</li>
+<li>b. Gate ring material shifts from dim to bright (emissive parameter ramp)</li>
+<li>c. Portal effect inside ring activates (was inactive/dim before completion)</li>
+<li>d. Play &quot;gate ready&quot; audio: rising chime + hum</li>
+<li>e. Show HUD marker arrow pointing toward gate from player position</li>
+<li>f. First-time tip: &quot;Gate Activated — Proceed to next sector&quot;</li>
+</ul>
+<hr>
+<h2>4.3 Combat Sector</h2>
+<h3>4.3.1 Combat sector uses M2 wave spawning</h3>
+<ul>
+<li>a. When <code>SectorManager</code> loads a Combat sector: configure <code>SpawnManager</code> with wave defs</li>
+<li>b. Use existing wave system from Phase 3 (3.6)</li>
+<li>c. Set <code>MaxWaves = 3</code> for standard combat sectors</li>
+<li>d. Enemies spawn from sector perimeter spawn points</li>
+<li>e. Completion: all 3 waves cleared</li>
+</ul>
+<h3>4.3.2 Scale wave budgets by sector position</h3>
+<ul>
+<li>a. Create scaling function: <code>int32 GetWaveBudget(int32 WaveNumber, int32 DifficultyTier)</code></li>
+<li>b. Difficulty 1: budgets [6, 10, 15] for waves 1-3</li>
+<li>c. Difficulty 2: budgets [10, 16, 24]</li>
+<li>d. Difficulty 3: budgets [15, 24, 35]</li>
+<li>e. Apply scaling in <code>SpawnManager</code> configuration based on <code>CurrentSectorData.DifficultyTier</code></li>
+<li>f. Also scale allowed chassis: higher tiers unlock Bombers in Wave 1</li>
+</ul>
+<h3>4.3.3 Spawn mineral deposits between waves</h3>
+<ul>
+<li>a. During calm period between waves: spawn 5-8 breakable asteroids with minerals</li>
+<li>b. Place them scattered in arena, away from spawn points</li>
+<li>c. Gives player something to do during calm — break rocks, collect minerals</li>
+<li>d. Mineral amounts scale with difficulty tier</li>
+</ul>
+<h3>4.3.4 Add completion reward</h3>
+<ul>
+<li>a. On all waves cleared: spawn bonus loot at arena center</li>
+<li>b. Bonus: 1 large mineral cluster (30-50 Minerals) + chance for weapon drop</li>
+<li>c. Create <code>ARewardChest</code> actor — glowing container that opens on interact</li>
+<li>d. Opening animation: chest opens, loot bursts out with gold particle shower</li>
+<li>e. Reward quality scales with difficulty tier (higher tier = better rarity chances)</li>
+</ul>
+<hr>
+<h2>4.4 Mining Sector</h2>
+<h3>4.4.1 Create Mining sector variant</h3>
+<ul>
+<li>a. In <code>SectorManager::LoadSector()</code>, check <code>SectorType == Mining</code></li>
+<li>b. Skip <code>SpawnManager</code> wave setup — Mining uses different spawn logic</li>
+<li>c. Instead: spawn dense asteroid field with mineral-rich rocks</li>
+<li>d. Asteroid count: 40-60 (double normal arena density)</li>
+<li>e. Layout: clustered veins of mineral-rich rocks among regular asteroids</li>
+</ul>
+<h3>4.4.2 Create mineral-rich asteroids</h3>
+<ul>
+<li>a. Create <code>AMineralAsteroid</code> variant — inherits normal asteroid behavior</li>
+<li>b. Visual: gold-veined rock texture, emissive gold streaks, more pronounced glow</li>
+<li>c. On destruction: drop 3-5× normal mineral amounts (15-25 per rock)</li>
+<li>d. HP: slightly higher than normal asteroids of same size (tankier = more rewarding)</li>
+<li>e. Scatter 15-20 mineral-rich asteroids throughout the mining sector</li>
+<li>f. Non-mineral asteroids are also present (regular drops)</li>
+</ul>
+<h3>4.4.3 Spawn light enemy presence</h3>
+<ul>
+<li>a. After 30s of mining: spawn 1 small enemy wave (budget=6) as pressure</li>
+<li>b. Enemies appear from sector edge, attack player</li>
+<li>c. This prevents mining from being zero-risk free minerals</li>
+<li>d. Only 1 wave — after clearing it, mining continues uninterrupted</li>
+</ul>
+<h3>4.4.4 Add mining timer (optional)</h3>
+<ul>
+<li>a. Create mining timer: 60s countdown, visible on HUD</li>
+<li>b. &quot;Scan Completion&quot; stat — percentage of mineral-rich asteroids broken</li>
+<li>c. 100% scan completion = bonus reward (rare weapon or large mineral bonus)</li>
+<li>d. Timer is optional pressure — sector can be exited early via jump gate</li>
+<li>e. Timer creates interesting risk/reward: stay and mine more vs leave safely</li>
+</ul>
+<h3>4.4.5 Add mining sector VFX</h3>
+<ul>
+<li>a. Gold dust particles in the environment — ambient Niagara system</li>
+<li>b. Floating golden motes throughout the field (sparse, not overwhelming)</li>
+<li>c. Mineral-rich asteroids have permanent golden glow aura</li>
+<li>d. When broken: extra gold particle burst compared to normal asteroids</li>
+<li>e. Sector lighting: warm amber directional light (feels like a golden vein in space)</li>
+</ul>
+<hr>
+<h2>4.5 Station Sector</h2>
+<h3>4.5.1 Create AStationActor</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/StationActor.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>UStaticMeshComponent* StationMesh</code> — large space station model</li>
+<li>c. Add <code>USphereComponent* DockingRange</code> — radius 500, triggers proximity indicator</li>
+<li>d. Add <code>USphereComponent* InteractRange</code> — radius 200, triggers dock prompt</li>
+<li>e. Add <code>UPROPERTY</code>: <code>EStationType StationType</code> — Shipyard (MVP), TradePost, ResearchLab</li>
+<li>f. Add state: <code>bool bPlayerDocked</code>, <code>AShipPawn* DockedShip</code></li>
+<li>g. Station slowly rotates (1°/s yaw) for visual interest</li>
+</ul>
+<h3>4.5.2 Create station mesh</h3>
+<ul>
+<li>a. AI-generate or create placeholder station model — cylindrical with solar panels and docking arm</li>
+<li>b. Size: ~500-800 units diameter, clearly larger than player ship</li>
+<li>c. Apply materials: industrial grey hull, blue/white running lights, emissive windows</li>
+<li>d. Add docking port visual — highlighted section where ship physically connects</li>
+<li>e. Save to <code>Content/Meshes/World/SM_Station_Shipyard</code></li>
+</ul>
+<h3>4.5.3 Implement docking</h3>
+<ul>
+<li>a. On player entering <code>InteractRange</code>: show &quot;Press E to Dock&quot; prompt</li>
+<li>b. On interact: disable player movement input, start docking animation</li>
+<li>c. Docking animation: ship smoothly moves to docking port position (1s lerp)</li>
+<li>d. Ship attaches to station (parent to station dock socket)</li>
+<li>e. Set <code>bPlayerDocked = true</code>, store reference to docked ship</li>
+<li>f. Open station UI widget after docking animation completes</li>
+<li>g. Play docking SFX: mechanical clamps, pressurization hiss</li>
+</ul>
+<h3>4.5.4 Create Shipyard station UI</h3>
+<ul>
+<li>a. Create <code>WBP_StationShipyard</code> widget — full-screen panel overlay</li>
+<li>b. Left panel: ship status (current HP, shield, equipped weapon, cargo contents)</li>
+<li>c. Center panel: action buttons — Install, Repair, Scrap, Leave</li>
+<li>d. Right panel: cargo grid showing all collected items</li>
+<li>e. Background: dim gameplay view with station UI overlaid</li>
+<li>f. Style: industrial/tactical theme, matching HUD color language</li>
+</ul>
+<h3>4.5.5 Implement Install</h3>
+<ul>
+<li>a. &quot;Install&quot; button: shows available weapons in cargo with comparison stats</li>
+<li>b. Display side-by-side: equipped weapon stats vs selected cargo weapon stats</li>
+<li>c. Green/red arrows showing stat improvements/downgrades (damage, fire rate, etc.)</li>
+<li>d. Confirm button: swap equipped weapon with selected cargo weapon</li>
+<li>e. Old equipped weapon moves to cargo slot</li>
+<li>f. Play install SFX: mechanical click + power-up hum</li>
+<li>g. Update ship weapon actor immediately (destroy old, spawn new, attach)</li>
+</ul>
+<h3>4.5.6 Implement Repair</h3>
+<ul>
+<li>a. Show current HP / Max HP and repair cost</li>
+<li>b. Cost: 2 Minerals per HP repaired (configurable)</li>
+<li>c. Calculate: <code>RepairCost = (MaxHP - CurrentHP) * CostPerHP</code></li>
+<li>d. Show total cost, check if player can afford</li>
+<li>e. Confirm: deduct minerals, set <code>CurrentHP = MaxHP</code></li>
+<li>f. Partial repair option: slider to choose how much to repair (spend less)</li>
+<li>g. Shield always auto-regenerates — no need to repair shields at station</li>
+</ul>
+<h3>4.5.7 Implement Scrap</h3>
+<ul>
+<li>a. Show cargo items that can be scrapped</li>
+<li>b. Each item shows scrap value: 50% of weapon&#39;s base mineral value</li>
+<li>c. Select item → confirm scrap → destroy item from cargo, add minerals to player</li>
+<li>d. Scrap VFX: item dissolves, mineral particles float to counter</li>
+<li>e. Cannot scrap equipped weapon — only cargo items</li>
+</ul>
+<h3>4.5.8 Implement Leave</h3>
+<ul>
+<li>a. &quot;Leave&quot; button: close station UI</li>
+<li>b. Undocking animation: ship detaches, moves away from station (1s lerp)</li>
+<li>c. Detach ship from station socket, re-enable player movement input</li>
+<li>d. Play undock SFX: clamps release, pressurization exhaust</li>
+<li>e. Set <code>bPlayerDocked = false</code></li>
+</ul>
+<hr>
+<h2>4.6 Cargo Hold System</h2>
+<h3>4.6.1 Create UCargoComponent</h3>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/CargoComponent.h</code> inheriting <code>UActorComponent</code></li>
+<li>b. Add <code>UPROPERTY(Replicated)</code>: <code>TArray&lt;FName&gt; CargoSlots</code> — weapon names in each slot</li>
+<li>c. Add <code>UPROPERTY</code>: <code>int32 MaxSlots</code> — from hull DataTable CargoSlots (3 for Interceptor)</li>
+<li>d. Add <code>UFUNCTION</code>: <code>AddItem(FName WeaponName) → bool</code> (false if full)</li>
+<li>e. Add <code>UFUNCTION</code>: <code>RemoveItem(int32 SlotIndex)</code>, <code>GetItem(int32 Index) → FName</code></li>
+<li>f. Add <code>UFUNCTION</code>: <code>IsFull() → bool</code>, <code>GetFreeSlotCount() → int32</code></li>
+<li>g. Add delegate: <code>FOnCargoChanged</code> — broadcast on any add/remove for UI binding</li>
+</ul>
+<h3>4.6.2 Modify weapon pickup for cargo</h3>
+<ul>
+<li>a. In M3+: change weapon pickup from auto-equip to cargo-add</li>
+<li>b. On <code>AWeaponPickup::OnPickedUp()</code>: call <code>CargoComponent-&gt;AddItem(WeaponName)</code></li>
+<li>c. If cargo full: show &quot;Cargo Full — Swap or Leave?&quot; prompt</li>
+<li>d. Prompt shows: new weapon stats vs all cargo items + equipped weapon</li>
+<li>e. Player can pick a slot to swap, or cancel to leave the pickup</li>
+</ul>
+<h3>4.6.3 Handle full cargo</h3>
+<ul>
+<li>a. Create <code>WBP_CargoFullPrompt</code> widget — popup when picking up with full cargo</li>
+<li>b. Show incoming weapon card at top</li>
+<li>c. Show current cargo items below as selectable cards</li>
+<li>d. Click a cargo item to swap it with incoming weapon (dropped item becomes pickup)</li>
+<li>e. Cancel button: close popup, leave weapon pickup on ground</li>
+<li>f. Auto-dismiss after 10s (prevent blocking gameplay)</li>
+</ul>
+<h3>4.6.4 Create cargo HUD indicator</h3>
+<ul>
+<li>a. In <code>WBP_ShatteredHUD</code>: add small cargo slot icons in bottom-left area</li>
+<li>b. Show 3 small squares (number = max slots), filled = occupied, empty = free</li>
+<li>c. Filled slots show tiny weapon type icon inside</li>
+<li>d. Flash new slot briefly when item is added (gold border pulse)</li>
+<li>e. Update on <code>OnCargoChanged</code> event from CargoComponent</li>
+</ul>
+<h3>4.6.5 Create Cargo/Loadout screen</h3>
+<ul>
+<li>a. Create <code>WBP_Loadout</code> widget — full-screen overlay (toggle with I key)</li>
+<li>b. Top section: equipped weapon slot (large card with full stats)</li>
+<li>c. Bottom section: cargo grid (3 slots, each showing weapon card)</li>
+<li>d. Show weapon stats: name, damage, fire rate, rarity, DPS calculation</li>
+<li>e. Rarity border color on each card matches rarity tier</li>
+</ul>
+<h3>4.6.6 Implement drag-and-drop</h3>
+<ul>
+<li>a. Enable <code>UDragDropOperation</code> on cargo and loadout widget items</li>
+<li>b. Drag from cargo slot to equipped slot: install weapon (swap current to cargo)</li>
+<li>c. Drag from cargo slot to trash icon: scrap the item (with confirmation)</li>
+<li>d. Drag from equipped slot to cargo: unequip (if cargo has room)</li>
+<li>e. Visual feedback: item follows cursor during drag, valid drop targets highlight green</li>
+<li>f. Invalid drop: item snaps back to original position</li>
+</ul>
+<hr>
+<h2>4.7 Boss Encounter</h2>
+<h3>4.7.1 Create ABossEnemyBase</h3>
+<ul>
+<li>a. Create <code>ShatteredCombat/Public/BossEnemyBase.h</code> inheriting <code>AEnemyShipBase</code></li>
+<li>b. Add <code>UPROPERTY</code>: <code>int32 CurrentPhase</code>, <code>int32 TotalPhases</code></li>
+<li>c. Add <code>UPROPERTY</code>: <code>TArray&lt;float&gt; PhaseThresholds</code> — HP% that triggers phase transitions</li>
+<li>d. Add <code>UFUNCTION</code>: <code>OnPhaseTransition(int32 NewPhase)</code> — virtual, override per boss</li>
+<li>e. Override damage handling: check if HP crossed phase threshold after each damage</li>
+<li>f. Create large collision capsule — bosses are physically bigger</li>
+<li>g. Immune to knockback/pushback (bosses don&#39;t get shoved)</li>
+</ul>
+<h3>4.7.2 Create Sector Warden boss</h3>
+<ul>
+<li>a. Create <code>ABossWarden</code> inheriting <code>ABossEnemyBase</code></li>
+<li>b. Set: HP=500, Shield=200, Speed=300, Size=2.0</li>
+<li>c. TotalPhases=2, PhaseThresholds=[50%] — phase 2 at 50% HP</li>
+<li>d. Create mesh: imposing ship, ~200 units, angular armor plates, visible shield generators</li>
+<li>e. Corruption level=0.5 — clear alien influence but still ship-like</li>
+<li>f. Create behavior tree <code>BT_BossWarden</code> with phase-based branching</li>
+</ul>
+<h3>4.7.3 Phase 1: Shield phase</h3>
+<ul>
+<li>a. Boss has rotating shield segment — physical mesh arc that blocks projectiles</li>
+<li>b. Shield arc covers ~120° of the boss — player must shoot the unshielded side</li>
+<li>c. Shield slowly rotates (15°/s) — player must maneuver to find the opening</li>
+<li>d. Shield mesh: bright cyan energy wall, visually distinct from boss hull</li>
+<li>e. Projectiles hitting shield: deflect and show shield impact VFX (cyan ripple)</li>
+<li>f. Player can damage boss from unshielded 240° arc</li>
+</ul>
+<h3>4.7.4 Phase 1 attacks</h3>
+<ul>
+<li>a. Sweeping beam: boss fires rotating beam (90° sweep over 2s), deals 30 DPS on contact</li>
+<li>b. Beam VFX: thick red energy beam with heat distortion, clearly telegraphed</li>
+<li>c. Homing missiles: fires 4 missiles that track player, 20 damage each, slow speed (500u/s)</li>
+<li>d. Missiles are destroyable (10 HP each) — skilled players shoot them down</li>
+<li>e. Attack pattern: Beam → 3s pause → Missiles → 4s pause → repeat</li>
+<li>f. Between attacks: boss slowly chases player at half speed</li>
+</ul>
+<h3>4.7.5 Phase transition at 50% HP</h3>
+<ul>
+<li>a. When boss HP crosses 50%: freeze boss movement for 2s</li>
+<li>b. Shield segment explodes — <code>NS_BossShieldBreak</code> VFX (large cyan burst)</li>
+<li>c. Boss glow shifts from cyan to red (material parameter change)</li>
+<li>d. Screen shake: heavy preset, 0.5s duration</li>
+<li>e. Audio: energy discharge + roar/alarm sound</li>
+<li>f. Set <code>CurrentPhase = 2</code>, resume behavior tree with phase 2 branch</li>
+</ul>
+<h3>4.7.6 Phase 2: Aggressive</h3>
+<ul>
+<li>a. Boss speed increases to 500 (from 300)</li>
+<li>b. No more shield segment — boss is fully vulnerable</li>
+<li>c. New attack: spread barrage — 8 projectiles in 360° ring, 15 damage each</li>
+<li>d. Summon: spawns 3 Drones every 15s (they attack player, boss keeps fighting)</li>
+<li>e. Attack pattern: Spread barrage → Chase → Missiles (faster: 700u/s) → Summon → repeat</li>
+<li>f. Becomes more dangerous but more vulnerable — reward aggressive play</li>
+</ul>
+<h3>4.7.7 Create boss HP bar widget</h3>
+<ul>
+<li>a. Create <code>WBP_BossHPBar</code> — wide bar centered at top of screen</li>
+<li>b. Width: 60% of screen width, Height: 24px</li>
+<li>c. Show boss name: &quot;SECTOR WARDEN&quot; above bar</li>
+<li>d. Show phase dots: 2 circles below bar, filled = phases remaining</li>
+<li>e. Bar color: red fill with dark background, white border</li>
+<li>f. Smooth drain animation: when boss takes damage, bar lerps over 0.3s</li>
+<li>g. Show/hide: appear when boss spawns, disappear when boss dies</li>
+<li>h. Shield portion: overlay cyan section on top of HP bar showing boss shield</li>
+</ul>
+<h3>4.7.8 Boss death sequence</h3>
+<ul>
+<li>a. On boss death: disable boss movement, play massive explosion</li>
+<li>b. <code>NS_BossDeath</code> VFX: chain of explosions across boss mesh (3-4 sequential bursts)</li>
+<li>c. Final explosion: enormous burst, screen white-out for 0.3s</li>
+<li>d. Slow motion: 0.2× time dilation for 1.5s during explosion chain</li>
+<li>e. Mineral rain: spawn 20-30 mineral pickups bursting from boss center</li>
+<li>f. Guaranteed weapon drop: Epic rarity weapon</li>
+<li>g. After explosion settles: show &quot;RUN COMPLETE&quot; banner text</li>
+<li>h. Wait 3s → transition to Run Summary screen</li>
+</ul>
+<h3>4.7.9 Create boss arena</h3>
+<ul>
+<li>a. Boss sector uses slightly larger arena (12000×12000 vs 10000×10000)</li>
+<li>b. Fewer asteroids in center — clear space for boss fight movement</li>
+<li>c. Ring of asteroids around edges — provides cover and mineral opportunities</li>
+<li>d. Dramatic lighting: darker ambient, spotlight on boss, red accent lights</li>
+<li>e. Boss-specific skybox tint: slightly redder/more menacing than normal sectors</li>
+<li>f. Add ambient VFX: floating debris, distant lightning, ominous particles</li>
+</ul>
+<hr>
+<h2>4.8 Event Encounter (First Event)</h2>
+<h3>4.8.1 Create AEventTrigger</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/EventTrigger.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>USphereComponent* TriggerVolume</code> — radius 500, trigger on player overlap</li>
+<li>c. Add <code>UPROPERTY</code>: <code>FName EventName</code> — look up event data from DataTable</li>
+<li>d. On player overlap: pause gameplay context, open event UI widget</li>
+<li>e. Create <code>FEventData</code> struct: <code>FName Name, FText Description, TArray&lt;FEventChoice&gt; Choices</code></li>
+<li>f. Create <code>FEventChoice</code> struct: <code>FText Label, FText Tooltip, FName OutcomeID</code></li>
+<li>g. Add visual beacon: glowing marker visible from distance so player knows event exists</li>
+</ul>
+<h3>4.8.2 Create event UI widget</h3>
+<ul>
+<li>a. Create <code>WBP_EventScreen</code> — full-screen modal overlay</li>
+<li>b. Center panel: event description text (3-4 lines of narrative)</li>
+<li>c. Below description: 2-3 choice buttons with hover tooltips showing risk/reward hints</li>
+<li>d. Choice buttons styled as &quot;communication options&quot; — fits space theme</li>
+<li>e. Background: dimmed gameplay, event beacon glow visible behind panel</li>
+<li>f. Ambient audio: radio static / transmission sound while event UI is open</li>
+</ul>
+<h3>4.8.3 Implement &quot;Distress Signal&quot; event</h3>
+<ul>
+<li>a. Create <code>DT_Events</code> DataTable, add row <code>DistressSignal</code></li>
+<li>b. Description: &quot;You received a faint distress signal from a damaged freighter. Scanners show hostile signatures nearby.&quot;</li>
+<li>c. Choice A: &quot;Respond to Signal&quot; (Help) — risk: enemy wave, reward: minerals + weapon</li>
+<li>d. Choice B: &quot;Ignore and Continue&quot; — no risk, no reward</li>
+<li>e. (Future: Choice C for professions like Smuggler: &quot;Salvage the Wreckage&quot; — unique outcome)</li>
+</ul>
+<h3>4.8.4 Help outcome</h3>
+<ul>
+<li>a. On choosing &quot;Respond&quot;: close event UI, spawn NPC freighter actor in sector</li>
+<li>b. Spawn enemy wave: budget=12, focused on attacking NPC and player</li>
+<li>c. NPC freighter has HP bar (200 HP) — if it dies, reward is halved</li>
+<li>d. If NPC survives: reward 50 Minerals + random Uncommon weapon</li>
+<li>e. If NPC dies: reward 25 Minerals only</li>
+<li>f. NPC freighter: stationary, cannot fight back, player must defend it</li>
+</ul>
+<h3>4.8.5 Ignore outcome</h3>
+<ul>
+<li>a. On choosing &quot;Ignore&quot;: close event UI, nothing happens</li>
+<li>b. Brief radio message: &quot;Signal fading... No response sent.&quot;</li>
+<li>c. Event trigger is consumed (can&#39;t re-trigger)</li>
+<li>d. Sector continues normally — jump gate available</li>
+</ul>
+<h3>4.8.6 Create event NPC ship actor</h3>
+<ul>
+<li>a. Create <code>ANPCShip</code> — non-controllable ship pawn with health component</li>
+<li>b. Mesh: battered freighter model, larger than player, visibly damaged</li>
+<li>c. HP bar: small green bar visible above ship</li>
+<li>d. Behavior: stationary, no weapons, emits distress VFX (flashing lights, smoke)</li>
+<li>e. On death: explosion VFX, removes from sector</li>
+<li>f. On help success: plays &quot;thank you&quot; radio transmission audio</li>
+</ul>
+<h3>4.8.7 Add event complete notification</h3>
+<ul>
+<li>a. Create <code>WBP_EventBanner</code> — top-of-screen notification banner</li>
+<li>b. Text: &quot;Event Complete: +50 Minerals, +1 Weapon&quot; (varies by outcome)</li>
+<li>c. Fade in (0.3s), hold (2s), fade out (0.5s)</li>
+<li>d. Banner color matches outcome: green=positive, yellow=neutral</li>
+<li>e. Play notification chime SFX on banner appearance</li>
+</ul>
+<hr>
+<h2>4.9 Run Flow</h2>
+<h3>4.9.1 Create ARunManager</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/RunManager.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>ERunState</code> enum: PreRun, InRun, RunComplete, RunFailed</li>
+<li>c. Add <code>UPROPERTY</code>: <code>ERunState CurrentState</code>, <code>FRunStats RunStats</code></li>
+<li>d. Add <code>FRunStats</code> struct: <code>int32 SectorsVisited, int32 EnemiesKilled, int32 MineralsEarned, int32 WeaponsFound, float RunTime</code></li>
+<li>e. Add <code>UFUNCTION</code>: <code>StartRun()</code>, <code>FailRun()</code>, <code>CompleteRun()</code></li>
+<li>f. Add delegates: <code>FOnRunStateChanged</code> — UI listens for state changes</li>
+</ul>
+<h3>4.9.2 Implement run start</h3>
+<ul>
+<li>a. <code>StartRun()</code>: set state to InRun, generate galaxy map, load first sector</li>
+<li>b. Show galaxy map briefly (or auto-jump to sector 0)</li>
+<li>c. Initialize RunStats to zero</li>
+<li>d. Start run timer</li>
+<li>e. Player begins in Sector 0 with starting loadout</li>
+</ul>
+<h3>4.9.3 Track run stats</h3>
+<ul>
+<li>a. <code>EnemiesKilled</code>: increment on each enemy death event</li>
+<li>b. <code>MineralsEarned</code>: increment on each mineral pickup (track cumulative)</li>
+<li>c. <code>WeaponsFound</code>: increment when weapon pickup is collected</li>
+<li>d. <code>SectorsVisited</code>: increment on each sector transition</li>
+<li>e. <code>RunTime</code>: accumulate <code>DeltaTime</code> every tick while InRun state</li>
+<li>f. All stats stored in <code>FRunStats</code> on RunManager</li>
+</ul>
+<h3>4.9.4 Implement Run Complete</h3>
+<ul>
+<li>a. Triggered by boss death in final sector</li>
+<li>b. Set state to RunComplete</li>
+<li>c. Stop run timer</li>
+<li>d. Award persistent currency (RD) if applicable (M4+)</li>
+<li>e. Short delay (3s) then show Run Summary screen</li>
+</ul>
+<h3>4.9.5 Implement Run Failed</h3>
+<ul>
+<li>a. Triggered on player death (solo) or all players dead (co-op)</li>
+<li>b. Set state to RunFailed</li>
+<li>c. Stop run timer</li>
+<li>d. Award partial persistent currency (50% of earned RD for M4+)</li>
+<li>e. Show Run Failed screen (updated from M2 death screen with more stats)</li>
+</ul>
+<h3>4.9.6 Create Run Summary screen</h3>
+<ul>
+<li>a. Create <code>WBP_RunSummary</code> — full-screen results overlay</li>
+<li>b. Header: &quot;RUN COMPLETE&quot; (green) or &quot;SIGNAL LOST&quot; (red) based on outcome</li>
+<li>c. Stats table: two columns, label and value, for each tracked stat</li>
+<li>d. Run time: formatted as &quot;MM:SS&quot;</li>
+<li>e. Buttons: &quot;Return to Hub&quot; (or main menu in M3)</li>
+<li>f. Future (M4+): show RD earned, unlocks progress</li>
+</ul>
+<h3>4.9.7 Implement return to menu</h3>
+<ul>
+<li>a. &quot;Return to Hub&quot; button: cleanup all run actors</li>
+<li>b. Destroy all enemies, pickups, sectors, projectiles</li>
+<li>c. Reset RunManager state to PreRun</li>
+<li>d. Load main menu level or Hub level</li>
+<li>e. Transition: fade to black (1s), load menu, fade in (0.5s)</li>
+</ul>
+<hr>
+<h2>4.10 Sector Environment: Asteroid Field</h2>
+<h3>4.10.1 Create environment config DataTable</h3>
+<ul>
+<li>a. Create <code>DT_Environments</code> DataTable using <code>FEnvironmentConfig</code> struct</li>
+<li>b. <code>FEnvironmentConfig</code> fields: <code>FName EnvName</code>, <code>float AsteroidDensity</code>, <code>FLinearColor FogColor</code>, <code>FLinearColor AmbientColor</code></li>
+<li>c. Add field: <code>TSoftObjectPtr&lt;UMaterialInterface&gt; SkyboxMaterial</code></li>
+<li>d. Add field: <code>TArray&lt;TSoftObjectPtr&lt;UStaticMesh&gt;&gt; AsteroidMeshes</code></li>
+<li>e. Add field: <code>TSoftObjectPtr&lt;UNiagaraSystem&gt; AmbientParticles</code></li>
+<li>f. Add <code>AsteroidField</code> row with warm amber lighting, moderate density</li>
+</ul>
+<h3>4.10.2 Procedural asteroid placement</h3>
+<ul>
+<li>a. Create scatter algorithm in <code>ASectorManager::SpawnEnvironment()</code></li>
+<li>b. Inputs: arena bounds, density parameter (0.0-1.0), min spacing, random seed</li>
+<li>c. Use Poisson disc sampling for natural-looking distribution</li>
+<li>d. Higher density = more asteroids, tighter spacing</li>
+<li>e. Reject points too close to center (player spawn zone)</li>
+<li>f. Reject points too close to station locations (if sector has station)</li>
+<li>g. Save positions so layout is consistent for the duration of sector</li>
+</ul>
+<h3>4.10.3 Add asteroid size variation</h3>
+<ul>
+<li>a. Roll random size class per asteroid: Small (40%), Medium (40%), Large (20%)</li>
+<li>b. Small: scales 0.3-0.6×, HP=20, mineral drop=3</li>
+<li>c. Medium: scales 0.7-1.2×, HP=50, mineral drop=8</li>
+<li>d. Large: scales 1.5-2.5×, HP=100, mineral drop=15</li>
+<li>e. Vary within class too: ±20% random scale variation per instance</li>
+<li>f. Assign random rotation at spawn for visual uniqueness</li>
+</ul>
+<h3>4.10.4 Add environmental lighting</h3>
+<ul>
+<li>a. For Asteroid Field: warm amber directional light as primary sun</li>
+<li>b. Intensity moderate — space still feels dark but rocks are visible</li>
+<li>c. Subtle rim light (cool blue, low intensity) from opposite direction</li>
+<li>d. Point lights on mineral-rich asteroids (gold, low range)</li>
+<li>e. No fog for asteroid field (clear space, good visibility)</li>
+</ul>
+<h3>4.10.5 Add distant background elements</h3>
+<ul>
+<li>a. Spawn far-plane decorative asteroids at 5000-10000 unit distance</li>
+<li>b. Scale very large (5×-10×) but no collision, just visual backdrop</li>
+<li>c. Add parallax movement: background objects move at 10% of camera speed</li>
+<li>d. Add distant nebula cloud sprites at 15000+ units — faint color patches</li>
+<li>e. Subtle starfield particle system: very slow-moving tiny bright dots</li>
+<li>f. Combine with skybox for depth: near objects, far objects, skybox layers</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

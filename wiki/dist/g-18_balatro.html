@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Balatro · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="active" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Balatro (2024) — LocalThunk</h1>
+<blockquote>
+<p><strong>Genre:</strong> Poker Roguelike Deckbuilder | <strong>Perspective:</strong> 2D Card | <strong>Players:</strong> Solo | <strong>Steam Rating:</strong> 97% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Build poker hands to defeat Blinds. Modify your standard 52-card deck with Jokers, Tarot cards, Planet cards, and Spectral cards to create insane scoring combos. Poker meets Slay the Spire.</p>
+<h2>🃏 Core Systems</h2>
+<h3>The Scoring Formula</h3>
+<pre><code>(Base Chips + Card Face Values) × (Base Mult + Joker Mult) = Score
+</code></pre>
+<ul>
+<li>Each poker hand has a base Chips + Mult value</li>
+<li>Planet cards upgrade hand base values permanently (within run)</li>
+<li>Jokers add Chips, Mult, or xMult (multiplicative)</li>
+<li>Goal: Beat the Blind&#39;s target chip score within limited hands</li>
+</ul>
+<h3>Ante Structure</h3>
+<pre><code>Ante 1: Small Blind → Big Blind → Boss Blind
+Ante 2: Small Blind → Big Blind → Boss Blind
+...
+Ante 8: Small Blind → Big Blind → Boss Blind → WIN
+→ Endless Mode (optional)
+</code></pre>
+<ul>
+<li>Can skip Small/Big Blinds for bonus tags (money, packs, etc.)</li>
+<li>Boss Blinds have unique debuffs (disable suits, hand types, etc.)</li>
+</ul>
+<h2>🃏 Jokers — 150+ (The &quot;Items&quot; of Balatro)</h2>
+<h3>Joker Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Effect Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Flat Chips</strong></td>
+<td>Banner, Scary Face</td>
+<td>+Chips to score</td>
+</tr>
+<tr>
+<td><strong>Flat Mult</strong></td>
+<td>Greedy Joker (+3 Mult per ♦ played)</td>
+<td>+Mult to score</td>
+</tr>
+<tr>
+<td><strong>xMult</strong></td>
+<td>Blackboard (x3 if all ♠/♣), The Duo</td>
+<td>Multiplicative (most powerful)</td>
+</tr>
+<tr>
+<td><strong>Scaling</strong></td>
+<td>Ice Cream (-5 mult per hand), Green Joker</td>
+<td>Grow/shrink over time</td>
+</tr>
+<tr>
+<td><strong>Money</strong></td>
+<td>Delayed Gratification, Business Card</td>
+<td>Generate gold</td>
+</tr>
+<tr>
+<td><strong>Retrigger</strong></td>
+<td>Sock and Buskin, Dusk</td>
+<td>Trigger cards/Jokers multiple times</td>
+</tr>
+<tr>
+<td><strong>Suit/Rank</strong></td>
+<td>Fibonacci (Ace,2,3,5,8 = +8 Mult)</td>
+<td>Reward specific cards</td>
+</tr>
+<tr>
+<td><strong>Legendary</strong></td>
+<td>Perkeo, Triboulet, Canio</td>
+<td>Ultra-rare, run-defining</td>
+</tr>
+</tbody></table>
+<h3>Joker Rarities</h3>
+<table>
+<thead>
+<tr>
+<th>Rarity</th>
+<th>Color</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Common</strong></td>
+<td>Blue</td>
+<td>Shop purchase</td>
+</tr>
+<tr>
+<td><strong>Uncommon</strong></td>
+<td>Green</td>
+<td>Shop purchase (less frequent)</td>
+</tr>
+<tr>
+<td><strong>Rare</strong></td>
+<td>Red</td>
+<td>Shop purchase (rare)</td>
+</tr>
+<tr>
+<td><strong>Legendary</strong></td>
+<td>Purple</td>
+<td>Soul Spectral card ONLY</td>
+</tr>
+</tbody></table>
+<h3>Joker Editions (Visual + bonus)</h3>
+<table>
+<thead>
+<tr>
+<th>Edition</th>
+<th>Bonus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Foil</strong></td>
+<td>+50 Chips</td>
+</tr>
+<tr>
+<td><strong>Holographic</strong></td>
+<td>+10 Mult</td>
+</tr>
+<tr>
+<td><strong>Polychrome</strong></td>
+<td>x1.5 Mult</td>
+</tr>
+<tr>
+<td><strong>Negative</strong></td>
+<td>+1 Joker slot</td>
+</tr>
+</tbody></table>
+<h2>📦 Other Card Types</h2>
+<h3>Tarot Cards (Consumable)</h3>
+<p>Modify playing cards in your deck:</p>
+<ul>
+<li><strong>The Fool</strong> — Create copy of last Tarot/Planet card used</li>
+<li><strong>Strength</strong> — Increase rank of up to 2 cards by 1</li>
+<li><strong>The Hermit</strong> — Double money (up to $20)</li>
+<li><strong>Death</strong> — Transform left card into right card</li>
+<li><strong>The Tower</strong> — Enhance up to 2 cards with Stone enhancement</li>
+</ul>
+<h3>Planet Cards (Hand Upgrades)</h3>
+<p>Permanently upgrade base Chips + Mult for a poker hand type:</p>
+<ul>
+<li><strong>Mercury</strong> = Upgrade Pair</li>
+<li><strong>Venus</strong> = Upgrade Three of a Kind</li>
+<li><strong>Jupiter</strong> = Upgrade Flush</li>
+<li><strong>Neptune</strong> = Upgrade Straight Flush</li>
+</ul>
+<h3>Spectral Cards (Powerful/Risky)</h3>
+<ul>
+<li><strong>Aura</strong> — Add random edition to 1 card</li>
+<li><strong>Wraith</strong> — Create a Rare Joker, set money to $0</li>
+<li><strong>Soul</strong> — Create a Legendary Joker</li>
+<li><strong>Ankh</strong> — Destroy all Jokers, duplicate a random one</li>
+</ul>
+<h3>Vouchers (Permanent Run Buffs)</h3>
+<ul>
+<li><strong>Overstock</strong> — +1 card slot in shop</li>
+<li><strong>Clearance Sale</strong> — 25% off shop items</li>
+<li><strong>Hone</strong> — Foil, Holo, Polychrome appear in shop</li>
+<li><strong>Planet Merchant</strong> — Planet cards appear in every shop</li>
+</ul>
+<h2>🎴 Deck Manipulation</h2>
+<ul>
+<li>Card <strong>Enhancements</strong> — Bonus, Mult, Wild, Glass, Steel, Stone, Gold, Lucky</li>
+<li>Card <strong>Seals</strong> — Red (retrigger), Blue (creates Planet card), Gold ($3 if in hand at end), Purple (creates Tarot)</li>
+<li>Card <strong>Editions</strong> — Foil, Holographic, Polychrome (same as Joker editions)</li>
+<li>Card <strong>Removal</strong> — $2-$5 to remove unwanted cards from deck (shrink deck = better hands)</li>
+</ul>
+<h2>📈 Meta-Progression</h2>
+<h3>Unlockable Decks (15)</h3>
+<table>
+<thead>
+<tr>
+<th>Deck</th>
+<th>Starting Modification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Red Deck</strong></td>
+<td>+1 discard per round</td>
+</tr>
+<tr>
+<td><strong>Blue Deck</strong></td>
+<td>+1 hand per round</td>
+</tr>
+<tr>
+<td><strong>Yellow Deck</strong></td>
+<td>+$10 starting money</td>
+</tr>
+<tr>
+<td><strong>Green Deck</strong></td>
+<td>No interest; $2 per remaining hand/discard</td>
+</tr>
+<tr>
+<td><strong>Black Deck</strong></td>
+<td>+1 Joker slot, -1 hand per round</td>
+</tr>
+<tr>
+<td><strong>Plasma Deck</strong></td>
+<td>Balances chips and mult; $1 ante entry fee</td>
+</tr>
+<tr>
+<td><strong>Erratic Deck</strong></td>
+<td>All ranks and suits are random</td>
+</tr>
+<tr>
+<td><strong>Abandoned Deck</strong></td>
+<td>No face cards</td>
+</tr>
+<tr>
+<td>+ 7 more</td>
+<td>Various tradeoffs</td>
+</tr>
+</tbody></table>
+<h3>Stake Difficulties (8 per deck)</h3>
+<table>
+<thead>
+<tr>
+<th>Stake</th>
+<th>Modifier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>White</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>Small Blind gives no reward</td>
+</tr>
+<tr>
+<td>Green</td>
+<td>Required score scales faster</td>
+</tr>
+<tr>
+<td>Black</td>
+<td>Shop has fewer items + higher prices</td>
+</tr>
+<tr>
+<td>Blue</td>
+<td>Boss Blinds are harder</td>
+</tr>
+<tr>
+<td>Purple</td>
+<td>Required score scales even faster</td>
+</tr>
+<tr>
+<td>Orange</td>
+<td>Booster packs cost more</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>Max stake — all modifiers active</td>
+</tr>
+</tbody></table>
+<h2>🏆 Achievement &amp; Collection</h2>
+<ul>
+<li><strong>Joker collection</strong> — Track all discovered Jokers (150+)</li>
+<li><strong>Deck completion</strong> — Beat all 8 stakes with all 15 decks</li>
+<li><strong>Discovery log</strong> — Track all cards, Jokers, vouchers found</li>
+<li><strong>Endless mode</strong> — Push score as high as possible post-Ante 8</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Poker + Roguelike Fusion</strong> — Completely novel genre mashup</li>
+<li><strong>xMult Stacking</strong> — Multiple Jokers with xMult = exponential scoring (e2, e3, e100+)</li>
+<li><strong>Boss Blind Debuffs</strong> — Force adaptive strategy</li>
+<li><strong>Deck Manipulation</strong> — Remove, enhance, seal, and modify individual cards</li>
+<li><strong>Psychological Hook</strong> — Simple rules, massive emergent depth</li>
+<li><strong>Solo Dev Success</strong> — Made by one person (LocalThunk)</li>
+</ol>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Jokers:</strong> 150+</li>
+<li><strong>Decks:</strong> 15</li>
+<li><strong>Stakes:</strong> 8 per deck</li>
+<li><strong>Tarot cards:</strong> 22</li>
+<li><strong>Planet cards:</strong> 12</li>
+<li><strong>Spectral cards:</strong> 18</li>
+<li><strong>Average run:</strong> 30–45 minutes</li>
+<li><strong>GOTY nominations:</strong> Multiple 2024 awards</li>
+<li><strong>Copies sold:</strong> 5 million+ in first month</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # 🎯 Game Vision & Concept
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md). **Active build plan:** [00_POC_PLAYABLE_LOOP.md](../00_POC_PLAYABLE_LOOP.md).
 
 ---
 
@@ -16,16 +16,16 @@ Players choose **two axes** before each run. Each combination plays differently:
 
 ### Ship Hulls (6 types — each has a UNIQUE mechanic)
 
-| Hull               | Fantasy                  | Speed | HP    | ⚔️Wpn | 🛡️Mod | 🔧Spec | Jump | Unique Mechanic                                                                            | Unlock                                        |
-| ------------------ | ------------------------ | ----- | ----- | ----- | ----- | ------ | ---- | ------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| 🔴 **Interceptor** | Nimble dogfighter        | ★★★★★ | ★★    | 4     | 5     | 1      | 2    | **Afterburner** — boost into speed state, ramming deals damage                             | 🟢 Starting                                   |
-| 🟡 **Corvette**    | Balanced all-rounder     | ★★★★  | ★★★   | 2     | 5     | 3      | 2    | **Adaptive Hull** — slowly auto-repairs over time                                          | 🟢 Starting                                   |
-| 🟢 **Carrier**     | Drone commander          | ★★★   | ★★★   | 1     | 6     | 3      | 1    | **Drone Flock** — 2–6 drones orbit your ship using flocking AI; auto-engage nearby enemies | 🔓 Deploy 50 total drones (via found items)   |
-| 🟣 **Organic**     | Living ship (Zerg vibes) | ★★★   | ★★★★  | 2     | 7     | 1      | 2    | **Regeneration** — passively heals hull HP over time (faster outside combat)               | 🔒 Hidden — discover a living ship anomaly    |
-| ⚫ **Phantom**     | Stealth predator         | ★★★★  | ★★    | 3     | 5     | 2      | 3    | **Cloak** — invisible, first attack from cloak deals 3× damage                             | 🔓 Complete a run without being detected once |
-| 🔵 **Juggernaut**  | Heavy fortress           | ★★    | ★★★★★ | 3     | 6     | 1      | 1    | **Fortress Mode** — stop moving to deploy shields + turrets                                | 🔓 Absorb 50,000 total damage                 |
+| Hull               | Fantasy                  | Speed | HP    | Jump | Unique Mechanic                                                                            | Unlock                                        |
+| ------------------ | ------------------------ | ----- | ----- | ---- | ------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| 🔴 **Interceptor** | Nimble dogfighter        | ★★★★★ | ★★    | 2    | **Afterburner** — boost into speed state, ramming deals damage                             | 🟢 Starting                                   |
+| 🟡 **Corvette**    | Balanced all-rounder     | ★★★★  | ★★★   | 2    | **Adaptive Hull** — slowly auto-repairs over time                                          | 🟢 Starting                                   |
+| 🟢 **Carrier**     | Drone commander          | ★★★   | ★★★   | 1    | **Drone Flock** — 2–6 drones orbit your ship using flocking AI; auto-engage nearby enemies | 🔓 Deploy 50 total drones (via found items)   |
+| 🟣 **Organic**     | Living ship (Zerg vibes) | ★★★   | ★★★★  | 2    | **Regeneration** — passively heals hull HP over time (faster outside combat)               | 🔒 Hidden — discover a living ship anomaly    |
+| ⚫ **Phantom**     | Stealth predator         | ★★★★  | ★★    | 3    | **Cloak** — invisible, first attack from cloak deals 3× damage                             | 🔓 Complete a run without being detected once |
+| 🔵 **Juggernaut**  | Heavy fortress           | ★★    | ★★★★★ | 1    | **Fortress Mode** — stop moving to deploy shields + turrets                                | 🔓 Absorb 50,000 total damage                 |
 
-> **All hulls have 10 total slots** — the difference is distribution. Interceptor is the quad-weapon blitz (4 guns!); Corvette/Carrier lean into specialty (3 each); Organic/Juggernaut are module-heavy stat stackers (7 and 6).
+> **Hull = size class + unique mechanic.** Weapon / module / specialty slots are **per named combo**, still totaling **10**. Fighter pulls toward guns; Miner/Scout/Scientist pull toward specialty tools; Hauler pulls toward modules. See the combo slot table below. Full art silhouettes: [art/ship_prompts.md](../art/ship_prompts.md).
 
 > **Jump Range** = how many sectors you can jump on the galaxy grid. Phantom can skip dangerous sectors; Juggernaut/Carrier must path carefully. Scout profession adds +1 jump range.
 
@@ -51,6 +51,23 @@ Players choose **two axes** before each run. Each combination plays differently:
 | 🟣 **Organic**     | **"Predator"**  | **"Hive"**        | **"Symbiote"**   | **"Leviathan"** | **"Specimen"**    |
 | ⚫ **Phantom**     | **"Assassin"**  | **"Ghost Miner"** | **"Shadow"**     | **"Pirate"**    | **"Infiltrator"** |
 | 🔵 **Juggernaut**  | **"Warmonger"** | **"Excavator"**   | **"Outpost"**    | **"Freighter"** | **"Observatory"** |
+
+### Named Combo Slots (⚔️W / 🛡️M / 🔧S — all total 10)
+
+Profession **reshapes** the ship. Same hull family, different vehicle.
+
+|                    | ⚔️ Fighter     | ⛏️ Miner        | 🔭 Scout        | 📦 Hauler      | 🔬 Scientist    |
+| ------------------ | -------------- | --------------- | --------------- | -------------- | --------------- |
+| 🔴 **Interceptor** | Ace 4/5/1      | Prospector 2/4/4 | Pathfinder 3/3/4 | Smuggler 2/6/2 | Probe 2/4/4     |
+| 🟡 **Corvette**    | Mercenary 2/5/3 | Driller 1/4/5    | Ranger 2/4/4     | Trader 1/6/3   | Researcher 1/5/4 |
+| 🟢 **Carrier**     | Warlord 1/6/3  | Foreman 1/5/4    | Spymaster 1/5/4  | Magnate 1/7/2  | Professor 1/5/4 |
+| 🟣 **Organic**     | Predator 2/7/1 | Hive 1/6/3       | Symbiote 2/5/3   | Leviathan 1/7/2 | Specimen 2/6/2  |
+| ⚫ **Phantom**     | Assassin 3/5/2 | Ghost Miner 2/5/3 | Shadow 2/4/4    | Pirate 3/5/2   | Infiltrator 2/5/3 |
+| 🔵 **Juggernaut**  | Warmonger 3/6/1 | Excavator 2/5/3  | Outpost 2/5/3    | Freighter 2/7/1 | Observatory 2/5/3 |
+
+> Fighter keeps the old hull identity (Ace is still the only 4-gun interceptor). Miner/Scout/Scientist trade guns for tools. Hauler trades guns for modules. Engines and silhouettes change with the combo — see art prompts.
+
+> **On the 3D mesh:** only **weapons** and **engine mods** get gold hardpoints (plus Carrier **drone bays**, which are the hull mechanic). **Specialty slots are inventory-only** — no gold pad, no visible tool socket. Profession identity still shows in silhouette (drill housing, sensor mast, cargo belly), just not as extra rings.
 
 ### Cross-Axis Synergy Bonuses
 
@@ -112,6 +129,7 @@ Special bonuses activate for specific Hull × Profession combos:
 - **Resource Mastery** — Mining, researching, and trading are not chores — they're core gameplay
 - **Power Fantasy** — From a basic shuttle to a galaxy-shattering war machine
 - **Better Together** — Co-op professions create natural team roles, like DRG's class system
+- **Crossing fights, not conga lines** — 3D combat should intercept, flank, and overshoot; running away is allowed but is not free DPS. See [17_anti_kiting_combat.md](17_anti_kiting_combat.md).
 
 ---
 

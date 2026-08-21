@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>07 · Stations · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="active" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>🏪 Station Interactions</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<p>Stations are <strong>in-run locations</strong> on the galaxy grid where players dock to trade, install upgrades, repair, and access profession-specific services. Each station type has a distinct purpose and UX flow.</p>
+<hr>
+<h2>1. Station Types Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Primary Role</th>
+<th>Secondary Role</th>
+<th>Refresh Mechanic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🛠️ <strong>Shipyard</strong></td>
+<td>Install upgrades, repair hull</td>
+<td>Buy/sell weapons, refit</td>
+<td>Stock refreshes each visit</td>
+</tr>
+<tr>
+<td>💰 <strong>Trade Post</strong></td>
+<td>Buy/sell minerals + goods</td>
+<td>Bounty boards, cargo trade</td>
+<td>Prices fluctuate based on supply/demand</td>
+</tr>
+<tr>
+<td>🔬 <strong>Research Lab</strong></td>
+<td>Craft tech cards, analyze</td>
+<td>Enhance modules, scanner</td>
+<td>Crafting recipes rotate each run</td>
+</tr>
+<tr>
+<td>🏴‍☠️ <strong>Black Market</strong></td>
+<td>Illegal mods, cursed items</td>
+<td>Gambling, high-risk trades</td>
+<td><strong>Raid Timer</strong> — authorities arrive if you linger</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. 🛠️ Shipyard (Install, Repair, Refit)</h2>
+<p>The Shipyard is where you <strong>install found equipment</strong> from your Cargo Hold into your ship.</p>
+<h3>Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Cost</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Install Upgrade</strong></td>
+<td>Free</td>
+<td>Move item from Cargo Hold → equipped slot (if slot available)</td>
+</tr>
+<tr>
+<td><strong>Swap Equipment</strong></td>
+<td>25 minerals</td>
+<td>Replace an equipped item with one from Cargo Hold (old item stays in cargo)</td>
+</tr>
+<tr>
+<td><strong>Hull Repair</strong></td>
+<td>5 minerals/10% HP</td>
+<td>Restore hull HP (cheaper than Medical Frigate items)</td>
+</tr>
+<tr>
+<td><strong>Shield Recharge</strong></td>
+<td>10 minerals</td>
+<td>Fully recharge shields instantly</td>
+</tr>
+<tr>
+<td><strong>Buy Weapons</strong></td>
+<td>50–500 minerals</td>
+<td>Stock of 3–5 weapons (rarity based on ring)</td>
+</tr>
+<tr>
+<td><strong>Buy Modules</strong></td>
+<td>30–300 minerals</td>
+<td>Stock of 3–5 modules (rarity based on ring)</td>
+</tr>
+<tr>
+<td><strong>Sell Equipment</strong></td>
+<td>50% buy price</td>
+<td>Sell unwanted items from Cargo Hold</td>
+</tr>
+<tr>
+<td><strong>Refit</strong> (advanced)</td>
+<td>100 minerals</td>
+<td>Re-slot an upgrade to a different slot type (weapon → module if compatible)</td>
+</tr>
+</tbody></table>
+<h3>UX Flow</h3>
+<pre><code>╔══════════════════════════════════════════════╗
+║              🛠️ SHIPYARD                     ║
+╠══════════════════════════════════════════════╣
+║                                              ║
+║  YOUR SHIP          CARGO HOLD               ║
+║  ──────────         ──────────               ║
+║  ⚔️ [Autocannon ★]  📦 Plasma Cutter        ║
+║  ⚔️ [___empty___]   📦 Shield Capacitor      ║
+║  🛡️ [Hull Plate ★]  📦 Targeting Array       ║
+║  🛡️ [___empty___]   📦 Kill Streak (Fighter) ║
+║  🔧 [___empty___]                            ║
+║                                              ║
+║  [INSTALL] [SWAP] [REPAIR] [SHOP] [SELL]    ║
+║                                              ║
+║  Hull: 65/100 HP  |  Minerals: 342           ║
+╚══════════════════════════════════════════════╝
+</code></pre>
+<hr>
+<h2>3. 💰 Trade Post (Buy, Sell, Bounties)</h2>
+<p>Trade Posts are <strong>economy hubs</strong> — buy and sell minerals, warp crystals, and trade goods. Hauler profession shines here.</p>
+<h3>Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Buy/Sell Minerals</strong></td>
+<td>Market rate fluctuates ±20%. Hauler gets +30% sell price</td>
+</tr>
+<tr>
+<td><strong>Buy Warp Crystals</strong></td>
+<td>25 minerals per crystal (expensive — mining is cheaper but risky)</td>
+</tr>
+<tr>
+<td><strong>Sell Cargo Items</strong></td>
+<td>Sell any cargo for minerals. Hauler gets bonus prices on bulk sells</td>
+</tr>
+<tr>
+<td><strong>Bounty Board</strong></td>
+<td>Accept bounties on nearby enemies/sectors. Reward: minerals + Rare weapon</td>
+</tr>
+<tr>
+<td><strong>Trade Contracts</strong></td>
+<td>Accept a contract to deliver cargo to another station. High risk, high payout</td>
+</tr>
+<tr>
+<td><strong>Faction Reputation</strong></td>
+<td>Some Trade Posts belong to factions — trading builds rep for exclusive items</td>
+</tr>
+</tbody></table>
+<h3>Price Fluctuation System</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Price Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>High supply nearby</strong></td>
+<td>Mineral prices drop 10–20%</td>
+</tr>
+<tr>
+<td><strong>Recent pirate activity</strong></td>
+<td>Weapon prices rise 15%, mineral prices drop 10%</td>
+</tr>
+<tr>
+<td><strong>Ring proximity to Core</strong></td>
+<td>Inner ring stations charge premium (1.3× prices)</td>
+</tr>
+<tr>
+<td><strong>Player Wanted level</strong></td>
+<td>★★★+ = 50% markup on all prices</td>
+</tr>
+<tr>
+<td><strong>Hauler profession</strong></td>
+<td>Always gets -15% buy / +30% sell</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. 🔬 Research Lab (Craft, Analyze, Enhance)</h2>
+<p>Research Labs are <strong>Scientist-focused</strong> stations for crafting and enhancing equipment.</p>
+<h3>Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Cost</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Craft Tech Card</strong></td>
+<td>50–200 RD + 100 minerals</td>
+<td>Choose from 3 craftable tech cards (recipes rotate per run)</td>
+</tr>
+<tr>
+<td><strong>Analyze Specimen</strong></td>
+<td>25 RD</td>
+<td>Reveal an enemy&#39;s full stat block + loot table for the rest of the run</td>
+</tr>
+<tr>
+<td><strong>Enhance Module</strong></td>
+<td>75 RD + module</td>
+<td>Upgrade a module by 1 rank (★ → ★★). Guaranteed, not random</td>
+</tr>
+<tr>
+<td><strong>Scanner Upgrade</strong></td>
+<td>100 RD</td>
+<td>Permanently improve scanner range for this run</td>
+</tr>
+<tr>
+<td><strong>Data Synthesis</strong></td>
+<td>50 RD</td>
+<td>Convert Research Data into a random uncommon+ item</td>
+</tr>
+<tr>
+<td><strong>Anomaly Report</strong></td>
+<td>Free</td>
+<td>Shows locations of all anomalies in adjacent sectors</td>
+</tr>
+</tbody></table>
+<h3>Scientist Profession Bonus</h3>
+<table>
+<thead>
+<tr>
+<th>Bonus</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Extra craft options</strong></td>
+<td>5 tech card options instead of 3</td>
+</tr>
+<tr>
+<td><strong>Discount crafting</strong></td>
+<td>All crafting costs -30% RD</td>
+</tr>
+<tr>
+<td><strong>Unique recipes</strong></td>
+<td>Access to Scientist-only tech cards (data-based)</td>
+</tr>
+<tr>
+<td><strong>Free analysis per visit</strong></td>
+<td>First specimen analysis is free at every Research Lab</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. 🏴‍☠️ Black Market (Risk, Gamble, Power)</h2>
+<p>The Black Market offers <strong>high-risk, high-reward</strong> trades. It&#39;s where you find cursed items, illegal modifications, and gambling opportunities.</p>
+<blockquote>
+<p>[!WARNING]
+<strong>Raid Timer:</strong> Spending too long at a Black Market triggers a Raid — authorities attack the station and you must flee or fight. The timer is visible and ticks down from 90 seconds.</p>
+</blockquote>
+<h3>Services</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Cost</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cursed Items</strong></td>
+<td>100–400 minerals</td>
+<td>Powerful items with drawbacks (e.g., +50% dmg, +25% damage taken)</td>
+</tr>
+<tr>
+<td><strong>Illegal Mods</strong></td>
+<td>200–600 minerals</td>
+<td>Bypass slot limits, stack forbidden combos</td>
+</tr>
+<tr>
+<td><strong>Contraband Trade</strong></td>
+<td>Varies</td>
+<td>Sell stolen goods (from pirated neutrals) at premium rates</td>
+</tr>
+<tr>
+<td><strong>Slot Machine</strong></td>
+<td>50 minerals per pull</td>
+<td>Random reward: nothing, minerals, rare item, or Legendary (weighted by Luck)</td>
+</tr>
+<tr>
+<td><strong>Info Broker</strong></td>
+<td>75 minerals</td>
+<td>Reveals boss location + weakness, or shows full sector map</td>
+</tr>
+<tr>
+<td><strong>Identity Scrub</strong></td>
+<td>200 minerals</td>
+<td>Reduce Wanted level by 2 (cheaper than station bounty payment, but risky location)</td>
+</tr>
+</tbody></table>
+<h3>Raid Timer Mechanics</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Timer</th>
+<th>What Happens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Browsing</strong></td>
+<td>90s → 60s</td>
+<td>Normal shopping. Timer visible in corner</td>
+</tr>
+<tr>
+<td><strong>Warning</strong></td>
+<td>60s → 30s</td>
+<td>Alarms sound. NPCs start packing up. Prices drop 50% (desperation)</td>
+</tr>
+<tr>
+<td><strong>Raid Imminent</strong></td>
+<td>30s → 0s</td>
+<td>Station shakes. Last chance to buy/leave. Everything half off</td>
+</tr>
+<tr>
+<td><strong>Raid</strong></td>
+<td>0s</td>
+<td>Authority ships warp in. Fight or flee. Black Market goes dark</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Risk/reward:</strong> Shopping at a Black Market under raid pressure is thrilling. The last 30 seconds offer 50% off everything — but if you&#39;re caught in the raid, you face a tough fight AND gain +2 Wanted level.</p>
+</blockquote>
+<hr>
+<h2>6. Station UX Principles</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Diegetic menus</strong></td>
+<td>All station interfaces exist in the game world — walk up to terminals, NPCs</td>
+</tr>
+<tr>
+<td><strong>No pause during stations</strong></td>
+<td>In co-op, other players continue exploring while you shop (adds urgency)</td>
+</tr>
+<tr>
+<td><strong>Profession callouts</strong></td>
+<td>Each station highlights profession-specific options with a glowing icon</td>
+</tr>
+<tr>
+<td><strong>Quick-buy hotkeys</strong></td>
+<td>1-button purchase for common actions (repair, buy crystals, sell all junk)</td>
+</tr>
+<tr>
+<td><strong>Compare mode</strong></td>
+<td>Side-by-side stat comparison between cargo items and equipped items</td>
+</tr>
+<tr>
+<td><strong>Price colors</strong></td>
+<td>Green = good deal, Yellow = normal, Red = overpriced (helps fast decision-making)</td>
+</tr>
+</tbody></table>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

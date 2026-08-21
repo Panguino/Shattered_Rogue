@@ -14,19 +14,23 @@
 The POC pivoted from a top-down movement plane to **Avorion-style full 3D flight**:
 
 - **W/S** applies forward/reverse engine thrust; **A/D** strafes laterally; **Space/C** strafes vertically.
-- Velocity is world-space and persists after thrust is released. Low passive damping keeps the ship controllable without erasing inertia.
+- Velocity is world-space and persists after thrust is released. Passive damping keeps the ship controllable without erasing inertia.
 - **X** engages strong inertia dampeners for deliberate braking.
-- **Q/E** rolls the hull. Pitch and yaw are limited by turn responsiveness rather than snapping instantly.
+- **Q/E** rolls the hull, and the chase camera banks with it so a barrel roll reads on screen. Pitch and yaw are limited by turn responsiveness rather than snapping instantly.
 - The mouse controls the camera heading; the ship rotates toward that heading as quickly as its maneuverability allows.
-- Forward acceleration is stronger than lateral and vertical thrust. Later hull stats can vary engine, thruster, brake, and turn authority independently.
+- Forward thrust dominates. **Reverse and strafe are capped near 120–150 uu/s against a forward max of 800** — thrust simply stops adding once an axis is at its cap, so momentum and drift survive but nobody flies backwards for a living. This is the movement half of [17_anti_kiting_combat.md](17_anti_kiting_combat.md).
+- Boost may exceed the forward cap; the surplus bleeds off through damping instead of being clamped away.
 
 The target is approachable space combat rather than a rigid Newtonian simulator: inertia matters, but the ship remains readable and recoverable.
+
+Post-POC, max speed is travel / intercept / escape, not automatically the best dogfight state. Combat speed should keep turning and tracking; boost stays a short resource. Drift (face one way, fly another) is allowed if reverse thrust stays weak so it cannot become infinite reverse-kiting. Full AI and envelope rules: [17_anti_kiting_combat.md](17_anti_kiting_combat.md).
 
 ### Movement Parameters by Hull
 
 | Parameter          | Interceptor | Gunship | Hauler  | Phantom   | Juggernaut | Carrier  |
 | ------------------ | ----------- | ------- | ------- | --------- | ---------- | -------- |
 | **Max Speed**      | 800         | 600     | 500     | 900       | 400        | 550      |
+| **Reverse / Strafe Cap** | 120 / 150 | 100 / 120 | 90 / 100 | 140 / 180 | 70 / 80 | 100 / 110 |
 | **Acceleration**   | High        | Medium  | Medium  | Very High | Low        | Medium   |
 | **Drag**           | Medium      | High    | High    | Low       | Very High  | Medium   |
 | **Drift Feel**     | Moderate    | Minimal | Minimal | Slippery  | Tank-like  | Moderate |

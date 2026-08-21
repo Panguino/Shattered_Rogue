@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Returnal · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="active" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Returnal (2021) — Housemarque</h1>
+<blockquote>
+<p><strong>Genre:</strong> Third-person 3D Bullet-hell Roguelite | <strong>Perspective:</strong> Third-person 3D | <strong>Players:</strong> 1–2 Online Co-op | <strong>Steam Rating:</strong> 85% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Selene, an astronaut, crash-lands on alien planet Atropos and is trapped in a death loop. Fast-paced, bullet-hell-inspired third-person shooting with a deep psychological horror narrative. Each death resets the procedurally generated world.</p>
+<h2>🔫 Weapons — 10 Base Types with Evolving Traits</h2>
+<table>
+<thead>
+<tr>
+<th>Weapon</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Spitmaw Blaster</strong></td>
+<td>Shotgun</td>
+<td>Close-range spread</td>
+</tr>
+<tr>
+<td><strong>Tachyomatic Carbine</strong></td>
+<td>Assault Rifle</td>
+<td>Rapid fire, versatile</td>
+</tr>
+<tr>
+<td><strong>Modified Sidearm SD-M8</strong></td>
+<td>Pistol</td>
+<td>Starter weapon</td>
+</tr>
+<tr>
+<td><strong>Hollowseeker</strong></td>
+<td>SMG</td>
+<td>High fire rate, low damage per hit</td>
+</tr>
+<tr>
+<td><strong>Thermogenic Launcher</strong></td>
+<td>Rocket Launcher</td>
+<td>Explosive AoE</td>
+</tr>
+<tr>
+<td><strong>Rotgland Lobber</strong></td>
+<td>Bio Launcher</td>
+<td>Acid/DOT pools</td>
+</tr>
+<tr>
+<td><strong>Electropylon Driver</strong></td>
+<td>Trap Weapon</td>
+<td>Places electric pylons</td>
+</tr>
+<tr>
+<td><strong>Dreadbound</strong></td>
+<td>Disc Launcher</td>
+<td>Returns to player (boomerang)</td>
+</tr>
+<tr>
+<td><strong>Coilspine Shredder</strong></td>
+<td>Burst Rifle</td>
+<td>Charged burst shots</td>
+</tr>
+<tr>
+<td><strong>Pyroshell Caster</strong></td>
+<td>Grenade Launcher</td>
+<td>Explosive shells</td>
+</tr>
+</tbody></table>
+<h3>Weapon Trait System (Key Innovation)</h3>
+<ul>
+<li>Each weapon has <strong>10+ unlockable traits</strong> per weapon type</li>
+<li>Traits modify weapon behavior: homing bullets, explosive rounds, portal fire, etc.</li>
+<li>Traits unlock permanently by using the weapon in combat (proficiency)</li>
+<li>Higher proficiency = access to Trait Level II and III (stronger versions)</li>
+<li>Each weapon drops with 1–3 active traits randomly selected</li>
+<li>Creates massive variety — same weapon type can play completely differently</li>
+</ul>
+<h3>Alt-Fire Modes</h3>
+<ul>
+<li>Every weapon has a unique <strong>Alt-Fire</strong> (adaptive trigger half-press = primary, full press = alt-fire on PS5)</li>
+<li>Examples: Killsight (precision scope), Trackerswarm (homing missiles), Shockstream (chain lightning)</li>
+</ul>
+<h2>🦠 Artifact &amp; Parasite System</h2>
+<h3>Artifacts (Passive Bonuses)</h3>
+<ul>
+<li>Collected items that provide pure bonuses</li>
+<li>Examples: +25% melee damage, resin counter for max integrity, protection bonus</li>
+</ul>
+<h3>Parasites (Risk/Reward)</h3>
+<table>
+<thead>
+<tr>
+<th>Parasite</th>
+<th>Benefit</th>
+<th>Drawback</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Example 1</td>
+<td>+20% damage vs. low-HP enemies</td>
+<td>-10% max integrity</td>
+</tr>
+<tr>
+<td>Example 2</td>
+<td>Increased pickup radius</td>
+<td>Reduced repair efficiency</td>
+</tr>
+<tr>
+<td>Example 3</td>
+<td>Enemies drop extra obolites</td>
+<td>Increased malfunction chance</td>
+</tr>
+</tbody></table>
+<p>Parasites always have a trade-off — attach for benefit, suffer the drawback.</p>
+<h3>Malfunctions (Debuffs)</h3>
+<ul>
+<li>Triggered by picking up Malignant items (purple glowing items = risky)</li>
+<li>Must complete a task to clear malfunction (e.g., kill 3 enemies in 10s, open 2 chests)</li>
+<li>Examples: Lose obolites per hit, melee deals no damage, enemies become faster</li>
+</ul>
+<h2>📈 Progression Systems</h2>
+<h3>In-Run</h3>
+<ul>
+<li><strong>Weapons + Traits</strong> — Escalating weapon proficiency</li>
+<li><strong>Artifacts</strong> — Passive bonuses</li>
+<li><strong>Parasites</strong> — Risk/reward modifiers</li>
+<li><strong>Consumables</strong> — Single-use items</li>
+<li><strong>Silphium (health) / Resin (max HP)</strong> — Health management</li>
+</ul>
+<h3>Meta-Progression (Minimal by Design)</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Persistence</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Weapon Trait Unlocks</strong></td>
+<td>Permanent</td>
+<td>Use weapon to unlock traits forever</td>
+</tr>
+<tr>
+<td><strong>Permanent Equipment</strong></td>
+<td>Story-gated</td>
+<td>Sword, grapple hook, etc. (open new paths)</td>
+</tr>
+<tr>
+<td><strong>Cthonos</strong></td>
+<td>Slowly adds items</td>
+<td>Device in hub that adds new items to loot pool</td>
+</tr>
+<tr>
+<td><strong>Ether</strong></td>
+<td>Persists on death</td>
+<td>Used to cleanse Malignant items or activate Cthonos</td>
+</tr>
+<tr>
+<td><strong>Story Progress</strong></td>
+<td>Permanent</td>
+<td>Cutscenes, house sequences, lore</td>
+</tr>
+</tbody></table>
+<h2>🌍 Biome Structure — 6 Biomes</h2>
+<pre><code>Act 1: Overgrown Ruins → Crimson Wastes → Derelict Citadel (boss: Nemesis)
+Act 2: Echoing Ruins → Fractured Wastes → Abyssal Scar (boss: Ophion)
+</code></pre>
+<p>Each biome procedurally assembles from handcrafted room segments.</p>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>3D Bullet Hell</strong> — Translated 2D bullet-hell patterns to 3D third-person (industry first at this scale)</li>
+<li><strong>Weapon Trait Progression</strong> — Permanent trait unlocks create long-term weapon evolution</li>
+<li><strong>DualSense Integration</strong> — Adaptive triggers for primary/alt-fire; haptic feedback for rain, impacts</li>
+<li><strong>Parasite Risk/Reward</strong> — Forced trade-offs on pickups</li>
+<li><strong>Malfunction System</strong> — Debuffs as challenges to overcome</li>
+<li><strong>SSD Instant Loading</strong> — Near-zero load times after death</li>
+<li><strong>3D Audio</strong> — Spatial sound critical for dodging in bullet-hell</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;The DualSense feedback is a game-changer — you FEEL the rain, every bullet&quot;</li>
+<li>&quot;Bullet hell in 3D works way better than anyone expected&quot;</li>
+<li>&quot;Weapon traits mean every run I discover a new weapon behavior&quot;</li>
+<li>&quot;The psychological horror narrative is genuinely unsettling and compelling&quot;</li>
+<li>&quot;One of the best-feeling shooters ever made&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Weapons:</strong> 10 base types</li>
+<li><strong>Weapon Traits:</strong> 10+ per weapon (100+ total)</li>
+<li><strong>Biomes:</strong> 6</li>
+<li><strong>Metacritic:</strong> 86/100 (PS5)</li>
+<li><strong>Average run:</strong> 1–3 hours (longer than most roguelikes)</li>
+<li><strong>GOTY nomination</strong> at 2021 Game Awards</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

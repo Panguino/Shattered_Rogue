@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>12 · Combat &amp; Co-op · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="active" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>⚔️ Combat &amp; Co-op Design</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<h2>1. Combat Design</h2>
+<h3>Combat Principles</h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Juicy &amp; responsive</strong></td>
+<td>Every hit feels punchy — screen shake, particles, damage numbers, enemy flash, knockback</td>
+</tr>
+<tr>
+<td><strong>Twin-stick feel</strong></td>
+<td>Move with left stick, aim with right stick. Smooth, responsive, satisfying aim</td>
+</tr>
+<tr>
+<td><strong>Dodge is king</strong></td>
+<td>Boost dash is your primary defense — iframe window, covers distance, low cooldown</td>
+</tr>
+<tr>
+<td><strong>Build diversity</strong></td>
+<td>Combat feels different based on Hull × Profession combo — not just &quot;shoot stuff&quot;</td>
+</tr>
+<tr>
+<td><strong>Escalation</strong></td>
+<td>Fights start manageable and escalate. Wave 3 should feel notably harder than Wave 1</td>
+</tr>
+<tr>
+<td><strong>Proc spectacle</strong></td>
+<td>When proc chains trigger at high Luck, the screen should fill with satisfying chaos</td>
+</tr>
+</tbody></table>
+<h3>Damage System</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Base Damage</strong></td>
+<td>Weapon base × rarity multiplier</td>
+</tr>
+<tr>
+<td><strong>Crit Multiplier</strong></td>
+<td>Base 2× damage. Stacks with Luck and items</td>
+</tr>
+<tr>
+<td><strong>Elemental</strong></td>
+<td>Fire (DoT), Ice (slow), Explosive (AoE), Void (pierce)</td>
+</tr>
+<tr>
+<td><strong>Armor</strong></td>
+<td>Reduces incoming damage by flat %. Can be broken by specific weapons</td>
+</tr>
+<tr>
+<td><strong>Shields</strong></td>
+<td>Absorb damage first. Regenerate after 3s of no damage</td>
+</tr>
+<tr>
+<td><strong>Weak Points</strong></td>
+<td>Some enemies have glowing weak spots for 2× damage (Scientist reveals)</td>
+</tr>
+</tbody></table>
+<h3>Damage Numbers</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Visual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Normal hit</td>
+<td>White numbers, small</td>
+</tr>
+<tr>
+<td>Crit hit</td>
+<td>Yellow numbers, large, with ⚡ icon</td>
+</tr>
+<tr>
+<td>Elemental proc</td>
+<td>Colored (🔥 orange, ❄️ blue, 💥 yellow, 🌀 purple)</td>
+</tr>
+<tr>
+<td>Weak point</td>
+<td>Red numbers, extra large, screen shake</td>
+</tr>
+<tr>
+<td>Multi-kill</td>
+<td>Stacking combo counter (×2, ×3, ×4...)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. Enemy Design Philosophy</h2>
+<h3>Core Principles</h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Read before react</strong></td>
+<td>Every enemy telegraphs its attack with visual + audio cues (1–2s warning)</td>
+</tr>
+<tr>
+<td><strong>Counter-play exists</strong></td>
+<td>Every enemy behavior has a clear counter (dodge the charge, shoot the generator, etc.)</td>
+</tr>
+<tr>
+<td><strong>Roles, not reskins</strong></td>
+<td>Each chassis fills a distinct role — Drones swarm, Tanks absorb, Supports buff</td>
+</tr>
+<tr>
+<td><strong>Composition matters</strong></td>
+<td>Wave composition creates emergent challenges (Support + Tank = hard wall)</td>
+</tr>
+<tr>
+<td><strong>Profession moments</strong></td>
+<td>Some enemies are designed to make specific professions feel special (Scientist reveals weaknesses)</td>
+</tr>
+<tr>
+<td><strong>Trait readability</strong></td>
+<td>Visual cues (glow, particles, size) telegraph traits so players learn the &quot;language&quot;</td>
+</tr>
+</tbody></table>
+<h3>Enemy Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Role in Wave</th>
+<th>Player Feeling</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Fodder</strong></td>
+<td>Easy kills, resource drops</td>
+<td>&quot;I&#39;m powerful&quot; — satisfying to clear</td>
+</tr>
+<tr>
+<td><strong>Standard</strong></td>
+<td>Moderate threat, core of waves</td>
+<td>&quot;I need to pay attention&quot;</td>
+</tr>
+<tr>
+<td><strong>Elite</strong></td>
+<td>Dangerous, priority targets</td>
+<td>&quot;Focus fire this one first&quot;</td>
+</tr>
+<tr>
+<td><strong>Mini-Boss</strong></td>
+<td>Wave-defining threat</td>
+<td>&quot;We need a strategy for this&quot;</td>
+</tr>
+<tr>
+<td><strong>Boss</strong></td>
+<td>Multi-phase set piece</td>
+<td>&quot;This is THE fight of the sector&quot;</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Full enemy system details in <a href="d06.html">06_enemy_catalog.md</a>.</p>
+</blockquote>
+<hr>
+<h2>3. Co-op Design (2–4 Players)</h2>
+<h3>Co-op Principles</h3>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Drop-in / drop-out</strong></td>
+<td>Join friends mid-run. Enemies scale up. If someone leaves, enemies scale back down</td>
+</tr>
+<tr>
+<td><strong>No friendly fire (default)</strong></td>
+<td>Can be toggled on in settings for chaos (madness mode)</td>
+</tr>
+<tr>
+<td><strong>Shared map, split loot</strong></td>
+<td>Everyone sees the same sector. Loot drops individually (your drops are yours)</td>
+</tr>
+<tr>
+<td><strong>Group jump voting</strong></td>
+<td>Team votes on which sector to jump to next. Longest jump range in party is used</td>
+</tr>
+<tr>
+<td><strong>Shared Warp Crystal cost</strong></td>
+<td>Jump costs come from a shared pool — no freeloading</td>
+</tr>
+<tr>
+<td><strong>Revive mechanic</strong></td>
+<td>Downed players can be revived within 15s. If timer expires, they spectate until station</td>
+</tr>
+</tbody></table>
+<h3>Profession Synergy in Co-op</h3>
+<p>The game is designed so <strong>diverse profession teams</strong> are stronger than duplicate professions:</p>
+<table>
+<thead>
+<tr>
+<th>Team Composition</th>
+<th>Synergy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Fighter + Miner</strong></td>
+<td>Fighter protects while Miner farms. Miner drops mines as traps</td>
+</tr>
+<tr>
+<td><strong>Scout + any team</strong></td>
+<td>Full map reveal + enemy marks = team-wide +15% damage</td>
+</tr>
+<tr>
+<td><strong>Hauler + Trader-focused</strong></td>
+<td>Hauler carries team&#39;s loot, negotiates bulk deals at stations</td>
+</tr>
+<tr>
+<td><strong>Scientist + Fighter</strong></td>
+<td>Scientist exposes weakness → Fighter deals bonus damage</td>
+</tr>
+<tr>
+<td><strong>4 unique professions</strong></td>
+<td>Each player does what they do best. The dream team</td>
+</tr>
+</tbody></table>
+<h3>Co-op Scaling</h3>
+<table>
+<thead>
+<tr>
+<th>Players</th>
+<th>Enemy HP</th>
+<th>Enemy Count</th>
+<th>Loot Quality</th>
+<th>Boss Phases</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1.0×</td>
+<td>1.0×</td>
+<td>Base</td>
+<td>Base</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1.6×</td>
+<td>1.3×</td>
+<td>+15%</td>
+<td>+0–1 phase</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2.2×</td>
+<td>1.5×</td>
+<td>+25%</td>
+<td>+1 phase</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3.0×</td>
+<td>1.8×</td>
+<td>+40%</td>
+<td>+1–2 phases</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Scaling philosophy:</strong> More players = enemies are tankier and more numerous, but NOT unfairly so. Boss fights gain extra phases/attacks, not just HP sponges. Loot quality increases to reward group play.</p>
+</blockquote>
+<h3>Co-op Communication</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Ping system</strong></td>
+<td>Point at anything → contextual ping (enemy, loot, location, danger)</td>
+</tr>
+<tr>
+<td><strong>Voice chat</strong></td>
+<td>Built-in proximity + team voice chat</td>
+</tr>
+<tr>
+<td><strong>Quick emotes</strong></td>
+<td>&quot;Need Help!&quot;, &quot;On My Way!&quot;, &quot;Mine!&quot;, &quot;Watch Out!&quot;, &quot;Good Job!&quot;</td>
+</tr>
+<tr>
+<td><strong>Shared map pings</strong></td>
+<td>Scout can ping map locations for team visibility</td>
+</tr>
+<tr>
+<td><strong>Combo callouts</strong></td>
+<td>Auto-callout when a profession synergy triggers (&quot;Scientist exposed!&quot;)</td>
+</tr>
+</tbody></table>
+<h3>Co-op Run Flow</h3>
+<pre><code>LOBBY (Outer Rim Station)
+├── All players in the same station instance
+├── Each player picks Hull × Profession
+├── Host selects Heat level (with team vote)
+├── Ready up → Launch
+│
+IN-RUN
+├── All players in same sector
+├── Explore together or split up (shared map)
+├── Combat encounters scale to player count
+├── Stations: each player shops independently
+├── Jump: team votes on destination
+│
+DEATH / REVIVAL
+├── Downed player: 15s revive window
+│   ├── Teammate gets close → hold button → revive with 30% HP
+│   └── Timer expires → spectate until next station
+├── Total party wipe → run over for everyone
+│
+VICTORY
+├── All players get rewards
+├── Heat achievements earned individually
+├── Loot is individual — no fighting over drops
+</code></pre>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

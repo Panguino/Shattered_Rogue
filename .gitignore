@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+art/.env
+tripo-out/
+art/tripo-out/
+*.log

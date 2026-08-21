@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vampire Survivors · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="active" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Vampire Survivors (2022) — poncle</h1>
+<blockquote>
+<p><strong>Genre:</strong> Bullet Heaven / Auto-shooter Roguelite | <strong>Perspective:</strong> Top-down 2D | <strong>Players:</strong> Solo (Local co-op added) | <strong>Steam Rating:</strong> 97% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Survive 30 minutes against endless waves of monsters. You only control movement — attacks auto-fire. Level up to choose new weapons and passive items. Survive, evolve weapons, become godlike.</p>
+<h2>👤 Characters (50+)</h2>
+<p>Each starts with a unique weapon and passive bonus:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Starting Weapon</th>
+<th>Passive Bonus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Antonio</strong></td>
+<td>Whip</td>
+<td>+10% Damage per level</td>
+</tr>
+<tr>
+<td><strong>Imelda</strong></td>
+<td>Magic Wand</td>
+<td>+10% XP per level</td>
+</tr>
+<tr>
+<td><strong>Pasqualina</strong></td>
+<td>Runetracer</td>
+<td>+10% Speed per level</td>
+</tr>
+<tr>
+<td><strong>Gennaro</strong></td>
+<td>Knife</td>
+<td>+1 Projectile</td>
+</tr>
+<tr>
+<td><strong>Arca</strong></td>
+<td>Fire Wand</td>
+<td>-5% Cooldown per level</td>
+</tr>
+<tr>
+<td><strong>Porta</strong></td>
+<td>Lightning Ring</td>
+<td>-30% Cooldown at start</td>
+</tr>
+<tr>
+<td><strong>Lama</strong></td>
+<td>Axe</td>
+<td>+5% Might, +5% Speed, -10% Cooldown</td>
+</tr>
+<tr>
+<td>+ 40 more</td>
+<td>Various</td>
+<td>Unique starting bonuses</td>
+</tr>
+</tbody></table>
+<h2>🔫 Weapons — Auto-fire System</h2>
+<h3>Base Weapons (20+)</h3>
+<table>
+<thead>
+<tr>
+<th>Weapon</th>
+<th>Behavior</th>
+<th>Evolution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Whip</strong></td>
+<td>Horizontal slash, attacks nearest</td>
+<td>→ Bloody Tear (lifesteal)</td>
+</tr>
+<tr>
+<td><strong>Magic Wand</strong></td>
+<td>Fires at random enemy</td>
+<td>→ Holy Wand (no delay)</td>
+</tr>
+<tr>
+<td><strong>Knife</strong></td>
+<td>Fires directionally</td>
+<td>→ Thousand Edge (multi-knife)</td>
+</tr>
+<tr>
+<td><strong>King Bible</strong></td>
+<td>Orbits player</td>
+<td>→ Unholy Vespers (larger, longer)</td>
+</tr>
+<tr>
+<td><strong>Fire Wand</strong></td>
+<td>Random direction fireballs</td>
+<td>→ Hellfire (bigger fireballs)</td>
+</tr>
+<tr>
+<td><strong>Garlic</strong></td>
+<td>AoE aura around player</td>
+<td>→ Soul Eater (lifesteal AoE)</td>
+</tr>
+<tr>
+<td><strong>Lightning Ring</strong></td>
+<td>Strikes random enemy</td>
+<td>→ Thunder Loop (multi-strike)</td>
+</tr>
+<tr>
+<td><strong>Cross/Boomerang</strong></td>
+<td>Thrown + returns</td>
+<td>→ Heaven Sword (+critical)</td>
+</tr>
+<tr>
+<td><strong>Axe</strong></td>
+<td>Thrown upward, falls randomly</td>
+<td>→ Death Spiral (larger, pass through)</td>
+</tr>
+<tr>
+<td><strong>Santa Water</strong></td>
+<td>Drops AoE zone</td>
+<td>→ La Borra (trails follow player)</td>
+</tr>
+</tbody></table>
+<h3>Weapon Evolution System (Key Innovation)</h3>
+<ul>
+<li>Max level a weapon (Level 8) + hold matching passive item = Evolution</li>
+<li>Chest after boss drops evolved weapon</li>
+<li>Evolution is massive power spike + visual change</li>
+<li>Example: King Bible (Lv8) + Spellbinder = Unholy Vespers</li>
+</ul>
+<h3>Weapon Slots</h3>
+<ul>
+<li><strong>6 weapon slots</strong> — fill strategically</li>
+<li><strong>6 passive item slots</strong> — pair with correct weapons for evolutions</li>
+</ul>
+<h2>📦 Passive Items (16 Base)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Effect</th>
+<th>Pairs With</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Spinach</strong></td>
+<td>+10% Might</td>
+<td>Garlic</td>
+</tr>
+<tr>
+<td><strong>Armor</strong></td>
+<td>+1 Armor</td>
+<td>King Bible</td>
+</tr>
+<tr>
+<td><strong>Hollow Heart</strong></td>
+<td>+20% Max HP</td>
+<td>Whip</td>
+</tr>
+<tr>
+<td><strong>Pummarola</strong></td>
+<td>+0.2 HP/s regen</td>
+<td>Garlic</td>
+</tr>
+<tr>
+<td><strong>Empty Tome</strong></td>
+<td>-8% Cooldown</td>
+<td>Fire Wand</td>
+</tr>
+<tr>
+<td><strong>Candelabrador</strong></td>
+<td>+10% Area</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Bracer</strong></td>
+<td>+10% Speed proj</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Spellbinder</strong></td>
+<td>+10% Duration</td>
+<td>King Bible</td>
+</tr>
+<tr>
+<td><strong>Duplicator</strong></td>
+<td>+1 Amount</td>
+<td>Magic Wand</td>
+</tr>
+<tr>
+<td>+ more</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>📈 Progression Systems</h2>
+<h3>In-Run</h3>
+<ul>
+<li>XP gems from kills → Level up → Choose 1 of 3-4 weapon/item offers</li>
+<li>Reach level 8 on a weapon to evolve (with matching passive)</li>
+<li>Treasure chests from bosses (10-min intervals)</li>
+<li>Floor chicken (healing), vacuum (XP magnet), gems</li>
+</ul>
+<h3>Meta-Progression</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Currency</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PowerUps</strong></td>
+<td>Gold</td>
+<td>Permanent stat increases (Might, Speed, Max HP, Armor, etc.)</td>
+</tr>
+<tr>
+<td><strong>Character Unlocks</strong></td>
+<td>Achievements</td>
+<td>50+ characters to unlock</td>
+</tr>
+<tr>
+<td><strong>Stage Unlocks</strong></td>
+<td>Achievements</td>
+<td>10+ stages</td>
+</tr>
+<tr>
+<td><strong>Arcana Cards</strong></td>
+<td>Special events</td>
+<td>22 powerful modifiers</td>
+</tr>
+<tr>
+<td><strong>Relic Unlocks</strong></td>
+<td>Hidden achievements</td>
+<td>Unique stage mechanics</td>
+</tr>
+</tbody></table>
+<h3>PowerUps (Permanent Stat Shop)</h3>
+<ul>
+<li><strong>Might</strong> (+5% damage per level, 5 levels)</li>
+<li><strong>Armor</strong> (+1 flat damage reduction)</li>
+<li><strong>Max Health</strong> (+10% per level)</li>
+<li><strong>Recovery</strong> (+0.1 HP/s)</li>
+<li><strong>Cooldown</strong> (-2.5% per level)</li>
+<li><strong>Area</strong> (+5% AoE per level)</li>
+<li><strong>Speed</strong> (+5% move speed)</li>
+<li><strong>Duration</strong> (+15% effect duration)</li>
+<li><strong>Amount</strong> (+1 projectile per purchase)</li>
+<li><strong>Magnet</strong> (+25% pickup range)</li>
+<li><strong>Luck</strong> (+10% luck)</li>
+<li><strong>Growth</strong> (+3% XP gain)</li>
+<li><strong>Greed</strong> (+10% gold)</li>
+<li><strong>Curse</strong> (+10% enemy spawn)</li>
+<li><strong>Revival</strong> (+1 extra life)</li>
+<li><strong>Reroll/Skip/Banish</strong> (level-up manipulation)</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Simplification as Innovation</strong> — Only control movement; attacks auto-fire</li>
+<li><strong>Weapon Evolution</strong> — Specific weapon + passive = dramatic upgrade</li>
+<li><strong>Constant Reward Loop</strong> — Level up every 10–30 seconds</li>
+<li><strong>Power Fantasy Escalation</strong> — Go from barely surviving to destroying everything on screen</li>
+<li><strong>$3 Price Point</strong> — Incredible value-to-content ratio</li>
+<li><strong>Psychological Addiction Design</strong> — Variable ratio reinforcement schedule</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;The power fantasy of going from weak to screen-filling destruction&quot;</li>
+<li>&quot;Perfect &#39;brain off&#39; game — relaxing yet engaging&quot;</li>
+<li>&quot;Can&#39;t stop playing — it hijacks your reward center&quot;</li>
+<li>&quot;Evolving weapons feels incredible every time&quot;</li>
+<li>&quot;Absurd value for $3&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Characters:</strong> 50+</li>
+<li><strong>Weapons:</strong> 20+ base (40+ with evolutions + DLC)</li>
+<li><strong>Stages:</strong> 10+</li>
+<li><strong>Average run:</strong> 30 minutes (hard cap)</li>
+<li><strong>Price:</strong> $4.99</li>
+<li><strong>Copies sold:</strong> 10 million+</li>
+<li><strong>Spawned subgenre:</strong> &quot;Survivors-like&quot; / &quot;Bullet Heaven&quot;</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

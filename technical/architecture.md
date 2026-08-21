@@ -1,6 +1,12 @@
 # 🏗️ Technical Architecture
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md). **Active plan:** [00_POC_PLAYABLE_LOOP.md](../00_POC_PLAYABLE_LOOP.md).
+
+---
+
+## 0. Engine
+
+**Unreal Engine 5.8**, C++ primary. Official **Unreal MCP** plugin for Cursor. Do not switch to Unity or Godot — see [engine_mcp_ai_integration.md](../research/engine_mcp_ai_integration.md).
 
 ---
 
@@ -140,3 +146,19 @@ All Blueprints must follow these standards for maintainability:
 | **Max Entities**      | 200 simultaneous | Enemies + drones + projectiles + loot    |
 | **Network Bandwidth** | <50 KB/s/player  | Efficient replication, delta compression |
 | **Memory**            | <4 GB            | Streaming textures, LOD system           |
+
+---
+
+## 8. Unreal MCP (Cursor)
+
+Enable in Phase 1. Editor hosts `http://127.0.0.1:8000/mcp`. Cursor connects via generated `.mcp.json`.
+
+| Plugin | Role |
+| ------ | ---- |
+| **Unreal MCP** (`ModelContextProtocol`) | Server inside the editor |
+| **All Toolsets** | Default actor / scene / material / test tools |
+| **Toolset Registry** | Auto-enabled. Our custom `AICallable` tools go here |
+
+Game-specific tools to add later: spawn hull from DataTable, attach weapon to named socket, set engine trail color, run listen-server smoke test.
+
+Limits: Experimental, loopback only, serial game-thread calls. Fallback: ChiR24 or StraySpark — same engine.

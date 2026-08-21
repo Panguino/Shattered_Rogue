@@ -11,8 +11,9 @@
 | Principle              | Details                                                                                  |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
 | **Juicy & responsive** | Every hit feels punchy — screen shake, particles, damage numbers, enemy flash, knockback |
-| **Twin-stick feel**    | Move with left stick, aim with right stick. Smooth, responsive, satisfying aim           |
-| **Dodge is king**      | Boost dash is your primary defense — iframe window, covers distance, low cooldown        |
+| **6DOF, not twin-stick** | Avorion-style thrust, inertia, and mouse steering — see [15_controls_and_camera.md](15_controls_and_camera.md) |
+| **Commit vs disengage** | Straight-line kiting must not be the safest *and* highest-DPS option. Ships cross, intercept, and overshoot — see [17_anti_kiting_combat.md](17_anti_kiting_combat.md) |
+| **Boost is a burst**   | Short afterburner to close, escape, or pass — not a permanent speed state                |
 | **Build diversity**    | Combat feels different based on Hull × Profession combo — not just "shoot stuff"         |
 | **Escalation**         | Fights start manageable and escalate. Wave 3 should feel notably harder than Wave 1      |
 | **Proc spectacle**     | When proc chains trigger at high Luck, the screen should fill with satisfying chaos      |

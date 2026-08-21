@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 11–14 Systems · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group" open><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="active" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Phases 11–14 — Systems, Stations, Events &amp; Endgame</h1>
+<hr>
+<h2>Phase 11 — Difficulty/Heat System</h2>
+<hr>
+<h3>11.1 Heat System</h3>
+<h4>11.1.1 Create UHeatSubsystem</h4>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/HeatSubsystem.h</code> inheriting <code>UGameInstanceSubsystem</code></li>
+<li>b. Add <code>TMap&lt;FName, int32&gt; ActiveModifiers</code> — modifier name → selected rank (0-4)</li>
+<li>c. Add <code>UFUNCTION</code>: <code>GetTotalHeat() → int32</code> — sum of all active modifier ranks</li>
+<li>d. Add <code>UFUNCTION</code>: <code>SetModifierRank(FName Modifier, int32 Rank)</code></li>
+<li>e. Add <code>UFUNCTION</code>: <code>GetRewardMultiplier() → float</code> — scales with total heat</li>
+<li>f. Total heat persists per-run only (reset between runs)</li>
+</ul>
+<h4>11.1.2 Create Heat modifier DataTable</h4>
+<ul>
+<li>a. <code>FHeatModifier</code> struct: <code>FName Name</code>, <code>FText Description</code>, <code>int32 MaxRank</code>, <code>TArray&lt;float&gt; RankValues</code></li>
+<li>b. Create <code>DT_HeatModifiers</code> DataTable with 12 modifiers from design doc 11:</li>
+<li>c. Enemy HP+ (10/20/35/50%), Enemy Damage+ (10/20/35/50%), Faster Enemies (+10/20/30/40% speed)</li>
+<li>d. Fewer Stations (remove 1/2/3/all), Reduced Drops (-15/30/50/75% loot chance)</li>
+<li>e. No Shield Regen, Fog of War (no reveals), Corruption Surge (+1/2/3 traits on enemies)</li>
+<li>f. Boss Enrage (boss gains +1/2/3 phases), Timed Run (10/8/6/4 min limit)</li>
+<li>g. Iron Will (1 life, no revives), Breach Leak (random Void damage pulses every 30/20/15/10s)</li>
+</ul>
+<h4>11.1.3 Create Heat selection UI</h4>
+<ul>
+<li>a. Create <code>WBP_HeatSelect</code> — pre-run panel showing all 12 modifiers</li>
+<li>b. Each modifier: name, description, rank slider (0 to MaxRank)</li>
+<li>c. Show individual heat contribution per modifier</li>
+<li>d. Bottom: total heat score display, reward multiplier preview</li>
+<li>e. Style: warning colors — higher ranks use redder tones</li>
+<li>f. Accessible from Hub before launching a run</li>
+</ul>
+<h4>11.1.4 Implement modifier effects</h4>
+<ul>
+<li>a. On run start: read all active modifiers from HeatSubsystem</li>
+<li>b. Enemy HP+: multiply enemy MaxHP in spawn function</li>
+<li>c. Enemy Damage+: multiply enemy weapon damage in DataTable lookup</li>
+<li>d. Fewer Stations: remove Station sectors from galaxy map during generation</li>
+<li>e. Each modifier applies to its relevant system during initialization</li>
+<li>f. Modifiers stack with co-op scaling (multiplicative)</li>
+</ul>
+<h4>11.1.5 Implement Heat-based rewards</h4>
+<ul>
+<li>a. <code>GetRewardMultiplier()</code>: base 1.0, each heat point adds 0.05 (5%)</li>
+<li>b. Apply to: RD drops, rarity roll bonuses, mineral amounts</li>
+<li>c. At Heat 20: 2× reward multiplier (double everything)</li>
+<li>d. Display multiplier on HUD during run: &quot;Heat: 15 (×1.75)&quot;</li>
+</ul>
+<h4>11.1.6 Create Heat achievements</h4>
+<ul>
+<li>a. &quot;Warm Up&quot;: complete a run at Heat 5+</li>
+<li>b. &quot;Getting Hot&quot;: complete a run at Heat 15+</li>
+<li>c. &quot;Inferno&quot;: complete a run at Heat 30+</li>
+<li>d. &quot;Masochist&quot;: complete a run with ALL modifiers at max rank</li>
+<li>e. Rewards: unique cosmetics, RD bonuses, hull/profession unlocks</li>
+</ul>
+<h4>11.1.7 Display Heat on run HUD</h4>
+<ul>
+<li>a. Small flame icon + number in top-left corner near HP bar</li>
+<li>b. Color scales: white (&lt;5), yellow (5-15), orange (15-25), red (25+)</li>
+<li>c. Shows reward multiplier on hover/tooltip</li>
+</ul>
+<hr>
+<h2>Phase 12 — Full Stations &amp; Hub</h2>
+<hr>
+<h3>12.1 Remaining Station Types</h3>
+<h4>12.1.1 Create Trade Post</h4>
+<ul>
+<li>a. Create <code>AStationTradePost</code> — station variant for buying/selling</li>
+<li>b. Trade Post UI: shop grid showing weapons and modules for sale</li>
+<li>c. Prices: Minerals to buy, scaled by rarity (Common=30, Uncommon=60, Rare=120, Epic=250)</li>
+<li>d. Sell items from cargo: 40% of buy price (Smuggler profession: 55%)</li>
+<li>e. Inventory: randomly generated per visit from available weapon/module pool</li>
+<li>f. 5-8 items available per Trade Post visit</li>
+<li>g. Restocks only on revisit (different items)</li>
+</ul>
+<h4>12.1.2 Create Research Lab station</h4>
+<ul>
+<li>a. <code>AStationResearchLab</code> — in-run research opportunities</li>
+<li>b. Services: Sector Scan (reveal all adjacent sectors, costs 5 RD), Weapon Analysis (reveal all weapon stats in cargo)</li>
+<li>c. In-run buff: &quot;Overcharge&quot; — +20% damage for 3 sectors, costs 10 RD</li>
+<li>d. In-run buff: &quot;Fortified Shields&quot; — +50% shield for 3 sectors, costs 8 RD</li>
+<li>e. Buffs are temporary (run-local), purchased with RD</li>
+</ul>
+<h4>12.1.3 Create Black Market</h4>
+<ul>
+<li>a. <code>AStationBlackMarket</code> — rare station type, risky deals</li>
+<li>b. Sells contraband items: very powerful but with drawbacks</li>
+<li>c. Example: &quot;Overclocked Engine&quot; — +40% speed but -20% HP</li>
+<li>d. Prices: high Minerals, Smuggler discount applies</li>
+<li>e. Buying from Black Market increases Wanted level (+5)</li>
+<li>f. Exclusive items not available at regular stations</li>
+</ul>
+<h4>12.1.4 Create station-specific UIs</h4>
+<ul>
+<li>a. Each station type gets a unique widget skin (color/icon theme)</li>
+<li>b. Trade Post: gold/merchant theme, coin icons</li>
+<li>c. Research Lab: blue/tech theme, circuit patterns</li>
+<li>d. Black Market: dark purple/red theme, skull motifs</li>
+<li>e. Shipyard (existing): industrial grey/blue theme</li>
+<li>f. All stations share base layout: left info panel, center actions, right cargo view</li>
+</ul>
+<hr>
+<h3>12.2 Full Hub Station</h3>
+<h4>12.2.1 Create 3D Hub environment</h4>
+<ul>
+<li>a. Create <code>Map_Hub</code> level with 3D background: Outer Rim Station exterior vista</li>
+<li>b. Vista: space station silhouette, nebula backdrop, docked ships in background</li>
+<li>c. Parallax: slight camera movement/drift for lively feel</li>
+<li>d. Lighting: warm, safe ambience — contrast with dark dangerous run environments</li>
+</ul>
+<h4>12.2.2 Create Hub areas (menu-driven)</h4>
+<ul>
+<li>a. Hangar: ship preview + launch run (select hull/profession, review loadout)</li>
+<li>b. Research Lab: spend RD on permanent unlocks (existing from Phase 5)</li>
+<li>c. Armory: toggle pool management, weapon catalog viewer</li>
+<li>d. Trophy Room: achievements, statistics, lore codex</li>
+<li>e. Cantina: NPC dialogues, daily challenge board</li>
+<li>f. Mission Board: view available run modifiers (Heat selection)</li>
+<li>g. Comm Station: multiplayer lobby creation/joining</li>
+<li>h. Settings: audio, video, controls, accessibility</li>
+</ul>
+<h4>12.2.3 Create Hub NPCs</h4>
+<ul>
+<li>a. 4-6 NPC characters, each representing a Hub area</li>
+<li>b. Each NPC: name, portrait image, 2-3 lore dialogue lines</li>
+<li>c. NPC dialogue system: simple text display, advance with click</li>
+<li>d. Dialogue changes based on player progression (early, mid, late game)</li>
+<li>e. Example: dockmaster comments on ship damage, researcher praises discoveries</li>
+</ul>
+<h4>12.2.4 Hub visual progression</h4>
+<ul>
+<li>a. Hub starts sparse/damaged at game start</li>
+<li>b. As player completes milestones: Hub visually upgrades</li>
+<li>c. Examples: lights turn on, hull repairs appear, new ship models dock in background</li>
+<li>d. Environmental storytelling: Hub gets better as player progresses</li>
+</ul>
+<h4>12.2.5 Trophy Room</h4>
+<ul>
+<li>a. Create <code>WBP_TrophyRoom</code> widget — grid of achievement cards</li>
+<li>b. Each card: achievement icon, name, description, progress bar, completed date</li>
+<li>c. Locked achievements: show silhouette icon, &quot;???&quot; description</li>
+<li>d. Career stats summary: total runs, best streak, total kills, playtime</li>
+<li>e. Lore codex tab: organized by category (see Phase 13)</li>
+</ul>
+<hr>
+<h2>Phase 13 — Full Events &amp; Lore</h2>
+<hr>
+<h3>13.1 Remaining Events (19 More)</h3>
+<h4>13.1.1 Implement all 22 events</h4>
+<ul>
+<li>a. Reference design doc 05 for complete event list</li>
+<li>b. Per event: create DataTable row (description, choices, outcomes, weights)</li>
+<li>c. Per event: create unique event trigger visual (beacon style varies)</li>
+<li>d. Per event: implement outcome logic (spawn enemies, grant rewards, apply effects)</li>
+<li>e. Per event: add 1-2 profession-specific bonus choices</li>
+<li>f. Events grouped by category: combat events, exploration events, social events, mystery events</li>
+<li>g. Batch implement: ~4 events per work session, test each individually</li>
+</ul>
+<h4>13.1.2 Create event frequency system</h4>
+<ul>
+<li>a. Weighted random selection from available event pool</li>
+<li>b. No repeats within same run (each event can appear at most once per run)</li>
+<li>c. Sector type biasing: Mining sectors get exploration events, Combat sectors get combat events</li>
+<li>d. Ring biasing: outer events are safer/simpler, inner events are more dangerous/rewarding</li>
+<li>e. Profession biasing: certain events appear more often with relevant profession</li>
+</ul>
+<h4>13.1.3 Profession-gated choices</h4>
+<ul>
+<li>a. Per event: add optional choice with <code>RequiredProfession</code> field</li>
+<li>b. Only visible if player has matching profession</li>
+<li>c. Profession choices always offer better risk/reward than generic options</li>
+<li>d. Example: Engineer can &quot;Hack the System&quot; in derelict events (guaranteed safe outcome)</li>
+<li>e. Smuggler can &quot;Bribe&quot; in hostile encounter events (avoid combat)</li>
+</ul>
+<hr>
+<h3>13.2 Lore Fragment System</h3>
+<h4>13.2.1 Create lore fragment collectible</h4>
+<ul>
+<li>a. <code>FLoreFragment</code> struct: <code>FName ID</code>, <code>ELoreCategory Category</code>, <code>FText Title</code>, <code>FText Content</code></li>
+<li>b. 5 categories: The Shattering, The Breach, Ancient Civilization, Survivor Accounts, Breach-born</li>
+<li>c. 37 total fragments distributed across the game</li>
+<li>d. Create <code>DT_LoreFragments</code> DataTable with all 37 entries</li>
+</ul>
+<h4>13.2.2 Create lore codex UI</h4>
+<ul>
+<li>a. Create <code>WBP_LoreCodex</code> — accessible from Trophy Room in Hub</li>
+<li>b. 5 tabs for categories, each showing fragment cards</li>
+<li>c. Collected: full text visible, atmospheric border art</li>
+<li>d. Uncollected: silhouette card with &quot;???&quot; and hint text (&quot;Found in Nebula sectors&quot;)</li>
+<li>e. Progress counter per category: &quot;3/8 collected&quot;</li>
+</ul>
+<h4>13.2.3 Scatter fragments</h4>
+<ul>
+<li>a. 10 fragments: found during specific events (unique event outcome)</li>
+<li>b. 8 fragments: scan interactions at special points in specific environments</li>
+<li>c. 7 fragments: dropped by specific boss encounters (first kill only)</li>
+<li>d. 6 fragments: found in wreckage/derelict exploration events</li>
+<li>e. 6 fragments: purchased at Research Lab stations (rare inventory item)</li>
+<li>f. Each fragment has a fixed acquisition method — not random</li>
+</ul>
+<h4>13.2.4 Archivist achievement</h4>
+<ul>
+<li>a. &quot;Archivist&quot;: collect all 37 lore fragments</li>
+<li>b. Reward: unique Legendary specialty item themed around lore</li>
+<li>c. Achievement tracks in Trophy Room</li>
+<li>d. Final fragment collected triggers special cinematic or dialogue</li>
+</ul>
+<hr>
+<h2>Phase 14 — Endgame: Glyphs &amp; Breach Run</h2>
+<hr>
+<h3>14.1 Glyph System</h3>
+<h4>14.1.1 Create UGlyphSubsystem</h4>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/GlyphSubsystem.h</code> inheriting <code>UGameInstanceSubsystem</code></li>
+<li>b. Add <code>UPROPERTY(SaveGame)</code>: <code>TArray&lt;bool&gt; CollectedGlyphs</code> — 3 slots, persistent</li>
+<li>c. Add <code>UFUNCTION</code>: <code>CollectGlyph(int32 Index)</code>, <code>HasAllGlyphs() → bool</code>, <code>GetGlyphCount() → int32</code></li>
+<li>d. Save/load with player save game</li>
+</ul>
+<h4>14.1.2 Create 3 Glyph encounters</h4>
+<ul>
+<li>a. Glyph 1: Dropped by first Ring 1 boss defeat (mini-boss variant)</li>
+<li>b. Glyph 2: Found in special &quot;Vault&quot; event in Ring 2 (requires solving a puzzle)</li>
+<li>c. Glyph 3: Dropped by Core ring boss (strongest non-Breach boss)</li>
+<li>d. Each glyph pickup has unique alien symbol VFX — floating geometric form</li>
+</ul>
+<h4>14.1.3 Create Glyph pickup VFX</h4>
+<ul>
+<li>a. <code>NS_GlyphPickup</code> — alien symbol flares with bright teal energy</li>
+<li>b. On collect: galaxy map shows barrier cracking animation</li>
+<li>c. Camera zoom + slow-mo moment (0.5s) to emphasize significance</li>
+<li>d. Audio: deep resonant chime + alien whisper sound</li>
+<li>e. Each glyph has distinct symbol shape (triangle/circle/diamond)</li>
+</ul>
+<h4>14.1.4 Implement Glyph passive bonuses</h4>
+<ul>
+<li>a. 1 Glyph: fog of war reduced (reveal 2 more hexes on visit)</li>
+<li>b. 2 Glyphs: +1 jump range on all hulls</li>
+<li>c. 3 Glyphs: -15% all damage taken (permanent during run)</li>
+<li>d. Bonuses apply to all subsequent runs once glyphs are collected</li>
+<li>e. Show active bonuses on Hub screen</li>
+</ul>
+<h4>14.1.5 Hub Glyph display</h4>
+<ul>
+<li>a. In Hub Trophy Room: 3 pedestals for Glyphs</li>
+<li>b. Collected glyphs float above pedestals with idle animations</li>
+<li>c. All 3 collected: pedestals glow, Breach Run becomes available</li>
+<li>d. Text: &quot;The path to the Breach is open.&quot; displayed when all 3 placed</li>
+</ul>
+<hr>
+<h3>14.2 Breach Run</h3>
+<h4>14.2.1 Create Breach Run game mode</h4>
+<ul>
+<li>a. Special run type, only available after collecting all 3 Glyphs</li>
+<li>b. Linear structure: 4 sequential phases, no galaxy map choice</li>
+<li>c. Higher difficulty: enemies start at max corruption, Heat modifiers amplified</li>
+<li>d. No stations mid-run (must be fully prepared before starting)</li>
+</ul>
+<h4>14.2.2 Create gauntlet sector</h4>
+<ul>
+<li>a. Phase 1: continuous enemy waves with escalating budget</li>
+<li>b. 5 waves with no calm period — relentless pressure</li>
+<li>c. Budget: [20, 30, 40, 50, 60] — very intense</li>
+<li>d. All chassis types, all traits active, max corruption</li>
+<li>e. Survival test: player must endure to proceeed</li>
+</ul>
+<h4>14.2.3 Create The Warden (penultimate boss)</h4>
+<ul>
+<li>a. Phase 2: boss fight against The Warden — corrupted Gate guardian</li>
+<li>b. HP: 800, Shield: 400, 3 phases (at 66% and 33%)</li>
+<li>c. Phase 1: standard attacks + rotating shield (like M3 boss but harder)</li>
+<li>d. Phase 2: spawns paired Strikers, does beam sweep + charge attacks</li>
+<li>e. Phase 3: enraged, all attacks faster, AoE fields on ground</li>
+<li>f. Lore: The Warden once guarded the Breach barrier, now corrupted by it</li>
+</ul>
+<h4>14.2.4 Create Breach corridor</h4>
+<ul>
+<li>a. Phase 3: visual transition into the Breach dimension</li>
+<li>b. Environment: reality warps — space tears, color shifts, geometry distortion</li>
+<li>c. No enemies — 30s atmospheric transition with narrative voiceover/text</li>
+<li>d. Lighting shifts from normal space to alien (purple-red, hostile, otherworldly)</li>
+<li>e. Ship shakes/sparks — entering the Breach is physically damaging to the ship</li>
+<li>f. Player takes 10% max HP damage as &quot;Breach toll&quot;</li>
+</ul>
+<h4>14.2.5 Create The Architect (final boss)</h4>
+<ul>
+<li>a. Phase 4: final boss — The Architect, colossal jellyfish entity</li>
+<li>b. Fully organic model: massive bioluminescent jellyfish (~500 unit diameter)</li>
+<li>c. HP: 1200, Shield: 600, 4 phases (at 75%, 50%, 25%)</li>
+<li>d. Phase 1: tentacle sweeps (huge beam-like attacks, dodge zones)</li>
+<li>e. Phase 2: summons Breach-born minions continuously, creates void zones</li>
+<li>f. Phase 3: arena shrinks (Breach closing in), attacks intensify</li>
+<li>g. Phase 4: desperation — all attacks overlap, player must use Glyph activations</li>
+</ul>
+<h4>14.2.6 Implement Glyph activation</h4>
+<ul>
+<li>a. During Architect fight: 3 Glyph activation points appear at phase transitions</li>
+<li>b. Player flies to Glyph point → activate → deals massive damage to boss + VFX explosion</li>
+<li>c. Each Glyph activation weakens one of the boss&#39;s abilities permanently</li>
+<li>d. Glyph 1: removes tentacle sweep. Glyph 2: stops summoning. Glyph 3: prevents arena shrink.</li>
+<li>e. VFX: Glyph symbols flare, Architect recoils with alien screech</li>
+</ul>
+<h4>14.2.7 Create ending cinematic</h4>
+<ul>
+<li>a. On Architect death: massive implosion VFX (Breach closing)</li>
+<li>b. Camera pulls out to galaxy map view: Breach location seals</li>
+<li>c. Ring corruption levels decrease visually across the map</li>
+<li>d. Text: &quot;The Breach has been sealed... for now.&quot;</li>
+<li>e. Roll credits over galaxy map vista (or save for full release)</li>
+<li>f. Return to Hub: Hub is visually upgraded to pristine state</li>
+</ul>
+<hr>
+<h3>14.3 Loop+ / New Game Plus</h3>
+<h4>14.3.1 Create The Echo</h4>
+<ul>
+<li>a. Post-Breach completion: narrative fragment establishes &quot;The Echo&quot;</li>
+<li>b. The Echo: a splinter of The Architect that survived, justifying NG+</li>
+<li>c. Hub NPC dialogue changes: &quot;Something still stirs in the dark...&quot;</li>
+<li>d. New threat indicator on galaxy map: faint corruption returning</li>
+</ul>
+<h4>14.3.2 Implement NG+ scaling</h4>
+<ul>
+<li>a. On completing Breach Run: unlock Loop+ difficulty</li>
+<li>b. Loop+ enemies: +50% HP, +25% damage, +1 trait baseline</li>
+<li>c. Loop+ loot: +100% rarity chance, guaranteed Epic/Legendary drops increase</li>
+<li>d. Loop+ modifiers: new Heat modifiers unlocked (Loop+ exclusive)</li>
+<li>e. Stackable: each Breach completion increases Loop+ level (NG+2, +3, etc.)</li>
+</ul>
+<h4>14.3.3 Create Loop+ galaxy map variations</h4>
+<ul>
+<li>a. New sector layouts: different hex patterns per Loop+ level</li>
+<li>b. Elite encounters: corrupted station events, ambush sectors</li>
+<li>c. New boss variants: Breach-tainted versions of existing bosses with bonus phases</li>
+<li>d. Each Loop+ level adds visual corruption to the galaxy map itself</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+{
+  "generated": "2026-08-20",
+  "note": "Each named combo has a unique silhouette, engines, and hardpoints. Visible gold = weapons + engines (+ Carrier drone bays). Specialty is inventory-only. Hull = size class + unique mechanic. Profession = shape kit + slot mix (still 10 total).",
+  "styleLock": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.",
+  "hulls": {
+    "Interceptor": {
+      "color": "#e23b3b",
+      "fantasy": "Nimble dogfighter",
+      "mechanic": "Afterburner"
+    },
+    "Corvette": {
+      "color": "#f0c14b",
+      "fantasy": "Balanced all-rounder",
+      "mechanic": "Adaptive Hull"
+    },
+    "Carrier": {
+      "color": "#3ecf6a",
+      "fantasy": "Drone commander",
+      "mechanic": "Drone Flock"
+    },
+    "Organic": {
+      "color": "#b44cff",
+      "fantasy": "Living ship (Zerg vibes)",
+      "mechanic": "Regeneration"
+    },
+    "Phantom": {
+      "color": "#8b90a8",
+      "fantasy": "Stealth predator",
+      "mechanic": "Cloak"
+    },
+    "Juggernaut": {
+      "color": "#4aa3ff",
+      "fantasy": "Heavy fortress",
+      "mechanic": "Fortress Mode"
+    }
+  },
+  "ships": [
+    {
+      "id": "ace",
+      "name": "Ace",
+      "hull": "Interceptor",
+      "profession": "Fighter",
+      "starting": true,
+      "mechanic": "Afterburner",
+      "slots": {
+        "weapons": 4,
+        "modules": 5,
+        "specialty": 1
+      },
+      "goldCount": 7,
+      "gold": [
+        "WEAPON — left wing TOP pad",
+        "WEAPON — right wing TOP pad",
+        "WEAPON — left nose pad",
+        "WEAPON — right nose pad",
+        "ENGINE — left bell collar",
+        "ENGINE — right bell collar",
+        "ENGINE — center afterburner collar"
+      ],
+      "color": "#e23b3b",
+      "read": "tiny crimson dart with fat afterburner",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Ace\" — Interceptor hull × Fighter profession. Unique mechanic: Afterburner.\nONE-LINE SILHOUETTE: tiny crimson dart with fat afterburner. If it does not match this, the image is wrong.\n\nHULL SHAPE: compact nimble dogfighter. Longer pointed nose, swept-back delta wings, oversized twin rear engines PLUS a fat center afterburner. Exaggerated fighter canopy. This is the locked hero Ace silhouette — the only ship that should look like this.\n\nCOLOR: crimson-red primary, cream/white plates, charcoal recesses, gold rings, cyan canopy, hot orange glow in empty bells.\n\nGOLD RINGS: EXACTLY 7 on the whole ship. Count them. More than 7 means the image is wrong.\n\n1. WEAPON — left wing TOP pad\n2. WEAPON — right wing TOP pad\n3. WEAPON — left nose pad\n4. WEAPON — right nose pad\n5. ENGINE — left bell collar\n6. ENGINE — right bell collar\n7. ENGINE — center afterburner collar\n\nGameplay inventory (do NOT add extra gold for these): 4 weapon slots, 5 module slots INTERNAL, 1 specialty slots INTERNAL. Visible gold = weapons + engine collars only (7)."
+    },
+    {
+      "id": "prospector",
+      "name": "Prospector",
+      "hull": "Interceptor",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Afterburner",
+      "slots": {
+        "weapons": 2,
+        "modules": 4,
+        "specialty": 4
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left chin mining-laser pad",
+        "WEAPON — right chin mining-laser pad",
+        "ENGINE — left exhaust-bell collar at the REAR only",
+        "ENGINE — right exhaust-bell collar at the REAR only"
+      ],
+      "color": "#e23b3b",
+      "read": "chunky crimson mining mule, a bit longer than wide, big engines, not a square brick",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Prospector\" — Interceptor hull × Miner profession. Unique mechanic: Afterburner.\nONE-LINE SILHOUETTE: chunky crimson mining mule, a bit longer than wide, big engines, not a square brick. If it does not match this, the image is wrong.\n\nHULL SHAPE: chunky industrial mining mule — keep the fat toy look, but NOT a square brick. Length is about 1.3× the width: a short extra section of red fuselage between the cockpit and the engines so the visor is not glued to the bells. Blunt work-visor (small cyan glass) at the front, not a fighter nose. Cream scoop-cheeks bulge on the sides but do not make the ship wider than it is long. Short rectangular wings with hazard stripes, slightly too small for the body. Twin large wide torque engines, about one-third of the ship length (big, not half the ship). NO center afterburner. CHARCOAL wingtip blocks with a tiny cyan light (not gold). Still heavy and industrial. Wrong if it is a cube. Wrong if it is a sleek Ace dart.\n\nCOLOR: crimson hull, ochre-yellow hazard stripes on short wings, cream scoop-cheeks, charcoal mechanics, gold rings, cyan work-visor, dull orange torque-engine glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left chin mining-laser pad\n2. WEAPON — right chin mining-laser pad\n3. ENGINE — left exhaust-bell collar at the REAR only\n4. ENGINE — right exhaust-bell collar at the REAR only\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 4 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "pathfinder",
+      "name": "Pathfinder",
+      "hull": "Interceptor",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Afterburner",
+      "slots": {
+        "weapons": 3,
+        "modules": 3,
+        "specialty": 4
+      },
+      "goldCount": 6,
+      "gold": [
+        "WEAPON — left wing pad",
+        "WEAPON — right wing pad",
+        "WEAPON — single chin pad",
+        "ENGINE — left bell collar",
+        "ENGINE — right bell collar",
+        "ENGINE — slim center afterburner collar"
+      ],
+      "color": "#e23b3b",
+      "read": "long-nosed crimson scout with a sensor boom and wingtip thrusters",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Pathfinder\" — Interceptor hull × Scout profession. Unique mechanic: Afterburner.\nONE-LINE SILHOUETTE: long-nosed crimson scout with a sensor boom and wingtip thrusters. If it does not match this, the image is wrong.\n\nHULL SHAPE: stretched interceptor — much LONGER nose than Ace, like a cartoon SR-71 toy. Thin high-aspect wings. A forward sensor boom (empty, no dish). Twin rear engines PLUS a slim center afterburner (smaller than Ace's). Tiny CHARCOAL RCS on wingtips (not gold). Canopy set far back. Silhouette is a needle, not Ace's dart.\n\nCOLOR: crimson, white high-vis bands, cream, gold, extra-bright cyan canopy, orange afterburner + cool cyan RCS glow.\n\nGOLD RINGS: EXACTLY 6 on the whole ship. Count them. More than 6 means the image is wrong.\n\n1. WEAPON — left wing pad\n2. WEAPON — right wing pad\n3. WEAPON — single chin pad\n4. ENGINE — left bell collar\n5. ENGINE — right bell collar\n6. ENGINE — slim center afterburner collar\n\nGameplay inventory (do NOT add extra gold for these): 3 weapon slots, 3 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (6)."
+    },
+    {
+      "id": "smuggler",
+      "name": "Smuggler",
+      "hull": "Interceptor",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Afterburner",
+      "slots": {
+        "weapons": 2,
+        "modules": 6,
+        "specialty": 2
+      },
+      "goldCount": 5,
+      "gold": [
+        "WEAPON — left wing-root pad",
+        "WEAPON — right wing-root pad",
+        "ENGINE — upper-left small bell",
+        "ENGINE — upper-right small bell",
+        "ENGINE — offset lower small bell"
+      ],
+      "color": "#e23b3b",
+      "read": "fat-bellied crimson runner with triple small engines and cargo blisters",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Smuggler\" — Interceptor hull × Hauler profession. Unique mechanic: Afterburner.\nONE-LINE SILHOUETTE: fat-bellied crimson runner with triple small engines and cargo blisters. If it does not match this, the image is wrong.\n\nHULL SHAPE: interceptor scaled into a chubby blockade runner — NOT Ace, NOT a juggernaut. Deep cargo-belly blisters on both sides (empty, hatches closed). Shorter clipped wings. THREE small mismatched engine bells in a triangle (two upper, one offset lower) — looks stolen/jury-rigged. No afterburner tunnel. Low canopy. Silhouette is a pregnant dart.\n\nCOLOR: dark crimson + charcoal smuggler panels, cream interior-hatch rims, muted gold rings, dim cyan canopy, mixed orange/blue engine glow.\n\nGOLD RINGS: EXACTLY 5 on the whole ship. Count them. More than 5 means the image is wrong.\n\n1. WEAPON — left wing-root pad\n2. WEAPON — right wing-root pad\n3. ENGINE — upper-left small bell\n4. ENGINE — upper-right small bell\n5. ENGINE — offset lower small bell\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 6 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars only (5)."
+    },
+    {
+      "id": "probe",
+      "name": "Probe",
+      "hull": "Interceptor",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Afterburner",
+      "slots": {
+        "weapons": 2,
+        "modules": 4,
+        "specialty": 4
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — left canard pad",
+        "WEAPON — right canard pad",
+        "ENGINE — single ion bell collar"
+      ],
+      "color": "#e23b3b",
+      "read": "crimson science dart with a glass lab spine and ion engine",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Probe\" — Interceptor hull × Scientist profession. Unique mechanic: Afterburner.\nONE-LINE SILHOUETTE: crimson science dart with a glass lab spine and ion engine. If it does not match this, the image is wrong.\n\nHULL SHAPE: small research interceptor. Narrow fuselage with a raised translucent lab-glass spine. Short canards and a rear T-tail. ONE large circular ion engine. Four small CHARCOAL RCS cubes (not gold). Scanner-arm housing on starboard. Must not look like Ace.\n\nCOLOR: crimson + cyan-teal lab stripes, cream, gold, very bright cyan glass spine, pale-blue ion glow (not orange afterburner).\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — left canard pad\n2. WEAPON — right canard pad\n3. ENGINE — single ion bell collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 4 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "mercenary",
+      "name": "Mercenary",
+      "hull": "Corvette",
+      "profession": "Fighter",
+      "starting": true,
+      "mechanic": "Adaptive Hull",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left wing TOP pad",
+        "WEAPON — right wing TOP pad",
+        "ENGINE — left bell collar",
+        "ENGINE — right bell collar"
+      ],
+      "color": "#f0c14b",
+      "read": "medium yellow war-corvette with twin guns and twin engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Mercenary\" — Corvette hull × Fighter profession. Unique mechanic: Adaptive Hull.\nONE-LINE SILHOUETTE: medium yellow war-corvette with twin guns and twin engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: medium multi-role corvette — longer and boxier than Ace, not a brick. Moderate swept wings, twin military engines, no afterburner. Nanite-repair panel seams. Mid-forward canopy. This is the yellow fighter-corvette, not an interceptor.\n\nCOLOR: sunflower-yellow primary, cream, charcoal, gold, cyan canopy, orange twin-engine glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left wing TOP pad\n2. WEAPON — right wing TOP pad\n3. ENGINE — left bell collar\n4. ENGINE — right bell collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "driller",
+      "name": "Driller",
+      "hull": "Corvette",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Adaptive Hull",
+      "slots": {
+        "weapons": 1,
+        "modules": 4,
+        "specialty": 5
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — small dorsal turret pad",
+        "ENGINE — left heavy collar",
+        "ENGINE — right heavy collar"
+      ],
+      "color": "#f0c14b",
+      "read": "yellow industrial corvette with a giant empty nose-drill housing",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Driller\" — Corvette hull × Miner profession. Unique mechanic: Adaptive Hull.\nONE-LINE SILHOUETTE: yellow industrial corvette with a giant empty nose-drill housing. If it does not match this, the image is wrong.\n\nHULL SHAPE: corvette rebuilt as a mining rig. HUGE cylindrical empty drill-housing on the nose (no bit). Stubby wings. Side ore-hoppers. Twin HEAVY engines. A small CHARCOAL ventral lift thruster (not gold). Boxy work canopy. Completely different nose from Mercenary.\n\nCOLOR: yellow-gold, black hazard stripes, cream hoppers, charcoal, gold, cyan visor, orange heavy-engine glow.\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — small dorsal turret pad\n2. ENGINE — left heavy collar\n3. ENGINE — right heavy collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 4 module slots INTERNAL, 5 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "ranger",
+      "name": "Ranger",
+      "hull": "Corvette",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Adaptive Hull",
+      "slots": {
+        "weapons": 2,
+        "modules": 4,
+        "specialty": 4
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left mid-wing pylon pad",
+        "WEAPON — right mid-wing pylon pad",
+        "ENGINE — left bell collar",
+        "ENGINE — right bell collar"
+      ],
+      "color": "#f0c14b",
+      "read": "yellow patrol corvette with a tall sensor mast",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Ranger\" — Corvette hull × Scout profession. Unique mechanic: Adaptive Hull.\nONE-LINE SILHOUETTE: yellow patrol corvette with a tall sensor mast. If it does not match this, the image is wrong.\n\nHULL SHAPE: lean patrol corvette. Longer wings than Mercenary. A TALL empty sensor-mast tower (no dish). Twin engines. CHARCOAL wingtip RCS (not gold). Open observation canopy.\n\nCOLOR: yellow, forest-teal scout bands, cream, gold, cyan, orange engines + teal sensor glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left mid-wing pylon pad\n2. WEAPON — right mid-wing pylon pad\n3. ENGINE — left bell collar\n4. ENGINE — right bell collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 4 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "trader",
+      "name": "Trader",
+      "hull": "Corvette",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Adaptive Hull",
+      "slots": {
+        "weapons": 1,
+        "modules": 6,
+        "specialty": 3
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — dorsal defensive turret pad",
+        "ENGINE — left fat bell collar",
+        "ENGINE — right fat bell collar"
+      ],
+      "color": "#f0c14b",
+      "read": "yellow merchant with a cargo box midships and fat engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Trader\" — Corvette hull × Hauler profession. Unique mechanic: Adaptive Hull.\nONE-LINE SILHOUETTE: yellow merchant with a cargo box midships and fat engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: corvette with a rectangular CARGO MODULE replacing the mid fuselage — like a toy truck in space. Short wings. FAT twin engines. One small defensive turret ring on top. No drill, no mast. Silhouette is a flying crate with a cockpit.\n\nCOLOR: yellow, warm brown-gold cargo bands, cream, gold, cyan, orange fat-engine glow.\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — dorsal defensive turret pad\n2. ENGINE — left fat bell collar\n3. ENGINE — right fat bell collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 6 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "researcher",
+      "name": "Researcher",
+      "hull": "Corvette",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Adaptive Hull",
+      "slots": {
+        "weapons": 1,
+        "modules": 5,
+        "specialty": 4
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — under-nose sample-laser pad",
+        "ENGINE — left ion collar",
+        "ENGINE — right ion collar"
+      ],
+      "color": "#f0c14b",
+      "read": "yellow lab-corvette with a glass observatory blister",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Researcher\" — Corvette hull × Scientist profession. Unique mechanic: Adaptive Hull.\nONE-LINE SILHOUETTE: yellow lab-corvette with a glass observatory blister. If it does not match this, the image is wrong.\n\nHULL SHAPE: science corvette. Smooth hull, a large spherical empty observatory blister on top (no telescope). Short wings. Twin ion engines. CHARCOAL hover pads under the belly (not gold). Must not look like Mercenary or Trader.\n\nCOLOR: yellow, cyan-lilac science bands, cream, gold, bright cyan observatory glass, pale ion glow.\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — under-nose sample-laser pad\n2. ENGINE — left ion collar\n3. ENGINE — right ion collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 5 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "warlord",
+      "name": "Warlord",
+      "hull": "Carrier",
+      "profession": "Fighter",
+      "starting": false,
+      "mechanic": "Drone Flock",
+      "slots": {
+        "weapons": 1,
+        "modules": 6,
+        "specialty": 3
+      },
+      "goldCount": 7,
+      "gold": [
+        "WEAPON — nose prow pad",
+        "DRONE — deck bay 1",
+        "DRONE — deck bay 2",
+        "DRONE — deck bay 3",
+        "DRONE — deck bay 4",
+        "ENGINE — left nacelle collar",
+        "ENGINE — right nacelle collar"
+      ],
+      "color": "#3ecf6a",
+      "read": "green attack carrier with four drone bays and a nose gun",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Warlord\" — Carrier hull × Fighter profession. Unique mechanic: Drone Flock.\nONE-LINE SILHOUETTE: green attack carrier with four drone bays and a nose gun. If it does not match this, the image is wrong.\n\nHULL SHAPE: wide attack carrier. Flat armored flight deck with FOUR round empty drone-bay pads in a 2×2 grid. Twin military nacelles. Canopy offset to port. Angular combat prow. Looks like a toy mothership for fighters, not a cargo barge.\n\nCOLOR: forest-green, cream armored deck, charcoal bays, gold, cyan offset canopy, orange twin glow.\n\nGOLD RINGS: EXACTLY 7 on the whole ship. Count them. More than 7 means the image is wrong.\n\n1. WEAPON — nose prow pad\n2. DRONE — deck bay 1\n3. DRONE — deck bay 2\n4. DRONE — deck bay 3\n5. DRONE — deck bay 4\n6. ENGINE — left nacelle collar\n7. ENGINE — right nacelle collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 6 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars + Carrier drone bays only (7)."
+    },
+    {
+      "id": "foreman",
+      "name": "Foreman",
+      "hull": "Carrier",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Drone Flock",
+      "slots": {
+        "weapons": 1,
+        "modules": 5,
+        "specialty": 4
+      },
+      "goldCount": 6,
+      "gold": [
+        "WEAPON — side utility / mining-charge pad",
+        "DRONE — mining bay 1",
+        "DRONE — mining bay 2",
+        "DRONE — mining bay 3",
+        "ENGINE — left wide torque collar",
+        "ENGINE — right wide torque collar"
+      ],
+      "color": "#3ecf6a",
+      "read": "green mining mothership with sieve-deck and wide torque engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Foreman\" — Carrier hull × Miner profession. Unique mechanic: Drone Flock.\nONE-LINE SILHOUETTE: green mining mothership with sieve-deck and wide torque engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: industrial carrier. Open sieve-grill deck (still solid mesh, not holes through to background). THREE large mining-drone bays in a row. Side ore-chutes. Twin extra-WIDE torque engines. Blunt work prow. Different deck layout from Warlord.\n\nCOLOR: green, ochre mining stripes, cream, charcoal, gold, cyan, orange wide-engine glow.\n\nGOLD RINGS: EXACTLY 6 on the whole ship. Count them. More than 6 means the image is wrong.\n\n1. WEAPON — side utility / mining-charge pad\n2. DRONE — mining bay 1\n3. DRONE — mining bay 2\n4. DRONE — mining bay 3\n5. ENGINE — left wide torque collar\n6. ENGINE — right wide torque collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 5 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars + Carrier drone bays only (6)."
+    },
+    {
+      "id": "spymaster",
+      "name": "Spymaster",
+      "hull": "Carrier",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Drone Flock",
+      "slots": {
+        "weapons": 1,
+        "modules": 5,
+        "specialty": 4
+      },
+      "goldCount": 5,
+      "gold": [
+        "WEAPON — under-chin pad",
+        "DRONE — oval recon bay 1",
+        "DRONE — oval recon bay 2",
+        "ENGINE — left recessed collar",
+        "ENGINE — right recessed collar"
+      ],
+      "color": "#3ecf6a",
+      "read": "slim green stealth carrier with a sail-fin and recon bays",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Spymaster\" — Carrier hull × Scout profession. Unique mechanic: Drone Flock.\nONE-LINE SILHOUETTE: slim green stealth carrier with a sail-fin and recon bays. If it does not match this, the image is wrong.\n\nHULL SHAPE: SLIMMER carrier than Warlord — almost a flying wing. One tall empty sail-fin/sensor keel on top. TWO elongated recon-drone bays (ovals, not circles) on the deck. Recessed quiet engines. Stealth prow. Must look sneaky, not industrial.\n\nCOLOR: dark green + teal, cream, gold, dim cyan canopy, cool-blue quiet engines.\n\nGOLD RINGS: EXACTLY 5 on the whole ship. Count them. More than 5 means the image is wrong.\n\n1. WEAPON — under-chin pad\n2. DRONE — oval recon bay 1\n3. DRONE — oval recon bay 2\n4. ENGINE — left recessed collar\n5. ENGINE — right recessed collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 5 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars + Carrier drone bays only (5)."
+    },
+    {
+      "id": "magnate",
+      "name": "Magnate",
+      "hull": "Carrier",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Drone Flock",
+      "slots": {
+        "weapons": 1,
+        "modules": 7,
+        "specialty": 2
+      },
+      "goldCount": 7,
+      "gold": [
+        "WEAPON — tail defensive pad",
+        "DRONE — cargo-drone bay 1",
+        "DRONE — cargo-drone bay 2",
+        "ENGINE — square bell 1",
+        "ENGINE — square bell 2",
+        "ENGINE — square bell 3",
+        "ENGINE — square bell 4"
+      ],
+      "color": "#3ecf6a",
+      "read": "green merchant carrier with container rails and four engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Magnate\" — Carrier hull × Hauler profession. Unique mechanic: Drone Flock.\nONE-LINE SILHOUETTE: green merchant carrier with container rails and four engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: merchant mothership. Container-rail spine down the center (empty rails, no boxes). TWO cargo-drone bays. FOUR small engines in a square. Wider and flatter than Warlord. Civilian-looking prow.\n\nCOLOR: green, rich gold cargo banding, cream containers-unloaded rails, gold rings, cyan, orange quad-engine glow.\n\nGOLD RINGS: EXACTLY 7 on the whole ship. Count them. More than 7 means the image is wrong.\n\n1. WEAPON — tail defensive pad\n2. DRONE — cargo-drone bay 1\n3. DRONE — cargo-drone bay 2\n4. ENGINE — square bell 1\n5. ENGINE — square bell 2\n6. ENGINE — square bell 3\n7. ENGINE — square bell 4\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 7 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars + Carrier drone bays only (7)."
+    },
+    {
+      "id": "professor",
+      "name": "Professor",
+      "hull": "Carrier",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Drone Flock",
+      "slots": {
+        "weapons": 1,
+        "modules": 5,
+        "specialty": 4
+      },
+      "goldCount": 6,
+      "gold": [
+        "WEAPON — nose research-beam pad",
+        "DRONE — analysis bay 1",
+        "DRONE — analysis bay 2",
+        "DRONE — analysis bay 3",
+        "ENGINE — left ion collar",
+        "ENGINE — right ion collar"
+      ],
+      "color": "#3ecf6a",
+      "read": "green campus-carrier with a glass lecture dome and analysis drones",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Professor\" — Carrier hull × Scientist profession. Unique mechanic: Drone Flock.\nONE-LINE SILHOUETTE: green campus-carrier with a glass lecture dome and analysis drones. If it does not match this, the image is wrong.\n\nHULL SHAPE: academic carrier. A glass lecture-dome amidships (cream/charcoal crown, no gold ring on the dome). THREE small analysis-drone bays around the dome. Twin ion nacelles. Soft rounded prow. Must not look military or like a cargo barge.\n\nCOLOR: green, cyan-violet lab markings, cream, gold, bright cyan lecture dome, pale ion glow.\n\nGOLD RINGS: EXACTLY 6 on the whole ship. Count them. More than 6 means the image is wrong.\n\n1. WEAPON — nose research-beam pad\n2. DRONE — analysis bay 1\n3. DRONE — analysis bay 2\n4. DRONE — analysis bay 3\n5. ENGINE — left ion collar\n6. ENGINE — right ion collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 5 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars + Carrier drone bays only (6)."
+    },
+    {
+      "id": "predator",
+      "name": "Predator",
+      "hull": "Organic",
+      "profession": "Fighter",
+      "starting": false,
+      "mechanic": "Regeneration",
+      "slots": {
+        "weapons": 2,
+        "modules": 7,
+        "specialty": 1
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left bio-wing pad",
+        "WEAPON — right bio-wing pad",
+        "ENGINE — left bio-jet collar",
+        "ENGINE — right bio-jet collar"
+      ],
+      "color": "#b44cff",
+      "read": "horned purple hunter with twin bio-jets",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Predator\" — Organic hull × Fighter profession. Unique mechanic: Regeneration.\nONE-LINE SILHOUETTE: horned purple hunter with twin bio-jets. If it does not match this, the image is wrong.\n\nHULL SHAPE: living fighter. Aggressive horned carapace, two swept bio-wings like a cartoon beetle. Twin rear bio-jets. Canopy is a single predatory eye-dome. Compact and mean. NOT a blob, NOT a hive.\n\nCOLOR: royal-purple carapace, magenta veins, cream bone plates, gold rings, cyan-green eye, magenta-orange vent glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left bio-wing pad\n2. WEAPON — right bio-wing pad\n3. ENGINE — left bio-jet collar\n4. ENGINE — right bio-jet collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 7 module slots INTERNAL, 1 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "hive",
+      "name": "Hive",
+      "hull": "Organic",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Regeneration",
+      "slots": {
+        "weapons": 1,
+        "modules": 6,
+        "specialty": 3
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — chin sting pad",
+        "ENGINE — left main vent collar",
+        "ENGINE — right main vent collar"
+      ],
+      "color": "#b44cff",
+      "read": "round purple honeycomb miner with cluster vents",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Hive\" — Organic hull × Miner profession. Unique mechanic: Regeneration.\nONE-LINE SILHOUETTE: round purple honeycomb miner with cluster vents. If it does not match this, the image is wrong.\n\nHULL SHAPE: rounder living hive-ship. Hex-plate carapace, swollen miner-sacs on the sides (closed). Cluster of small CHARCOAL rear vents with only TWO gold collars on the two largest vents. Short stubby fins. Cute-bio industrial, like a toy bee.\n\nCOLOR: purple, amber honeycomb plates, cream, gold, cyan-green eye, warm vent glow.\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — chin sting pad\n2. ENGINE — left main vent collar\n3. ENGINE — right main vent collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 6 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "symbiote",
+      "name": "Symbiote",
+      "hull": "Organic",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Regeneration",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left frill-wing pad",
+        "WEAPON — right frill-wing pad",
+        "ENGINE — left tail-jet collar",
+        "ENGINE — right tail-jet collar"
+      ],
+      "color": "#b44cff",
+      "read": "frilled purple scout-organism with many tiny thrusters",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Symbiote\" — Organic hull × Scout profession. Unique mechanic: Regeneration.\nONE-LINE SILHOUETTE: frilled purple scout-organism with many tiny thrusters. If it does not match this, the image is wrong.\n\nHULL SHAPE: slender living scout. Frilled sensory fins (short, not spaghetti). Elongated manta shape. Tiny CHARCOAL thruster-pores along the tail plus TWO gold engine collars on the two largest tail jets.\n\nCOLOR: purple, teal sensory veins, cream, gold, bright eye, mixed teal/magenta glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left frill-wing pad\n2. WEAPON — right frill-wing pad\n3. ENGINE — left tail-jet collar\n4. ENGINE — right tail-jet collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "leviathan",
+      "name": "Leviathan",
+      "hull": "Organic",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Regeneration",
+      "slots": {
+        "weapons": 1,
+        "modules": 7,
+        "specialty": 2
+      },
+      "goldCount": 2,
+      "gold": [
+        "WEAPON — head defense pad",
+        "ENGINE — huge siphon-tail collar"
+      ],
+      "color": "#b44cff",
+      "read": "swollen purple cargo-beast with a siphon tail",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Leviathan\" — Organic hull × Hauler profession. Unique mechanic: Regeneration.\nONE-LINE SILHOUETTE: swollen purple cargo-beast with a siphon tail. If it does not match this, the image is wrong.\n\nHULL SHAPE: the BIGGEST organic — swollen cargo-belly, short fins, massive single siphon-tail engine. Still one toy ship, not a whale that fills the frame. Rounded, heavy, slow-looking. Completely different mass from Predator.\n\nCOLOR: purple, heavy cream belly plates, gold, dim eye, deep orange siphon glow.\n\nGOLD RINGS: EXACTLY 2 on the whole ship. Count them. More than 2 means the image is wrong.\n\n1. WEAPON — head defense pad\n2. ENGINE — huge siphon-tail collar\n\nGameplay inventory (do NOT add extra gold for these): 1 weapon slots, 7 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars only (2)."
+    },
+    {
+      "id": "specimen",
+      "name": "Specimen",
+      "hull": "Organic",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Regeneration",
+      "slots": {
+        "weapons": 2,
+        "modules": 6,
+        "specialty": 2
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left moth-wing pad",
+        "WEAPON — right moth-wing pad",
+        "ENGINE — left glass-jet collar",
+        "ENGINE — right glass-jet collar"
+      ],
+      "color": "#b44cff",
+      "read": "translucent purple lab-organism with glowing organs",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Specimen\" — Organic hull × Scientist profession. Unique mechanic: Regeneration.\nONE-LINE SILHOUETTE: translucent purple lab-organism with glowing organs. If it does not match this, the image is wrong.\n\nHULL SHAPE: lab-grown living ship. Semi-translucent carapace with stylized glowing organ-shapes inside (cartoon, not gore). Symmetric, elegant, almost moth-like. Twin glass-jet vents. Must look scientific, not predatory or fat.\n\nCOLOR: translucent purple, cyan organ-lights, cream bone frame, gold, very bright eye, pale lab glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left moth-wing pad\n2. WEAPON — right moth-wing pad\n3. ENGINE — left glass-jet collar\n4. ENGINE — right glass-jet collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 6 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "assassin",
+      "name": "Assassin",
+      "hull": "Phantom",
+      "profession": "Fighter",
+      "starting": false,
+      "mechanic": "Cloak",
+      "slots": {
+        "weapons": 3,
+        "modules": 5,
+        "specialty": 2
+      },
+      "goldCount": 5,
+      "gold": [
+        "WEAPON — left blade-wing pad",
+        "WEAPON — right blade-wing pad",
+        "WEAPON — nose pad",
+        "ENGINE — left recessed collar",
+        "ENGINE — right recessed collar"
+      ],
+      "color": "#8b90a8",
+      "read": "black needle stealth fighter with recessed twin engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Assassin\" — Phantom hull × Fighter profession. Unique mechanic: Cloak.\nONE-LINE SILHOUETTE: black needle stealth fighter with recessed twin engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: slim stealth fighter. Faceted blade-wings, needle nose, LOW canopy. Twin RECESSED engines (not fat Ace bells). No afterburner. Compact and lethal. This is the Phantom fighter, not a pirate barge.\n\nCOLOR: matte charcoal-black, violet edge light, cream inner panels, gold, dim cyan canopy, cool-blue recessed glow.\n\nGOLD RINGS: EXACTLY 5 on the whole ship. Count them. More than 5 means the image is wrong.\n\n1. WEAPON — left blade-wing pad\n2. WEAPON — right blade-wing pad\n3. WEAPON — nose pad\n4. ENGINE — left recessed collar\n5. ENGINE — right recessed collar\n\nGameplay inventory (do NOT add extra gold for these): 3 weapon slots, 5 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars only (5)."
+    },
+    {
+      "id": "ghost-miner",
+      "name": "Ghost Miner",
+      "hull": "Phantom",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Cloak",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left wing-fold pad",
+        "WEAPON — right wing-fold pad",
+        "ENGINE — left shrouded collar",
+        "ENGINE — right shrouded collar"
+      ],
+      "color": "#8b90a8",
+      "read": "black silent miner with a chin drill-housing and wide quiet engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Ghost Miner\" — Phantom hull × Miner profession. Unique mechanic: Cloak.\nONE-LINE SILHOUETTE: black silent miner with a chin drill-housing and wide quiet engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: stealth mining Phantom. Wider than Assassin. Blunt chin with an empty silent-drill housing (charcoal mouth, no bit, no gold ring). Folded quiet wings. Twin WIDE muffled engines with shrouds. Looks like a sneaky tug, not a needle.\n\nCOLOR: charcoal, ochre stealth-miner marks, cream, gold, dim cyan, cool-blue wide-engine glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left wing-fold pad\n2. WEAPON — right wing-fold pad\n3. ENGINE — left shrouded collar\n4. ENGINE — right shrouded collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "shadow",
+      "name": "Shadow",
+      "hull": "Phantom",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Cloak",
+      "slots": {
+        "weapons": 2,
+        "modules": 4,
+        "specialty": 4
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left wing-root pad",
+        "WEAPON — right wing-root pad",
+        "ENGINE — left trailing-edge collar",
+        "ENGINE — right trailing-edge collar"
+      ],
+      "color": "#8b90a8",
+      "read": "black flying-wing scout with a sensor blade",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Shadow\" — Phantom hull × Scout profession. Unique mechanic: Cloak.\nONE-LINE SILHOUETTE: black flying-wing scout with a sensor blade. If it does not match this, the image is wrong.\n\nHULL SHAPE: flying-wing Phantom. Almost no fuselage. A thin vertical sensor-blade fin. Engines buried in the wing trailing edge (two slots). Looks like a cartoon bat-wing, not Assassin's needle.\n\nCOLOR: charcoal, teal recon edges, cream, gold, dim cyan, cool-blue + teal glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left wing-root pad\n2. WEAPON — right wing-root pad\n3. ENGINE — left trailing-edge collar\n4. ENGINE — right trailing-edge collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 4 module slots INTERNAL, 4 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "pirate",
+      "name": "Pirate",
+      "hull": "Phantom",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Cloak",
+      "slots": {
+        "weapons": 3,
+        "modules": 5,
+        "specialty": 2
+      },
+      "goldCount": 5,
+      "gold": [
+        "WEAPON — longer-wing pad",
+        "WEAPON — nose pad",
+        "WEAPON — crane-arm pintle pad",
+        "ENGINE — fat stolen-bell collar",
+        "ENGINE — slim stealth-bell collar"
+      ],
+      "color": "#8b90a8",
+      "read": "asymmetric black corsair with mismatched engines and a cargo hook",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Pirate\" — Phantom hull × Hauler profession. Unique mechanic: Cloak.\nONE-LINE SILHOUETTE: asymmetric black corsair with mismatched engines and a cargo hook. If it does not match this, the image is wrong.\n\nHULL SHAPE: ASYMMETRIC stealth hauler. One wing longer than the other. A cargo-hook crane housing on the starboard side (charcoal, empty, no gold ring). TWO mismatched engines — one fat stolen orange-glow bell, one slim blue stealth bell. Irregular armor patches. Cartoon corsair, not a galleon, not Assassin.\n\nCOLOR: charcoal, worn crimson pirate flashes, cream, gold, dim cyan, mixed orange/blue mismatched engine glow.\n\nGOLD RINGS: EXACTLY 5 on the whole ship. Count them. More than 5 means the image is wrong.\n\n1. WEAPON — longer-wing pad\n2. WEAPON — nose pad\n3. WEAPON — crane-arm pintle pad\n4. ENGINE — fat stolen-bell collar\n5. ENGINE — slim stealth-bell collar\n\nGameplay inventory (do NOT add extra gold for these): 3 weapon slots, 5 module slots INTERNAL, 2 specialty slots INTERNAL. Visible gold = weapons + engine collars only (5)."
+    },
+    {
+      "id": "infiltrator",
+      "name": "Infiltrator",
+      "hull": "Phantom",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Cloak",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 3,
+      "gold": [
+        "WEAPON — left canard pad",
+        "WEAPON — right canard pad",
+        "ENGINE — single buried ion collar"
+      ],
+      "color": "#8b90a8",
+      "read": "black spy-lab Phantom with a glass spike and ion drive",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Infiltrator\" — Phantom hull × Scientist profession. Unique mechanic: Cloak.\nONE-LINE SILHOUETTE: black spy-lab Phantom with a glass spike and ion drive. If it does not match this, the image is wrong.\n\nHULL SHAPE: spy-lab Phantom. Slim body with a glass sensor-spike instead of a gun nose. Single buried ion drive. Small canard wings. Looks like a stealth probe, not a fighter or pirate.\n\nCOLOR: charcoal, cyan-violet science edges, cream, gold, brighter canopy, pale ion glow.\n\nGOLD RINGS: EXACTLY 3 on the whole ship. Count them. More than 3 means the image is wrong.\n\n1. WEAPON — left canard pad\n2. WEAPON — right canard pad\n3. ENGINE — single buried ion collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (3)."
+    },
+    {
+      "id": "warmonger",
+      "name": "Warmonger",
+      "hull": "Juggernaut",
+      "profession": "Fighter",
+      "starting": false,
+      "mechanic": "Fortress Mode",
+      "slots": {
+        "weapons": 3,
+        "modules": 6,
+        "specialty": 1
+      },
+      "goldCount": 6,
+      "gold": [
+        "WEAPON — left shoulder pad",
+        "WEAPON — right shoulder pad",
+        "WEAPON — nose ram pad",
+        "ENGINE — left heavy collar",
+        "ENGINE — right heavy collar",
+        "ENGINE — center heavy collar"
+      ],
+      "color": "#4aa3ff",
+      "read": "blue fortress gunship with shoulder pads and triple heavy engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Warmonger\" — Juggernaut hull × Fighter profession. Unique mechanic: Fortress Mode.\nONE-LINE SILHOUETTE: blue fortress gunship with shoulder pads and triple heavy engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: heavy fortress gunship. Thick armor blocks, short wide wings, slab ram-nose, dorsal shield ridge. Twin plus CENTER heavy engines. Huge compared to Ace. Toy brick tank of the sky.\n\nCOLOR: steel-blue, cream ram plates, charcoal, gold, cyan canopy, orange heavy glow.\n\nGOLD RINGS: EXACTLY 6 on the whole ship. Count them. More than 6 means the image is wrong.\n\n1. WEAPON — left shoulder pad\n2. WEAPON — right shoulder pad\n3. WEAPON — nose ram pad\n4. ENGINE — left heavy collar\n5. ENGINE — right heavy collar\n6. ENGINE — center heavy collar\n\nGameplay inventory (do NOT add extra gold for these): 3 weapon slots, 6 module slots INTERNAL, 1 specialty slots INTERNAL. Visible gold = weapons + engine collars only (6)."
+    },
+    {
+      "id": "excavator",
+      "name": "Excavator",
+      "hull": "Juggernaut",
+      "profession": "Miner",
+      "starting": false,
+      "mechanic": "Fortress Mode",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left bunker-turret pad",
+        "WEAPON — right bunker-turret pad",
+        "ENGINE — left super-torque collar",
+        "ENGINE — right super-torque collar"
+      ],
+      "color": "#4aa3ff",
+      "read": "blue mining citadel with a mega empty drill and dual super-torque engines",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Excavator\" — Juggernaut hull × Miner profession. Unique mechanic: Fortress Mode.\nONE-LINE SILHOUETTE: blue mining citadel with a mega empty drill and dual super-torque engines. If it does not match this, the image is wrong.\n\nHULL SHAPE: mining citadel. A MEGA empty drill-housing replacing the ram-nose (no bit). Side ore-bunkers. TWO super-fat engines only (no center). CHARCOAL ventral jack-pads (not gold). Looks like a flying quarry, not Warmonger.\n\nCOLOR: steel-blue, ochre mining chevrons, cream bunkers, charcoal, gold, cyan, orange super-torque glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left bunker-turret pad\n2. WEAPON — right bunker-turret pad\n3. ENGINE — left super-torque collar\n4. ENGINE — right super-torque collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "outpost",
+      "name": "Outpost",
+      "hull": "Juggernaut",
+      "profession": "Scout",
+      "starting": false,
+      "mechanic": "Fortress Mode",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left wall-turret pad",
+        "WEAPON — right wall-turret pad",
+        "ENGINE — left bell collar",
+        "ENGINE — right bell collar"
+      ],
+      "color": "#4aa3ff",
+      "read": "blue mobile firebase with a radar tower",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Outpost\" — Juggernaut hull × Scout profession. Unique mechanic: Fortress Mode.\nONE-LINE SILHOUETTE: blue mobile firebase with a radar tower. If it does not match this, the image is wrong.\n\nHULL SHAPE: mobile firebase. A tall empty RADAR TOWER (no dish). Flatter hull than Warmonger. Twin engines. CHARCOAL landing-foot thrusters (not gold). Toy watchtower that flies.\n\nCOLOR: steel-blue, white-teal survey marks, cream, gold, cyan, orange + teal radar glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left wall-turret pad\n2. WEAPON — right wall-turret pad\n3. ENGINE — left bell collar\n4. ENGINE — right bell collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    },
+    {
+      "id": "freighter",
+      "name": "Freighter",
+      "hull": "Juggernaut",
+      "profession": "Hauler",
+      "starting": false,
+      "mechanic": "Fortress Mode",
+      "slots": {
+        "weapons": 2,
+        "modules": 7,
+        "specialty": 1
+      },
+      "goldCount": 6,
+      "gold": [
+        "WEAPON — left sponson pad",
+        "WEAPON — right sponson pad",
+        "ENGINE — stern bell 1",
+        "ENGINE — stern bell 2",
+        "ENGINE — stern bell 3",
+        "ENGINE — stern bell 4"
+      ],
+      "color": "#4aa3ff",
+      "read": "blue armored cargo-brick with four engines and container rails",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Freighter\" — Juggernaut hull × Hauler profession. Unique mechanic: Fortress Mode.\nONE-LINE SILHOUETTE: blue armored cargo-brick with four engines and container rails. If it does not match this, the image is wrong.\n\nHULL SHAPE: armored cargo brick. Long rectangular container-rails (empty). FOUR engines in a 2×2 block at the stern. Tiny cockpit tower. Two small defensive sponsons. This is a flying warehouse, not a gun fortress. Fortress Mode is gameplay (stop-to-shield), not a gold pad.\n\nCOLOR: steel-blue, cargo-orange bands, cream, gold, cyan, orange quad-engine glow.\n\nGOLD RINGS: EXACTLY 6 on the whole ship. Count them. More than 6 means the image is wrong.\n\n1. WEAPON — left sponson pad\n2. WEAPON — right sponson pad\n3. ENGINE — stern bell 1\n4. ENGINE — stern bell 2\n5. ENGINE — stern bell 3\n6. ENGINE — stern bell 4\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 7 module slots INTERNAL, 1 specialty slots INTERNAL. Visible gold = weapons + engine collars only (6)."
+    },
+    {
+      "id": "observatory",
+      "name": "Observatory",
+      "hull": "Juggernaut",
+      "profession": "Scientist",
+      "starting": false,
+      "mechanic": "Fortress Mode",
+      "slots": {
+        "weapons": 2,
+        "modules": 5,
+        "specialty": 3
+      },
+      "goldCount": 4,
+      "gold": [
+        "WEAPON — left flank pad",
+        "WEAPON — right flank pad",
+        "ENGINE — left ion collar",
+        "ENGINE — right ion collar"
+      ],
+      "color": "#4aa3ff",
+      "read": "blue cathedral-lab with a huge empty dome and station-keeping thrusters",
+      "prompt": "3D game-ready concept of a SINGLE unique spaceship, isolated on a clean light-gray studio background.\n\nCAMERA: high 3/4 isometric from above-front-right. Show the nose, starboard side, top deck, and rear engines in one shot. Entire ship fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as the crimson interceptor Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: cream plates, charcoal mechanics, gold hardpoint rings, stylized canopy. NOT the same silhouette as Ace unless this ship IS Ace.\n\nCRITICAL UNIQUENESS: This named ship must be instantly recognizable from silhouette alone. Do NOT recolor a generic fighter. Do NOT copy Ace's swept delta wings + twin engines + center afterburner + four gun pads unless the identity section says this is Ace. Wings, nose, engines, and hardpoints must match THIS ship only.\n\nGOLD HARDPOINTS ARE COUNTED. The ship lists an exact number N. There are EXACTLY N gold circular rings on the entire model — no more. Gold is only those rings. RCS thrusters, hover pads, landing feet, vents, screws, lights, and extra hatches are charcoal or cream, NEVER gold. Module and specialty slots are INTERNAL — never gold pads. Profession tools (drills, dishes, scanners, hoppers) are hull silhouette in charcoal or cream, not gold rings.\n\nEMPTY: completely unarmed. No guns, barrels, cannons, turrets, missiles, drill bits, dishes, or cargo crates installed. Each listed hardpoint is a raised gold circular pad ON the hull with a dark hexagonal recess. NOT holes punched through wings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: extra gold circles beyond N, gold wingtips, gold RCS, a fleet, a second ship, recolored Ace (unless this IS Ace), holes through wings, installed weapons, flame exhaust, photorealism, grimdark, stars, nebula, planet, hangar, text, logo, watermark, cropped ship.\n\nSHIP IDENTITY: \"Observatory\" — Juggernaut hull × Scientist profession. Unique mechanic: Fortress Mode.\nONE-LINE SILHOUETTE: blue cathedral-lab with a huge empty dome and station-keeping thrusters. If it does not match this, the image is wrong.\n\nHULL SHAPE: flying cathedral of science. A HUGE empty observatory dome (no telescope). Twin ion engines. Four tiny CHARCOAL station-keeping thrusters on the corners (not gold). Must not look like Warmonger or Freighter.\n\nCOLOR: steel-blue, cyan-lilac observatory bands, cream, gold, huge bright cyan dome, pale ion + orange glow.\n\nGOLD RINGS: EXACTLY 4 on the whole ship. Count them. More than 4 means the image is wrong.\n\n1. WEAPON — left flank pad\n2. WEAPON — right flank pad\n3. ENGINE — left ion collar\n4. ENGINE — right ion collar\n\nGameplay inventory (do NOT add extra gold for these): 2 weapon slots, 5 module slots INTERNAL, 3 specialty slots INTERNAL. Visible gold = weapons + engine collars only (4)."
+    }
+  ]
+}

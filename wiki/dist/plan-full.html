@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Archived full plan · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group" open><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="active" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>🚀 Shattered Rogue — Game Development Plan</h1>
+<blockquote>
+<p><strong>Archived 2026-08-20.</strong> Active plan: <a href="poc.html">../../00_POC_PLAYABLE_LOOP.md</a>. This file is a snapshot of the 18-phase full-game roadmap.</p>
+</blockquote>
+<blockquote>
+<p><strong>A roguelite space shooter with 4-player co-op, procedural galaxies, and AI-powered development.</strong></p>
+</blockquote>
+<hr>
+<h2>Project Overview</h2>
+<p>You are a <strong>spaceman</strong> — a pilot in a shattered galaxy where ancient gates once connected civilizations. Choose your <strong>ship hull</strong> and <strong>profession</strong>, then launch into procedurally generated sectors. Mine asteroids, scan anomalies, trade at stations, and fight hostile forces. Upgrade your ship with found weapons, modules, and tech. Die, unlock new options, and try again — solo or with up to 3 friends.</p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Genre</strong></td>
+<td>Top-down roguelite space shooter</td>
+</tr>
+<tr>
+<td><strong>Players</strong></td>
+<td>1–4 (online co-op)</td>
+</tr>
+<tr>
+<td><strong>Engine</strong></td>
+<td>Unreal Engine 5.8 (C++ primary, Unreal MCP)</td>
+</tr>
+<tr>
+<td><strong>Art Style</strong></td>
+<td>Cartoonish (Mario / Zelda inspired)</td>
+</tr>
+<tr>
+<td><strong>Run Length</strong></td>
+<td>~40–60 minutes</td>
+</tr>
+<tr>
+<td><strong>Ship System</strong></td>
+<td>6 Hulls × 5 Professions = 30 named combos</td>
+</tr>
+<tr>
+<td><strong>Development</strong></td>
+<td>AI-first toolchain for code, assets, music, SFX</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>📂 Design Catalog</h2>
+<h3>🎯 Game Foundation</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>01</td>
+<td><a href="d01.html">Game Vision &amp; Concept</a></td>
+<td>Elevator pitch, hulls, professions, combos, art style, pillars</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>⚙️ Core Gameplay</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>02</td>
+<td><a href="d02.html">Core Mechanics</a></td>
+<td>Gameplay loop, galaxy grid, sectors, bosses, economy, progression</td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="d12.html">Combat &amp; Co-op</a></td>
+<td>Combat design, enemy philosophy, co-op scaling, communication</td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="d11.html">Difficulty &amp; Heat System</a></td>
+<td>12 toggleable modifiers, reward scaling, Heat achievements</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>🗡️ Items &amp; Progression</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>03</td>
+<td><a href="d03.html">Weapons &amp; Upgrades</a></td>
+<td>Luck/scaling, proc chains, 3-category upgrade system, catalogs</td>
+</tr>
+<tr>
+<td>04</td>
+<td><a href="d04.html">Meta-Progression</a></td>
+<td>Research Data, toggle pool, in-run spending, cosmetics, RD economy</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>🌌 World &amp; Content</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>05</td>
+<td><a href="d05.html">Event Encounters</a></td>
+<td>22 events, 5 categories, frequency, profession-specific options</td>
+</tr>
+<tr>
+<td>06</td>
+<td><a href="d06.html">Enemy Catalog</a></td>
+<td>6 chassis, traits, tiers, wave budgets, neutrals, Wanted system</td>
+</tr>
+<tr>
+<td>07</td>
+<td><a href="d07.html">Station Interactions</a></td>
+<td>Shipyard, Trade Post, Research Lab, Black Market, UX flows</td>
+</tr>
+<tr>
+<td>08</td>
+<td><a href="d08.html">Hub UI — Outer Rim Station</a></td>
+<td>8 station areas, unlock manifestation, mood, area UX</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="d10.html">Carrier Drone Flock</a></td>
+<td>Boids AI, drone types, behavior mods, engagement, items</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>🎵 Presentation</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>09</td>
+<td><a href="d09.html">Audio &amp; Music Direction</a></td>
+<td>Sound identity, adaptive music, ring progression, SFX, AI pipeline</td>
+</tr>
+<tr>
+<td>15</td>
+<td><a href="d15.html">Controls &amp; Camera</a></td>
+<td>Arcade drift movement, twin-stick input, dynamic camera, hull abilities</td>
+</tr>
+<tr>
+<td>16</td>
+<td><a href="d16.html">UI, HUD &amp; VFX</a></td>
+<td>Astroneer/Crab Champions VFX style, HUD layout, menu screens</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>📜 Lore &amp; Story</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>14</td>
+<td><a href="d14.html">Lore &amp; Narrative</a></td>
+<td>The Shattering, Breach, jellyfish parasite, 3 Glyphs, bosses, Loop+</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>📊 Player Data &amp; Competition</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>13</td>
+<td><a href="d13.html">Statistics &amp; Leaderboards</a></td>
+<td>Run summaries, career stats, leaderboards, dev analytics, sharing</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>🖼️ Art</h3>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="art-prompts.html">Ship Prompts</a></td>
+<td>30 ChatGPT one-shots (Ace style lock, empty gold hardpoints)</td>
+</tr>
+<tr>
+<td><a href="art/ships.json">ships.json</a></td>
+<td>Structured prompt data for the wiki</td>
+</tr>
+</tbody></table>
+<p><strong>HTML wiki:</strong> open <a href="wiki/dist/index.html">wiki/dist/index.html</a></p>
+<hr>
+<h2>🔧 Technical Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="toolchain.html">AI Toolchain</a></td>
+<td>Code gen, Tripo triangle targets, Unreal MCP, concept art</td>
+</tr>
+<tr>
+<td><a href="arch.html">Architecture</a></td>
+<td>UE 5.8 C++/Blueprint strategy, MCP, networking, plugin structure</td>
+</tr>
+<tr>
+<td><a href="scope.html">Prototype &amp; MVP Scope</a></td>
+<td>5 milestones (Ship Flies → Co-op), ~14 weeks, content matrix</td>
+</tr>
+<tr>
+<td><a href="impl.html">Implementation Milestones</a></td>
+<td>18 phases, ~400+ sub-steps, full game build from zero to release</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>📚 Research Library</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Covers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="r-genre.html">Roguelike Genre Research</a></td>
+<td>Genre analysis, mechanics catalog, market</td>
+</tr>
+<tr>
+<td><a href="r-engine.html">Engine MCP / AI Integration</a></td>
+<td>UE vs Unity vs Godot MCP (2026-08) — stay on UE 5.8</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🗓️ Development Phases &amp; Milestones</h2>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>Philosophy: Start Small.</strong> Each phase produces a playable build before the next phase starts. Prove the fun first.</p>
+</blockquote>
+<p>The full implementation is broken into <strong>18 phases</strong> with ~1,500+ atomic micro-steps:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Milestone</th>
+<th>Detailed Plan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1–2</td>
+<td>Foundation &amp; M1: Ship Flies</td>
+<td><a href="p0102.html">phase_01_02</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>M2: Combat Works</td>
+<td><a href="p03.html">phase_03</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>M3: Run Structure</td>
+<td><a href="p04.html">phase_04</a></td>
+</tr>
+<tr>
+<td>5–6</td>
+<td>M4: Progression &amp; M5: Co-op</td>
+<td><a href="p0506.html">phase_05_06</a></td>
+</tr>
+<tr>
+<td>7–10</td>
+<td>Full Hulls, Weapons, Enemies, Drones</td>
+<td><a href="p0710.html">phase_07_10</a></td>
+</tr>
+<tr>
+<td>11–14</td>
+<td>Heat System, Stations, Events, Endgame</td>
+<td><a href="p1114.html">phase_11_14</a></td>
+</tr>
+<tr>
+<td>15–18</td>
+<td>Audio, Co-op Expansion, Stats, Release</td>
+<td><a href="p1518.html">phase_15_18</a></td>
+</tr>
+</tbody></table>
+<p><strong>3-level overview:</strong> <a href="impl.html">implementation_milestones.md</a>
+<strong>MVP scope (first 5 milestones):</strong> <a href="scope.html">prototype_scope.md</a></p>
+<h3>Current Status</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Genre research &amp; competitive analysis (24 game studies)</li>
+<li><input checked="" disabled="" type="checkbox"> AI toolchain research</li>
+<li><input checked="" disabled="" type="checkbox"> Game concept &amp; vision (16 design documents)</li>
+<li><input checked="" disabled="" type="checkbox"> Confirm core decisions (70+ logged decisions)</li>
+<li><input checked="" disabled="" type="checkbox"> Technical architecture &amp; scope</li>
+<li><input checked="" disabled="" type="checkbox"> Full implementation plan (18 phases, 4 levels deep)</li>
+<li><input disabled="" type="checkbox"> <strong>→ Next: Phase 1 — UE 5.8 project setup + Unreal MCP</strong></li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>Pre-production is complete.</strong> All design, research, and planning is documented. Next actions:</p>
+<ol>
+<li>Set up UE 5.8 project with C++ module structure + Unreal MCP (Phase 1.1)</li>
+<li>Initialize Git + Git LFS (Phase 1.2)</li>
+<li>Create base gameplay C++ classes (Phase 1.1.4)</li>
+<li>Begin ship movement prototype (Phase 2.1)</li>
+<li>Follow <a href="p0102.html">phase_01_02</a> micro-steps</li>
+</ol>
+</blockquote>
+<hr>
+<h2>Confirmed Decisions Log</h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Choice</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Engine</td>
+<td>Unreal Engine 5.8 (C++ primary). Official Unreal MCP + Cursor. Stay; do not switch to Unity/Godot.</td>
+<td>2026-08-19</td>
+</tr>
+<tr>
+<td>Combo slot mix</td>
+<td>Named combo sets W/M/S (still 10). Hull = size + mechanic; profession = unique 3D kit.</td>
+<td>2026-08-19</td>
+</tr>
+<tr>
+<td>Player ship tris</td>
+<td>Ace LOD0 <strong>6,000</strong> triangles (ok 4k–8k). Tripo Smart Mesh, triangle topology.</td>
+<td>2026-08-19</td>
+</tr>
+<tr>
+<td>Perspective</td>
+<td>Third-person</td>
+<td>2026-02-21</td>
+</tr>
+<tr>
+<td>Multiplayer</td>
+<td>1–4 player co-op</td>
+<td>2026-02-21</td>
+</tr>
+<tr>
+<td>Art Style</td>
+<td>Cartoonish (Mario / Zelda inspired)</td>
+<td>2026-02-21</td>
+</tr>
+<tr>
+<td>Scope Strategy</td>
+<td>Start small — one sector prototype first</td>
+<td>2026-02-21</td>
+</tr>
+<tr>
+<td>Theme</td>
+<td>Spaceman pilot + upgradeable spaceships</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Ship System</td>
+<td>6 Hulls × 5 Professions (30 combos)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Pacing</td>
+<td>Slower runs (~40-60 min), FTL-style</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Currencies</td>
+<td>Minerals, Research Data, Power Cores, Warp Crystals</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Unlocks</td>
+<td>Achievement-based hull/profession unlock</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Navigation</td>
+<td>2D hex grid, jump to center of galaxy</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Fuel</td>
+<td>Warp Crystals = scaling jump cost (3/8/18/30)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Jump Range</td>
+<td>Per-hull stat (1-3), Phantom=3 Juggernaut=1</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Sectors</td>
+<td>Environment × Encounter two-axis generation</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Environments</td>
+<td>8 types (4 Common, 2 Uncommon, 1 Rare, 1 Legendary)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Encounters</td>
+<td>8 types (Clear, Mining, Raid, Research, Escape, etc)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Stations</td>
+<td>Shipyard, Trade Post, Research Lab, Black Market</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Installation</td>
+<td>Loot → Cargo Hold → Install at Shipyard only</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Enemies + loot + warp cost all scale per ring</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Luck Stat</td>
+<td>Hidden stat (0-100+) affecting all RNG in game</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Proc Chains</td>
+<td>On-kill/hit/crit/mine effects chain multiplicatively</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Gambling</td>
+<td>Black Market slots, cursed items, sacrifice altars</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Bosses</td>
+<td>6 ring-scaled bosses + 4-phase Shatter Core final</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Boss Frequency</td>
+<td>2–3 boss sectors per run, not every sector</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Upgrades</td>
+<td>3-category system: Weapons + Ship Modules + Specialty</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Weapons</td>
+<td>8 primary + 6 secondary types, 6 rarity tiers</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Ship Modules</td>
+<td>Stackable stat boosts (books), 3-6 slots by hull</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Specialty</td>
+<td>Profession tools, 1-2 slots by hull, very powerful</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Rank-Up System</td>
+<td>Duplicate finds = instant rank up (★/★★/★★★)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Hull Slots</td>
+<td>Per-hull slot breakdown: Wpn/Mod/Spec varies</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Loadout Unlock</td>
+<td>Find weapon in-run → permanently unlock as starter</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Meta-Prog</td>
+<td>Content-unlock only — no permanent power buffs</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Toggle Pool</td>
+<td>Turn unlocked items on/off to curate run drop pools</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>In-Run RD</td>
+<td>Reroll/Ban/Mulligan/Targeted Pull mid-run for RD cost</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Cosmetics</td>
+<td>Ship skins, trails, paint, outfits via Research Data</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>RD Economy</td>
+<td>Earn in-run (100-300), spend now vs save tension</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Events</td>
+<td>22 events across 5 categories, every sector has one</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Event Choices</td>
+<td>3 player choices per event + profession bonus option</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>RD Scaling</td>
+<td>In-run RD actions ×2 cost per use (anti-cheese)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Audio Style</td>
+<td>Arcade/MIDI × EDM hybrid, AI-generated, adaptive</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Music System</td>
+<td>Layer-based adaptive music, ring-based tempo/key shift</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Hub UI</td>
+<td>Diegetic Outer Rim Station — no traditional menus</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Station Areas</td>
+<td>8 areas (Dock/Armory/Lab/Cosmetic/Mission/Trophy/etc)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Stations</td>
+<td>4 in-run station types with full menus and pricing</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Shipyard</td>
+<td>Install/swap/scrap/repair/refit — the build workshop</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Trade Post</td>
+<td>Buy/sell/bounties — Hauler gets +30% sell prices</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Research Lab</td>
+<td>Analyze/enhance/fuse/scan — Scientist gets 30% off</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Black Market</td>
+<td>Contraband/cursed/slots/fence — raid timer mechanic</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Drone Flock</td>
+<td>Carrier uses Boids flocking AI — drones orbit + auto-engage</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Drone Types</td>
+<td>5 drone kits via weapon slot (Combat/Beam/Missile/Tesla/Stealth)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Organic Hull</td>
+<td>Mutation cut — Regeneration only (passive HP heal)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Enemy System</td>
+<td>6 base chassis + procedural trait layering = modular enemies</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Enemy Traits</td>
+<td>7 movement + 8 attack + 7 defense + 8 special + visual decor</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Wave Budget</td>
+<td>Budget-based spawning — points scale by ring (6-50+ per wave)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Env Bias</td>
+<td>Each environment biases trait rolls for thematic enemy feel</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Neutral Ships</td>
+<td>7 neutral entity types (miners, convoys, piñatas, tankers, etc)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Loot Piñata</td>
+<td>Timed chase encounter (8-12s) with Bronze/Silver/Gold tiers</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Wanted System</td>
+<td>Pirating neutrals → bounty hunters, station price penalties</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Difficulty</td>
+<td>Hades-style Heat system — 12 toggleable modifiers, 64 max Heat</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Catalog</td>
+<td>Design docs split into 13 design + 2 technical files</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Stats/Boards</td>
+<td>Run summaries, career stats, leaderboards, dev analytics</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Catalog Pillars</td>
+<td>Docs grouped by pillar: Foundation/Gameplay/Items/World/Pres/Data</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Lore</td>
+<td>Avorion-inspired mystery — Breach, Shattering, Breach-born</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Run Goal</td>
+<td>3 Resonance Shards across runs → unlock Breach Run finale</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Final Boss</td>
+<td>The Warden (penultimate) + The Architect (Breach entity)</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Loop+ Narrative</td>
+<td>The Echo — Architect fragment persists, justifies NG+ difficulty</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Enemy Visual</td>
+<td>Jellyfish ooze parasite — purple-to-red corruption gradient</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Artifacts</td>
+<td>Unnamed alien Glyphs with shifting symbols — grant passage</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>VFX Style</td>
+<td>Astroneer × Crab Champions × No Man&#39;s Sky hybrid</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>Movement</td>
+<td>Arcade drift hybrid — twin-stick, momentum + drag, instant aim</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>MVP Scope</td>
+<td>5 milestones, ~14 weeks to co-op playable prototype</td>
+<td>2026-02-25</td>
+</tr>
+</tbody></table>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

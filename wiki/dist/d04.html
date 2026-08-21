@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>04 · Meta-Progression · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="active" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>🔬 Meta-Progression System</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>No permanent power buffs.</strong> Meta-progression unlocks <strong>content</strong> (new weapons, modules, specialties) — not stat increases. Every run starts on equal footing. Progress = more <em>options</em>, not more <em>power</em>.</p>
+</blockquote>
+<h2>1. Design Philosophy</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Content, not power</strong></td>
+<td>Unlocks add items to your drop pool. You&#39;re never stronger — you have more build variety</td>
+</tr>
+<tr>
+<td><strong>Toggle pool</strong></td>
+<td>Turn unlocked items ON/OFF before a run. Curate what can drop — focus your build or go wide</td>
+</tr>
+<tr>
+<td><strong>In-run spending</strong></td>
+<td>Spend Research Data mid-run to reroll/ban/mulligan upgrade choices. Meaningful resource management</td>
+</tr>
+<tr>
+<td><strong>Cosmetics as endgame sink</strong></td>
+<td>After unlocking all content, Research Data goes to skins, trails, and paint jobs</td>
+</tr>
+<tr>
+<td><strong>Achievement-gated milestones</strong></td>
+<td>Hulls and professions unlock through gameplay challenges, not currency</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. The Research Lab (Between Runs)</h2>
+<p>The Research Lab is where you spend <strong>Research Data</strong> between runs. It has 3 tabs:</p>
+<h3>Tab 1: Content Unlocks (Expand the Drop Pool)</h3>
+<p>Unlock new weapons, modules, and specialties that can then appear during runs. Each unlock costs Research Data and adds that item to the global drop pool.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th># Unlockable</th>
+<th>Starting Pool</th>
+<th>Cost Range</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⚔️ Weapons</td>
+<td>~20 total</td>
+<td>4 basic</td>
+<td>50–500 RD each</td>
+<td>Found in-run = auto-unlock as starter option too</td>
+</tr>
+<tr>
+<td>🛡️ Modules</td>
+<td>~20 total</td>
+<td>4 basic</td>
+<td>75–400 RD each</td>
+<td>Higher-tier modules cost more to unlock</td>
+</tr>
+<tr>
+<td>🔧 Specialties</td>
+<td>~10 total</td>
+<td>2 per prof</td>
+<td>100–600 RD each</td>
+<td>Profession-locked — only unlocks for that profession</td>
+</tr>
+<tr>
+<td>🎲 Cursed Items</td>
+<td>~8 total</td>
+<td>2 basic</td>
+<td>200–800 RD each</td>
+<td>High-risk/reward items for gamblers</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Example unlock path:</strong> You start with Autocannon, Plasma Cutter, Shield Capacitor, and Thruster Boost in the drop pool. Spend 150 RD → unlock Rail Sniper. Now Rail Sniper can appear in level-up choices and station shops. Spend 300 RD → unlock Phase Repeater. Pool keeps growing.</p>
+</blockquote>
+<h3>Tab 2: Toggle Pool (Curate Your Drops)</h3>
+<p>Before starting a run, toggle any unlocked item ON or OFF:</p>
+<pre><code>╔══════════════════════════════════════════════════════╗
+║              TOGGLE POOL — Pre-Run Setup             ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  ⚔️ WEAPONS                                         ║
+║  [✅] Autocannon       [✅] Plasma Cutter            ║
+║  [✅] Rail Sniper      [❌] Pulse Laser              ║
+║  [✅] Phase Repeater   [❌] Scatter Blaster          ║
+║                                                      ║
+║  🛡️ MODULES                                         ║
+║  [✅] Shield Capacitor [✅] Thruster Boost           ║
+║  [✅] Armor Plating    [❌] Cargo Expander           ║
+║  [✅] Targeting Array  [✅] Hull Reinforcement       ║
+║                                                      ║
+║  🔧 SPECIALTIES (Miner)                             ║
+║  [✅] Mineral Scanner  [✅] Charge Detonator         ║
+║  [❌] Ore Refinery     [✅] Deep Core Drill          ║
+║                                                      ║
+║  ───────────────────────────────────────────         ║
+║  Pool size: 14 ON / 3 OFF                            ║
+║  Smaller pool = more likely to find duplicates (★↑)  ║
+║                                                      ║
+╚══════════════════════════════════════════════════════╝
+</code></pre>
+<blockquote class="callout-tip"><p><strong>Tip.</strong> <strong>Smaller pool = higher rank-up chance.</strong> If you only enable 6 weapons but have 3 weapon slots, you&#39;ll find duplicates faster → more ★★ and ★★★ items. This creates a strategic tradeoff: wide pool for variety vs. tight pool for rank-ups.</p>
+</blockquote>
+<h3>Tab 3: Cosmetic Shop (Endgame Sink)</h3>
+<table>
+<thead>
+<tr>
+<th>Cosmetic Type</th>
+<th>Cost Range</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Ship Skins</strong></td>
+<td>500–2,000 RD</td>
+<td>Neon, military camo, chrome, organic, stealth</td>
+</tr>
+<tr>
+<td><strong>Engine Trails</strong></td>
+<td>200–800 RD</td>
+<td>Flame, electric, rainbow, void, particle</td>
+</tr>
+<tr>
+<td><strong>Paint Colors</strong></td>
+<td>100–300 RD</td>
+<td>Custom hull colors, gradients, metallic finishes</td>
+</tr>
+<tr>
+<td><strong>Pilot Outfits</strong></td>
+<td>300–1,000 RD</td>
+<td>Spacesuits, armor, casual, faction-themed</td>
+</tr>
+<tr>
+<td><strong>HUD Themes</strong></td>
+<td>200–500 RD</td>
+<td>Retro green, holographic, minimalist, neon pink</td>
+</tr>
+<tr>
+<td><strong>Death Animations</strong></td>
+<td>500–1,500 RD</td>
+<td>Explosion styles, disintegrate, warp-out, ragdoll</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Cosmetics are the <strong>infinite sink</strong> — once you&#39;ve unlocked all content, Research Data still has value. Completionists will chase skins for hundreds of runs.</p>
+</blockquote>
+<hr>
+<h2>3. In-Run Research Data Spending</h2>
+<p>Research Data isn&#39;t just for between runs — you carry a <strong>Research Data wallet</strong> into each run. Spend it mid-run for powerful choice manipulation:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Base Cost</th>
+<th>2nd Use</th>
+<th>3rd Use</th>
+<th>4th Use</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Reroll</strong></td>
+<td>25 RD</td>
+<td>50</td>
+<td>100</td>
+<td>200</td>
+<td>Discard the current 3 upgrade options and get 3 new ones</td>
+</tr>
+<tr>
+<td><strong>Ban</strong></td>
+<td>50 RD</td>
+<td>100</td>
+<td>200</td>
+<td>400</td>
+<td>Permanently remove one specific item from this run&#39;s drop pool (won&#39;t appear again)</td>
+</tr>
+<tr>
+<td><strong>Mulligan</strong></td>
+<td>75 RD</td>
+<td>150</td>
+<td>300</td>
+<td>600</td>
+<td>Skip the level-up choice entirely — bank it for next level (get 2 choices next time)</td>
+</tr>
+<tr>
+<td><strong>Targeted Pull</strong></td>
+<td>100 RD</td>
+<td>200</td>
+<td>400</td>
+<td>800</td>
+<td>Choose which CATEGORY your next 3 options come from (all weapons, all modules, etc.)</td>
+</tr>
+<tr>
+<td><strong>Shop Refresh</strong></td>
+<td>30 RD</td>
+<td>60</td>
+<td>120</td>
+<td>240</td>
+<td>Refresh a station&#39;s shop inventory with new stock</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[!WARNING]
+<strong>Every use doubles the cost (×2 per use, per action).</strong> First reroll = 25 RD. Second = 50. Third = 100. Fourth = 200. Each action has its own independent counter — banning doesn&#39;t make rerolls more expensive. <strong>Costs reset each run.</strong> This prevents hoarding RD across runs to cheese a god build — by the 4th reroll you&#39;re paying 200 RD, which is nearly an entire run&#39;s earnings.</p>
+</blockquote>
+<blockquote>
+<p><strong>Reroll vs. Ban vs. Mulligan:</strong> Reroll is cheap and reactive (&quot;I don&#39;t like these 3&quot;). Ban is proactive (&quot;I never want Cargo Expander this run&quot;). Mulligan is strategic (&quot;I&#39;m saving my choice for when I really need it&quot;). Each serves a different build-crafting need. Use them wisely — they get expensive fast.</p>
+</blockquote>
+<h3>Research Data Sources (During a Run)</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Amount</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Clearing a sector</td>
+<td>5–15 RD</td>
+<td>Scales with ring difficulty</td>
+</tr>
+<tr>
+<td>Scanning anomalies</td>
+<td>10–30 RD</td>
+<td>Scientist profession gets bonus</td>
+</tr>
+<tr>
+<td>Boss kills</td>
+<td>25–50 RD</td>
+<td>Major infusion</td>
+</tr>
+<tr>
+<td>Research stations</td>
+<td>15–25 RD</td>
+<td>Spend time analyzing data at a station</td>
+</tr>
+<tr>
+<td>Derelict exploration</td>
+<td>5–20 RD</td>
+<td>Found in data cores on wrecks</td>
+</tr>
+<tr>
+<td>End-of-run bonus</td>
+<td>20–100 RD</td>
+<td>Based on sectors cleared, enemies killed, rings reached</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Your walkaway amount after a run = what you gathered minus what you spent in-run. Fast aggressive runs might bank 200+ RD. Careful explorer runs that spend on rerolls might net 80 RD but with a perfectly crafted build.</p>
+</blockquote>
+<hr>
+<h2>4. Achievement-Based Unlocks (No Currency)</h2>
+<p>These unlock via gameplay milestones — you can&#39;t buy them:</p>
+<table>
+<thead>
+<tr>
+<th>Unlock</th>
+<th>Achievement Required</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🟢 <strong>Carrier</strong></td>
+<td>Deploy 50 total drones (via found items)</td>
+<td>Hull</td>
+</tr>
+<tr>
+<td>🟣 <strong>Organic</strong></td>
+<td>Discover a living ship anomaly</td>
+<td>Hull</td>
+</tr>
+<tr>
+<td>⚫ <strong>Phantom</strong></td>
+<td>Complete a run without being detected once</td>
+<td>Hull</td>
+</tr>
+<tr>
+<td>🔵 <strong>Juggernaut</strong></td>
+<td>Absorb 50,000 total damage</td>
+<td>Hull</td>
+</tr>
+<tr>
+<td><strong>Miner profession</strong></td>
+<td>Mine 1,000 total minerals</td>
+<td>Profession</td>
+</tr>
+<tr>
+<td><strong>Scout profession</strong></td>
+<td>Reveal 100 total hidden sectors</td>
+<td>Profession</td>
+</tr>
+<tr>
+<td><strong>Hauler profession</strong></td>
+<td>Deliver 500 total cargo value</td>
+<td>Profession</td>
+</tr>
+<tr>
+<td><strong>Scientist profession</strong></td>
+<td>Scan 50 total anomalies</td>
+<td>Profession</td>
+</tr>
+<tr>
+<td><strong>Cursed Loadout</strong></td>
+<td>Complete a run with 3+ cursed items equipped</td>
+<td>Challenge</td>
+</tr>
+<tr>
+<td><strong>Speed Demon</strong></td>
+<td>Complete a run in under 25 minutes</td>
+<td>Challenge</td>
+</tr>
+<tr>
+<td><strong>Pacifist Ring 1</strong></td>
+<td>Clear Ring 1 without firing a weapon</td>
+<td>Challenge</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Achievements unlock content, not power.</strong> Getting the Phantom hull doesn&#39;t make you stronger — it gives you a new playstyle option. This keeps the achievement system feeling rewarding without creating a power gap between new and veteran players.</p>
+</blockquote>
+<hr>
+<h2>5. Research Data Economy Summary</h2>
+<pre><code>╔══════════════════════════════════════════════════════════════╗
+║                RESEARCH DATA FLOW                            ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                              ║
+║  EARN                         SPEND                          ║
+║  ────                         ─────                          ║
+║  Sectors cleared (5–15)   →   In-Run: Reroll (25)            ║
+║  Anomaly scans  (10–30)   →   In-Run: Ban (50)               ║
+║  Boss kills     (25–50)   →   In-Run: Mulligan (75)          ║
+║  Research stn   (15–25)   →   In-Run: Targeted Pull (100)    ║
+║  Derelicts      (5–20)    →   In-Run: Shop Refresh (30)      ║
+║  End-of-run     (20–100)  →                                  ║
+║                               ──────────────────────         ║
+║  Run total: ~100–300 RD   →   Between: Content unlocks       ║
+║                               Between: Cosmetic shop         ║
+║                               Between: (saved for future)    ║
+║                                                              ║
+║  Tradeoff: Spend in-run for build perfection                 ║
+║            OR save for between-run unlocks                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+</code></pre>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>The key tension:</strong> Research Data earned in-run can be spent DURING the run (rerolls, bans) or SAVED for after the run (content unlocks, cosmetics). Aggressive spenders get a perfect build this run but unlock content slower. Savers unlock content faster but play with whatever the RNG gives them. This creates a meaningful ongoing decision throughout every run.</p>
+</blockquote>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

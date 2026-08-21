@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 7–10 Content · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group" open><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="active" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Phases 7–10 — Content Expansion: Hulls, Weapons, Enemies &amp; Drones</h1>
+<hr>
+<h2>Phase 7 — Full Hulls &amp; Professions</h2>
+<hr>
+<h3>7.1 Remaining 4 Hulls</h3>
+<h4>7.1.1 Create Hauler hull</h4>
+<ul>
+<li>a. <code>DT_Hulls</code> row: MaxSpeed=650, MaxHP=120, MaxShield=60, CargoSlots=5, PrimaryWeaponSlots=1</li>
+<li>b. Special ability: Tractor Beam</li>
+<li>c. Hauler&#39;s niche: resource acquisition and survivability through supplies, not combat power</li>
+</ul>
+<h4>7.1.2 Create Hauler mesh</h4>
+<ul>
+<li>a. AI-generate or model <code>SM_Hauler</code> — wide, boxy, visible cargo pod bays along sides</li>
+<li>b. Size: ~90 units wide, shorter than Gunship but wider</li>
+<li>c. Materials: industrial, cargo markings, worn paint</li>
+</ul>
+<h4>7.1.3 Implement Tractor Beam</h4>
+<ul>
+<li>a. Create <code>UAbilityTractorBeam</code> component on Hauler</li>
+<li>b. On activate: pull all pickups within 800 unit radius toward player at high speed</li>
+<li>c. Duration: instant pulse, 8s cooldown</li>
+<li>d. VFX: expanding green ring from ship, pickups glow and streak toward player</li>
+<li>e. SFX: bass hum pulse, metallic clink as items arrive</li>
+</ul>
+<h4>7.1.4 Create Phantom hull</h4>
+<ul>
+<li>a. <code>DT_Hulls</code> row: MaxSpeed=900, MaxHP=60, MaxShield=30, CargoSlots=2, PrimaryWeaponSlots=1</li>
+<li>b. Glass cannon — fastest, fragile, high risk/reward</li>
+<li>c. Special ability: Cloak</li>
+</ul>
+<h4>7.1.5 Create Phantom mesh</h4>
+<ul>
+<li>a. <code>SM_Phantom</code> — sleek, angular, stealth-fighter silhouette, razor-thin profile</li>
+<li>b. Size: ~45 units, smallest hull</li>
+<li>c. Materials: dark matte, minimal markings, sharp edges</li>
+</ul>
+<h4>7.1.6 Implement Cloak</h4>
+<ul>
+<li>a. Create <code>UAbilityCloak</code> component</li>
+<li>b. On activate: ship becomes invisible (mesh opacity → 0.1), enemies lose target for 3s</li>
+<li>c. Break conditions: firing any weapon immediately breaks cloak</li>
+<li>d. First shot after cloak = guaranteed crit (2× damage)</li>
+<li>e. VFX: shimmer/distortion effect on ship mesh using post-process refraction</li>
+<li>f. SFX: phase-shift hum on activate, shimmer on deactivate</li>
+<li>g. Cooldown: 12s</li>
+</ul>
+<h4>7.1.7 Create Juggernaut hull</h4>
+<ul>
+<li>a. <code>DT_Hulls</code> row: MaxSpeed=450, MaxHP=250, MaxShield=150, CargoSlots=3, PrimaryWeaponSlots=1, ModuleSlots=4</li>
+<li>b. Slowest, tankiest — mobile fortress</li>
+<li>c. Special ability: Fortify</li>
+</ul>
+<h4>7.1.8 Create Juggernaut mesh</h4>
+<ul>
+<li>a. <code>SM_Juggernaut</code> — massive, heavily armored, visible shield generators on hull</li>
+<li>b. Size: ~150 units, largest player ship</li>
+<li>c. Materials: thick plate armor, reinforced seams, utility look</li>
+</ul>
+<h4>7.1.9 Implement Fortify</h4>
+<ul>
+<li>a. Create <code>UAbilityFortify</code> component</li>
+<li>b. On activate: 80% damage reduction for 4s, but ship cannot move during Fortify</li>
+<li>c. Can still aim and fire weapons — turret mode</li>
+<li>d. VFX: shield dome intensifies to near-opaque, golden glow</li>
+<li>e. SFX: heavy shield power-up hum, clank on activation</li>
+<li>f. Cooldown: 15s</li>
+</ul>
+<h4>7.1.10 Create Carrier hull</h4>
+<ul>
+<li>a. <code>DT_Hulls</code> row: MaxSpeed=550, MaxHP=100, MaxShield=50, DroneSlots=4</li>
+<li>b. Unique system: drone flock (detailed in Phase 10)</li>
+<li>c. Special ability: Drone Surge</li>
+</ul>
+<h4>7.1.11 Create Carrier mesh</h4>
+<ul>
+<li>a. <code>SM_Carrier</code> — wide hull with visible drone launch bays (2-4 deployable openings)</li>
+<li>b. Size: ~100 units wide</li>
+<li>c. Materials: flight deck aesthetic, lit bay interiors, operational look</li>
+</ul>
+<h4>7.1.12 Carrier drone system stub</h4>
+<ul>
+<li>a. Add <code>UDroneManagerComponent</code> to Carrier hull (empty implementation)</li>
+<li>b. Full drone system implemented in Phase 10</li>
+<li>c. For now: Carrier functions as normal hull without drones</li>
+</ul>
+<hr>
+<h3>7.2 Remaining 4 Professions</h3>
+<h4>7.2.1 Create Gunner profession</h4>
+<ul>
+<li>a. <code>DT_Professions</code> row: Gunner, +15% fire rate (+0.15 FireRateMod), +10% damage, +5% crit chance</li>
+<li>b. Description: &quot;Combat specialist. Increased rate of fire and damage output.&quot;</li>
+<li>c. Visual: red engine tint</li>
+</ul>
+<h4>7.2.2 Create Engineer profession</h4>
+<ul>
+<li>a. Row: Engineer, +20% shield regen rate, +1 module slot, 20% station repair discount</li>
+<li>b. Description: &quot;Tech specialist. Enhanced shield systems and module capacity.&quot;</li>
+<li>c. Visual: blue engine tint</li>
+</ul>
+<h4>7.2.3 Create Scout profession</h4>
+<ul>
+<li>a. Row: Scout, +15% speed, +2 jump range, reveal sectors 2 hexes out on visit</li>
+<li>b. Description: &quot;Recon specialist. Faster ship and extended navigation range.&quot;</li>
+<li>c. Visual: white/cyan engine tint</li>
+</ul>
+<h4>7.2.4 Create Smuggler profession</h4>
+<ul>
+<li>a. Row: Smuggler, Black Market prices -30%, contraband item access, +10% evasion</li>
+<li>b. Description: &quot;Shady operator. Black Market discounts and unique contraband.&quot;</li>
+<li>c. Visual: purple engine tint</li>
+</ul>
+<h4>7.2.5 Implement profession-specific event options</h4>
+<ul>
+<li>a. In event data: add optional <code>RequiredProfession</code> field per choice</li>
+<li>b. If player has matching profession: show bonus choice option</li>
+<li>c. Example: Smuggler gets &quot;Bribe the Pirates&quot; option in combat events</li>
+</ul>
+<h4>7.2.6 Create profession selection UI</h4>
+<ul>
+<li>a. In <code>WBP_HullSelect</code>: after hull selection, show profession cards</li>
+<li>b. Each card: name, description, stat modifier list, visual preview of engine color</li>
+<li>c. Show combo synergy name if hull+profession has one</li>
+</ul>
+<hr>
+<h3>7.3 Hull × Profession Combos</h3>
+<h4>7.3.1 Implement combo synergy bonuses</h4>
+<ul>
+<li>a. Create <code>FComboSynergy</code> struct: <code>FName HullName, FName ProfessionName, FName SynergyName, FText Description, float BonusMod</code></li>
+<li>b. On run start: check if current hull+profession pair has a synergy entry</li>
+<li>c. If yes: apply additional bonus modifier and show synergy name on HUD</li>
+</ul>
+<h4>7.3.2 Create 30 combo DataTable entries</h4>
+<ul>
+<li>a. Create <code>DT_Combos</code> DataTable with 30 rows (6 hulls × 5 professions)</li>
+<li>b. Each has unique name and small bonus (e.g., &quot;Ghost Operative&quot; = Phantom+Smuggler, +15% cloak duration)</li>
+<li>c. Populate from design doc synergy list</li>
+</ul>
+<h4>7.3.3 Display combo on pre-run screen</h4>
+<ul>
+<li>a. When both hull and profession are selected: show synergy card</li>
+<li>b. Card: synergy name, bonus description, animated reveal</li>
+<li>c. Motivates players to try all combinations</li>
+</ul>
+<h4>7.3.4 Achievement-based hull unlocks</h4>
+<ul>
+<li>a. Create <code>FUnlockCondition</code> struct: <code>FName HullName, FText Condition, bool bMet</code></li>
+<li>b. Interceptor: unlocked by default</li>
+<li>c. Gunship: complete 1 run (any outcome)</li>
+<li>d. Hauler: collect 500 total minerals</li>
+<li>e. Phantom: complete a run in under 10 minutes</li>
+<li>f. Juggernaut: survive 50 waves total</li>
+<li>g. Carrier: unlock all other hulls</li>
+<li>h. Check conditions on run end, unlock if met</li>
+</ul>
+<h4>7.3.5 Profession unlock system</h4>
+<ul>
+<li>a. All professions start locked except Miner (default)</li>
+<li>b. Gunner: kill 100 enemies total</li>
+<li>c. Engineer: repair at stations 10 times</li>
+<li>d. Scout: visit 30 sectors total</li>
+<li>e. Smuggler: scrap 20 items at stations</li>
+</ul>
+<hr>
+<h2>Phase 8 — Full Weapons &amp; Upgrades</h2>
+<hr>
+<h3>8.1 Full Weapon Catalog</h3>
+<h4>8.1.1 Create remaining primary weapons</h4>
+<ul>
+<li>a. From design doc 03: Flak Cannon (AoE burst), Plasma Caster (slow heavy projectile), Gatling Gun (very fast low damage)</li>
+<li>b. Each weapon: DataTable row → weapon Blueprint → projectile Blueprint → VFX → SFX</li>
+<li>c. Follow Phase 3 weapon creation pattern for each</li>
+<li>d. Target: 10+ primary weapons total in pool</li>
+</ul>
+<h4>8.1.2 Create secondary weapon slot</h4>
+<ul>
+<li>a. Add <code>SecondaryWeaponSlots</code> to hull data (already exists)</li>
+<li>b. Bind <code>IA_SecondaryFire</code> to secondary weapon component</li>
+<li>c. Secondary weapons fire independently from primary</li>
+<li>d. Update loadout screen to show secondary slot</li>
+</ul>
+<h4>8.1.3 Create secondary weapons</h4>
+<ul>
+<li>a. Missile variants: Swarm Missiles (8 small, low damage), Heavy Missile (1 big, high damage)</li>
+<li>b. Mine Layer: drops proximity mines behind ship, detonate on enemy contact</li>
+<li>c. Point Defense: auto-targets nearest enemy projectile, shoots it down (defensive)</li>
+<li>d. Each: DataTable → Blueprint → VFX → SFX</li>
+</ul>
+<h4>8.1.4 Create Legendary rarity</h4>
+<ul>
+<li>a. Add <code>Legendary</code> to rarity enum — gold color, unique VFX</li>
+<li>b. Legendary weapons have unique proc effects not available on lower rarities</li>
+<li>c. Drop rate: &lt;1% from normal enemies, 5% from bosses, guaranteed from special events</li>
+<li>d. Visual: gold particle aura, unique model variation</li>
+</ul>
+<h4>8.1.5 Implement proc chains</h4>
+<ul>
+<li>a. Create <code>FWeaponProc</code> struct: <code>EProc Type (Burn, Chain, Pierce, Slow)</code>, <code>float Chance</code>, <code>float Value</code></li>
+<li>b. On hit: roll proc chance → if triggered, apply secondary effect</li>
+<li>c. Burn: target takes 5 DPS for 3s, fire VFX</li>
+<li>d. Chain: damage chains to 1 nearby enemy, lightning VFX</li>
+<li>e. Pierce: projectile continues through target (reduced damage)</li>
+<li>f. Slow: target speed reduced 30% for 2s, ice VFX</li>
+</ul>
+<hr>
+<h3>8.2 Module System</h3>
+<h4>8.2.1 Create module slot system</h4>
+<ul>
+<li>a. Create <code>UModuleComponent</code> on ShipPawn — manages equipped passive modules</li>
+<li>b. <code>TArray&lt;FName&gt; EquippedModules</code>, size = hull&#39;s <code>ModuleSlots</code></li>
+<li>c. <code>EquipModule(FName, int32 Slot)</code>, <code>UnequipModule(int32 Slot)</code></li>
+<li>d. Apply module stat buffs on equip, remove on unequip</li>
+</ul>
+<h4>8.2.2 Create module DataTable</h4>
+<ul>
+<li>a. <code>FModuleData</code> struct: <code>FName Name</code>, <code>EShatteredRarity Rarity</code>, <code>FText Description</code>, <code>float HPMod</code>, <code>float ShieldMod</code>, <code>float SpeedMod</code>, <code>float DamageMod</code></li>
+<li>b. Add field: <code>FName SetName</code> — modules with matching SetName form a set</li>
+<li>c. Create <code>DT_Modules</code> DataTable with 10+ module types</li>
+</ul>
+<h4>8.2.3 Create module types</h4>
+<ul>
+<li>a. Shield Booster: +20% shield max, +10% shield regen</li>
+<li>b. Engine Tuner: +10% max speed, +15% acceleration</li>
+<li>c. Armor Plate: +15% max HP, -5% speed (trade-off)</li>
+<li>d. Targeting Computer: +10% weapon range, +5% crit chance</li>
+<li>e. Cargo Expander: +1 cargo slot, +20% mineral magnet range</li>
+<li>f. Each at Common/Uncommon/Rare tiers with scaling bonuses</li>
+</ul>
+<h4>8.2.4 Module equip UI</h4>
+<ul>
+<li>a. In loadout screen: show module slots below weapon slots</li>
+<li>b. Empty slots: dark squares with &quot;+&quot; icon</li>
+<li>c. Click to open module inventory → select module to equip</li>
+<li>d. Stat comparison shown on hover (before/after equip)</li>
+</ul>
+<h4>8.2.5 Module set bonuses</h4>
+<ul>
+<li>a. Create <code>FSetBonus</code> struct: <code>FName SetName, int32 RequiredCount, FText Bonus, float BonusValue</code></li>
+<li>b. Example: &quot;Defense Set&quot; (2 pieces) = +10% all damage reduction</li>
+<li>c. Check set completion on equip/unequip, apply/remove bonus</li>
+<li>d. Show set progress on module tooltip: &quot;Defense Set (1/2)&quot;</li>
+</ul>
+<hr>
+<h3>8.3 Specialty Slot</h3>
+<h4>8.3.1 Create specialty slot</h4>
+<ul>
+<li>a. 1 per ship — special slot for rare powerful passives</li>
+<li>b. <code>USpecialtyComponent</code> with single <code>FName EquippedSpecialty</code></li>
+<li>c. Specialty items found as rare drops or event rewards</li>
+</ul>
+<h4>8.3.2 Create specialty items</h4>
+<ul>
+<li>a. 10+ specialty items from design doc 03</li>
+<li>b. Examples: &quot;Volatile Reactor&quot; (kills explode for AoE), &quot;Vampiric Hull&quot; (heal 5% damage dealt)</li>
+<li>c. Build-defining: each specialty changes playstyle significantly</li>
+<li>d. Displayed prominently on character sheet / loadout screen</li>
+</ul>
+<h4>8.3.3 Implement catalog</h4>
+<ul>
+<li>a. DataTable for specialties: <code>FSpecialtyData</code> with name, description, rarity, proc behavior</li>
+<li>b. Specialties apply via gameplay effect system or direct component modification</li>
+<li>c. Toggle pool support for specialties (can disable unwanted ones)</li>
+</ul>
+<hr>
+<h3>8.4 Weapon Upgrade System</h3>
+<h4>8.4.1 Implement weapon rank-up</h4>
+<ul>
+<li>a. At stations: &quot;Upgrade Weapon&quot; option — spend Minerals to increase rank</li>
+<li>b. Each rank: +5% base stats (damage, fire rate, range)</li>
+<li>c. Cost: Rank 1→2 = 20 Minerals, 2→3 = 35, 3→4 = 55, etc. (escalating)</li>
+<li>d. Rank displayed as &quot;Pulse Cannon +3&quot; in UI</li>
+</ul>
+<h4>8.4.2 Create rank VFX</h4>
+<ul>
+<li>a. At rank 3: weapon gains faint emissive glow</li>
+<li>b. At rank 5: weapon glow brightens, adds particle trail</li>
+<li>c. At rank 7+: weapon has visible energy aura, distinct particle effects</li>
+<li>d. Material parameter driven: <code>RankGlow = Rank / MaxRank</code></li>
+</ul>
+<h4>8.4.3 Implement rank cap per rarity</h4>
+<ul>
+<li>a. Common: max rank 3, Uncommon: 5, Rare: 7, Epic: 9, Legendary: 10</li>
+<li>b. Higher rarity = more room to grow = more valuable long-term</li>
+<li>c. Show max rank in weapon tooltip: &quot;Rank 3/5 (Uncommon)&quot;</li>
+<li>d. At max rank: weapon name gets star icon ★</li>
+</ul>
+<hr>
+<h2>Phase 9 — Full Enemies &amp; Environments</h2>
+<hr>
+<h3>9.1 Procedural Trait System</h3>
+<h4>9.1.1 Implement trait layering</h4>
+<ul>
+<li>a. On enemy spawn: roll 1-3 traits from trait pool based on chassis TraitSlots</li>
+<li>b. Apply trait modifiers to enemy stats (speed, damage, HP, behavior)</li>
+<li>c. Outer ring enemies: 0-1 traits. Mid ring: 1-2. Inner ring: 2-3.</li>
+<li>d. Traits stack — enemy with Regenerator + Shield Wall is very tanky</li>
+</ul>
+<h4>9.1.2 Create movement traits (7)</h4>
+<ul>
+<li>a. Zigzag: periodic lateral juke during chase (±100 units, 2Hz)</li>
+<li>b. Flanker: always approaches from behind player&#39;s aim direction</li>
+<li>c. Burrower: teleports short distance (300u) every 5s, reappears behind cover</li>
+<li>d. Teleporter: teleports to random position near target every 8s</li>
+<li>e. Charger: periodically rushes at target at 2× speed for 1s</li>
+<li>f. Orbiter: always circles target, never approaches directly</li>
+<li>g. Lurker: stays at max range, only approaches when player is engaged with others</li>
+</ul>
+<h4>9.1.3 Create attack traits (8)</h4>
+<ul>
+<li>a. Rapid Fire: +50% fire rate, -20% per-shot damage</li>
+<li>b. Sniper: +100% range, +50% damage, -60% fire rate</li>
+<li>c. Bomber: projectiles explode on impact for AoE (200u radius, 50% damage)</li>
+<li>d. Leech: damage dealt heals the enemy for 20% of damage</li>
+<li>e. Piercing: projectiles pass through targets, hit multiple players</li>
+<li>f. Scattershot: fires 3 projectiles per shot in a spread</li>
+<li>g. Homing: projectiles weakly home toward target</li>
+<li>h. Overcharge: every 4th shot deals 3× damage with distinct VFX warning</li>
+</ul>
+<h4>9.1.4 Create defense traits (7)</h4>
+<ul>
+<li>a. Regenerator: heals 5 HP/s passively</li>
+<li>b. Shield Wall: frontal shield absorbs 50 damage before breaking (recharges 10s)</li>
+<li>c. Phase Shift: 20% chance to dodge incoming projectile entirely (flicker VFX)</li>
+<li>d. Reflector: 10% chance to reflect projectile back at attacker</li>
+<li>e. Armored: 30% damage reduction, visually heavier plating</li>
+<li>f. Adaptive: after taking 3 hits of same damage type, gain 50% resistance to it</li>
+<li>g. Last Stand: at 20% HP, gain 50% damage boost for 5s (desperation mode)</li>
+</ul>
+<h4>9.1.5 Create special traits (8)</h4>
+<ul>
+<li>a. Splitter: on death, splits into 2 smaller versions (50% HP each)</li>
+<li>b. Summoner: spawns 1 Drone ally every 12s (max 3 summons)</li>
+<li>c. Kamikaze: on death, explodes for AoE damage (200u radius, 30 damage)</li>
+<li>d. Enrage: when ally dies within 500u, gain +30% speed and damage for 5s</li>
+<li>e. Cloaker: periodically goes invisible for 3s, reappears with surprise attack</li>
+<li>f. Mine Layer: drops explosive mines while moving (5s interval, 10s lifetime)</li>
+<li>g. Corruptor: contact with player applies 5s DoT (corruption damage)</li>
+<li>h. Nexus: nearby allies gain +15% damage (aura effect, 400u radius)</li>
+</ul>
+<h4>9.1.6 Implement visual trait indicators</h4>
+<ul>
+<li>a. Each trait category has a distinct visual cue on the enemy mesh</li>
+<li>b. Movement traits: colored engine trail (green)</li>
+<li>c. Attack traits: weapon glow color shift (red)</li>
+<li>d. Defense traits: visible armor/shield plates or shimmer (blue)</li>
+<li>e. Special traits: unique particle effect (purple orbs, mine trail, etc.)</li>
+<li>f. Multiple traits = multiple visual layers (readable at a glance)</li>
+</ul>
+<h4>9.1.7 Environment trait biasing</h4>
+<ul>
+<li>a. Each environment config specifies weighted trait pools</li>
+<li>b. Nebula: +50% weight for Energy attack traits</li>
+<li>c. Void Rift: +50% weight for Phase Shift and Teleporter traits</li>
+<li>d. Crystal Caves: +50% weight for Reflector and Armor traits</li>
+<li>e. Apply bias in trait roll during spawn</li>
+</ul>
+<hr>
+<h3>9.2 Corruption Visual System</h3>
+<h4>9.2.1 Create corruption material function</h4>
+<ul>
+<li>a. Create <code>MF_Corruption</code> material function in UE5</li>
+<li>b. Input parameter: <code>CorruptionLevel</code> (0.0-1.0)</li>
+<li>c. At 0.0: no corruption, clean ship material</li>
+<li>d. At 0.5: purple veins overlay, subtle glow along seams</li>
+<li>e. At 1.0: fully organic, no ship material, all purple-red parasite tissue</li>
+<li>f. Gradient: purple (outer rim) → red-purple (mid) → deep red (inner/core)</li>
+</ul>
+<h4>9.2.2 Apply corruption by ring</h4>
+<ul>
+<li>a. Outer Rim (Ring 2): CorruptionLevel = 0.10-0.20</li>
+<li>b. Mid Ring (Ring 1): CorruptionLevel = 0.40-0.60</li>
+<li>c. Inner Ring: CorruptionLevel = 0.70-0.90</li>
+<li>d. Core: CorruptionLevel = 1.00</li>
+<li>e. Set on enemy spawn based on sector&#39;s ring index</li>
+</ul>
+<h4>9.2.3 Create jellyfish tendril VFX</h4>
+<ul>
+<li>a. <code>NS_CorruptionTendrils</code> Niagara system — trailing organic tendrils behind corrupted enemies</li>
+<li>b. Ribbon emitters: 2-4 semi-transparent tendrils trailing from rear</li>
+<li>c. Color: purple-pink gradient, softly pulsing</li>
+<li>d. Length scales with CorruptionLevel (longer tendrils = more corrupted)</li>
+<li>e. Attach to enemy mesh rear socket</li>
+</ul>
+<h4>9.2.4 Create ooze pulse VFX</h4>
+<ul>
+<li>a. <code>NS_CorruptionPulse</code> — periodic glow wave across enemy surface</li>
+<li>b. Material parameter animation: emissive pulse traveling from core outward (1Hz)</li>
+<li>c. Intensity increases with CorruptionLevel</li>
+<li>d. Subtle at low corruption, very visible at high corruption</li>
+</ul>
+<h4>9.2.5 Create Core alien forms</h4>
+<ul>
+<li>a. For CorruptionLevel ≥ 0.9: use entirely organic mesh instead of ship mesh</li>
+<li>b. Create <code>SM_AlienJellyfish_Small</code>, <code>_Medium</code>, <code>_Large</code> — fully organic models</li>
+<li>c. No metallic parts — pure biological, bioluminescent purple-red</li>
+<li>d. Animated tentacles via vertex shader (waving motion)</li>
+<li>e. These are the &quot;pure Breach-born&quot; — functionally identical to chassis, visually alien</li>
+</ul>
+<hr>
+<h3>9.3 Remaining 6 Environments</h3>
+<h4>9.3.1 Void Rift</h4>
+<ul>
+<li>a. Visual: dark with glowing reality tears (purple light seams in space)</li>
+<li>b. Hazard: gravity anomaly zones pull/push player</li>
+<li>c. Skybox: near-black with purple crack lines, distant void energy</li>
+<li>d. Trait bias: Phase Shift, Teleporter</li>
+</ul>
+<h4>9.3.2 Supernova Remnant</h4>
+<ul>
+<li>a. Visual: extremely bright, solar flare hazards, heat distortion</li>
+<li>b. Hazard: heat damage zones (orange patches, 10 DPS on contact)</li>
+<li>c. Skybox: bright white/orange sun remnant, lens flare</li>
+<li>d. Trait bias: fire-based attack traits</li>
+</ul>
+<h4>9.3.3 Crystal Caves</h4>
+<ul>
+<li>a. Visual: crystalline asteroid formations, prismatic refraction effects</li>
+<li>b. Gameplay: tighter corridors, more cover, claustrophobic</li>
+<li>c. Skybox: dark with crystal formations catching ambient light</li>
+<li>d. Trait bias: Reflector, Armor</li>
+</ul>
+<h4>9.3.4 Debris Field</h4>
+<ul>
+<li>a. Visual: wrecked ships everywhere, floating hull fragments</li>
+<li>b. Gameplay: moving debris hazards (dodge or shoot), salvage loot</li>
+<li>c. Bonus: derelict wrecks contain random loot crates</li>
+<li>d. Skybox: war aftermath, smoke, distant fires</li>
+</ul>
+<h4>9.3.5 Gas Giant Orbit</h4>
+<ul>
+<li>a. Visual: dense colorful atmosphere rings, volumetric cloud bands</li>
+<li>b. Hazard: pressure waves every 15s (dodge the wave or take damage)</li>
+<li>c. Hazard: lightning strikes in random spots (2s warning indicator)</li>
+<li>d. Skybox: massive gas giant filling half the view, Jupiter-like</li>
+</ul>
+<h4>9.3.6 Frozen Expanse</h4>
+<ul>
+<li>a. Visual: ice asteroids with reflective surfaces, blue-white palette</li>
+<li>b. Gameplay: slippery movement modifier (+50% drift, lower drag)</li>
+<li>c. Hazard: cryo zones freeze ship for 0.5s on contact</li>
+<li>d. Skybox: dim, cold starlight, ice particle ambience</li>
+</ul>
+<h4>9.3.7–9.3.8 Environment assets</h4>
+<ul>
+<li>a. Per environment: unique skybox material, lighting preset, ambient Niagara system</li>
+<li>b. Per environment: unique asteroid/object meshes + materials</li>
+<li>c. Create transition effects: distinct warp-in visual per environment type</li>
+<li>d. Environment-specific ambient SFX loop (wind, hum, creak, etc.)</li>
+</ul>
+<hr>
+<h3>9.4 Neutral Ships &amp; Wanted System</h3>
+<h4>9.4.1 Create 7 neutral types</h4>
+<ul>
+<li>a. Miners: passive, break asteroids, drop minerals if killed (raises Wanted)</li>
+<li>b. Convoys: travel across sector, carry trade goods, attackable</li>
+<li>c. Patrol: faction ships, neutral unless provoked, tough enemies if hostile</li>
+<li>d. Scavengers: circle wreckage, non-hostile, flee if approached too fast</li>
+<li>e. Loot Piñata: timed chase target, escape in 8-12s if not killed, tiered rewards</li>
+<li>f. Wandering Merchant: can be traded with OR robbed (raises Wanted significantly)</li>
+<li>g. Distress Beacon: NPC in trouble, triggers help event</li>
+</ul>
+<h4>9.4.2 Implement faction reputation</h4>
+<ul>
+<li>a. Create <code>Reputation</code> value: starts at 0 (Neutral), attacking neutrals increases (-10 per kill)</li>
+<li>b. Thresholds: 0-10 = Neutral, 11-30 = Suspicious, 31+ = Wanted</li>
+<li>c. At Wanted: faction bounty hunters spawn periodically to hunt player</li>
+<li>d. Decays slowly over time (1 point per sector visited)</li>
+</ul>
+<h4>9.4.3 Bounty hunters</h4>
+<ul>
+<li>a. Wanted triggers hostile neutral ships spawning every 2 sectors</li>
+<li>b. Bounty hunter chassis: use Striker base with enhanced stats (+50% HP, +25% damage)</li>
+<li>c. Bounty hunters drop better loot but are dangerous optional fights</li>
+<li>d. Clearing wanted level: visit specific Station type or complete event</li>
+</ul>
+<h4>9.4.4 Loot Piñata encounter</h4>
+<ul>
+<li>a. AI: fleeing behavior only — runs away from player at moderate speed</li>
+<li>b. Timed: 8s (Bronze), 10s (Silver), 12s (Gold) before it escapes</li>
+<li>c. HP: 50/100/200 by tier — must DPS it down before timer expires</li>
+<li>d. Rewards: Bronze=30 Minerals, Silver=50+Uncommon weapon, Gold=100+Rare weapon</li>
+<li>e. VFX: trail of gem particles while fleeing, explosion of loot if killed</li>
+</ul>
+<hr>
+<h2>Phase 10 — Carrier Drone Flock System</h2>
+<hr>
+<h3>10.1 Drone Core</h3>
+<h4>10.1.1 Create ADroneActor</h4>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/DroneActor.h</code> inheriting <code>APawn</code></li>
+<li>b. Small size (~20 units), no player input — fully AI-controlled</li>
+<li>c. <code>UFloatingPawnMovement</code> for smooth movement</li>
+<li>d. <code>HealthComponent</code> with low HP (15-25 depending on drone type)</li>
+<li>e. Belongs to owning Carrier — stores <code>AShipPawn* Owner</code> reference</li>
+</ul>
+<h4>10.1.2 Implement Boids flocking</h4>
+<ul>
+<li>a. Create <code>UBoidsBehavior</code> component — implements Reynolds flocking rules</li>
+<li>b. Separation: steer away from nearby drones (avoid clumping)</li>
+<li>c. Alignment: match velocity direction of nearby drones</li>
+<li>d. Cohesion: steer toward center of nearby drone group</li>
+<li>e. Owner-follow: additional vector pulling toward Carrier position</li>
+<li>f. Weights tunable per behavior mode (Follow emphasizes Owner-follow, Attack emphasizes target)</li>
+</ul>
+<h4>10.1.3 Drone behavior modes</h4>
+<ul>
+<li>a. Follow: stick close to Carrier in formation, no attacking</li>
+<li>b. Attack: seek nearest enemy within 600u of Carrier, fire on sight</li>
+<li>c. Defend: orbit Carrier at 200u radius, attack enemies that approach</li>
+<li>d. Harvest: seek nearest pickup, collect minerals for Carrier&#39;s inventory</li>
+</ul>
+<h4>10.1.4 Drone command input</h4>
+<ul>
+<li>a. Q key (IA_DroneCommand) cycles through modes: Follow → Attack → Defend → Harvest → Follow</li>
+<li>b. HUD shows current mode icon near ship crosshair</li>
+<li>c. Mode change plays short radio chatter SFX (&quot;Drones: attack formation&quot;)</li>
+<li>d. All drones switch mode simultaneously</li>
+</ul>
+<h4>10.1.5 Create 4+ drone types</h4>
+<ul>
+<li>a. Attack Drone: small gun, 10 DPS, fragile</li>
+<li>b. Shield Drone: no weapon, projects small shield arc in front of Carrier</li>
+<li>c. Mining Drone: enhanced mineral collection in Harvest mode</li>
+<li>d. Repair Drone: slowly heals Carrier (2 HP/s) when in Follow/Defend mode</li>
+<li>e. Each drone type: DataTable row, mesh, VFX, behavior specialization</li>
+</ul>
+<h4>10.1.6 Implement drone upgrades</h4>
+<ul>
+<li>a. Drone upgrades are loot drops (rare, Carrier-specific)</li>
+<li>b. <code>FDroneUpgrade</code> struct: <code>FName Name, EDroneType AppliesToType, float DamageMod, float HPMod</code></li>
+<li>c. Examples: &quot;Reinforced Plating&quot; (+50% drone HP), &quot;Overclocked Weapons&quot; (+30% drone damage)</li>
+<li>d. Equip via loadout screen in Carrier&#39;s special drone upgrade slot</li>
+</ul>
+<h4>10.1.7 Carrier hull ability: Drone Surge</h4>
+<ul>
+<li>a. On ability activation: all drones gain 2× fire rate + 50% speed for 5s</li>
+<li>b. VFX: drones glow brighter, engine trails intensify</li>
+<li>c. SFX: power surge hum, rapid fire sounds increase</li>
+<li>d. Cooldown: 20s</li>
+</ul>
+<h4>10.1.8 Drone death/respawn</h4>
+<ul>
+<li>a. Drones can be destroyed by enemy fire (they have HP)</li>
+<li>b. On drone death: small pop VFX, briefly reduces flock size</li>
+<li>c. Drones respawn at next station dock (full flock restored on station visit)</li>
+<li>d. Optional: RD unlock for &quot;Auto-Rebuild&quot; — drones respawn after 30s in-field</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

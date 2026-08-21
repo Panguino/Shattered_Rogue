@@ -130,30 +130,34 @@ These are combos we _design for_. When players discover them, it should feel lik
 
 | Category                  | Symbol                   | What It Covers                                                      | Slot Count          | Install At |
 | ------------------------- | ------------------------ | ------------------------------------------------------------------- | ------------------- | ---------- |
-| ⚔️ **Weapons**            | Guns, turrets, launchers | Your combat tools — primary + secondary fire                        | 1–4 slots (by hull) | Shipyard   |
-| 🛡️ **Ship Modules**       | Stat boosts + passives   | Health, shields, speed, fire rate, armor — stackable stats          | 5–7 slots (by hull) | Shipyard   |
-| 🔧 **Specialty Upgrades** | Profession tools         | Mining scanners, combat analyzers, trade rigs — profession identity | 1–3 slots (by hull) | Shipyard   |
+| ⚔️ **Weapons**            | Guns, turrets, launchers | Your combat tools — primary + secondary fire                        | 1–4 (by **combo**) | Shipyard   |
+| 🛡️ **Ship Modules**       | Stat boosts + passives   | Health, shields, speed, fire rate, armor — stackable stats          | 3–7 (by **combo**) | Shipyard   |
+| 🔧 **Specialty Upgrades** | Profession tools         | Mining scanners, combat analyzers, trade rigs — profession identity | 1–5 (by **combo**) | Shipyard   |
 
-> Think of it like Megabonk: **Weapons = your weapon slots**, **Ship Modules = your books/tomes** (passive stat stacking), **Specialty = your class-specific toolkit**. **Every hull gets 10 total slots** — no numerical advantage, just different builds.
+> Think of it like Megabonk: **Weapons = your weapon slots**, **Ship Modules = your books/tomes** (passive stat stacking), **Specialty = your class-specific toolkit**. **Every named combo gets 10 total slots** — hull sets the size class and unique mechanic; profession sets the mix. On the mesh, only weapons and engine collars are gold sockets (Carrier also shows drone bays). Specialty is HUD/inventory only.
 
-### Hull Slot Breakdown (All = 10 Total)
+### Combo Slot Breakdown (All = 10 Total)
 
-| Hull               | ⚔️ Weapon Slots | 🛡️ Module Slots | 🔧 Specialty Slots | Total | Identity                                            |
-| ------------------ | --------------- | --------------- | ------------------ | ----- | --------------------------------------------------- |
-| 🔴 **Interceptor** | 4               | 5               | 1                  | 10    | Quad-weapon blitz — all firepower                   |
-| 🟡 **Corvette**    | 2               | 5               | 3                  | 10    | Most versatile — max specialty options              |
-| 🟢 **Carrier**     | 1               | 6               | 3                  | 10    | Drones ARE your weapons; specialty + module focused |
-| 🟣 **Organic**     | 2               | 7               | 1                  | 10    | Bio-module king — mutations stack like crazy        |
-| ⚫ **Phantom**     | 3               | 5               | 2                  | 10    | Burst assassin with stealth tools                   |
-| 🔵 **Juggernaut**  | 3               | 6               | 1                  | 10    | Heavy fortress — guns + stat stacking               |
+Hull table numbers below are the **Fighter** identity for that family. Other professions re-spec — full matrix in [01_game_vision.md](01_game_vision.md).
 
-> **Same total, wildly different builds.** Interceptor with 4 weapons is a flying arsenal. Corvette/Carrier with 3 specialty slots become profession masters (imagine 3 Miner specialties all at ★★★). Organic stacks 7 bio-modules for absurd stat combos. Phantom is the jack-of-all-trades assassin.
+| Hull               | Fighter (identity) | Typical profession pull                                      |
+| ------------------ | ------------------ | ------------------------------------------------------------ |
+| 🔴 **Interceptor** | Ace **4 / 5 / 1**  | Miner/Scientist 2W + tools; Hauler 2W + modules              |
+| 🟡 **Corvette**    | Mercenary **2 / 5 / 3** | Driller 1W / 5 specialty; Trader 1W / 6 modules         |
+| 🟢 **Carrier**     | Warlord **1 / 6 / 3**  | Always 1 gun; drones + specialty change with profession     |
+| 🟣 **Organic**     | Predator **2 / 7 / 1** | Hive/Leviathan drop to 1W; scout/science grow specialty     |
+| ⚫ **Phantom**     | Assassin **3 / 5 / 2** | Scout Shadow is sensor-heavy (4S); miner/science drop a gun |
+| 🔵 **Juggernaut**  | Warmonger **3 / 6 / 1** | Excavator/Outpost 2W + tools; Freighter 2W / 7 modules     |
+
+> **Same total, unique ships.** Ace is the only quad-gun interceptor. A Prospector is a different vehicle: chin mining sockets, wide torque engines, no afterburner.
 
 ---
 
 ### ⚔️ Category 1: Weapons
 
 Weapons fill **weapon slots**. Each weapon has a type, rarity, and potential perks.
+
+Range and behavior should **move the fight**, not just scale DPS. Plasma belongs in close; railguns punish straight-line retreat from far away; missiles hate cover. A gun that is equally good at every distance is why kiting wins. Envelopes and anti-kite rules: [17_anti_kiting_combat.md](17_anti_kiting_combat.md). (Cryo "kiting" below means *that gun* can harass at range — it does not mean the whole encounter should reward flying in a straight line forever.)
 
 #### Primary Weapons (continuous fire / main DPS)
 
@@ -229,7 +233,7 @@ Like weapons, finding a **duplicate module** ranks it up instead of taking a new
 
 ### 🔧 Category 3: Specialty Upgrades (Profession Tools)
 
-Specialties are **profession-specific equipment** that enhance your class identity. Limited to **1–2 slots** per hull — these are powerful and defining.
+Specialties are **profession-specific equipment** that enhance your class identity. Slot count is **1–5 depending on named combo** — these are powerful and defining.
 
 #### Specialty Upgrades by Profession
 
@@ -246,7 +250,7 @@ Specialties are **profession-specific equipment** that enhance your class identi
 | 🔬 **Scientist** | **Anomaly Detector**     | Highlights scannable anomalies in the environment           | Auto-scans nearby anomalies passively         |
 | 🔬 **Scientist** | **Research Synthesizer** | 15% chance to double Research Data gains                    | 30% chance + can craft Tech Cards at stations |
 
-> **Why limit specialty to 1–2 slots?** These are the most powerful per-slot upgrades in the game. A Corvette (2 specialty slots) with Deep Core Scanner ★★★ + Auto-Drill Rig ★★★ becomes a mining GOD. Limiting slots means each one matters enormously.
+> **Why not give everyone 5 specialty slots?** These are the most powerful per-slot upgrades in the game. A Driller (5 specialty) is a mining god; Ace (1 specialty) is all guns. The mix is the identity.
 
 ---
 

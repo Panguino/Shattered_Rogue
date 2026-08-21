@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noita · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="active" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Noita (2020) — Nolla Games</h1>
+<blockquote>
+<p><strong>Genre:</strong> Physics Roguelike | <strong>Perspective:</strong> 2D Side-scrolling | <strong>Players:</strong> Solo (Modded MP) | <strong>Steam Rating:</strong> 93% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Every pixel in the world is physically simulated. Dig, explode, burn, and melt your way through procedurally generated caves using custom-crafted wands. Knowledge is the ultimate form of progression.</p>
+<h2>🪄 Wand Crafting System — The Core Innovation</h2>
+<h3>Wand Properties</h3>
+<p>Every wand has base stats:</p>
+<table>
+<thead>
+<tr>
+<th>Stat</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Shuffle</strong></td>
+<td>Yes/No — spells cast in order or random</td>
+</tr>
+<tr>
+<td><strong>Spells/Cast</strong></td>
+<td>How many spells fire per click</td>
+</tr>
+<tr>
+<td><strong>Cast Delay</strong></td>
+<td>Time between spell groups</td>
+</tr>
+<tr>
+<td><strong>Recharge Time</strong></td>
+<td>Time to refill all spells</td>
+</tr>
+<tr>
+<td><strong>Mana</strong></td>
+<td>Resource for casting</td>
+</tr>
+<tr>
+<td><strong>Mana Charge</strong></td>
+<td>Mana regen rate</td>
+</tr>
+<tr>
+<td><strong>Spread</strong></td>
+<td>Accuracy deviation</td>
+</tr>
+<tr>
+<td><strong>Capacity</strong></td>
+<td>Spell slots available</td>
+</tr>
+</tbody></table>
+<h3>Spell Types (400+)</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Projectile</strong></td>
+<td>Spark Bolt, Magic Arrow, Bubble Spark, Death Cross</td>
+</tr>
+<tr>
+<td><strong>Static</strong></td>
+<td>Circle of Vigor, Tentacle, Earthquake</td>
+</tr>
+<tr>
+<td><strong>Modifier</strong></td>
+<td>Homing, Bouncing, Piercing, Heavy Shot, Light Shot</td>
+</tr>
+<tr>
+<td><strong>Multicast</strong></td>
+<td>Double Spell, Triple Spell, Formation (Y, T, star)</td>
+</tr>
+<tr>
+<td><strong>Material</strong></td>
+<td>Water, Blood, Oil, Acid, Lava, Toxic Sludge</td>
+</tr>
+<tr>
+<td><strong>Timer</strong></td>
+<td>Delay trigger, Timer trigger, Proximity Mine</td>
+</tr>
+<tr>
+<td><strong>Special</strong></td>
+<td>Divide By, Alpha, Omega, Gamma, Mu</td>
+</tr>
+<tr>
+<td><strong>Utility</strong></td>
+<td>Teleport, Shield, Light, Nuke</td>
+</tr>
+</tbody></table>
+<h3>Wand Crafting Examples</h3>
+<pre><code>[Spark Bolt] + [Homing] + [Heavy Shot] = Homing heavy spark bolt
+[Triple Spell] + [Spark Bolt] + [Spark Bolt] + [Spark Bolt] = Triple rapid fire
+[Nuke] + [Divide By 10] = 10 simultaneous nukes (WARNING: will kill you)
+[Chainsaw] + [Chainsaw] + [Chainsaw] = Reduces cast delay to near-zero
+</code></pre>
+<h3>&quot;Infinite Spells&quot; Wand Craft</h3>
+<pre><code>[Always Cast: Chainsaw] → Slot: [Spark Bolt + Homing]
+= Machine gun of homing bolts (chainsaw removes delay)
+</code></pre>
+<h2>⚗️ Material / Physics System</h2>
+<h3>Pixel Simulation</h3>
+<ul>
+<li>Every pixel is one of 50+ materials</li>
+<li>Materials interact: oil + fire = burning, water + toxic = diluted, acid dissolves everything</li>
+<li>Liquids flow, gases rise, fire spreads, ice melts</li>
+<li>Terrain can be destroyed, created, transformed</li>
+</ul>
+<h3>Key Materials</h3>
+<table>
+<thead>
+<tr>
+<th>Material</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Water</strong></td>
+<td>Flows, extinguishes fire, conducts electricity</td>
+</tr>
+<tr>
+<td><strong>Oil</strong></td>
+<td>Flows, extremely flammable</td>
+</tr>
+<tr>
+<td><strong>Acid</strong></td>
+<td>Dissolves terrain and enemies</td>
+</tr>
+<tr>
+<td><strong>Lava</strong></td>
+<td>Burns everything, creates rock when cooled</td>
+</tr>
+<tr>
+<td><strong>Toxic Sludge</strong></td>
+<td>Poisons, stains player</td>
+</tr>
+<tr>
+<td><strong>Blood</strong></td>
+<td>Cosmetic liquid from enemies</td>
+</tr>
+<tr>
+<td><strong>Polymorphine</strong></td>
+<td>Transforms things it contacts</td>
+</tr>
+<tr>
+<td><strong>Ambrosia</strong></td>
+<td>Protective coating (rare)</td>
+</tr>
+<tr>
+<td><strong>Teleportatium</strong></td>
+<td>Teleports things it contacts</td>
+</tr>
+</tbody></table>
+<h2>🦸 Perk System (Choose 1 per Holy Mountain)</h2>
+<p>After each biome, visit the Holy Mountain to:</p>
+<ul>
+<li>Edit wands freely</li>
+<li>Buy spells/wands</li>
+<li>Choose 1 perk from 3 options</li>
+</ul>
+<h3>Perk Examples</h3>
+<ul>
+<li><strong>Exploding Corpses</strong> — Dead enemies explode</li>
+<li><strong>Glass Cannon</strong> — 5x damage dealt/received</li>
+<li><strong>Unlimited Spells</strong> — Spells never run out (but still cost mana)</li>
+<li><strong>Edit Wands Everywhere</strong> — Craft wands outside Holy Mountain</li>
+<li><strong>Extra Life</strong> — Revive once</li>
+<li><strong>Freeze Field</strong> — Freezes nearby projectiles</li>
+<li><strong>Vampirism</strong> — Blood heals you, no heart pickups</li>
+</ul>
+<h2>🗺️ World Structure</h2>
+<pre><code>Mines → Coal Pits → Snowy Depths → Hiisi Base → Underground Jungle →
+The Vault → Temple of the Art → Laboratory → The Work (final boss)
+
+SECRET AREAS (extensive):
+- East: Desert, Pyramid, Magical Temple
+- West: Fungal Caverns, Snow Chasm
+- Above: Sky, Space
+- Below: Hell, ???
+- Ultra-secret: Parallel Worlds, New Game+ worlds
+</code></pre>
+<p>The world extends MASSIVELY beyond the main path — entire biomes hidden to the east, west, above, and below.</p>
+<h2>📈 Progression — Knowledge IS Power</h2>
+<ul>
+<li><strong>No meta-progression</strong> — No permanent upgrades</li>
+<li><strong>Orb collection</strong> — Optional challenge for true ending</li>
+<li><strong>Spell unlocks</strong> — Some spells found only in specific locations</li>
+<li><strong>Community discovered secrets over months</strong> — Hidden messages, parallel worlds, massive hidden content</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Pixel Physics Simulation</strong> — Every pixel is a simulated material</li>
+<li><strong>Wand Crafting</strong> — Near-infinite spell combinations</li>
+<li><strong>Knowledge as Progression</strong> — Learning game systems IS getting stronger</li>
+<li><strong>Secret Depth</strong> — Parallel worlds, hidden biomes, community puzzle-solving</li>
+<li><strong>Emergent Disaster</strong> — Physics create unscripted chaos (chain reactions)</li>
+<li><strong>Environmental Interaction Depth</strong> — Use any material strategically</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;The wand crafting is the deepest build system in any roguelike&quot;</li>
+<li>&quot;Every pixel being simulated means anything can happen&quot;</li>
+<li>&quot;I played 500 hours before discovering parallel worlds exist&quot;</li>
+<li>&quot;The eureka moments when you understand a new spell combo&quot;</li>
+<li>&quot;Accidentally flooding an entire level with acid never gets old&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Spells:</strong> 400+</li>
+<li><strong>Materials:</strong> 50+</li>
+<li><strong>Perks:</strong> 80+</li>
+<li><strong>Secret areas:</strong> Dozens</li>
+<li><strong>Average run:</strong> 30–90 minutes</li>
+<li><strong>Metacritic:</strong> 80/100</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

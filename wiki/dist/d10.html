@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>10 · Carrier Drones · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group" open><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="active" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>🤖 Carrier Drone Flock System</h1>
+<blockquote>
+<p><strong>Parent doc:</strong> <a href="plan.html">00_GAME_DEVELOPMENT_PLAN.md</a></p>
+</blockquote>
+<hr>
+<blockquote class="callout-important"><p><strong>Important.</strong> <strong>The Carrier hull&#39;s unique mechanic.</strong> Drones orbit your ship using <strong>flocking AI (Boids)</strong>, auto-engage nearby enemies, and inherit profession-based behaviors. The player doesn&#39;t directly control drones — they manage the flock through upgrades and positioning.</p>
+</blockquote>
+<hr>
+<h2>1. Boids Flocking AI</h2>
+<p>Drones use a classic <strong>Boids</strong> algorithm adapted for space combat:</p>
+<table>
+<thead>
+<tr>
+<th>Behavior</th>
+<th>Rule</th>
+<th>Tuning Parameter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Separation</strong></td>
+<td>Drones avoid crowding each other</td>
+<td>Min drone spacing: 3m</td>
+</tr>
+<tr>
+<td><strong>Alignment</strong></td>
+<td>Drones roughly face the same direction as their neighbors</td>
+<td>Alignment weight: 0.4</td>
+</tr>
+<tr>
+<td><strong>Cohesion</strong></td>
+<td>Drones steer toward the average position of their flock</td>
+<td>Cohesion weight: 0.6</td>
+</tr>
+<tr>
+<td><strong>Orbit</strong></td>
+<td>Flock orbits the player ship in an elliptical pattern</td>
+<td>Orbit radius: 8–15m</td>
+</tr>
+<tr>
+<td><strong>Engagement</strong></td>
+<td>When enemies enter range, drones break orbit to attack</td>
+<td>Engagement range: 25m</td>
+</tr>
+<tr>
+<td><strong>Return</strong></td>
+<td>After target is dead, drones return to orbit formation</td>
+<td>Return speed: 1.5× normal</td>
+</tr>
+<tr>
+<td><strong>Avoidance</strong></td>
+<td>Drones dodge obstacles (asteroids, debris) while orbiting or chasing</td>
+<td>Avoidance weight: 0.8</td>
+</tr>
+</tbody></table>
+<h3>Flock Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Base Value</th>
+<th>Modified By</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Flock Size</strong></td>
+<td>2 drones</td>
+<td>Upgrades, modules, items (max ~6 base, more with items)</td>
+</tr>
+<tr>
+<td><strong>Orbit Radius</strong></td>
+<td>8m (tight)</td>
+<td>Can be expanded to 20m with modules</td>
+</tr>
+<tr>
+<td><strong>Engagement Range</strong></td>
+<td>25m</td>
+<td>Scout profession → 35m (recon drones)</td>
+</tr>
+<tr>
+<td><strong>Drone Speed</strong></td>
+<td>80% of player</td>
+<td>Can exceed player speed with upgrades</td>
+</tr>
+<tr>
+<td><strong>Drone HP</strong></td>
+<td>15% of carrier</td>
+<td>Drones die if HP depleted, respawn at station</td>
+</tr>
+<tr>
+<td><strong>Drone DPS</strong></td>
+<td>20% of player</td>
+<td>Each drone does 20% of player weapon DPS</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>The fantasy:</strong> 4–6 drones orbiting your Carrier in a tight formation, then scattering outward to swarm an enemy — then snapping back to orbit when the fight&#39;s over. It should feel like commanding a pack of loyal war machines.</p>
+</blockquote>
+<hr>
+<h2>2. Drone Types (4 chassis)</h2>
+<p>Drones come in 4 types. The Carrier starts with <strong>Attack Drones</strong> and unlocks others through modules and specialties:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Role</th>
+<th>Behavior</th>
+<th>Base DPS</th>
+<th>Special</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⚔️ <strong>Attack Drone</strong></td>
+<td>Offense</td>
+<td>Engages nearest enemy, fires twin lasers</td>
+<td>20% player</td>
+<td>Standard drone — reliable damage</td>
+</tr>
+<tr>
+<td>🛡️ <strong>Shield Drone</strong></td>
+<td>Defense</td>
+<td>Orbits close, projects shield boost on player</td>
+<td>N/A</td>
+<td>+15% shield capacity per drone</td>
+</tr>
+<tr>
+<td>⛏️ <strong>Mining Drone</strong></td>
+<td>Utility</td>
+<td>Auto-mines nearby asteroids while orbiting</td>
+<td>N/A</td>
+<td>Delivers minerals directly to cargo</td>
+</tr>
+<tr>
+<td>🔬 <strong>Recon Drone</strong></td>
+<td>Intelligence</td>
+<td>Scouts ahead, reveals enemies and loot</td>
+<td>N/A</td>
+<td>Marks enemies for +10% damage per drone</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Drone type is determined by specialty modules.</strong> Base Carrier gets Attack Drones. Equipping a &quot;Drone Shield Module&quot; converts 1 drone to Shield type. You can mix and match — 3 Attack + 1 Shield + 2 Mining, for example.</p>
+</blockquote>
+<hr>
+<h2>3. Drone Behavior Mods (Specialty Upgrades)</h2>
+<p>These modify HOW drones behave, not WHAT they are:</p>
+<table>
+<thead>
+<tr>
+<th>Behavior Mod</th>
+<th>Effect</th>
+<th>Rank ★★★ Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Aggressive Stance</strong></td>
+<td>Drones engage at 2× range, pursue further</td>
+<td>3× range, drones chase until kill</td>
+</tr>
+<tr>
+<td><strong>Defensive Stance</strong></td>
+<td>Drones stay within 5m, prioritize closest threat to player</td>
+<td>Drones intercept incoming projectiles</td>
+</tr>
+<tr>
+<td><strong>Spread Formation</strong></td>
+<td>Wider orbit (20m), covers more area</td>
+<td>30m orbit, drones act as perimeter sentries</td>
+</tr>
+<tr>
+<td><strong>Tight Formation</strong></td>
+<td>Narrow orbit (5m), focused fire on same target</td>
+<td>3m orbit, all drones fire at player target</td>
+</tr>
+<tr>
+<td><strong>Kamikaze Protocol</strong></td>
+<td>Drones ram enemies when below 25% HP (self-destruct damage)</td>
+<td>Self-destruct at 50% HP, double explosion</td>
+</tr>
+<tr>
+<td><strong>Leash Extension</strong></td>
+<td>Drones can pursue targets up to 50m from player</td>
+<td>100m leash — drones become semi-autonomous</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Profession × Drone Synergies</h2>
+<table>
+<thead>
+<tr>
+<th>Profession</th>
+<th>Drone Behavior</th>
+<th>Combo Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>⚔️ <strong>Fighter</strong></td>
+<td>Drones focus-fire player&#39;s target, +20% drone damage</td>
+<td><strong>&quot;Warlord&quot;</strong></td>
+</tr>
+<tr>
+<td>⛏️ <strong>Miner</strong></td>
+<td>Mining Drones auto-mine while player fights</td>
+<td><strong>&quot;Foreman&quot;</strong></td>
+</tr>
+<tr>
+<td>🔭 <strong>Scout</strong></td>
+<td>Recon Drones mark all enemies in sector</td>
+<td><strong>&quot;Spymaster&quot;</strong></td>
+</tr>
+<tr>
+<td>📦 <strong>Hauler</strong></td>
+<td>Drones auto-collect loot drops, deliver to cargo</td>
+<td><strong>&quot;Magnate&quot;</strong></td>
+</tr>
+<tr>
+<td>🔬 <strong>Scientist</strong></td>
+<td>Drones analyze enemies, revealing loot tables for team</td>
+<td><strong>&quot;Professor&quot;</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. Drone Engagement Parameters</h2>
+<pre><code>╔═══════════════════════════════════════════════════════╗
+║             DRONE ENGAGEMENT FLOW                    ║
+╠═══════════════════════════════════════════════════════╣
+║                                                       ║
+║  ORBIT STATE (default)                               ║
+║  └─ Drones circle player in Boids formation          ║
+║     └─ Enemy enters engagement range (25m)?          ║
+║        ├─ YES → ENGAGE STATE                         ║
+║        │   └─ Drones break orbit                     ║
+║        │   └─ Fly toward target (Boids maintained)   ║
+║        │   └─ Attack target until dead               ║
+║        │   └─ Next target in range? → Re-engage      ║
+║        │   └─ No targets? → RETURN STATE             ║
+║        │       └─ Fly back to orbit formation        ║
+║        └─ NO → Continue orbiting                     ║
+║                                                       ║
+║  SPECIAL CASES:                                      ║
+║  • Player boosts → Drones trail behind, catch up     ║
+║  • Player docks → Drones auto-dock, repair           ║
+║  • Drone dies → Respawn at next station (costs 25m)  ║
+║  • Player cloaks (Phantom) → Drones cloak too       ║
+║                                                       ║
+╚═══════════════════════════════════════════════════════╝
+</code></pre>
+<hr>
+<h2>6. Drone-Related Items &amp; Upgrades</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Rarity</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Drone Bay Expansion</strong></td>
+<td>Uncommon</td>
+<td>+1 drone to flock (stacks up to 3 times)</td>
+</tr>
+<tr>
+<td><strong>Drone Armor Plating</strong></td>
+<td>Uncommon</td>
+<td>Drones gain +50% HP</td>
+</tr>
+<tr>
+<td><strong>Drone Speed Booster</strong></td>
+<td>Uncommon</td>
+<td>Drones move 30% faster</td>
+</tr>
+<tr>
+<td><strong>Drone Weapon Upgrade</strong></td>
+<td>Rare</td>
+<td>Drones deal +40% damage</td>
+</tr>
+<tr>
+<td><strong>Drone Replicator</strong></td>
+<td>Rare</td>
+<td>10% chance on drone kill: duplicate the drone (Luck-scaled)</td>
+</tr>
+<tr>
+<td><strong>Hive Mind Module</strong></td>
+<td>Epic</td>
+<td>All drones attack the same target simultaneously (focused fire)</td>
+</tr>
+<tr>
+<td><strong>Swarm Intelligence</strong></td>
+<td>Epic</td>
+<td>Drones gain +5% damage per drone in flock (scales with flock size)</td>
+</tr>
+<tr>
+<td><strong>Queen Drone</strong></td>
+<td>Legendary</td>
+<td>One drone becomes a Queen — 2× stats, spawns 1 mini-drone/30s</td>
+</tr>
+</tbody></table>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

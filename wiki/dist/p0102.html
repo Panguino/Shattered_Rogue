@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 1–2 Foundation · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group" open><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="active" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group"><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Phase 1 — Foundation &amp; Project Setup</h1>
+<hr>
+<h2>1.1 UE5 Project Initialization</h2>
+<h3>1.1.1 Create UE 5.8 blank project</h3>
+<ul>
+<li>a. Open Epic Games Launcher → Unreal Engine <strong>5.8</strong> → New Project</li>
+<li>b. Select &quot;Blank&quot; C++ template, uncheck &quot;Starter Content&quot;</li>
+<li>c. Set project name to <code>ShatteredRogue</code>, set target directory</li>
+<li>d. Choose target platform: Windows (Desktop)</li>
+<li>e. Click Create, wait for initial compile and editor launch</li>
+</ul>
+<h3>1.1.2 Configure project settings</h3>
+<ul>
+<li>a. Edit → Project Settings → Target Hardware → Desktop, Maximum Quality</li>
+<li>b. Set Rendering → Default RHI to DirectX 12</li>
+<li>c. Enable Forward Shading (Project Settings → Rendering → Forward Renderer)</li>
+<li>d. Set frame rate cap: Project Settings → General Settings → Frame Rate Limit → 60</li>
+<li>e. Enable Enhanced Input plugin: Edit → Plugins → search &quot;Enhanced Input&quot; → Enable</li>
+<li>f. Enable Niagara plugin (should be default, verify enabled)</li>
+</ul>
+<h3>1.1.3 Set up folder structure</h3>
+<ul>
+<li>a. In Content Browser, create top-level folders: <code>Blueprints</code>, <code>VFX</code>, <code>UI</code>, <code>Audio</code>, <code>Meshes</code>, <code>Materials</code>, <code>DataTables</code>, <code>Maps</code>, <code>Textures</code></li>
+<li>b. Under <code>Blueprints/</code>, create: <code>Ship</code>, <code>Weapons</code>, <code>Enemies</code>, <code>Pickups</code>, <code>World</code>, <code>UI</code></li>
+<li>c. Under <code>VFX/</code>, create: <code>Weapons</code>, <code>Enemies</code>, <code>Environment</code>, <code>UI</code>, <code>Ship</code></li>
+<li>d. Under <code>Audio/</code>, create: <code>Music</code>, <code>SFX</code>, <code>Ambient</code></li>
+<li>e. Under <code>Maps/</code>, create: <code>Sectors</code>, <code>Hub</code>, <code>Menus</code></li>
+<li>f. Create <code>Source/ShatteredRogue/</code> subfolders matching module names: <code>Core</code>, <code>Ship</code>, <code>Combat</code>, <code>World</code>, <code>UI</code></li>
+</ul>
+<h3>1.1.4 Create base C++ gameplay classes</h3>
+<ul>
+<li>a. Create <code>UShatteredGameInstance</code> — inherits <code>UGameInstance</code>, will hold persistent data (currencies, unlocks)</li>
+<li>b. Add <code>UPROPERTY</code> stubs: <code>PlayerMinerals</code>, <code>PlayerRD</code>, <code>UnlockedItems TArray</code></li>
+<li>c. Create <code>AShatteredGameMode</code> — inherits <code>AGameModeBase</code>, will manage run state</li>
+<li>d. Override <code>InitGame()</code>, <code>StartPlay()</code>, <code>HandleStartingNewPlayer()</code> with empty bodies</li>
+<li>e. Create <code>AShatteredGameState</code> — inherits <code>AGameStateBase</code>, will hold shared run data</li>
+<li>f. Add <code>UPROPERTY</code> stub: <code>CurrentSector</code>, <code>WaveNumber</code>, <code>ActiveEnemyCount</code></li>
+<li>g. Create <code>AShatteredPlayerState</code> — inherits <code>APlayerState</code>, will hold per-player data</li>
+<li>h. Add <code>UPROPERTY</code> stubs: <code>CurrentHP</code>, <code>CurrentShield</code>, <code>EquippedWeapon</code>, <code>CargoSlots</code></li>
+<li>i. Set GameMode defaults in Project Settings → Maps &amp; Modes → Default GameMode</li>
+</ul>
+<h3>1.1.5 Create primary game module</h3>
+<ul>
+<li>a. Verify <code>ShatteredRogue.Build.cs</code> exists with correct module dependencies</li>
+<li>b. Add <code>PublicDependencyModuleNames</code>: <code>Core</code>, <code>CoreUObject</code>, <code>Engine</code>, <code>InputCore</code>, <code>EnhancedInput</code>, <code>Niagara</code>, <code>UMG</code></li>
+<li>c. Create <code>ShatteredRogue.h</code> and <code>ShatteredRogue.cpp</code> module files with <code>IMPLEMENT_PRIMARY_GAME_MODULE</code></li>
+<li>d. Build solution from IDE, verify clean compile with zero errors</li>
+<li>e. Run editor from IDE, verify project opens with no warnings</li>
+</ul>
+<h3>1.1.6 Enable Unreal MCP (Cursor)</h3>
+<ul>
+<li>a. Edit → Plugins → enable <strong>Unreal MCP</strong> and <strong>All Toolsets</strong>. Restart editor.</li>
+<li>b. Edit → Editor Preferences → Model Context Protocol → enable <strong>Auto Start Server</strong> (default <code>http://127.0.0.1:8000/mcp</code>).</li>
+<li>c. Output Log: confirm bind on port 8000. If conflict, change port in the same panel.</li>
+<li>d. Editor console: <code>ModelContextProtocol.GenerateClientConfig Cursor</code> — writes/merges <code>.mcp.json</code> at project root.</li>
+<li>e. Launch Cursor from the <code>.uproject</code> root <strong>after</strong> the editor is fully up. Confirm MCP <code>unreal-mcp</code> is connected.</li>
+<li>f. Smoke test in Cursor: &quot;What actors do I have selected?&quot;</li>
+<li>g. Do not enable MCP in shipping builds. Loopback only, no auth.</li>
+</ul>
+<hr>
+<h2>1.2 Version Control Setup</h2>
+<h3>1.2.1 Initialize Git repository</h3>
+<ul>
+<li>a. Open terminal in project root directory</li>
+<li>b. Run <code>git init</code></li>
+<li>c. Create <code>.gitignore</code> with UE5 patterns: <code>Binaries/</code>, <code>Intermediate/</code>, <code>DerivedDataCache/</code>, <code>Saved/</code>, <code>.vs/</code>, <code>*.sln</code>, <code>*.suo</code></li>
+<li>d. Add <code>*.uproject</code> to tracked files (do NOT ignore)</li>
+<li>e. Add <code>Config/</code>, <code>Content/</code>, <code>Source/</code> to tracked files</li>
+<li>f. Verify <code>.gitignore</code> by running <code>git status</code> — only desired files should appear</li>
+</ul>
+<h3>1.2.2 Configure Git LFS</h3>
+<ul>
+<li>a. Run <code>git lfs install</code> in project root</li>
+<li>b. Run <code>git lfs track &quot;*.uasset&quot;</code> — all Unreal assets</li>
+<li>c. Run <code>git lfs track &quot;*.umap&quot;</code> — all Unreal maps</li>
+<li>d. Run <code>git lfs track &quot;*.png&quot; &quot;*.jpg&quot; &quot;*.tga&quot; &quot;*.bmp&quot;</code> — textures</li>
+<li>e. Run <code>git lfs track &quot;*.wav&quot; &quot;*.mp3&quot; &quot;*.ogg&quot;</code> — audio</li>
+<li>f. Run <code>git lfs track &quot;*.fbx&quot; &quot;*.obj&quot;</code> — 3D models</li>
+<li>g. Verify <code>.gitattributes</code> file was created with all tracking rules</li>
+<li>h. Add <code>.gitattributes</code> to git tracking</li>
+</ul>
+<h3>1.2.3 Create branches</h3>
+<ul>
+<li>a. Run <code>git add -A &amp;&amp; git commit -m &quot;Initial UE5 project setup&quot;</code></li>
+<li>b. Push to GitHub: <code>git remote add origin &lt;repo-url&gt; &amp;&amp; git push -u origin main</code></li>
+<li>c. Create develop branch: <code>git checkout -b develop &amp;&amp; git push -u origin develop</code></li>
+<li>d. Set up branch protection on <code>main</code> in GitHub repo settings (require PR for merge)</li>
+<li>e. Switch back to develop for active work: <code>git checkout develop</code></li>
+</ul>
+<h3>1.2.4 Push initial commit</h3>
+<ul>
+<li>a. Verify all files are committed: <code>git status</code> shows clean working tree</li>
+<li>b. Push main: <code>git push origin main</code></li>
+<li>c. Verify on GitHub web UI that all files appear, LFS files show correct sizes</li>
+<li>d. Check LFS storage usage on GitHub to confirm binary tracking</li>
+</ul>
+<h3>1.2.5 Verify LFS tracking</h3>
+<ul>
+<li>a. Create a small test texture (100×100 PNG) in <code>Content/Textures/</code></li>
+<li>b. Run <code>git add Content/Textures/test.png</code></li>
+<li>c. Run <code>git lfs ls-files</code> — verify test.png appears in LFS file list</li>
+<li>d. Commit and push, verify on GitHub the file shows &quot;Stored with Git LFS&quot;</li>
+<li>e. Delete local file, pull from remote, verify file restores correctly</li>
+<li>f. Delete test file and commit cleanup</li>
+</ul>
+<hr>
+<h2>1.3 Core Plugin Architecture</h2>
+<h3>1.3.1 Create ShatteredCore module</h3>
+<ul>
+<li>a. Create directory <code>Source/ShatteredCore/</code></li>
+<li>b. Create <code>ShatteredCore.Build.cs</code> with module definition, depends on <code>Core</code>, <code>CoreUObject</code>, <code>Engine</code></li>
+<li>c. Create <code>ShatteredCore.h</code> — module declaration with <code>DECLARE_LOG_CATEGORY_EXTERN</code></li>
+<li>d. Create <code>ShatteredCore.cpp</code> — <code>IMPLEMENT_MODULE</code> macro</li>
+<li>e. Create <code>Public/Types/</code> directory for shared enums and structs</li>
+<li>f. Create <code>EShatteredDamageType</code> enum — <code>Kinetic</code>, <code>Energy</code> (MVP), <code>Explosive</code>, <code>Void</code> (future)</li>
+<li>g. Create <code>EShatteredRarity</code> enum — <code>Common</code>, <code>Uncommon</code>, <code>Rare</code>, <code>Epic</code>, <code>Legendary</code></li>
+<li>h. Create <code>EShatteredEnvironment</code> enum — <code>AsteroidField</code>, <code>Nebula</code>, <code>VoidRift</code>, etc.</li>
+<li>i. Add ShatteredCore to <code>.uproject</code> modules list and verify compile</li>
+</ul>
+<h3>1.3.2 Create ShatteredShip module</h3>
+<ul>
+<li>a. Create directory <code>Source/ShatteredShip/</code></li>
+<li>b. Create <code>ShatteredShip.Build.cs</code> — depends on <code>ShatteredCore</code>, <code>EnhancedInput</code></li>
+<li>c. Create module boilerplate (<code>.h</code>, <code>.cpp</code>)</li>
+<li>d. Create <code>Public/</code> directory for ship pawn, movement, boost component headers</li>
+<li>e. Create <code>Private/</code> directory for implementations</li>
+<li>f. Verify clean compile, module loads in editor</li>
+</ul>
+<h3>1.3.3 Create ShatteredCombat module</h3>
+<ul>
+<li>a. Create directory <code>Source/ShatteredCombat/</code></li>
+<li>b. Create <code>ShatteredCombat.Build.cs</code> — depends on <code>ShatteredCore</code>, <code>ShatteredShip</code>, <code>Niagara</code></li>
+<li>c. Create module boilerplate</li>
+<li>d. Create <code>Public/</code> for weapon base, projectile base, damage system headers</li>
+<li>e. Create <code>Private/</code> for implementations</li>
+<li>f. Verify clean compile</li>
+</ul>
+<h3>1.3.4 Create ShatteredWorld module</h3>
+<ul>
+<li>a. Create directory <code>Source/ShatteredWorld/</code></li>
+<li>b. Create <code>ShatteredWorld.Build.cs</code> — depends on <code>ShatteredCore</code></li>
+<li>c. Create module boilerplate</li>
+<li>d. Create <code>Public/</code> for sector manager, galaxy map, spawn manager headers</li>
+<li>e. Create <code>Private/</code> for implementations</li>
+<li>f. Verify clean compile</li>
+</ul>
+<h3>1.3.5 Create ShatteredUI module</h3>
+<ul>
+<li>a. Create directory <code>Source/ShatteredUI/</code></li>
+<li>b. Create <code>ShatteredUI.Build.cs</code> — depends on <code>ShatteredCore</code>, <code>ShatteredShip</code>, <code>ShatteredCombat</code>, <code>UMG</code>, <code>Slate</code>, <code>SlateCore</code></li>
+<li>c. Create module boilerplate</li>
+<li>d. Create <code>Public/</code> for HUD, widget base classes</li>
+<li>e. Create <code>Private/</code> for implementations</li>
+<li>f. Verify clean compile</li>
+</ul>
+<h3>1.3.6 Set up module dependency chain</h3>
+<ul>
+<li>a. Update main <code>ShatteredRogue.Build.cs</code> to depend on all 5 modules</li>
+<li>b. Verify dependency order: Core → Ship/Combat/World → UI → Main</li>
+<li>c. Build full solution from clean — <code>Build → Rebuild Solution</code></li>
+<li>d. Verify all 6 modules load in editor: Window → Developer Tools → Modules</li>
+<li>e. Test hot-reload: make trivial change in ShatteredCore, verify all dependent modules reload</li>
+</ul>
+<hr>
+<h2>1.4 Data Architecture</h2>
+<h3>1.4.1 Create FHullData struct</h3>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/Types/ShatteredHullData.h</code></li>
+<li>b. Define <code>USTRUCT(BlueprintType) FHullData</code></li>
+<li>c. Add <code>UPROPERTY</code> fields: <code>FName HullName</code>, <code>float MaxSpeed</code>, <code>float Acceleration</code>, <code>float Drag</code></li>
+<li>d. Add <code>UPROPERTY</code> fields: <code>float BoostSpeedMultiplier</code>, <code>float BoostDuration</code>, <code>float BoostCooldown</code></li>
+<li>e. Add <code>UPROPERTY</code> fields: <code>int32 MaxHP</code>, <code>int32 MaxShield</code>, <code>float ShieldRegenRate</code>, <code>float ShieldRegenDelay</code></li>
+<li>f. Add <code>UPROPERTY</code> fields: <code>int32 PrimaryWeaponSlots</code>, <code>int32 SecondaryWeaponSlots</code>, <code>int32 ModuleSlots</code>, <code>int32 CargoSlots</code></li>
+<li>g. Add <code>UPROPERTY</code> fields: <code>int32 JumpRange</code>, <code>float ShipRadius</code>, <code>TSoftObjectPtr&lt;UStaticMesh&gt; ShipMesh</code></li>
+<li>h. Verify struct compiles and is visible in Blueprint</li>
+</ul>
+<h3>1.4.2 Create FWeaponData struct</h3>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/Types/ShatteredWeaponData.h</code></li>
+<li>b. Define <code>USTRUCT(BlueprintType) FWeaponData</code></li>
+<li>c. Add fields: <code>FName WeaponName</code>, <code>EShatteredRarity Rarity</code>, <code>float BaseDamage</code>, <code>float FireRate</code></li>
+<li>d. Add fields: <code>float ProjectileSpeed</code>, <code>float Range</code>, <code>EShatteredDamageType DamageType</code></li>
+<li>e. Add fields: <code>int32 ProjectilesPerShot</code>, <code>float SpreadAngle</code>, <code>bool bIsBeam</code>, <code>bool bIsHoming</code></li>
+<li>f. Add fields: <code>TSoftObjectPtr&lt;UNiagaraSystem&gt; MuzzleFlashVFX</code>, <code>TSoftObjectPtr&lt;UNiagaraSystem&gt; ImpactVFX</code></li>
+<li>g. Add fields: <code>TSoftObjectPtr&lt;USoundBase&gt; FireSFX</code>, <code>TSoftObjectPtr&lt;USoundBase&gt; ImpactSFX</code></li>
+<li>h. Add field: <code>int32 MineralValue</code> (scrap value)</li>
+</ul>
+<h3>1.4.3 Create FEnemyChassisData struct</h3>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/Types/ShatteredEnemyData.h</code></li>
+<li>b. Define <code>USTRUCT(BlueprintType) FEnemyChassisData</code></li>
+<li>c. Add fields: <code>FName ChassisName</code>, <code>int32 BaseHP</code>, <code>int32 BaseShield</code>, <code>float BaseSpeed</code></li>
+<li>d. Add fields: <code>float Size</code>, <code>int32 SpawnCost</code>, <code>int32 TraitSlots</code></li>
+<li>e. Add fields: <code>TSoftObjectPtr&lt;UBehaviorTree&gt; DefaultBehaviorTree</code></li>
+<li>f. Add fields: <code>TSoftObjectPtr&lt;UStaticMesh&gt; BaseMesh</code>, <code>float CorruptionLevel</code></li>
+<li>g. Add fields: <code>TArray&lt;FName&gt; AllowedTraitCategories</code></li>
+</ul>
+<h3>1.4.4 Create FTraitData struct</h3>
+<ul>
+<li>a. In same file or new <code>ShatteredTraitData.h</code></li>
+<li>b. Define <code>USTRUCT(BlueprintType) FTraitData</code></li>
+<li>c. Add fields: <code>FName TraitName</code>, <code>ETraitCategory Category</code> (Movement, Attack, Defense, Special)</li>
+<li>d. Add fields: <code>FString Description</code>, <code>float SpeedModifier</code>, <code>float DamageModifier</code>, <code>float HPModifier</code></li>
+<li>e. Add fields: <code>TSoftObjectPtr&lt;UBehaviorTree&gt; TraitBehaviorTreeOverride</code></li>
+<li>f. Add fields: <code>TSoftObjectPtr&lt;UNiagaraSystem&gt; TraitVFX</code></li>
+</ul>
+<h3>1.4.5 Create FSectorData struct</h3>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/Types/ShatteredSectorData.h</code></li>
+<li>b. Define <code>USTRUCT(BlueprintType) FSectorData</code></li>
+<li>c. Add fields: <code>FName SectorName</code>, <code>EShatteredEnvironment Environment</code>, <code>ESectorType SectorType</code> (Combat, Mining, Station, Boss, Event)</li>
+<li>d. Add fields: <code>int32 DifficultyTier</code>, <code>int32 RingIndex</code>, <code>float LootMultiplier</code></li>
+<li>e. Add fields: <code>TArray&lt;FVector2D&gt; HexGridPosition</code>, <code>TArray&lt;int32&gt; ConnectedSectorIndices</code></li>
+<li>f. Add fields: <code>bool bIsRevealed</code>, <code>bool bIsVisited</code>, <code>bool bIsCompleted</code></li>
+</ul>
+<h3>1.4.6 Create DataTable assets</h3>
+<ul>
+<li>a. In Editor, create DataTable asset <code>DT_Hulls</code> using <code>FHullData</code> row struct</li>
+<li>b. Add Interceptor row with tuned values from design doc 15</li>
+<li>c. Create DataTable asset <code>DT_Weapons</code> using <code>FWeaponData</code> row struct</li>
+<li>d. Add Pulse Cannon row with tuned values</li>
+<li>e. Create DataTable asset <code>DT_EnemyChassis</code> using <code>FEnemyChassisData</code> row struct</li>
+<li>f. Add Drone, Striker, Bomber rows (leave empty initially, fill in M2)</li>
+<li>g. Create DataTable asset <code>DT_Traits</code> using <code>FTraitData</code> row struct (empty for now)</li>
+<li>h. Create DataTable asset <code>DT_Sectors</code> using <code>FSectorData</code> row struct (empty for now)</li>
+<li>i. Save all DataTables to <code>Content/DataTables/</code> folder</li>
+</ul>
+<h3>1.4.7 Create UShatteredDataSubsystem</h3>
+<ul>
+<li>a. Create <code>ShatteredCore/Public/ShatteredDataSubsystem.h</code></li>
+<li>b. Inherit from <code>UGameInstanceSubsystem</code> — auto-created with GameInstance</li>
+<li>c. Add <code>UPROPERTY</code> refs to all DataTables: <code>UDataTable* HullDataTable</code>, <code>UDataTable* WeaponDataTable</code>, etc.</li>
+<li>d. Create <code>Initialize()</code> override — load DataTable references from asset paths</li>
+<li>e. Create <code>GetHullData(FName HullName)</code> → returns <code>FHullData*</code> row lookup</li>
+<li>f. Create <code>GetWeaponData(FName WeaponName)</code> → returns <code>FWeaponData*</code> row lookup</li>
+<li>g. Create <code>GetChassisData(FName ChassisName)</code> → returns <code>FEnemyChassisData*</code> row lookup</li>
+<li>h. Test in editor: spawn test actor, call subsystem, verify data returns correctly</li>
+</ul>
+<hr>
+<h2>1.5 Input System Setup</h2>
+<h3>1.5.1 Create Enhanced Input mapping context</h3>
+<ul>
+<li>a. In Editor: Content Browser → right-click → Input → Input Mapping Context → name <code>IMC_Gameplay</code></li>
+<li>b. Save to <code>Content/Input/IMC_Gameplay</code></li>
+<li>c. Create second context <code>IMC_Menu</code> for menu navigation (separate from gameplay)</li>
+</ul>
+<h3>1.5.2 Define input actions</h3>
+<ul>
+<li>a. Create Input Action assets in <code>Content/Input/Actions/</code>:</li>
+<li>b. <code>IA_Move</code> — Value Type: Axis2D (vector input for 2D movement)</li>
+<li>c. <code>IA_Aim</code> — Value Type: Axis2D (mouse position or right stick)</li>
+<li>d. <code>IA_PrimaryFire</code> — Value Type: Digital (bool, hold to fire)</li>
+<li>e. <code>IA_SecondaryFire</code> — Value Type: Digital (bool, hold to fire)</li>
+<li>f. <code>IA_Boost</code> — Value Type: Digital (press to activate)</li>
+<li>g. <code>IA_Ability</code> — Value Type: Digital (press to activate hull ability)</li>
+<li>h. <code>IA_Interact</code> — Value Type: Digital (press to dock/pick up)</li>
+<li>i. <code>IA_ToggleMap</code> — Value Type: Digital (press to toggle galaxy map)</li>
+<li>j. <code>IA_ToggleInventory</code> — Value Type: Digital (press to toggle cargo screen)</li>
+<li>k. <code>IA_Pause</code> — Value Type: Digital (press to pause/menu)</li>
+<li>l. <code>IA_Ping</code> — Value Type: Digital (press to ping location for co-op)</li>
+<li>m. <code>IA_DroneCommand</code> — Value Type: Digital (press to cycle drone behavior)</li>
+</ul>
+<h3>1.5.3 Create KB/M input mapping</h3>
+<ul>
+<li>a. Open <code>IMC_Gameplay</code> in editor</li>
+<li>b. Add <code>IA_Move</code> → Key: W (Modifier: Swizzle Y→X positive), S (negative Y), A (negative X), D (positive X)</li>
+<li>c. Add <code>IA_Aim</code> → Key: Mouse XY 2D-Axis</li>
+<li>d. Add <code>IA_PrimaryFire</code> → Key: Left Mouse Button</li>
+<li>e. Add <code>IA_SecondaryFire</code> → Key: Right Mouse Button</li>
+<li>f. Add <code>IA_Boost</code> → Key: Left Shift</li>
+<li>g. Add <code>IA_Ability</code> → Key: Space Bar</li>
+<li>h. Add <code>IA_Interact</code> → Key: E</li>
+<li>i. Add <code>IA_ToggleMap</code> → Key: Tab (+ alternate: M)</li>
+<li>j. Add <code>IA_ToggleInventory</code> → Key: I</li>
+<li>k. Add <code>IA_Pause</code> → Key: Escape</li>
+<li>l. Add <code>IA_Ping</code> → Key: Middle Mouse Button</li>
+<li>m. Add <code>IA_DroneCommand</code> → Key: Q</li>
+</ul>
+<h3>1.5.4 Create Gamepad input mapping</h3>
+<ul>
+<li>a. Duplicate <code>IMC_Gameplay</code> as <code>IMC_Gameplay_Gamepad</code> or add gamepad bindings to same context</li>
+<li>b. Map <code>IA_Move</code> → Gamepad Left Thumbstick</li>
+<li>c. Map <code>IA_Aim</code> → Gamepad Right Thumbstick</li>
+<li>d. Map <code>IA_PrimaryFire</code> → Gamepad Right Trigger</li>
+<li>e. Map <code>IA_SecondaryFire</code> → Gamepad Left Trigger</li>
+<li>f. Map <code>IA_Boost</code> → Gamepad Left Shoulder (bumper)</li>
+<li>g. Map <code>IA_Ability</code> → Gamepad Right Shoulder (bumper)</li>
+<li>h. Map <code>IA_Interact</code> → Gamepad Face Button Bottom (A/Cross)</li>
+<li>i. Map <code>IA_ToggleMap</code> → Gamepad D-pad Up</li>
+<li>j. Map <code>IA_ToggleInventory</code> → Gamepad D-pad Right</li>
+<li>k. Map <code>IA_Pause</code> → Gamepad Special Right (Start)</li>
+<li>l. Map <code>IA_Ping</code> → Gamepad D-pad Down</li>
+<li>m. Map <code>IA_DroneCommand</code> → Gamepad D-pad Left</li>
+</ul>
+<h3>1.5.5 Create AShatteredPlayerController</h3>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/ShatteredPlayerController.h</code> inheriting <code>APlayerController</code></li>
+<li>b. Add <code>UPROPERTY</code> for <code>UInputMappingContext* GameplayMappingContext</code></li>
+<li>c. Override <code>BeginPlay()</code> — add mapping context to Enhanced Input Subsystem with priority 0</li>
+<li>d. Create <code>SetupInputComponent()</code> override — bind all <code>IA_*</code> actions to handler functions</li>
+<li>e. Create stub handler functions: <code>HandleMove(FInputActionValue)</code>, <code>HandleAim(FInputActionValue)</code>, <code>HandlePrimaryFire(FInputActionValue)</code>, etc.</li>
+<li>f. Implement <code>HandleMove</code> — extract <code>FVector2D</code> from action value, store as <code>MoveInput</code> member</li>
+<li>g. Implement <code>HandleAim</code> — for mouse: project screen position to world plane, store as <code>AimWorldPosition</code></li>
+<li>h. Set as default PlayerController in GameMode defaults</li>
+</ul>
+<h3>1.5.6 Implement input remapping</h3>
+<ul>
+<li>a. Create <code>UShatteredInputSettings</code> — <code>USaveGame</code> subclass storing key bindings</li>
+<li>b. Add <code>TMap&lt;FName, FKey&gt; KeyBindings</code> — maps action name to key</li>
+<li>c. Create <code>SaveBindings()</code> — serialize to save slot &quot;InputSettings&quot;</li>
+<li>d. Create <code>LoadBindings()</code> — deserialize from save slot, apply to mapping context</li>
+<li>e. Create <code>ResetToDefaults()</code> — restore original bindings from default mapping context</li>
+<li>f. Hook into Settings menu (placeholder — actual UI built later)</li>
+</ul>
+<hr>
+<h2>Phase 2 — M1: Ship Flies</h2>
+<hr>
+<h2>2.1 Ship Actor</h2>
+<h3>2.1.1 Create AShipPawn base class</h3>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/ShipPawn.h</code> inheriting <code>APawn</code></li>
+<li>b. Create <code>USceneComponent</code> as <code>RootComponent</code> (default scene root)</li>
+<li>c. Create <code>UStaticMeshComponent* ShipMesh</code> — attach to root, set default mesh to nullptr</li>
+<li>d. Create <code>UCapsuleComponent* CollisionCapsule</code> — attach to root, set as collision primitive</li>
+<li>e. Set capsule half-height and radius for medium ship profile (~100×50)</li>
+<li>f. Set collision profile on capsule: <code>Pawn</code>, generate overlap events for pickups</li>
+<li>g. Add <code>UPROPERTY(EditAnywhere) FName HullName</code> — used to look up DataTable row</li>
+<li>h. Compile, create Blueprint child <code>BP_ShipPawn</code>, verify appears in editor</li>
+</ul>
+<h3>2.1.2 Add movement component</h3>
+<ul>
+<li>a. Add <code>UFloatingPawnMovement* MovementComponent</code> to AShipPawn constructor</li>
+<li>b. Set <code>MaxSpeed</code> from DataTable → <code>FHullData.MaxSpeed</code> (default 800 for Interceptor)</li>
+<li>c. Set <code>Acceleration</code> from DataTable → <code>FHullData.Acceleration</code> (default 2000)</li>
+<li>d. Set <code>Deceleration</code> from DataTable → drag value (default 1500 for medium drag)</li>
+<li>e. Set <code>TurningBoost</code> to 0 — rotation is handled separately (instant aim)</li>
+<li>f. Override <code>Tick()</code> — apply movement input from PlayerController&#39;s <code>MoveInput</code> vector</li>
+<li>g. Call <code>AddMovementInput(WorldDirection, ScaleValue)</code> each tick based on input</li>
+</ul>
+<h3>2.1.3 Implement arcade drift movement</h3>
+<ul>
+<li>a. In <code>Tick()</code>, read <code>MoveInput</code> vector from owning PlayerController</li>
+<li>b. Convert 2D input to 3D world direction (X=forward, Y=right in top-down view)</li>
+<li>c. Apply thrust: <code>AddMovementInput(Direction, InputMagnitude)</code> — acceleration handled by component</li>
+<li>d. When no input, movement component&#39;s deceleration applies drag automatically</li>
+<li>e. Tune drag so ship stops within ~0.5-1.0s of releasing input</li>
+<li>f. Clamp velocity to MaxSpeed × 1.0 (boosted speed handled separately)</li>
+</ul>
+<h3>2.1.4 Tune drag curve</h3>
+<ul>
+<li>a. Create <code>UCurveFloat* DragCurve</code> asset — maps speed ratio (0-1) to drag multiplier</li>
+<li>b. At high speed: high drag (ship slows fast). At low speed: lower drag (smooth stop)</li>
+<li>c. Apply curve in Tick: <code>float DragMult = DragCurve-&gt;GetFloatValue(CurrentSpeed / MaxSpeed)</code></li>
+<li>d. Multiply deceleration by DragMult each frame</li>
+<li>e. Test: ship should feel responsive on start, smooth on stop, slight drift at high speed</li>
+<li>f. Hull-specific tuning: Phantom = low drag (slippery), Juggernaut = high drag (tanky)</li>
+</ul>
+<h3>2.1.5 Implement instant rotation</h3>
+<ul>
+<li>a. In <code>Tick()</code>, get aim target position from PlayerController (<code>AimWorldPosition</code>)</li>
+<li>b. Calculate direction from ship to aim target: <code>(AimTarget - ShipLocation).GetSafeNormal2D()</code></li>
+<li>c. Set ship rotation: <code>SetActorRotation(DirectionVector.Rotation())</code> — instant, no interpolation</li>
+<li>d. Ship mesh always faces cursor/stick direction regardless of movement direction</li>
+<li>e. Test: ship should pivot instantly to face mouse, movement direction independent of facing</li>
+</ul>
+<h3>2.1.6 Add mesh socket points</h3>
+<ul>
+<li>a. Open ship static mesh in editor (or create placeholder box mesh)</li>
+<li>b. Add socket <code>WeaponMount_Primary</code> at front of ship mesh</li>
+<li>c. Add socket <code>WeaponMount_Secondary</code> offset left or right of primary</li>
+<li>d. Add socket <code>Engine_Main</code> at rear center of ship</li>
+<li>e. Add socket <code>ShieldOrigin</code> at center of ship</li>
+<li>f. Add socket <code>BoostTrail</code> at rear, slightly below engine</li>
+<li>g. Set socket defaults (location, rotation) appropriate for top-down view alignment</li>
+</ul>
+<h3>2.1.7 Load hull parameters from DataTable</h3>
+<ul>
+<li>a. In <code>AShipPawn::BeginPlay()</code>, get <code>UShatteredDataSubsystem</code> from GameInstance</li>
+<li>b. Call <code>GetHullData(HullName)</code> to get <code>FHullData*</code> pointer</li>
+<li>c. If valid: apply <code>MaxSpeed</code>, <code>Acceleration</code>, <code>Drag</code> to movement component</li>
+<li>d. Apply <code>MaxHP</code>, <code>MaxShield</code> to health component (created later in M2)</li>
+<li>e. Set <code>ShipMesh-&gt;SetStaticMesh(HullData-&gt;ShipMesh.LoadSynchronous())</code></li>
+<li>f. Store slot counts (<code>PrimaryWeaponSlots</code>, <code>CargoSlots</code>, etc.) as member variables</li>
+<li>g. Log warning if DataTable row not found for <code>HullName</code></li>
+</ul>
+<h3>2.1.8 Create Interceptor hull DataTable row</h3>
+<ul>
+<li>a. Open <code>DT_Hulls</code> DataTable in editor</li>
+<li>b. Add row with RowName = <code>Interceptor</code></li>
+<li>c. Set values: MaxSpeed=800, Acceleration=2000, Drag=1500</li>
+<li>d. Set values: BoostSpeedMultiplier=1.5, BoostDuration=0.4, BoostCooldown=3.0</li>
+<li>e. Set values: MaxHP=100, MaxShield=50, ShieldRegenRate=10, ShieldRegenDelay=3.0</li>
+<li>f. Set values: PrimaryWeaponSlots=1, SecondaryWeaponSlots=1, ModuleSlots=2, CargoSlots=3</li>
+<li>g. Set values: JumpRange=2, ShipRadius=50</li>
+<li>h. Leave ShipMesh as nullptr for now (placeholder used)</li>
+<li>i. Save DataTable</li>
+</ul>
+<hr>
+<h2>2.2 Boost/Dash System</h2>
+<h3>2.2.1 Create UBoostComponent</h3>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/BoostComponent.h</code> inheriting <code>UActorComponent</code></li>
+<li>b. Add <code>UPROPERTY</code>: <code>float BoostSpeedMultiplier</code>, <code>float BoostDuration</code>, <code>float BoostCooldown</code></li>
+<li>c. Add <code>UPROPERTY</code>: <code>bool bIsBoosting</code>, <code>bool bIsOnCooldown</code></li>
+<li>d. Add private: <code>float BoostTimer</code>, <code>float CooldownTimer</code></li>
+<li>e. Add <code>UFUNCTION(BlueprintCallable)</code> for <code>ActivateBoost()</code> and <code>bool CanBoost()</code></li>
+<li>f. Add delegate: <code>FOnBoostStateChanged</code> — broadcasts start and end of boost for VFX/audio hooks</li>
+</ul>
+<h3>2.2.2 Implement boost activation</h3>
+<ul>
+<li>a. <code>ActivateBoost()</code> — check <code>CanBoost()</code> (not boosting, not on cooldown)</li>
+<li>b. Set <code>bIsBoosting = true</code>, <code>BoostTimer = BoostDuration</code></li>
+<li>c. Get owning pawn&#39;s movement component, multiply current velocity by <code>BoostSpeedMultiplier</code></li>
+<li>d. Temporarily increase movement component&#39;s <code>MaxSpeed</code> to <code>MaxSpeed × BoostSpeedMultiplier</code></li>
+<li>e. Broadcast <code>OnBoostStateChanged(true)</code> for VFX/audio listeners</li>
+<li>f. In player controller&#39;s <code>HandleBoost()</code>, call <code>BoostComponent-&gt;ActivateBoost()</code></li>
+</ul>
+<h3>2.2.3 Implement boost duration timer</h3>
+<ul>
+<li>a. In <code>TickComponent()</code>, if <code>bIsBoosting</code>: decrement <code>BoostTimer -= DeltaTime</code></li>
+<li>b. When <code>BoostTimer &lt;= 0</code>: set <code>bIsBoosting = false</code></li>
+<li>c. Restore movement component&#39;s <code>MaxSpeed</code> to normal value</li>
+<li>d. Start cooldown: set <code>bIsOnCooldown = true</code>, <code>CooldownTimer = BoostCooldown</code></li>
+<li>e. Broadcast <code>OnBoostStateChanged(false)</code></li>
+</ul>
+<h3>2.2.4 Implement boost cooldown</h3>
+<ul>
+<li>a. In <code>TickComponent()</code>, if <code>bIsOnCooldown</code>: decrement <code>CooldownTimer -= DeltaTime</code></li>
+<li>b. When <code>CooldownTimer &lt;= 0</code>: set <code>bIsOnCooldown = false</code></li>
+<li>c. <code>CanBoost()</code> returns <code>!bIsBoosting &amp;&amp; !bIsOnCooldown</code></li>
+<li>d. Expose <code>GetCooldownProgress()</code> → returns 0.0-1.0 for HUD display</li>
+<li>e. Load boost params from DataTable in <code>BeginPlay()</code> via owning pawn&#39;s hull data</li>
+</ul>
+<h3>2.2.5 Add boost VFX</h3>
+<ul>
+<li>a. Create Niagara System <code>NS_BoostTrail</code> in <code>Content/VFX/Ship/</code></li>
+<li>b. Emitter: continuous ribbon, emitting from <code>BoostTrail</code> socket</li>
+<li>c. Color: bright cyan-white core, fading to blue at edges</li>
+<li>d. Lifetime: particles live 0.3s, ribbon length ~200 units</li>
+<li>e. Scale: width increases during boost (thin idle trail → thick boost trail)</li>
+<li>f. On AShipPawn: spawn/activate Niagara component on <code>OnBoostStateChanged(true)</code></li>
+<li>g. On <code>OnBoostStateChanged(false)</code>: deactivate emitter (let existing particles fade)</li>
+</ul>
+<h3>2.2.6 Add boost audio</h3>
+<ul>
+<li>a. Create <code>USoundCue</code> <code>SC_BoostActivate</code> — short whoosh + engine rev layered</li>
+<li>b. Create <code>USoundCue</code> <code>SC_BoostEnd</code> — engine wind-down sound</li>
+<li>c. On <code>OnBoostStateChanged(true)</code>: play <code>SC_BoostActivate</code> at ship location</li>
+<li>d. On <code>OnBoostStateChanged(false)</code>: play <code>SC_BoostEnd</code> at ship location</li>
+<li>e. Set sound attenuation: audible within ~3000 units, falloff curve for co-op awareness</li>
+</ul>
+<h3>2.2.7 Add boost camera effect</h3>
+<ul>
+<li>a. In camera manager or camera actor, listen for <code>OnBoostStateChanged</code></li>
+<li>b. On boost start: lerp FOV from default to <code>default + 5°</code> over 0.1s</li>
+<li>c. On boost end: lerp FOV back to default over 0.3s (slower return feels better)</li>
+<li>d. Use <code>FMath::FInterpTo</code> for smooth FOV transition each tick</li>
+<li>e. Add slight motion blur post-process during boost (PostProcessSettings.MotionBlurAmount = 0.3)</li>
+<li>f. Reset motion blur on boost end</li>
+</ul>
+<hr>
+<h2>2.3 Camera System</h2>
+<h3>2.3.1 Create AShatteredCameraActor</h3>
+<ul>
+<li>a. Create <code>ShatteredShip/Public/ShatteredCameraActor.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>USpringArmComponent* SpringArm</code> — set length to ~2000, angle to -55° pitch</li>
+<li>c. Add <code>UCameraComponent* Camera</code> — attached to spring arm end</li>
+<li>d. Disable spring arm collision (no arm shrinking from obstacles in space)</li>
+<li>e. Set <code>bDoCollisionTest = false</code> on spring arm</li>
+<li>f. Spawn camera in GameMode&#39;s <code>HandleStartingNewPlayer()</code>, possess by player</li>
+<li>g. Alternative: use <code>APlayerCameraManager</code> override approach for cleaner integration</li>
+</ul>
+<h3>2.3.2 Set base camera parameters</h3>
+<ul>
+<li>a. Set spring arm length: 2000 units</li>
+<li>b. Set spring arm rotation: Pitch = -55°, Yaw = 0°, Roll = 0°</li>
+<li>c. Set camera FOV: 90° (adjustable in settings)</li>
+<li>d. Set camera aspect ratio: use viewport default (widescreen)</li>
+<li>e. Enable post-process on camera: set bloom intensity to 0.3, auto-exposure to manual</li>
+<li>f. Set fixed exposure level to 1.0 (space scenes need consistent lighting)</li>
+</ul>
+<h3>2.3.3 Implement smooth follow</h3>
+<ul>
+<li>a. In <code>Tick()</code>, get target position from possessed pawn (ship location)</li>
+<li>b. Calculate desired camera position: target position + spring arm offset</li>
+<li>c. Use <code>FMath::VInterpTo(CurrentPos, DesiredPos, DeltaTime, InterpSpeed)</code> with speed ~10</li>
+<li>d. Set camera actor location to interpolated position</li>
+<li>e. Result: camera follows ship with slight lag, feels cinematic without being sluggish</li>
+<li>f. Tune InterpSpeed: too high = snappy (bad), too low = laggy (bad), 8-12 is sweet spot</li>
+</ul>
+<h3>2.3.4 Implement look-ahead</h3>
+<ul>
+<li>a. Get aim direction from player controller: <code>(AimWorldPosition - ShipPosition).GetSafeNormal2D()</code></li>
+<li>b. Calculate offset: <code>AimDirection * LookAheadDistance</code> (default 200 units)</li>
+<li>c. Add offset to target position before smooth follow calculation</li>
+<li>d. Result: camera leads slightly in aim direction, showing more of what you&#39;re aiming at</li>
+<li>e. Tune: 150-250 units feels right. Too much = disorienting. Too little = no benefit.</li>
+<li>f. Add look-ahead interpolation so it doesn&#39;t snap when rapidly changing aim direction</li>
+</ul>
+<h3>2.3.5 Implement dynamic zoom-out on boost</h3>
+<ul>
+<li>a. Listen for <code>OnBoostStateChanged</code> from ship&#39;s boost component</li>
+<li>b. On boost start: target spring arm length = 2200 (from 2000)</li>
+<li>c. In <code>Tick()</code>: <code>SpringArm-&gt;TargetArmLength = FMath::FInterpTo(Current, Target, DT, 5.0f)</code></li>
+<li>d. On boost end: target arm length = 2000</li>
+<li>e. Return to normal is slightly slower (lerp speed 3.0 vs 5.0)</li>
+</ul>
+<h3>2.3.6 Add screen shake system</h3>
+<ul>
+<li>a. Create <code>UShatteredCameraShake</code> class inheriting <code>UCameraShakeBase</code></li>
+<li>b. Create preset instances: <code>ShakeWeaponFire</code> (tiny, 0.05s), <code>ShakeImpact</code> (small, 0.1s), <code>ShakeDeath</code> (large, 0.5s)</li>
+<li>c. Each shake defines: Duration, Amplitude (translation + rotation), Frequency</li>
+<li>d. Create <code>PlayShake(ShakePreset)</code> function callable from anywhere via player controller</li>
+<li>e. In <code>AShatteredPlayerController</code>, implement <code>ClientPlayCameraShake()</code> wrapper</li>
+<li>f. Test: verify shake is visible but not nauseating. Respect player accessibility settings.</li>
+</ul>
+<h3>2.3.7 Implement damage vignette</h3>
+<ul>
+<li>a. Create <code>UMaterialInterface</code> post-process material <code>M_DamageVignette</code></li>
+<li>b. Material: red tint at screen edges, intensity parameter (0-1)</li>
+<li>c. Add post-process material to camera&#39;s post-process settings</li>
+<li>d. Expose <code>float DamageVignetteIntensity</code> — set via Blueprint/code</li>
+<li>e. On damage event: set intensity to 0.5, lerp back to 0 over 0.3s</li>
+<li>f. On low HP (&lt;20%): pulse intensity between 0.1 and 0.3 at heartbeat rate (1Hz)</li>
+<li>g. On full HP: intensity = 0 (no vignette)</li>
+</ul>
+<hr>
+<h2>2.4 Primary Weapon (Pulse Cannon)</h2>
+<h3>2.4.1 Create AWeaponBase class</h3>
+<ul>
+<li>a. Create <code>ShatteredCombat/Public/WeaponBase.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>UPROPERTY</code>: <code>FName WeaponName</code>, stores DataTable row reference</li>
+<li>c. Add <code>UPROPERTY</code>: <code>USceneComponent* MuzzlePoint</code> — spawn point for projectiles</li>
+<li>d. Add state: <code>float FireTimer</code> (countdown between shots), <code>bool bIsFiring</code></li>
+<li>e. Add <code>UFUNCTION</code>: <code>StartFiring()</code>, <code>StopFiring()</code>, <code>Fire()</code> (single shot)</li>
+<li>f. Attach to owning ship&#39;s weapon socket on spawn (<code>AttachToComponent</code>)</li>
+<li>g. In <code>Tick()</code>: if <code>bIsFiring</code> and <code>FireTimer &lt;= 0</code>, call <code>Fire()</code>, reset timer to <code>1.0f / FireRate</code></li>
+<li>h. Decrement <code>FireTimer</code> every tick</li>
+</ul>
+<h3>2.4.2 Create AProjectileBase class</h3>
+<ul>
+<li>a. Create <code>ShatteredCombat/Public/ProjectileBase.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>UProjectileMovementComponent</code> — handles movement, speed, homing</li>
+<li>c. Add <code>USphereComponent* CollisionSphere</code> — small radius (10-20), overlap events</li>
+<li>d. Add <code>UStaticMeshComponent* ProjectileMesh</code> — optional visible mesh or use VFX only</li>
+<li>e. Add <code>UPROPERTY</code>: <code>float Damage</code>, <code>EShatteredDamageType DamageType</code>, <code>float Lifetime</code></li>
+<li>f. On <code>BeginOverlap</code> with enemy: apply damage to target&#39;s HealthComponent, then destroy self</li>
+<li>g. On <code>BeginOverlap</code> with environment: spawn impact VFX, destroy self</li>
+<li>h. Set lifetime: destroy self after <code>Lifetime</code> seconds if no hit (default 3.0s)</li>
+<li>i. Ignore collision with owning player (set ignore actor on spawn)</li>
+</ul>
+<h3>2.4.3 Implement Pulse Cannon</h3>
+<ul>
+<li>a. Create DataTable row <code>PulseCannon</code> in <code>DT_Weapons</code></li>
+<li>b. Values: Damage=25, FireRate=6.67 (0.15s interval), ProjectileSpeed=3000, Range=2000</li>
+<li>c. DamageType=Kinetic, ProjectilesPerShot=1, SpreadAngle=0, bIsBeam=false, bIsHoming=false</li>
+<li>d. Create Blueprint <code>BP_PulseCannon</code> child of AWeaponBase, set WeaponName = <code>PulseCannon</code></li>
+<li>e. Override <code>Fire()</code>: spawn <code>BP_PulseProjectile</code> at muzzle point, facing aim direction</li>
+<li>f. Set projectile initial speed and damage from DataTable values</li>
+</ul>
+<h3>2.4.4 Spawn projectiles from weapon socket</h3>
+<ul>
+<li>a. In <code>AWeaponBase::Fire()</code>, get muzzle point world location and rotation</li>
+<li>b. Calculate fire direction: from muzzle toward <code>AimWorldPosition</code> from player controller</li>
+<li>c. Spawn projectile: <code>GetWorld()-&gt;SpawnActor&lt;AProjectileBase&gt;(ProjectileClass, MuzzleTransform)</code></li>
+<li>d. Set projectile velocity: <code>FireDirection * ProjectileSpeed</code></li>
+<li>e. Set projectile damage and damage type from weapon data</li>
+<li>f. Set projectile instigator to owning player (for damage attribution in co-op)</li>
+</ul>
+<h3>2.4.5 Add muzzle flash VFX</h3>
+<ul>
+<li>a. Create Niagara System <code>NS_PulseCannon_MuzzleFlash</code> in <code>Content/VFX/Weapons/</code></li>
+<li>b. Emitter: burst, 8-12 particles, spread in cone from muzzle direction</li>
+<li>c. Color: bright orange center, fading to yellow at edges</li>
+<li>d. Lifetime: 0.05s — very fast, just a flash</li>
+<li>e. Scale: particles ~20-30 units radius</li>
+<li>f. In <code>AWeaponBase::Fire()</code>: spawn Niagara component at muzzle point, auto-destroy</li>
+</ul>
+<h3>2.4.6 Add projectile trail VFX</h3>
+<ul>
+<li>a. Create Niagara System <code>NS_PulseProjectile_Trail</code></li>
+<li>b. Emitter: ribbon trail, emitting from projectile center</li>
+<li>c. Color: orange with slight glow (emissive material)</li>
+<li>d. Width: 5-10 units, narrow streak</li>
+<li>e. Lifetime: 0.15s per ribbon segment</li>
+<li>f. Attach to projectile actor in <code>BeginPlay()</code>, auto-detach on destroy (trail fades)</li>
+</ul>
+<h3>2.4.7 Add screen shake on fire</h3>
+<ul>
+<li>a. Create <code>UShatteredCameraShake</code> preset <code>Shake_PulseFire</code></li>
+<li>b. Settings: Duration=0.05, Amplitude=0.5px translation, no rotation</li>
+<li>c. In <code>AWeaponBase::Fire()</code>, call <code>PlayerController-&gt;ClientPlayCameraShake(Shake_PulseFire)</code></li>
+<li>d. Shake is tiny — subliminal feedback, not disorienting</li>
+<li>e. Test: rapid-fire should create a subtle vibration feel, not jarring motion</li>
+</ul>
+<h3>2.4.8 Add fire audio</h3>
+<ul>
+<li>a. Create <code>USoundCue</code> <code>SC_PulseCannon_Fire</code> — short blaster sound</li>
+<li>b. Add 3-4 sound wave variations with random node for variety per shot</li>
+<li>c. Add pitch randomization: ±5% per shot to avoid machine-gun repetition</li>
+<li>d. Set volume: moderate (not ear-piercing during rapid fire)</li>
+<li>e. In <code>AWeaponBase::Fire()</code>: <code>UGameplayStatics::PlaySoundAtLocation(MuzzlePoint, FireSFX)</code></li>
+<li>f. Set attenuation: audible within 2000 units</li>
+</ul>
+<hr>
+<h2>2.5 Arena Environment</h2>
+<h3>2.5.1 Create AArenaVolume</h3>
+<ul>
+<li>a. Create <code>ShatteredWorld/Public/ArenaVolume.h</code> inheriting <code>AActor</code></li>
+<li>b. Add <code>UBoxComponent* Boundary</code> — large box defining playable area (10000×10000×2000)</li>
+<li>c. Set collision to <code>WorldStatic</code>, block all movement</li>
+<li>d. Make boundary invisible (no mesh, just collision)</li>
+<li>e. Add visible boundary indicator — faint grid lines or edge glow so player knows bounds</li>
+<li>f. Optional: create <code>OnActorReachedBoundary</code> event for UI warning</li>
+<li>g. Place in level, adjust size to desired arena dimensions</li>
+</ul>
+<h3>2.5.2 Create asteroid mesh set</h3>
+<ul>
+<li>a. Create or source 4 asteroid static meshes: <code>SM_Asteroid_Small</code>, <code>SM_Asteroid_Medium</code>, <code>SM_Asteroid_Large</code>, <code>SM_Asteroid_Flat</code></li>
+<li>b. Option A: use AI model generation (Meshy/Tripo) to create stylized rock shapes</li>
+<li>c. Option B: use UE5 modeling tools to create simple rock shapes from deformed cubes</li>
+<li>d. Create 2 material instances <code>MI_Asteroid_Dark</code> and <code>MI_Asteroid_Light</code> — grey/brown rocky</li>
+<li>e. Apply materials to meshes, set roughness high (0.8+), metallic low (0.1)</li>
+<li>f. Save to <code>Content/Meshes/Environment/Asteroids/</code></li>
+</ul>
+<h3>2.5.3 Spawn asteroids in arena</h3>
+<ul>
+<li>a. Create <code>AAsteroidSpawner</code> actor — placed in level or spawned by sector manager</li>
+<li>b. In <code>BeginPlay()</code>: spawn 20-30 asteroids at random positions within arena bounds</li>
+<li>c. Use random stream with seed for deterministic placement (same sector = same layout)</li>
+<li>d. Ensure minimum spacing between asteroids (~200 units) to avoid overlapping</li>
+<li>e. Randomize rotation per asteroid for visual variety</li>
+<li>f. Randomize scale per asteroid: 0.5× to 2.0× base size</li>
+<li>g. Keep center ~500 radius clear of asteroids for player spawn zone</li>
+</ul>
+<h3>2.5.4 Implement asteroid collision</h3>
+<ul>
+<li>a. On asteroid static mesh actor: set collision to <code>WorldStatic</code>, block <code>Pawn</code> channel</li>
+<li>b. On ship collision with asteroid: calculate bounce direction (reflect velocity off normal)</li>
+<li>c. Apply bounce: set ship velocity to reflected direction × 0.5 (lose half speed)</li>
+<li>d. Apply minor collision damage: call <code>HealthComponent-&gt;ApplyDamage(5, Kinetic)</code></li>
+<li>e. Play collision SFX: dull thud sound on impact</li>
+<li>f. Play collision VFX: small dust puff at contact point</li>
+</ul>
+<h3>2.5.5 Implement destructible asteroids</h3>
+<ul>
+<li>a. Add <code>UHealthComponent</code> to asteroids — Small: 30 HP, Medium: 60 HP, Large: 100 HP</li>
+<li>b. On asteroid <code>HealthComponent::OnDeath</code> event: destroy asteroid actor</li>
+<li>c. Before destroy: spawn 2-3 smaller asteroid fragments at random velocities from center</li>
+<li>d. Create fragment actors — small meshes with 0.3× scale, short lifetime (3s), no collision</li>
+<li>e. Fragments drift outward then fade out (lerp opacity to 0 over lifetime)</li>
+</ul>
+<h3>2.5.6 Add asteroid break VFX</h3>
+<ul>
+<li>a. Create Niagara System <code>NS_AsteroidBreak</code></li>
+<li>b. Emitter 1: rock chunks — 6-10 mesh particles (small cube/rock), burst outward, gravity pull down slightly</li>
+<li>c. Emitter 2: dust cloud — 20-30 sprite particles, brown/grey, expand and fade over 0.5s</li>
+<li>d. Emitter 3: mineral sparkles — 5-8 gold glowing particles, drift outward slowly</li>
+<li>e. Color reference: Astroneer-style clean, bright particle pops</li>
+<li>f. Spawn at asteroid location on death</li>
+</ul>
+<h3>2.5.7 Add mineral drop on asteroid break</h3>
+<ul>
+<li>a. On asteroid death: spawn <code>AMineralPickup</code> at asteroid location</li>
+<li>b. Small asteroid: spawn 1 pickup (5 Minerals), Medium: 2 pickups (10 total), Large: 3 pickups (15 total)</li>
+<li>c. Pickups scatter slightly from center with random velocity</li>
+<li>d. Mineral pickup has bob animation (slight up/down float, 0.5Hz)</li>
+<li>e. Gold glow emissive material on mineral mesh</li>
+</ul>
+<h3>2.5.8 Create space skybox</h3>
+<ul>
+<li>a. Create <code>UMaterialInterface</code> <code>M_SpaceSkybox</code> — cube map material for sky sphere</li>
+<li>b. Paint: dark blue-black base, scattered star points (procedural noise or star texture)</li>
+<li>c. Add distant nebula — soft colored cloud shapes (purple, blue, orange) at low opacity</li>
+<li>d. Inspiration: No Man&#39;s Sky cosmic backgrounds — vibrant but not overpowering</li>
+<li>e. Create <code>BP_SkySphere</code> — sphere mesh with skybox material, placed at origin, large scale</li>
+<li>f. Set as skybox in level — disable sky atmosphere if default one exists</li>
+<li>g. Add very slow rotation to skybox (0.1°/sec) for subtle parallax during gameplay</li>
+</ul>
+<hr>
+<h2>2.6 Basic HUD (M1)</h2>
+<h3>2.6.1 Create UShatteredHUD base widget</h3>
+<ul>
+<li>a. Create <code>ShatteredUI/Public/ShatteredHUD.h</code> inheriting <code>UUserWidget</code></li>
+<li>b. Create Widget Blueprint <code>WBP_ShatteredHUD</code> in <code>Content/UI/</code></li>
+<li>c. Add <code>UCanvasPanel</code> as root — fills entire screen</li>
+<li>d. Create anchored regions: Top-Left (HP), Top-Right (minimap), Bottom-Left (currencies), Bottom-Right (weapons)</li>
+<li>e. Set <code>WBP_ShatteredHUD</code> as default HUD widget in GameMode or PlayerController</li>
+<li>f. In <code>AShatteredPlayerController::BeginPlay()</code>: create widget, add to viewport</li>
+</ul>
+<h3>2.6.2 Add HP bar</h3>
+<ul>
+<li>a. Create <code>UProgressBar* HPBar</code> in top-left region of canvas</li>
+<li>b. Anchor: top-left, offset (20, 20), size (200, 20)</li>
+<li>c. Style: fill color gradient from green (100%) → yellow (50%) → red (&lt; 25%)</li>
+<li>d. Create <code>UTextBlock* HPText</code> overlay: &quot;85 / 100&quot; format</li>
+<li>e. Bind to <code>HealthComponent-&gt;CurrentHP / MaxHP</code> — update every tick or on change event</li>
+<li>f. Add smooth bar drain: when HP drops, bar lerps to new value over 0.2s (feels impactful)</li>
+</ul>
+<h3>2.6.3 Add boost cooldown indicator</h3>
+<ul>
+<li>a. Create <code>UImage* BoostCooldownArc</code> — circular arc widget near ship position (screen-space or world-space)</li>
+<li>b. Or: create arc in Niagara/material as world-space indicator below ship</li>
+<li>c. Material approach: circular progress ring material, parameter 0-1 for fill</li>
+<li>d. Bind to <code>BoostComponent-&gt;GetCooldownProgress()</code></li>
+<li>e. When boost available: ring is full and bright. When on cooldown: ring fills gradually.</li>
+<li>f. Flash/pulse when boost becomes available again</li>
+</ul>
+<h3>2.6.4 Add mineral counter</h3>
+<ul>
+<li>a. Create <code>UHorizontalBox</code> in bottom-left region</li>
+<li>b. Add <code>UImage</code> for mineral icon — small gold crystal sprite</li>
+<li>c. Add <code>UTextBlock* MineralCount</code> — displays integer, right-aligned</li>
+<li>d. Bind to player state&#39;s <code>Minerals</code> count</li>
+<li>e. Style: gold text color, clean sans-serif font</li>
+</ul>
+<h3>2.6.5 Implement mineral pickup</h3>
+<ul>
+<li>a. On <code>AMineralPickup::OnOverlap</code> with ship: destroy pickup, increment player minerals</li>
+<li>b. In PlayerState: <code>AddMinerals(int32 Amount)</code> — increments counter, fires event</li>
+<li>c. HUD listens for <code>OnMineralsChanged</code> event — update text</li>
+<li>d. Add pop animation on counter: scale up to 1.2× then back to 1.0× over 0.15s</li>
+<li>e. Play pickup SFX: satisfying &quot;ding&quot; sound, slight pitch increase for rapid pickups</li>
+<li>f. Spawn gold particle trail from pickup position toward HUD counter (cosmetic, optional)</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

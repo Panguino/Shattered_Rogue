@@ -30,8 +30,8 @@ Arena → Victory or Defeat → Main Menu
 | Agent | Official **Unreal MCP** in Cursor (`GenerateClientConfig`) |
 | Rendering | Forward+, DX12, **60 FPS** cap |
 | Input | Enhanced Input — Avorion-style mouse steering; W/S thrust, A/D strafe, Space/C vertical, Q/E roll, Shift boost, X brake |
-| Movement | Full **6DOF** inertial flight — separate forward/lateral/vertical thrust, gradual ship alignment, low passive damping, hard brake |
-| Camera | Third-person chase default; **F1** toggles first-person; camera aims freely and the ship rotates toward its heading |
+| Movement | Full **6DOF** inertial flight — forward thrust dominates, reverse/strafe capped near 120–150 vs 800 forward, gradual ship alignment, passive damping, hard brake |
+| Camera | Third-person chase default, raised so the hull sits below the crosshair and banks with the roll; **F1** toggles first-person; camera aims freely and the ship rotates toward its heading |
 | Net | **Solo only.** Still split `Pawn` / `PlayerController` / `GameMode` / `GameState` / `GameInstance` so a later listen-server is not a rewrite |
 | UE project | Sibling folder **`C:\Projects\_personal\Shattered\ShatteredRogue`** — this repo stays design / wiki / art |
 | Death FX | Hide mesh + burst particles. Do not explode a split GLB |
@@ -61,11 +61,12 @@ Do not switch to Unity or Godot. See [research/engine_mcp_ai_integration.md](res
 
 **Victory / Defeat:** title, time survived or waves cleared, **Back to Menu**.
 
-**F8 debug overlay** (dev only, not fantasy UI): live sliders bound to the pawn/weapon/enemy:
+**F8 debug overlay** (dev only, not fantasy UI): live sliders bound to the pawn/weapon/enemy. Play-In-Editor steals F8 for eject-from-pawn, so **`\` opens the same panel** and is the key to use inside the editor.
 
-- Max speed, acceleration, drag
+- Max speed, forward acceleration, inertial damping
+- Strafe cap, reverse cap, roll speed, camera height
 - Fire rate, projectile speed
-- Enemy HP multiplier
+- Environment seed, apply/new seed (rebuilds sun, planets, dust, asteroids immediately)
 
 Defaults match Interceptor numbers in the controls doc. Changing a slider applies immediately.
 
@@ -112,7 +113,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 13. `AShatteredPawn`: full 6DOF inertial velocity, thruster-limited alignment to camera heading, Interceptor 800 cruise speed, boost burst.
 14. Third-person chase camera with lag and boost pullback; F1 first-person toggle.
 15. One `APulseProjectile`; fire rate on the pawn; no inventory, no rarity.
-16. Arena: bounded 3D volume, 15–30 sphere asteroids distributed vertically with simple collision (bounce + optional chip damage).
+16. Arena: bounded 3D volume, **seeded** 18–34 colliding asteroids (spawn/ingress keep-out), space sky + sun + 0–3 planets. See [design/18_procedural_environments.md](design/18_procedural_environments.md).
 17. Player HP bar on HUD (number is enough). Pause works in-raid.
 
 ### Step 4 — Pirate Raid
@@ -124,7 +125,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 
 ### Step 5 — Tune and juice
 
-22. ~~F8 widget sliders → pawn movement + weapon + enemy HP multiplier.~~ Done: max speed, forward acceleration, inertial damping, fire rate, projectile speed, enemy HP multiplier.
+22. ~~F8 widget sliders → pawn movement + weapon + enemy HP multiplier.~~ Done: max speed, forward acceleration, inertial damping, strafe cap, reverse cap, roll speed, camera height, fire rate, projectile speed, enemy HP multiplier, **environment seed**. Opens on **F8 or `\`** (PIE eats F8).
 23. ~~Minimal juice: muzzle flash, hit spark, camera shake, flagship death burst.~~ Done: muzzle light per shot, impact burst at hit point, camera kick on fire and on damage taken, scaled death burst (bigger for the flagship).
 24. Playtest pass: adjust defaults from F8, write the chosen numbers back into C++ defaults.
 
@@ -134,7 +135,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 
 ## 6. Out of scope (POC)
 
-4-player, Steam sessions, Hub / Outer Rim, hex galaxy, 30 named ships, modules, specialty pads, Heat, stations, cargo hold, Research Data, events other than this raid, Carrier drones, Chaos mesh fracture.
+4-player, Steam sessions, Hub / Outer Rim, hex galaxy, 30 named ships, modules, specialty pads, Heat, stations, cargo hold, Research Data, events other than this raid, Carrier drones, Chaos mesh fracture, **combat-envelope / anti-kiting AI** ([design/17_anti_kiting_combat.md](design/17_anti_kiting_combat.md)).
 
 Those stay in the [archived roadmap](archive/full-game-roadmap-2026-08/) and [design/](design/) until this loop is fun.
 

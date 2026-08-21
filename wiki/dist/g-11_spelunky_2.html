@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spelunky 2 · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="active" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Spelunky 2 (2020) — Mossmouth (Derek Yu)</h1>
+<blockquote>
+<p><strong>Genre:</strong> Platformer Roguelike | <strong>Perspective:</strong> 2D Side-scrolling | <strong>Players:</strong> 1–4 Local + Online | <strong>Steam Rating:</strong> 92% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Explore procedurally generated caves, collect treasure, avoid traps, and survive. Pure skill-based roguelike — no meta-progression. Every pixel is dangerous, and the game&#39;s systemic interactions create emergent chaos.</p>
+<h2>👤 Characters (20+)</h2>
+<p>Character choice is mostly cosmetic with minor starting item differences:</p>
+<ul>
+<li><strong>Ana Spelunky</strong> — Default, balanced</li>
+<li><strong>Margaret Tunnel</strong> — Alt start</li>
+<li><strong>Colin Northward</strong> — Alt start</li>
+<li><ul>
+<li>17 more unlockable characters</li>
+</ul>
+</li>
+<li><strong>Secret characters</strong> — Found through hidden means</li>
+</ul>
+<h2>🔫 Combat &amp; Tools</h2>
+<h3>Weapons</h3>
+<table>
+<thead>
+<tr>
+<th>Weapon</th>
+<th>How to Get</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Whip</strong></td>
+<td>Default</td>
+<td>Melee attack, destroys pots, triggers arrows</td>
+</tr>
+<tr>
+<td><strong>Shotgun</strong></td>
+<td>Shopkeeper/drop</td>
+<td>Powerful ranged, knockback on player</td>
+</tr>
+<tr>
+<td><strong>Freeze Ray</strong></td>
+<td>Shop/drop</td>
+<td>Freezes enemies (then throw/stomp)</td>
+</tr>
+<tr>
+<td><strong>Crossbow</strong></td>
+<td>Shop/drop</td>
+<td>Long-range single shot</td>
+</tr>
+<tr>
+<td><strong>Boomerang</strong></td>
+<td>Shop/drop</td>
+<td>Returns after throw</td>
+</tr>
+<tr>
+<td><strong>Machete</strong></td>
+<td>Shop/drop</td>
+<td>Short-range melee</td>
+</tr>
+<tr>
+<td><strong>Mattock</strong></td>
+<td>Shop/pickup</td>
+<td>Mines through terrain</td>
+</tr>
+<tr>
+<td><strong>Teleporter</strong></td>
+<td>Shop/pickup</td>
+<td>Random teleport (DANGEROUS)</td>
+</tr>
+<tr>
+<td><strong>Plasma Cannon</strong></td>
+<td>Rare drop</td>
+<td>Massive explosion (destroys terrain)</td>
+</tr>
+</tbody></table>
+<h3>Tools &amp; Items</h3>
+<ul>
+<li><strong>Ropes</strong> — Vertical traversal (limited supply)</li>
+<li><strong>Bombs</strong> — Terrain destruction, enemy damage (limited supply)</li>
+<li><strong>Paste</strong> — Bombs stick to surfaces</li>
+<li><strong>Climbing Gloves</strong> — Stick to walls</li>
+<li><strong>Spring Shoes</strong> — Higher jump</li>
+<li><strong>Spike Shoes</strong> — Stomp kills enemies</li>
+<li><strong>Jetpack / Hoverpack</strong> — Flight (game-changers)</li>
+<li><strong>Cape</strong> — Slow fall + glide</li>
+</ul>
+<h2>🧩 Systemic Interactions (Core Innovation)</h2>
+<p>The magic of Spelunky is in its systems interacting:</p>
+<ul>
+<li>Drop a torch → Oil on ground ignites → Fire spreads → Destroys shop → Shopkeeper attacks</li>
+<li>Whip an arrow trap → Arrow fires → Hits enemy → Enemy drops item → Item triggers another trap</li>
+<li>Use bomb near water → Water flows → Drowns enemies → Fills lava</li>
+<li>Throw a dead body at a mine → Mine explodes → Creates new path</li>
+</ul>
+<h2>🗺️ World Structure</h2>
+<pre><code>Dwelling (1-1 to 1-4) →
+  ├─ Jungle (2-1 to 2-4) → Olmec (boss)
+  └─ Volcana (2-1 to 2-4) → Olmec (boss)
+→ Tide Pool / Temple of Anubis (3-1 to 3-4) →
+→ Ice Caves (4-1 to 4-4) →
+→ Neo Babylon (5-1 to 5-4) → Tiamat (boss)
+  └─ Sunken City (6-1 to 6-4) → Hundun (7-1)
+     └─ Cosmic Ocean (7-1 to 7-99, &quot;endless&quot; loop)
+</code></pre>
+<ul>
+<li>Secret areas: Black Market, Duat, Abzu, Eggplant World, City of Gold</li>
+</ul>
+<h2>📈 Progression — Pure Skill</h2>
+<h3>In-Run</h3>
+<ul>
+<li>Bombs, ropes, items from shops/crates</li>
+<li>Gold for shop purchases</li>
+<li>Companion NPCs (hire from coffins/shops)</li>
+<li>Mount animals (turkeys, axolotls)</li>
+</ul>
+<h3>Meta-Progression: <strong>NONE</strong></h3>
+<ul>
+<li>No permanent upgrades</li>
+<li>No unlockable power</li>
+<li>Shortcuts can be built (skip worlds) but with worse loadout</li>
+<li>Knowledge and skill ARE the progression</li>
+<li>This is the original roguelike philosophy</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Systemic Emergent Gameplay</strong> — Every element interacts; chaos emerges from simple rules</li>
+<li><strong>No Meta-Progression</strong> — Pure skill mastery; knowledge is power</li>
+<li><strong>&quot;Authored Randomness&quot;</strong> — Templates + rules create levels that feel designed despite being procedural</li>
+<li><strong>shopkeeper AI</strong> — Aggressive NPC that hunts you across floors if angered</li>
+<li><strong>Cosmic Ocean</strong> — Near-infinite looping endgame (7-1 to 7-99)</li>
+<li><strong>Community Mysteries</strong> — Hidden paths and secrets took months for the community to discover</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;Every death teaches you something — true skill mastery&quot;</li>
+<li>&quot;The systemic interactions create stories no developer could script&quot;</li>
+<li>&quot;Fair difficulty — when you die, it&#39;s always your fault&quot;</li>
+<li>&quot;The secrets run impossibly deep — community still discovering things&quot;</li>
+<li>&quot;Multiplayer is pure hilarity — accidental friendly fire everywhere&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Characters:</strong> 20+</li>
+<li><strong>Areas:</strong> 7+ biomes</li>
+<li><strong>Items:</strong> 50+</li>
+<li><strong>Average run:</strong> 15–30 minutes</li>
+<li><strong>Metacritic:</strong> 91/100 (PS4)</li>
+<li><strong>Design philosophy:</strong> Knowledge = progression</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

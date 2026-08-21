@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dead Cells · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="active" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>Dead Cells (2018) — Motion Twin</h1>
+<blockquote>
+<p><strong>Genre:</strong> Metroidvania Roguelite | <strong>Perspective:</strong> 2D Side-scrolling | <strong>Players:</strong> Solo | <strong>Steam Rating:</strong> 95% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>A failed alchemist&#39;s soul inhabits headless bodies in an ever-changing castle. Fast-paced 2D combat with roguelite permadeath and Metroidvania-style permanent ability gates between runs.</p>
+<h2>🔫 Weapon System</h2>
+<h3>Weapon Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Slot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Melee</strong></td>
+<td>Broadsword, Rapier, Twin Daggers, Shovel, Scythe</td>
+<td>Main hand</td>
+</tr>
+<tr>
+<td><strong>Ranged</strong></td>
+<td>Bow, Throwing Knife, Fire Brands, Hokuto&#39;s Bow</td>
+<td>Main hand</td>
+</tr>
+<tr>
+<td><strong>Shields</strong></td>
+<td>Infantry Shield, Rampart, Cudgel</td>
+<td>Main hand (parry)</td>
+</tr>
+<tr>
+<td><strong>Skills/Traps</strong></td>
+<td>Sinew Slicer, Wolf Trap, Turrets, Grenades</td>
+<td>Skill slots (2)</td>
+</tr>
+</tbody></table>
+<h3>Weapon Affixes</h3>
+<p>Every weapon rolls with random affixes:</p>
+<ul>
+<li><strong>&quot;+100% damage to poisoned enemies&quot;</strong></li>
+<li><strong>&quot;Shoots an arrow on critical hit&quot;</strong></li>
+<li><strong>&quot;Spreads oil on the ground&quot;</strong></li>
+<li>These create emergent synergy — poison weapon + &quot;+100% to poisoned&quot; = devastating</li>
+</ul>
+<h3>Stat Scaling (Scrolls)</h3>
+<p>Weapons scale with one of three stats:</p>
+<ul>
+<li><strong>Brutality (Red)</strong> — Melee damage, HP</li>
+<li><strong>Tactics (Purple)</strong> — Ranged/trap damage, HP</li>
+<li><strong>Survival (Green)</strong> — Shield/slow weapons, most HP</li>
+</ul>
+<p>Scrolls found in levels let you invest in stats, encouraging build commitment.</p>
+<h2>🗺️ Biome Structure (Branching Paths)</h2>
+<pre><code>Prisoners&#39; Quarters →
+  ├─ Promenade of the Condemned → Ramparts → Black Bridge (boss)
+  ├─ Toxic Sewers → Ancient Sewers → Corrupted Confinement (boss)
+  └─ Dilapidated Arches → ...
+→ Stilt Village / Clock Tower / Forgotten Sepulcher →
+→ Clock Room (boss) → High Peak Castle → Throne Room (final boss)
+  └─ + Multiple DLC paths and bosses
+</code></pre>
+<h2>📈 Progression Systems</h2>
+<h3>In-Run</h3>
+<ul>
+<li><strong>Weapons &amp; Skills</strong> — Found in levels, shops, cursed chests</li>
+<li><strong>Scrolls</strong> — Stat investment (Brutality/Tactics/Survival)</li>
+<li><strong>Mutations</strong> — 3 slots for passive perks (chosen between biomes)</li>
+<li><strong>Gold</strong> — Shops, doors, food</li>
+</ul>
+<h3>Meta-Progression</h3>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Currency</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Blueprint Unlocks</strong></td>
+<td>Cells</td>
+<td>Permanently add weapons/mutations to item pool</td>
+</tr>
+<tr>
+<td><strong>Flask Upgrades</strong></td>
+<td>Cells</td>
+<td>More healing charges between biomes</td>
+</tr>
+<tr>
+<td><strong>Gold Reserves</strong></td>
+<td>Cells</td>
+<td>Keep gold percentage between runs</td>
+</tr>
+<tr>
+<td><strong>Forge</strong></td>
+<td>Cells</td>
+<td>Improve starting weapon quality (+ to ++)</td>
+</tr>
+<tr>
+<td><strong>Runes</strong></td>
+<td>Boss kills</td>
+<td>Permanent traversal abilities (vine climb, teleport, etc.)</td>
+</tr>
+</tbody></table>
+<h3>Boss Cells (Difficulty)</h3>
+<ul>
+<li>0BC → 5BC difficulty levels</li>
+<li>Each adds: tougher enemies, fewer healing, new biomes, new bosses</li>
+<li>5BC is the &quot;true&quot; ending difficulty</li>
+</ul>
+<h2>💡 Key Combat Mechanics</h2>
+<ul>
+<li><strong>Rally System</strong> — After taking damage, quickly deal damage to recover lost HP (orange health)</li>
+<li><strong>Parry</strong> — Shields can parry for massive counter-damage and stun</li>
+<li><strong>Dodge Roll</strong> — i-frames, but limited</li>
+<li><strong>Speed Bonus Doors</strong> — Timed doors reward fast play with bonus items/cells</li>
+<li><strong>Cursed Chests</strong> — Free item, but next 10 kills = instant death if hit</li>
+</ul>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Rally/Recovery System</strong> — Regain recently lost HP by attacking aggressively</li>
+<li><strong>Metroidvania Gates</strong> — Permanent rune abilities (vine, teleport, ram) open new paths in future runs</li>
+<li><strong>Stat-Affixed Weapons</strong> — Random affixes create emergent build synergies</li>
+<li><strong>Score Scaling (Brutality/Tactics/Survival)</strong> — Choose a build path each run</li>
+<li><strong>Speed Incentives</strong> — Timed doors reward aggressive play without forcing it</li>
+<li><strong>&quot;No Sequel, Just Updates&quot;</strong> — 5+ years of free + DLC content post-launch</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;The combat FEEL — snappy, responsive, every hit has weight&quot;</li>
+<li>&quot;Rally system rewards aggression and makes fights exciting&quot;</li>
+<li>&quot;Branching paths mean dozens of runs before you see everything&quot;</li>
+<li>&quot;The animation quality is some of the best in 2D gaming&quot;</li>
+<li>&quot;Constant free updates kept the game fresh for years&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Weapons/Skills:</strong> 50+</li>
+<li><strong>Mutations:</strong> 50+</li>
+<li><strong>Biomes:</strong> 20+</li>
+<li><strong>Boss Cells:</strong> 0–5 difficulty</li>
+<li><strong>Average run:</strong> 30–60 minutes</li>
+<li><strong>DLCs:</strong> The Bad Seed, Fatal Falls, Queen and the Sea, Return to Castlevania</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>

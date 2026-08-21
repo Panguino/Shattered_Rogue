@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binding of Isaac · Shattered Rogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/wiki.css" />
+</head>
+<body>
+  <button class="menu-btn" id="menu-btn" type="button">Menu</button>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <div class="brand-mark"><span></span></div>
+        <div>
+          <h1>Shattered<br/>Rogue</h1>
+          <small>Outer Rim Wiki</small>
+        </div>
+      </a>
+      <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
+      <nav class="nav"><details class="nav-group"><summary>Start</summary><a class="" href="index.html">Command Deck</a>
+<a class="" href="ships.html">Ship Matrix</a>
+<a class="" href="poc.html">POC Plan</a>
+<a class="" href="plan.html">Catalog</a>
+<a class="" href="readme.html">README</a></details>
+<details class="nav-group"><summary>Design</summary><a class="" href="d01.html">01 · Game Vision</a>
+<a class="" href="d02.html">02 · Core Mechanics</a>
+<a class="" href="d03.html">03 · Weapons &amp; Upgrades</a>
+<a class="" href="d04.html">04 · Meta-Progression</a>
+<a class="" href="d05.html">05 · Event Encounters</a>
+<a class="" href="d06.html">06 · Enemy Catalog</a>
+<a class="" href="d07.html">07 · Stations</a>
+<a class="" href="d08.html">08 · Hub UI</a>
+<a class="" href="d09.html">09 · Audio</a>
+<a class="" href="d10.html">10 · Carrier Drones</a>
+<a class="" href="d11.html">11 · Difficulty &amp; Heat</a>
+<a class="" href="d12.html">12 · Combat &amp; Co-op</a>
+<a class="" href="d13.html">13 · Stats &amp; Boards</a>
+<a class="" href="d14.html">14 · Lore</a>
+<a class="" href="d15.html">15 · Controls &amp; Camera</a>
+<a class="" href="d16.html">16 · UI HUD VFX</a></details>
+<details class="nav-group"><summary>Art</summary><a class="" href="art-prompts.html">Ship Prompts (Markdown)</a></details>
+<details class="nav-group"><summary>Technical</summary><a class="" href="toolchain.html">AI Toolchain</a>
+<a class="" href="arch.html">Architecture</a></details>
+<details class="nav-group"><summary>Archived roadmap</summary><a class="" href="archive.html">Archive index</a>
+<a class="" href="plan-full.html">Archived full plan</a>
+<a class="" href="scope.html">Archived prototype scope</a>
+<a class="" href="impl.html">Archived implementation</a>
+<a class="" href="p0102.html">Phase 1–2 Foundation</a>
+<a class="" href="p03.html">Phase 3 Combat</a>
+<a class="" href="p04.html">Phase 4 Run Structure</a>
+<a class="" href="p0506.html">Phase 5–6 Progression</a>
+<a class="" href="p0710.html">Phase 7–10 Content</a>
+<a class="" href="p1114.html">Phase 11–14 Systems</a>
+<a class="" href="p1518.html">Phase 15–18 Polish</a></details>
+<details class="nav-group"><summary>Research</summary><a class="" href="r-engine.html">Engine MCP Research</a>
+<a class="" href="r-genre.html">Roguelike Genre Research</a></details>
+<details class="nav-group" open><summary>Game Studies</summary><a class="" href="g-01_hades.html">Hades</a>
+<a class="" href="g-02_hades_ii.html">Hades II</a>
+<a class="" href="g-03_slay_the_spire.html">Slay the Spire</a>
+<a class="active" href="g-04_binding_of_isaac.html">Binding of Isaac</a>
+<a class="" href="g-05_risk_of_rain_2.html">Risk of Rain 2</a>
+<a class="" href="g-06_dead_cells.html">Dead Cells</a>
+<a class="" href="g-07_crab_champions.html">Crab Champions</a>
+<a class="" href="g-08_returnal.html">Returnal</a>
+<a class="" href="g-09_enter_the_gungeon.html">Enter the Gungeon</a>
+<a class="" href="g-10_vampire_survivors.html">Vampire Survivors</a>
+<a class="" href="g-11_spelunky_2.html">Spelunky 2</a>
+<a class="" href="g-12_ftl.html">FTL</a>
+<a class="" href="g-13_noita.html">Noita</a>
+<a class="" href="g-14_rogue_legacy_2.html">Rogue Legacy 2</a>
+<a class="" href="g-15_gunfire_reborn.html">Gunfire Reborn</a>
+<a class="" href="g-16_megabonk.html">Megabonk</a>
+<a class="" href="g-17_nuclear_throne.html">Nuclear Throne</a>
+<a class="" href="g-18_balatro.html">Balatro</a>
+<a class="" href="g-19_into_the_breach.html">Into the Breach</a>
+<a class="" href="g-20_crypt_of_the_necrodancer.html">Crypt of the NecroDancer</a>
+<a class="" href="g-s1_void_bastards.html">Void Bastards</a>
+<a class="" href="g-s2_nova_drift.html">Nova Drift</a>
+<a class="" href="g-s3_drg_survivor.html">DRG: Survivor</a>
+<a class="" href="g-s4_everspace.html">Everspace</a></details></nav>
+    </aside>
+    <main class="content"><article class="doc"><h1>The Binding of Isaac: Rebirth (2014) — Edmund McMillen / Nicalis</h1>
+<blockquote>
+<p><strong>Genre:</strong> Twin-stick Action Roguelike | <strong>Perspective:</strong> Top-down 2D | <strong>Players:</strong> 1–4 Local Co-op | <strong>Steam Rating:</strong> 97% Positive</p>
+</blockquote>
+<h2>🎮 Core Concept</h2>
+<p>Isaac (and many unlockable characters) descend through procedurally generated basement floors fighting grotesque enemies with tears as projectiles. Massive item pool creates wildly different builds every run.</p>
+<h2>👤 Characters (35+ playable)</h2>
+<p>Each has unique starting stats, items, and gimmicks:</p>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Gimmick</th>
+<th>Starting Item</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Isaac</strong></td>
+<td>Balanced starter</td>
+<td>The D6 (reroll items)</td>
+</tr>
+<tr>
+<td><strong>Magdalene</strong></td>
+<td>High HP, slow speed</td>
+<td>Yum Heart</td>
+</tr>
+<tr>
+<td><strong>Cain</strong></td>
+<td>Lucky, low HP</td>
+<td>Lucky Foot</td>
+</tr>
+<tr>
+<td><strong>Judas</strong></td>
+<td>High damage, 1 HP</td>
+<td>Book of Belial</td>
+</tr>
+<tr>
+<td><strong>Azazel</strong></td>
+<td>Mini Brimstone, flight</td>
+<td>Short-range beam</td>
+</tr>
+<tr>
+<td><strong>The Lost</strong></td>
+<td>Cannot take hits, spectral tears</td>
+<td>Holy Mantle (1 free hit)</td>
+</tr>
+<tr>
+<td><strong>Keeper</strong></td>
+<td>Coins as HP, triple shot</td>
+<td>Wooden Nickel</td>
+</tr>
+<tr>
+<td><strong>Tainted chars</strong></td>
+<td>17 alternate versions with radical changes</td>
+<td>Varies wildly</td>
+</tr>
+<tr>
+<td>+ 25 more...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2>🔫 Combat System — Tears &amp; Items</h2>
+<h3>Tear Modifiers (Projectile Types)</h3>
+<p>The core innovation — items visually and mechanically transform your tears:</p>
+<ul>
+<li><strong>Brimstone</strong> — Laser beam replaces tears</li>
+<li><strong>Mom&#39;s Knife</strong> — Thrown knife replaces tears</li>
+<li><strong>Technology</strong> — Laser replaces tears</li>
+<li><strong>Ipecac</strong> — Explosive arcing shots</li>
+<li><strong>Ludovico Technique</strong> — Single controllable tear</li>
+<li><strong>Tiny Planet</strong> — Tears orbit Isaac</li>
+<li><strong>My Reflection</strong> — Boomerang tears</li>
+<li><strong>Anti-Gravity</strong> — Tears hang in air, then fire</li>
+</ul>
+<h3>Item Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Passive Items</strong></td>
+<td>500+</td>
+<td>Permanent stat/ability changes</td>
+</tr>
+<tr>
+<td><strong>Active Items</strong></td>
+<td>150+</td>
+<td>Rechargeable abilities (1 at a time)</td>
+</tr>
+<tr>
+<td><strong>Trinkets</strong></td>
+<td>120+</td>
+<td>Subtle passive effects (1–2 at a time)</td>
+</tr>
+<tr>
+<td><strong>Pills</strong></td>
+<td>13 types</td>
+<td>Random positive/negative effects</td>
+</tr>
+<tr>
+<td><strong>Cards/Runes</strong></td>
+<td>50+</td>
+<td>Single-use consumable powers</td>
+</tr>
+<tr>
+<td><strong>Total Items:</strong></td>
+<td><strong>700+</strong></td>
+<td>With Repentance DLC</td>
+</tr>
+</tbody></table>
+<h3>Synergy System</h3>
+<ul>
+<li>Items combine visually AND mechanically</li>
+<li>Example: Brimstone + Tammy&#39;s Head = room-clearing burst of beams</li>
+<li>Example: Ipecac + My Reflection = homing explosives</li>
+<li>Some combos are intentionally &quot;broken&quot; — this is the appeal</li>
+</ul>
+<h2>📈 Progression Systems</h2>
+<h3>In-Run</h3>
+<ul>
+<li><strong>Items</strong> — Found in treasure rooms, shops, boss drops, secret rooms, angel/devil deals</li>
+<li><strong>Stat ups</strong> — Speed, damage, tears (fire rate), range, shot speed, luck</li>
+<li><strong>Consumables</strong> — Bombs, keys, coins, hearts, pills, cards</li>
+</ul>
+<h3>Meta-Progression</h3>
+<ul>
+<li><strong>Character unlocks</strong> — Beat specific challenges/bosses to unlock new characters</li>
+<li><strong>Item pool unlocks</strong> — Achievements add new items to the pool (400+ achievements)</li>
+<li><strong>Challenge runs</strong> — 45 curated challenge scenarios</li>
+<li><strong>Completion marks</strong> — Beat every final boss with every character for 100%</li>
+<li><strong>Tainted characters</strong> — Alternate versions with radical changes (17 tainted variants)</li>
+</ul>
+<h2>🗺️ Floor Structure</h2>
+<pre><code>Basement I → Basement II → Caves I → Caves II → Depths I → Depths II →
+  ├─ Cathedral → Isaac (boss) → ??? → Chest
+  ├─ Sheol → Satan → Dark Room
+  ├─ Mega Satan
+  ├─ Hush (timed boss)
+  ├─ Delirium (void)
+  ├─ Mother (Repentance)
+  └─ The Beast (Repentance final)
+</code></pre>
+<p>Multiple final bosses / endings — 10+ different completion paths</p>
+<h2>🌟 Key Innovations</h2>
+<ol>
+<li><strong>Massive Item Pool</strong> — 700+ items with visual transformation = infinite build variety</li>
+<li><strong>Grotesque Art as Identity</strong> — Unique, polarizing style that became iconic</li>
+<li><strong>&quot;Broken Combos&quot; as Feature</strong> — Intentionally allows game-breaking synergies</li>
+<li><strong>Multiple Final Bosses</strong> — 7+ different endings/final bosses per character</li>
+<li><strong>Tainted Characters</strong> — 17 alt-versions that radically change gameplay</li>
+<li><strong>Knowledge as Power</strong> — Learning item effects, synergies, and secret rooms IS the progression</li>
+<li><strong>Secret Rooms</strong> — Bombing walls, using specific items — hidden content everywhere</li>
+</ol>
+<h2>❤️ What Players Love</h2>
+<ul>
+<li>&quot;Every run is a completely different game&quot;</li>
+<li>&quot;Finding a broken combo is the most satisfying feeling in gaming&quot;</li>
+<li>&quot;1000+ hours and I still discover new synergies&quot;</li>
+<li>&quot;The amount of content with Repentance is staggering&quot;</li>
+<li>&quot;Simple to learn, infinite to master&quot;</li>
+</ul>
+<h2>📊 Key Stats</h2>
+<ul>
+<li><strong>Items:</strong> 700+</li>
+<li><strong>Characters:</strong> 35+</li>
+<li><strong>Bosses:</strong> 100+</li>
+<li><strong>Enemy types:</strong> 100+</li>
+<li><strong>Achievements:</strong> 400+</li>
+<li><strong>Average run:</strong> 30–45 minutes</li>
+<li><strong>DLCs:</strong> Afterbirth, Afterbirth+, Repentance</li>
+</ul>
+</article></main>
+  </div>
+  <script src="assets/wiki.js"></script>
+</body>
+</html>
