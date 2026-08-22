@@ -52,7 +52,7 @@ Post-POC, max speed is travel / intercept / escape, not automatically the best d
 **Mouse + Keyboard:**
 
 - Mouse steers the hull in 3D; the camera is mounted to the hull and follows it.
-- Center crosshair is the weapon aim direction, which is simply the hull's forward axis.
+- The reticle is the **projected impact point** of a muzzle-sized sweep along the hull's forward axis. In chase view the camera sits above the ship, so a fixed screen-centre mark lies on a different parallel line and can promise a hit the cannon will miss. The reticle moves to the first pawn/world collision or the weapon's range endpoint and changes from cyan to gold/coral when the sweep has a blocking hit.
 - Left click = primary weapon (hold to fire).
 - Hull and weapon aim never diverge: the gun points where the ship points.
 
@@ -84,7 +84,7 @@ Post-POC, max speed is travel / intercept / escape, not automatically the best d
 | --- | --- |
 | **Default** | Third-person chase, approximately 850 units behind the hull |
 | **First-person** | F1 toggles a nose/cockpit-adjacent view |
-| **Aim** | Hull forward drives the center crosshair; the rig is mounted to the hull |
+| **Aim** | Hull forward drives the weapon; the HUD projects that exact muzzle line and first blocking hit into the camera view |
 | **Mounting** | Boom inherits the hull's full transform, roll included, so the height offset rides around during a barrel roll |
 | **Follow** | Smooth positional and rotational lag |
 | **Boost** | Chase arm pulls back to communicate speed |

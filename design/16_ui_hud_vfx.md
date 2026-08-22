@@ -41,7 +41,7 @@
 
 | Weapon Type      | Impact VFX                                                     |
 | ---------------- | -------------------------------------------------------------- |
-| **Pulse Cannon** | Bright orange sparks spray outward + small screen shake        |
+| **Pulse Cannon** | Thin orange emissive bolt with a short local light; bright orange sparks spray outward + small screen shake |
 | **Spread Shot**  | Multiple smaller spark bursts at each pellet hit point         |
 | **Beam Laser**   | Sustained cyan glow at contact + heat shimmer on target        |
 | **Missile**      | Red-orange explosion ring + debris chunks fly outward          |

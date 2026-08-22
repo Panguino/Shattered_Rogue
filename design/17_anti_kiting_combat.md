@@ -40,7 +40,7 @@ Sibling Unreal project: `C:\Projects\_personal\Shattered\ShatteredRogue`. Solo o
 | --- | --- | --- |
 | Player flight | `AShatteredPawn` | 6DOF inertial velocity, separate forward / strafe / vertical thrust, mouse steering, roll, timed boost, brake damping |
 | Player fire | `AShatteredPawn::TryFire` | Hitscan-aim along control rotation; one `APulseProjectile` family |
-| Projectiles | `APulseProjectile` | Hits pawns / world, applies damage, impact burst |
+| Projectiles | `APulseProjectile` | Thin emissive bolts; hits pawns / world, applies damage, impact burst, expires at a fixed travel range |
 | Enemy AI | `APiratePawn` | Per-tick seek toward player. Roles: Chase, Strafe, Tank, Flagship |
 | Waves | `AShatteredGameMode` | Warmup → 3 waves → flagship. No squad object, no coordinator |
 | Training | `AShatteredTrainingGameMode` | Same arena, no enemies — flight lab, not a combat test bed |

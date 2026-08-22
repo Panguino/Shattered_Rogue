@@ -32,7 +32,7 @@
 ### POC shield and collision contract
 
 - The Ace starts with **75 shield / 100 hull**. Projectile and collision damage both enter the same `TakeDamage` path: shields absorb first and only overflow reaches hull.
-- The shield is a low-intensity cyan shell around the ship, not an opaque bubble. A hit drives a brief bright expansion and cyan point-light flash; hull overflow changes the flash to coral/red and adds the existing camera kick.
+- **Shields are currently invisible.** The first pass wrapped the hull in a translucent cyan sphere, which read as a ball stuck to the ship and hid the silhouette we had just spent the art budget on. Absorption now shows only through the cyan point-light flash and the HUD bar; hull overflow changes the flash to coral/red and adds the existing camera kick. The replacement should be localised to the impact point — a brief hex-shell ripple facing the hit normal — rather than a permanent whole-ship envelope.
 - Any incoming damage resets the three-second recharge delay. Recharge never repairs hull.
 - Asteroid collision damage uses **closing speed along the impact normal**, not total ship speed. A fast parallel scrape should slide along the rock; a head-on impact should hurt. Below 220 uu/s it is harmless, then damage rises with speed to a 45-point cap.
 - A short per-impact cooldown prevents a single sustained contact from applying damage every frame. Physical asteroids receive an impulse from the ship and collide with one another through Chaos.
