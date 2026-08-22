@@ -16,7 +16,7 @@ Every visual environment element is produced from a single `int32` seed via `FRa
 | Planets | Count **0–3**, ten archetypes, moon/dwarf/world/giant size class, independent apparent radius, rare foreground orbital vista, layered surface weights, atmosphere, optional planar rings |
 | Nebula masses | 0–4 angular blobs painted into the sky dome: weighted clear/subtle/moderate/dense presence, bearing, angular radius, colour, opacity |
 | Near dust | 0–6 local fog volumes in arena world space: position, radius, density, phase, albedo, emissive |
-| Asteroids | Count 18–34, transform, non-uniform scale; spawn/ingress exclusion zones |
+| Asteroids | Count 18–34, transform, non-uniform scale, slow linear drift and tumble; spawn/ingress exclusion zones |
 | Stars | Density, spatial scale, point sharpness, and emissive gain on the sky material |
 
 Same seed → same `ComputeLayoutHash` and the same transforms. Different seeds must diverge. Empty-sky (0 planets) is valid.
@@ -44,7 +44,7 @@ AShatteredEnvironmentDirector::Regenerate(Seed)
         ↓
 ShatteredEnvironment::BuildRecipe(Seed) → FShatteredEnvironmentRecipe
         ↓
-Apply sky (+ nebula masses) / sun / skylight / planets / dust volumes / ISM asteroids
+Apply sky (+ nebula masses) / sun / skylight / planets / dust volumes / physical asteroid actors
 ```
 
 Replay: Flight Lab (`\` / F8) shows the seed, **APPLY SEED**, and **NEW SEED**. Applying the same number rebuilds the same recipe without a map reload. `=` rolls and applies a new seed directly from flight, with or without the panel open — art-directing the generator means cycling seeds far more often than touching any other control, so it does not sit behind an overlay. When the panel is open it follows along rather than showing a stale number.
@@ -81,7 +81,9 @@ Every body is the same engine sphere; the material does the work:
 | Planet | One layered material covering ten archetypes — **gas giant, rocky, cloudy, ice, barren, oceanic, desert, volcanic, toxic, crystalline**. Broad continent, ocean, polar ice, crater, cloud, belt and emissive-fissure masks are weighted by the recipe, keeping silhouettes readable at backdrop distance. Bodies independently roll **moon, dwarf, world or giant** physical scale and an apparent angular radius; distance is solved from both, so physical size no longer collapses into one apparent size. A rare seed promotes one body to a foreground **orbital vista** with an 18–34° apparent radius, letting it occupy roughly a third to two-thirds of the view while remaining unreachable sky. Its required separation from the visible star includes both bodies' angular radii, preventing a giant planet from accidentally covering the sun. Bands run along warped latitude from the planet's local axis. The material's `Sine` has a period of 1, not 2π, so band scale is belt cycles; warp stays low enough to bend belts without dissolving them into a maze. Explicit geometric Lambert lighting preserves the day/night terminator. |
 | Ring | A two-sided plane, not a flattened sphere. A radial mask cuts one continuous translucent annulus; low-contrast broad and fine radial waves vary color/value without discarding the sheet into bright hoops. The inner radius is solved from planet/ring scale so the ring begins outside the surface. Ringed planets constrain their axis to a 32–68° view inclination, preventing invisible edge-on seeds while retaining strong perspective. Rings receive the same per-planet sun bearing, sun color and ambient floor as the planet, so they no longer look like self-lit UI geometry. |
 
-Asteroids are instanced, and instances share one primitive transform: **object position and object radius are per-component, not per-instance**. Their material samples local position and offsets by `PerInstanceRandom`, then transforms the offset local→world so each rock gets its own shape at its own non-uniform scale.
+Asteroids are individual `AShatteredAsteroid` rigid bodies rather than ISM instances. ISMs are appropriate for a static field, but cannot give every rock an independent Chaos body; actor-per-rock is the necessary trade for slow seeded drift, tumble, asteroid-to-asteroid impacts and ship collision. Gravity is disabled, damping is deliberately tiny, CCD is enabled, and mass scales with recipe volume so small fragments yield to larger bodies. Regeneration destroys the old actor pool and rebuilds the same initial transforms and velocities from the seed.
+
+The current sphere plus procedural rock material remains a placeholder for the generated asteroid mesh kit. The runtime actor owns the mesh/material boundary, so replacing it with authored small/medium/large meshes does not require rewriting physics or recipe generation.
 
 ### Distant gas: nebula masses in the sky shader
 
@@ -109,7 +111,7 @@ Out of this slice: hazards, POIs, galaxy-map selection, replication, volumetric 
 
 ## 4. Proof
 
-Automation: `ShatteredRogue.Environment.RecipeDeterminism` (equal seeds match; all four sun families and ten planet archetypes appear; all four planet size classes and a rare orbital vista appear; natural clear-space, subtle-nebula, starless and inside-nebula sectors appear; clear space contains no hidden gas layers; nebula-mass and dust-pocket hues remain aligned with the sector nebula; mass/ring opacity and dust density stay restrained; mass directions are unit length and falloff exponents stay in a sane band; dust pockets stay within the arena; both pools stay inside their component budgets; broad star-size variance; star gain always clears the tonemapping floor and spans dim and bright fields; 0- and 3-planet forced recipes; asteroid exclusion zones and backdrop clearance across 256 seeds).
+Automation: `ShatteredRogue.Environment.RecipeDeterminism` (equal seeds match, including asteroid drift; asteroid starting speeds stay in the deliberately slow 3–14 uu/s band; all four sun families and ten planet archetypes appear; all four planet size classes and a rare orbital vista appear; natural clear-space, subtle-nebula, starless and inside-nebula sectors appear; clear space contains no hidden gas layers; nebula-mass and dust-pocket hues remain aligned with the sector nebula; mass/ring opacity and dust density stay restrained; mass directions are unit length and falloff exponents stay in a sane band; dust pockets stay within the arena; both pools stay inside their component budgets; broad star-size variance; star gain always clears the tonemapping floor and spans dim and bright fields; 0- and 3-planet forced recipes; asteroid exclusion zones and backdrop clearance across 256 seeds).
 
 Play: Flight Training → `\` → note seed / layout hash → APPLY SEED twice → same hash. `NEW SEED` must change planets/sun bearing. Pressing `=` in flight must do the same, and the panel's seed field and layout hash must both follow it.
 

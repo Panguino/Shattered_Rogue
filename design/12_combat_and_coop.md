@@ -26,8 +26,16 @@
 | **Crit Multiplier** | Base 2× damage. Stacks with Luck and items                             |
 | **Elemental**       | Fire (DoT), Ice (slow), Explosive (AoE), Void (pierce)                 |
 | **Armor**           | Reduces incoming damage by flat %. Can be broken by specific weapons   |
-| **Shields**         | Absorb damage first. Regenerate after 3s of no damage                  |
+| **Shields**         | Absorb all damage first; recharge at 18/s after 3s without damage      |
 | **Weak Points**     | Some enemies have glowing weak spots for 2× damage (Scientist reveals) |
+
+### POC shield and collision contract
+
+- The Ace starts with **75 shield / 100 hull**. Projectile and collision damage both enter the same `TakeDamage` path: shields absorb first and only overflow reaches hull.
+- The shield is a low-intensity cyan shell around the ship, not an opaque bubble. A hit drives a brief bright expansion and cyan point-light flash; hull overflow changes the flash to coral/red and adds the existing camera kick.
+- Any incoming damage resets the three-second recharge delay. Recharge never repairs hull.
+- Asteroid collision damage uses **closing speed along the impact normal**, not total ship speed. A fast parallel scrape should slide along the rock; a head-on impact should hurt. Below 220 uu/s it is harmless, then damage rises with speed to a 45-point cap.
+- A short per-impact cooldown prevents a single sustained contact from applying damage every frame. Physical asteroids receive an impulse from the ship and collide with one another through Chaos.
 
 ### Damage Numbers
 
