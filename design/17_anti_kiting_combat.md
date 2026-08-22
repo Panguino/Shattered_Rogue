@@ -68,7 +68,7 @@ Tied to current `APiratePawn`, not generic theory.
 | Instant facing fire | `FireDirection = ToPlayer.GetSafeNormal()` | Rear shots work at any aspect; no need to commit to a pass |
 | One weapon, one range | Pulse at 1600 / flagship 2800 | No reason to enter a dangerous envelope |
 | Boost is a burst, not a tax on turning | Player `BoostDuration` 0.4s, then cruise clamp | Escape is cheap; turn authority does not fall off at high speed |
-| Arena leash is a box bounce | Bounds clamp + velocity flip | Not tactical pursuit; pirates bounce off walls and resume chase |
+| Arena leash is a sphere bounce | `ApplySphericalBounds` clamp + outbound velocity flip | Not tactical pursuit; pirates graze the shell and resume chase |
 | No objective pressure in training | Training mode has zero enemies | Fine for flight feel; Pirate Raid *is* “kill everything” |
 
 Chase even parks inside 380 units (`Desired = 0`) while still facing the player — a tail-sit, not an attack run.

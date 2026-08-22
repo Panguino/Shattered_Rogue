@@ -16,8 +16,12 @@ The POC pivoted from a top-down movement plane to **Avorion-style full 3D flight
 - **W/S** applies forward/reverse engine thrust; **A/D** strafes laterally; **Space/C** strafes vertically.
 - Velocity is world-space and persists after thrust is released. Passive damping keeps the ship controllable without erasing inertia.
 - **X** engages strong inertia dampeners for deliberate braking.
-- **Q/E** rolls the hull, and the chase camera banks with it so a barrel roll reads on screen. Pitch and yaw are limited by turn responsiveness rather than snapping instantly.
-- The mouse controls the camera heading; the ship rotates toward that heading as quickly as its maneuverability allows.
+- **Q/E** rolls the hull, and the camera rig is mounted to the hull, so a barrel roll carries the view around with it rather than spinning the ship inside a fixed frame.
+- The mouse rotates the hull **about its own axes**, not the world's. Pitch is applied about the ship's right, yaw about the ship's up, so the controls mean the same thing at every attitude. Turn responsiveness smooths the rate rather than chasing a separate heading.
+
+> **Why body-relative, not a world heading.** Steering originally chased a world-framed control rotation, which holds together only while the ship is upright. Roll ninety degrees and world yaw is no longer the ship's yaw: pushing the mouse sideways makes the nose climb. A world heading also cannot express "inverted", so it quietly fights any sustained roll. Rotating locally is the only formulation that survives arbitrary attitude, which is the whole point of 6DOF.
+>
+> Two engine defaults have to be turned off for this to hold. `bUseControllerRotationYaw` is on by default and makes `APawn::FaceRotation` snap yaw onto the control rotation every frame, rebuilding the hull's orientation from Euler angles and losing roll near vertical. The spring arm's `bUsePawnControlRotation` does the same to the camera, forcing its roll to zero.
 - Forward thrust dominates. **Reverse and strafe are capped near 120–150 uu/s against a forward max of 800** — thrust simply stops adding once an axis is at its cap, so momentum and drift survive but nobody flies backwards for a living. This is the movement half of [17_anti_kiting_combat.md](17_anti_kiting_combat.md).
 - Boost may exceed the forward cap; the surplus bleeds off through damping instead of being clamped away.
 
@@ -47,14 +51,14 @@ Post-POC, max speed is travel / intercept / escape, not automatically the best d
 
 **Mouse + Keyboard:**
 
-- Mouse looks/aims in 3D; ship attitude follows the camera with maneuverability-limited lag.
-- Center crosshair is the weapon aim direction.
+- Mouse steers the hull in 3D; the camera is mounted to the hull and follows it.
+- Center crosshair is the weapon aim direction, which is simply the hull's forward axis.
 - Left click = primary weapon (hold to fire).
-- Hull and weapon aim may briefly diverge while the ship rotates toward the view.
+- Hull and weapon aim never diverge: the gun points where the ship points.
 
 **Controller:**
 
-- Right stick = camera/aim heading; ship follows with turn lag.
+- Right stick = hull pitch and yaw, in the ship's own frame.
 - Right trigger = primary weapon
 - Left trigger = secondary weapon
 - **Aim assist:** Slight magnetism toward nearest enemy (15° cone, subtle)
@@ -80,7 +84,8 @@ Post-POC, max speed is travel / intercept / escape, not automatically the best d
 | --- | --- |
 | **Default** | Third-person chase, approximately 850 units behind the hull |
 | **First-person** | F1 toggles a nose/cockpit-adjacent view |
-| **Aim** | Camera heading drives the center crosshair; hull turns toward it |
+| **Aim** | Hull forward drives the center crosshair; the rig is mounted to the hull |
+| **Mounting** | Boom inherits the hull's full transform, roll included, so the height offset rides around during a barrel roll |
 | **Follow** | Smooth positional and rotational lag |
 | **Boost** | Chase arm pulls back to communicate speed |
 | **Collision** | Spring arm shortens around nearby asteroids |
@@ -113,7 +118,7 @@ Each player has their own independent camera (online only — no split-screen). 
 | **Strafe**         | A / D           | Lateral thrusters                  |
 | **Vertical strafe**| Space / C       | Up/down thrusters                  |
 | **Roll**           | Q / E           | Roll acceleration with inertia     |
-| **Aim / steer**    | Mouse           | Camera heading; hull follows       |
+| **Aim / steer**    | Mouse           | Pitch/yaw in the hull's own frame  |
 | **Primary fire**   | Left click      | Hold to auto-fire                  |
 | **Secondary fire** | Right click     | Hold to auto-fire                  |
 | **Boost/Dash**     | Shift           | Short thrust burst, cooldown       |
