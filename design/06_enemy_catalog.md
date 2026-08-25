@@ -1,135 +1,168 @@
-# 👾 Enemy Catalog — Modular Enemy System
+# 👾 Enemy Catalog — The Equation
 
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
 
-## 1. Design Philosophy
+## 1. Faction Fantasy & Design Philosophy
 
 > [!IMPORTANT]
-> **6 base chassis × 5 trait layers × 4 difficulty tiers = hundreds of unique enemies from minimal art assets.** Each chassis is a single 3D model. Traits are layered on procedurally — visual FX, behavior mods, stat multipliers. The system generates variety without a massive art team.
+> **The principal enemy is a networked machine intelligence, not an infection.**
+> It fabricates robot warships, captures existing machines, and rebuilds matter
+> into increasingly perfect geometric forms. Six base frames × five protocol
+> layers × four proof tiers create hundreds of readable enemies from a compact
+> art kit.
 
-| Principle                  | Details                                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Modular over bespoke**   | 6 chassis models, not 60 unique enemies. Traits make each feel different                                      |
-| **Readable at a glance**   | Trait visuals (glow color, particle effect, size) telegraph behavior. Players learn the "language" of enemies |
-| **Scales with difficulty** | Higher rings = more traits stacked per enemy + higher tier base stats                                         |
-| **Environment-biased**     | Certain traits appear more in certain environments (fire traits in supernova, ice in ice fields)              |
-| **Budget-based spawning**  | Each sector has a "budget" — spawner spends points on chassis + traits to build a varied wave                 |
+Survivors call the network **the Equation**. Its native designation is a
+continuous proof no human instrument can display. It does not hate biological
+life and does not infect it; it classifies free will, randomness, and biological
+variation as unsolved error. Its objective is **Convergence**: measure every
+possible state, replace unpredictable systems with deterministic machines, and
+reduce the galaxy to one final answer.
 
----
-
-## 2. Base Chassis Models (6 total)
-
-Each chassis defines the **silhouette, base HP, speed, and attack pattern**. Think of these as the "skeleton" — traits are the "skin."
-
-| Chassis        | Silhouette          | Base HP | Speed     | Base Attack           | Role              |
-| -------------- | ------------------- | ------- | --------- | --------------------- | ----------------- |
-| 🔴 **Drone**   | Small, insectoid    | Low     | Fast      | Ram / weak laser      | Swarm fodder      |
-| 🟡 **Fighter** | Medium, angular     | Medium  | Medium    | Twin lasers           | Bread and butter  |
-| 🟢 **Bomber**  | Bulky, rear-heavy   | Medium  | Slow      | Explosive payload     | Area denial       |
-| 🔵 **Tank**    | Large, armored      | High    | Very Slow | Heavy cannon          | Frontline bruiser |
-| 🟣 **Support** | Slim, antenna-heavy | Low     | Medium    | Heal beam / buff aura | Force multiplier  |
-| ⚫ **Stealth** | Sleek, minimal      | Low     | Fast      | Backstab burst        | Ambush predator   |
-
-> **Art requirement: 6 models total.** Each gets color variations, glow attachments, and scale differences via traits. A "Fire Drone" vs an "Ice Drone" is the same mesh with different particle effects and color.
+| Principle                    | Details                                                                                                                     |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Robotic, never biological** | Hard-surface frames, articulated tools, sensor arrays, floating plates, and energy links. No flesh, veins, ooze, or tendrils |
+| **Modular over bespoke**     | Six frames, not 60 ships. Protocol attachments, projected glyphs, and materials create variety                              |
+| **Readable at a glance**     | Each protocol owns a geometric icon, color accent, sound motif, and physical attachment                                    |
+| **Coordinated, not feral**    | Units share targeting data, form solutions, screen priority assets, and deliberately disengage to recompute                |
+| **Scales with difficulty**   | Deeper rings run more protocols and look less like salvaged ships and more like native mathematical constructs             |
+| **Environment-biased**       | The network selects functions suited to local geometry, heat, visibility, and available matter                            |
+| **Budget-based spawning**    | Each sector has a compute budget spent on frames, protocols, and proof tiers                                               |
 
 ---
 
-## 3. Trait System (5 Layers)
+## 2. Base Machine Frames (6 total)
 
-Each enemy spawns with **1–3 traits** depending on difficulty tier. Traits stack and combine — a Fire + Armored + Pack fighter is a very different threat than a basic Fighter.
+Each frame defines silhouette, base HP, movement, and attack pattern. Names are
+survivor shorthand based on the function each machine performs; intercepted
+Equation signals identify them only with changing numeric expressions.
 
-### Layer 1: Movement Traits
+| Frame          | Silhouette                                       | Base HP | Speed     | Base Attack              | Battlefield Function |
+| -------------- | ------------------------------------------------ | ------- | --------- | ------------------------ | -------------------- |
+| 🔴 **Needle**  | Small tetrahedral body around one bright sensor  | Low     | Fast      | Ram / weak laser         | Saturation unit      |
+| 🟡 **Vector**  | Medium arrowhead with paired articulated barrels | Medium  | Medium    | Twin lasers              | General interceptor  |
+| 🟢 **Mortar**  | Bulky hexagonal magazine, forward sensor hood    | Medium  | Slow      | Explosive payload        | Area denial          |
+| 🔵 **Bastion** | Large layered cube with rotating armor planes    | High    | Very Slow | Heavy cannon             | Frontline anchor     |
+| 🟣 **Relay**   | Slim spindle ringed by antennae and light nodes  | Low     | Medium    | Repair beam / logic aura | Network coordinator  |
+| ⚫ **Cipher**  | Flat asymmetric wedge with broken silhouette     | Low     | Fast      | Ambush burst             | Information warfare  |
 
-| Trait       | Effect                                         | Visual Cue                         |
-| ----------- | ---------------------------------------------- | ---------------------------------- |
-| **Flanker** | Circles to attack from behind                  | Afterburner trail                  |
-| **Charger** | Rushes straight at player then retreats        | Red engine glow, wind-up sound     |
-| **Orbiter** | Maintains distance, strafes while firing       | Concentric ring trail              |
-
-> Movement traits are *per-ship flavor*. They must not all collapse into `steerToward(player)`. Squad intercept, attack slots, and pursuit limits live in [17_anti_kiting_combat.md](17_anti_kiting_combat.md). POC pirates still chase independently.
-| **Blinker** | Short-range teleport every few seconds         | Phase distortion shimmer           |
-| **Pack**    | Moves in tight formation with 2–3 others       | Tether lines between pack          |
-| **Stalker** | Hangs back until player is low HP, then rushes | Dim, almost invisible until moving |
-
-### Layer 2: Attack Traits
-
-| Trait          | Effect                                  | Visual Cue                      |
-| -------------- | --------------------------------------- | ------------------------------- |
-| **Fire**       | Shots apply burning DoT                 | Orange glow, flame particles    |
-| **Ice**        | Shots slow player movement + fire rate  | Blue glow, frost particles      |
-| **Explosive**  | Shots have small AoE on impact          | Yellow glow, unstable sparking  |
-| **Homing**     | Projectiles track the player slightly   | Green spiraling trail           |
-| **Rapid-Fire** | 2× attack speed, lower per-hit damage   | Barrel glow, chattering sound   |
-| **Sniper**     | Very long range, high damage, slow fire | Laser sight line, charging glow |
-
-### Layer 3: Defense Traits
-
-| Trait            | Effect                                        | Visual Cue                     |
-| ---------------- | --------------------------------------------- | ------------------------------ |
-| **Armored**      | 50% damage reduction from front               | Visible armor plating mesh     |
-| **Shielded**     | Regenerating energy shield (must break first) | Bubble shield effect           |
-| **Regenerator**  | Slowly heals HP over time                     | Green pulse glow               |
-| **Reflector**    | 15% chance to reflect projectiles back        | Mirror-chrome surface          |
-| **Phase**        | Briefly invulnerable during movement          | Ghost/translucent during dodge |
-| **Swarm-Shield** | Takes less damage while near allies (stacks)  | Connected particle web         |
-
-### Layer 4: Special Traits
-
-| Trait         | Effect                                               | Visual Cue                          |
-| ------------- | ---------------------------------------------------- | ----------------------------------- |
-| **Splitter**  | On death, splits into 2 smaller versions             | Cracked surface texture             |
-| **Detonator** | Explodes on death dealing AoE damage                 | Pulsing red core                    |
-| **Summoner**  | Periodically spawns tiny drones (1–2 at a time)      | Antenna pulsing, drone bay opening  |
-| **Enraged**   | Below 30% HP: +50% damage, +30% speed                | Red glow intensifies at low HP      |
-| **Vampiric**  | Attacking heals 5% of damage dealt                   | Dark purple energy siphoning effect |
-| **Shaman**    | Buffs nearby allies (+20% damage, +10% speed for 5s) | Wave pulse emitting from chassis    |
-
-### Layer 5: Visual/Flavor Traits (cosmetic + minor effect)
-
-| Trait          | Effect                         | Visual                            |
-| -------------- | ------------------------------ | --------------------------------- |
-| **Oversized**  | 1.5× larger, +25% HP           | Scaled-up model                   |
-| **Miniature**  | 0.7× size, +20% speed          | Tiny version, hard to hit         |
-| **Elite Glow** | +All stats 15%                 | Golden particle aura              |
-| **Corrupted**  | Erratic behavior, bonus damage | Void-corruption visual distortion |
-| **Ancient**    | Slow but very high HP + damage | Weathered, barnacle-like overlays |
+> **Art requirement: six hero frames.** Protocols add socketed plates, orbiting
+> primitives, projected lines, shader states, and scale changes. A Thermal
+> Needle and a Cryo Needle share the same authored frame but must read as
+> different calculations before either fires.
+>
+> The first visual exploration set covers Needle, Vector, Mortar, Bastion, and
+> Relay with three deliberately asymmetric concepts each:
+> [`art/enemies/equation/`](../art/enemies/equation/README.md). Cipher remains
+> the sixth hero-frame exploration rather than being folded into Vector.
 
 ---
 
-## 4. Difficulty Tiers
+## 3. Protocol System (5 Layers)
 
-| Tier       | Traits Stacked | Stat Multiplier | Ring Appearance   | Budget Cost |
-| ---------- | -------------- | --------------- | ----------------- | ----------- |
-| ★ Normal   | 0–1 traits     | 1.0×            | Outer Ring        | 1 point     |
-| ★★ Veteran | 1–2 traits     | 1.5×            | Mid Ring          | 2 points    |
-| ★★★ Elite  | 2–3 traits     | 2.5×            | Inner Ring        | 4 points    |
-| ★★★★ Apex  | 3 traits       | 4.0×            | Core / Loop+ only | 8 points    |
+Each construct runs **0–3 visible protocols** according to proof tier. Protocols
+stack: a Thermal + Projection + Consensus Vector behaves differently from a
+basic Vector. Protocol names are player-facing combat shorthand, not literal
+code.
 
-> **Apex enemies** are essentially mini-bosses — a ★★★★ Tank with Armored + Shielded + Summoner is a legitimate threat that demands team coordination.
+### Layer 1: Navigation Protocols
+
+| Protocol      | Effect                                         | Visual Cue                              |
+| ------------- | ---------------------------------------------- | --------------------------------------- |
+| **Tangent**   | Solves a curved route to attack from behind    | Amber tangent line projected ahead     |
+| **Collision** | Commits to a high-speed intercept then resets  | Red vector arrow and rising tone        |
+| **Orbit**     | Holds an exact firing radius while strafing    | Concentric range circles                |
+| **Skip**      | Makes a short discontinuous displacement       | Missing-frame distortion and cube echo  |
+| **Consensus** | Moves in synchronized formation with 2–3 units | White graph edges connect squad nodes   |
+| **Conditional** | Waits until player shields or hull are low   | Dim frame; inequality glyph flips bright |
+
+> Navigation protocols are per-frame flavor. They must not collapse into
+> `steerToward(player)`. Squad intercept, attack slots, pursuit limits, and
+> disengagement live in [17_anti_kiting_combat.md](17_anti_kiting_combat.md).
+> POC pirates remain an independent mortal faction and still chase independently.
+
+### Layer 2: Weapon Functions
+
+| Function       | Effect                                  | Visual Cue                           |
+| -------------- | --------------------------------------- | ------------------------------------ |
+| **Thermal**    | Shots apply heat damage over time       | Orange heat sinks and square embers  |
+| **Cryo**       | Shots slow movement and fire rate       | Blue coolant vapor and crystal glyph |
+| **Cascade**    | Impacts branch into a small blast       | Yellow nested blast-radius hexes     |
+| **Convergent** | Projectiles continuously solve toward target | Green curved prediction line    |
+| **Iterative**  | 2× attack speed, lower per-hit damage   | Repeating barrel light sequence      |
+| **Solution**   | Long-range, high-damage calculated shot | Thin sight line and shrinking reticle |
+
+### Layer 3: Integrity Systems
+
+| System          | Effect                                        | Visual Cue                             |
+| --------------- | --------------------------------------------- | -------------------------------------- |
+| **Projection**  | 50% damage reduction from front               | Floating frontal armor plane           |
+| **Barrier**     | Regenerating energy shield                    | Faceted geodesic shield                 |
+| **Self-Repair** | Slowly reconstructs hull over time            | Green wireframe fills missing geometry  |
+| **Reversal**    | 15% chance to reflect projectiles             | Mirror plate rotates toward impact      |
+| **Desync**      | Briefly invulnerable during displacement      | Cyan duplicate one frame out of phase   |
+| **Mesh Defense** | Damage reduction near networked allies       | Triangulated links between constructs   |
+
+### Layer 4: Logic Routines
+
+| Routine        | Effect                                               | Visual Cue                            |
+| -------------- | ---------------------------------------------------- | ------------------------------------- |
+| **Fork**       | On destruction, deploys two smaller instances        | Body visibly divided by a binary seam |
+| **Terminal**   | Converts remaining power into a death explosion      | Countdown numerals around red core    |
+| **Fabricator** | Periodically assembles 1–2 Needles                   | Parts snap together in an open bay    |
+| **Overclock**  | Below 30% HP: +50% damage, +30% speed                | Timing glyphs accelerate and turn red |
+| **Harvest**    | Repairs 5% of damage dealt                           | Violet data stream returns from hit   |
+| **Coordinator** | Buffs nearby units for five seconds                 | Expanding command grid from a Relay   |
+
+### Layer 5: Provenance Marks
+
+| Mark          | Effect                              | Visual                                  |
+| ------------- | ----------------------------------- | --------------------------------------- |
+| **Macroform** | 1.5× larger, +25% HP                | Expanded frame with additional braces   |
+| **Microform** | 0.7× size, +20% speed               | Compressed frame and higher motor pitch |
+| **Prime**     | +15% to all stats                   | Gold-white theorem halo                 |
+| **Glitched**  | Erratic timing, bonus damage        | Magenta artifacts and broken glyphs     |
+| **Legacy**    | Slow, very high HP and damage       | Blackened pre-Shattering machine parts  |
+
+---
+
+## 4. Proof Tiers
+
+| Tier         | Protocols | Stat Multiplier | Typical Appearance | Compute Cost |
+| ------------ | --------- | --------------- | ------------------ | ------------ |
+| ★ Routine    | 0–1       | 1.0×            | Outer Ring         | 1 point      |
+| ★★ Iterant   | 1–2       | 1.5×            | Mid Ring           | 2 points     |
+| ★★★ Theorem  | 2–3       | 2.5×            | Inner Ring         | 4 points     |
+| ★★★★ Axiom   | 3         | 4.0×            | Core / Loop+ only  | 8 points     |
+
+> **Axiom constructs** are mini-bosses: a Bastion running Projection + Barrier +
+> Fabricator is a complete battlefield problem that demands coordinated focus.
+> The tier words should appear beside their stars until playtests prove players
+> can read them without translation.
 
 ---
 
 ## 5. Wave Budget System
 
-Each encounter has a **spawn budget** based on the ring and encounter type:
+Each encounter receives a **compute budget** based on ring and encounter type:
 
-| Ring      | Budget per Wave | Waves | Total Budget | Example Wave Composition                                                                                      |
-| --------- | --------------- | ----- | ------------ | ------------------------------------------------------------------------------------------------------------- |
-| **Outer** | 6               | 2–3   | 12–18        | 6× Normal Drones (6 pts) → 2× Normal Fighters + 2× Normal Drones (6 pts)                                      |
-| **Mid**   | 10              | 3–4   | 30–40        | 4× Normal Fighters + 1× Veteran Bomber (6+2=8 pts) → 2× Veteran Fighters + 1× Normal Tank (4+2=6 pts rounded) |
-| **Inner** | 16              | 3–5   | 48–80        | 2× Elite Fighters + 2× Veteran Drones (8+4=12 pts) → 1× Apex Tank + 4× Normal Drones (8+4=12 pts)             |
-| **Core**  | 24              | 5+    | 120+         | Boss + Elite support waves. Budget is "until you die or win"                                                  |
+| Ring      | Budget per Wave | Waves | Total Budget | Example Composition                                                     |
+| --------- | --------------- | ----- | ------------ | ----------------------------------------------------------------------- |
+| **Outer** | 6               | 2–3   | 12–18        | 6× Routine Needles → 2× Routine Vectors + 2× Routine Needles           |
+| **Mid**   | 10              | 3–4   | 30–40        | 4× Routine Vectors + 1× Iterant Mortar                                 |
+| **Inner** | 16              | 3–5   | 48–80        | 2× Theorem Vectors + 2× Iterant Needles → 1× Axiom Bastion + fodder   |
+| **Core**  | 24              | 5+    | 120+         | Boss plus Theorem support equations; budget persists until win or death |
 
 ### Composition Rules
 
 | Rule                            | Details                                                                  |
 | ------------------------------- | ------------------------------------------------------------------------ |
-| **Always include fodder**       | At least 30% of budget spent on Normal-tier enemies (satisfying to kill) |
-| **Max 1 Apex per wave**         | Apex enemies are mini-bosses — one at a time                             |
-| **Support enemies need allies** | Support chassis only spawn alongside 2+ other enemies                    |
-| **Stealth enemies spawn last**  | Stealth chassis enter mid-wave to ambush distracted players              |
+| **Always include fodder**       | At least 30% of budget is Routine constructs; machines still need satisfying pop targets |
+| **Max 1 Axiom per wave**        | Axioms are mini-bosses — one complete proof at a time                    |
+| **Relays need a network**       | Relay frames only spawn alongside 2+ constructs                          |
+| **Ciphers exploit attention**   | Cipher frames enter mid-wave after another unit establishes threat       |
+| **Show coordination**           | At least one formation, screen, relay, or synchronized attack per wave   |
 | **Ramp up within a sector**     | Wave 1 is easier than Wave 3. The last wave is the hardest               |
 
 ---
@@ -138,32 +171,47 @@ Each encounter has a **spawn budget** based on the ring and encounter type:
 
 Certain environments make certain traits more likely to appear:
 
-| Environment              | Boosted Traits                      | Suppressed Traits    | Signature Combo                                   |
-| ------------------------ | ----------------------------------- | -------------------- | ------------------------------------------------- |
-| ⛏️ **Asteroid Field**    | Armored, Charger, Pack              | Stealth (open space) | Armored Charger Tanks that ram through rocks      |
-| 🌫️ **Nebula**            | Stalker, Blinker, Phase             | Sniper (low vis)     | Phase Blinker Stealth units — ambush nightmare    |
-| 💥 **Debris Field**      | Explosive, Detonator, Splitter      | Orbiter (debris)     | Detonator Bombers that chain-explode near wrecks  |
-| 🧊 **Ice Field**         | Ice, Regenerator, Ancient           | Fire (cold)          | Ice Ancient Tanks — slow walls of frost           |
-| 🌊 **Gas Giant Rings**   | Fire, Rapid-Fire, Flanker           | Armored (gas)        | Fire Rapid-Fire Fighters — dakka hell             |
-| 🌋 **Supernova Remnant** | Fire, Enraged, Elite Glow           | Ice (hot)            | Enraged Elite Fighters under supernova timer      |
-| 🕳️ **Void Rift**         | Corrupted, Blinker, Phase, Vampiric | Pack (chaos)         | Corrupted Phase Vampiric Stealth — nightmare fuel |
+| Environment              | Boosted Protocols                         | Suppressed Protocols | Signature Equation                                  |
+| ------------------------ | ----------------------------------------- | -------------------- | --------------------------------------------------- |
+| ⛏️ **Asteroid Field**    | Projection, Collision, Consensus          | Solution             | Projection Bastions drive Needles through rock gaps |
+| 🌫️ **Nebula**            | Conditional, Skip, Desync                 | Solution             | Desynced Ciphers appear at measured blind angles    |
+| 💥 **Debris Field**      | Cascade, Terminal, Fork                   | Orbit                | Terminal Mortars chain-react through wreckage       |
+| 🧊 **Ice Field**         | Cryo, Self-Repair, Legacy                 | Thermal              | Legacy Cryo Bastions become moving walls            |
+| 🌊 **Gas Giant Rings**   | Thermal, Iterative, Tangent               | Projection           | Iterative Vectors surf ring currents                |
+| 🌋 **Supernova Remnant** | Thermal, Overclock, Prime                 | Cryo                 | Prime Vectors race the stellar collapse             |
+| 🕳️ **Void Rift**         | Glitched, Skip, Desync, Harvest           | Consensus            | Glitched Ciphers exploit unstable geometry          |
 
-> **Bias doesn't prevent — it weights.** You can still get Ice enemies in a Supernova, it's just rare. Bias makes environments FEEL different — Nebula encounters are spooky ambushes, Supernova encounters are frantic fire-soaked chaos.
+Bias weights rather than forbids. The fiction is practical: the Equation observes
+local conditions and compiles a suitable force. Nebula encounters become
+information warfare; supernova encounters become violent overclock races.
 
 ---
 
 ## 7. Example Generated Enemies
 
-| Ring  | Chassis | Traits                        | Tier    | Description                                                  |
-| ----- | ------- | ----------------------------- | ------- | ------------------------------------------------------------ |
-| Outer | Drone   | Pack                          | Normal  | A cluster of 4 drones that swarm together. Easy to AoE       |
-| Outer | Fighter | _(none)_                      | Normal  | Basic fighter. Shoot it. It dies. Tutorial enemy             |
-| Mid   | Bomber  | Fire, Explosive               | Veteran | Drops burning explosive payloads. Stay mobile                |
-| Mid   | Support | Shaman, Shielded              | Veteran | Shields itself while buffing allies. Priority target         |
-| Inner | Tank    | Armored, Regenerator, Enraged | Elite   | Tanky, heals, then goes berserk at low HP. Needs focus fire  |
-| Inner | Stealth | Blinker, Vampiric             | Elite   | Teleports in, drains your health, teleports out. Infuriating |
-| Core  | Fighter | Fire, Rapid-Fire, Elite Glow  | Apex    | Golden elite fighter spraying fire bullets. Mini-boss energy |
-| Loop+ | Tank    | Armored, Shielded, Summoner   | Apex    | Armored shield tank that spawns drones. Full team required   |
+| Ring  | Frame   | Protocols                              | Tier    | Player Read                                                        |
+| ----- | ------- | -------------------------------------- | ------- | ------------------------------------------------------------------ |
+| Outer | Needle  | Consensus                              | Routine | Four connected points move as one graph; break with AoE            |
+| Outer | Vector  | _(none)_                               | Routine | Basic machine fighter and tutorial target                          |
+| Mid   | Mortar  | Thermal, Cascade                       | Iterant | Burning branching payloads force constant movement                 |
+| Mid   | Relay   | Coordinator, Barrier                   | Iterant | Protected command node; obvious priority target                    |
+| Inner | Bastion | Projection, Self-Repair, Overclock     | Theorem | Flank the plate, interrupt repair, finish before the clock rises    |
+| Inner | Cipher  | Skip, Harvest                          | Theorem | Disappears, strikes, repairs from the hit, then recalculates        |
+| Core  | Vector  | Thermal, Iterative, Prime              | Axiom   | Gold theorem halo and a dense lattice of fire                      |
+| Loop+ | Bastion | Projection, Barrier, Fabricator        | Axiom   | Armored mobile factory; a full-team solution                       |
+
+### Shared-Intelligence Rules
+
+- **Local graph, not psychic omniscience.** Relays and visible graph links explain
+  shared aim and formation changes. Destroying or separating nodes degrades them.
+- **Adaptation is encounter-scale.** The network may favor a counter-protocol in
+  the next wave, but must never silently gain immunity during the current fight.
+- **Machines may retreat.** A construct with poor expected value can disengage,
+  screen a Relay, or rendezvous. Cold optimization is more distinctive than rage.
+- **The player is the unknown variable.** Unusual builds, manual piloting, and
+  co-op improvisation break predicted solutions. This is both lore and combat.
+- **No fake mathematics.** Symbols may be abstract operational notation, but
+  avoid decorative chalkboard equations or random strings of digits.
 
 ---
 
