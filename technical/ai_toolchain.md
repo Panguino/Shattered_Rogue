@@ -72,7 +72,7 @@ Generate **at the target**, do not generate dense then decimate. Use Tripo **Sma
 | Player ships (final) | 5,000–8,000     | ~2,500   | ~800    | 2K diffuse + emissive |
 | Enemy chassis | 2,000–4,000      | ~1,200   | ~400    | 1K diffuse + emissive |
 | Station props | 500–2,000        | ~400     | —       | 1K diffuse            |
-| Asteroids     | 200–800 (kit ships 460–490) | ~165 | — | 1K unique, baked per rock |
+| Asteroids     | 7,500–10,000 (authored close LOD) | 2,600–3,500 | 900–1,200 | 1K runtime / embedded 2K source |
 | Projectiles   | 50–200           | —        | —       | Emissive only         |
 | Weapons / modules (attachable) | 400–1,500 | ~300 | — | 1K diffuse + emissive |
 

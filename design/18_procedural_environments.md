@@ -13,10 +13,10 @@ Every visual environment element is produced from a single `int32` seed via `FRa
 | --- | --- |
 | Palette / ambient | One sector tint, value/saturation variants for sky, nebula, dust, fog and ambient, ambient intensity |
 | Sun | Presence, stellar family, direction, apparent angular size, color, key-light intensity, halo, bloom, lens flare |
-| Planets | Count **0–3**, ten archetypes, moon/dwarf/world/giant size class, independent apparent radius, rare foreground orbital vista, layered surface weights, atmosphere, optional planar rings |
+| Planets | Count **0–3**, ten archetypes, continuous physical/apparent size spectra, rare foreground orbital vista, layered surface weights, atmosphere, optional planar rings |
 | Nebula masses | 0–4 angular blobs painted into the sky dome: weighted clear/subtle/moderate/dense presence, bearing, angular radius, colour, opacity |
 | Near dust | 0–6 local fog volumes in arena world space: position, radius, density, phase, albedo, emissive |
-| Asteroids | Count 18–34, transform, non-uniform scale, slow linear drift and tumble, one of five authored rock meshes; spawn/ingress exclusion zones |
+| Asteroids | Weighted seeded profile (**Cloud / Disk / Belt / Clusters / Sparse**), count **90–340**, profile-specific extent and density, small-medium size mode with rare colossal landmarks, size-matched selection across eight authored meshes, stationary-to-fast 3D drift/tumble spectrum; spawn/ingress exclusion zones |
 | Stars | Density, spatial scale, point sharpness, and emissive gain on the sky material |
 
 Same seed → same `ComputeLayoutHash` and the same transforms. Different seeds must diverge. Empty-sky (0 planets) is valid.
@@ -28,6 +28,19 @@ Art-directed **min/max ranges** are the only constants. They exist so a seed can
 Distance still matters for *apparent* size and for keeping the backdrop clear of the ship, so each body is placed so its outer surface — rings included — sits at least `BackdropClearance` (9,000uu) from the camera. Below that a planet would engulf the hull and fill the screen with one flat colour. The star dome sits outside the furthest body, so it scales with that budget rather than being a fixed size.
 
 Asteroids and near dust are the opposite case: they are the world the ship occupies, stay in world space on their own root, and do not follow anything.
+
+The actual flight boundary is a **150,000uu-radius sphere**, ten times the old
+15,000uu backstop. Content is intentionally not stretched to fill it. Pirates
+still ingress around the ±2,200uu combat core, while each seed chooses a rock
+field radius between roughly **4,500 and 8,200uu** and a vertical half-height
+between **250 and 2,200uu**. Even the broadest sparse field occupies a small
+fraction of the emergency boundary.
+
+One fixed 5,500 × ±1,400 field previously made every seed differ only in exact
+coordinates. Profile extents now change navigation itself: a Disk opens above
+and below, a Belt creates a long crossing lane, Clusters create pockets and
+voids, and Sparse sectors create long quiet approaches. The variation is bounded
+so combat ingress and the local 3,000uu radar remain meaningful.
 
 **Dust is split by distance because no single technique covers both.** True volumetrics — Niagara, local fog volumes, volumetric fog — only render within the fog view distance, far short of the backdrop. Mesh shells reach any distance but always show a silhouette. So distant gas is painted by the sky shader where it can never have an edge, and near gas is real volumetric fog the ship flies through.
 
@@ -49,7 +62,7 @@ Apply sky (+ nebula masses) / sun / skylight / planets / dust volumes / physical
 
 Replay: Flight Lab (`\` / F8) shows the seed, **APPLY SEED**, and **NEW SEED**. Applying the same number rebuilds the same recipe without a map reload. `=` rolls and applies a new seed directly from flight, with or without the panel open — art-directing the generator means cycling seeds far more often than touching any other control, so it does not sit behind an overlay. When the panel is open it follows along rather than showing a stale number.
 
-Materials (parameterized, no unique textures): `/Game/Materials/Environment/M_SpaceSky`, `M_SpaceSun`, `M_SpaceSunGlow`, `M_SpacePlanet`, `M_SpaceRing`. There is deliberately no dust material: distant gas belongs to the sky shader and near gas has no geometry.
+Core materials: `/Game/Materials/Environment/M_SpaceSky`, `M_SpaceSun`, `M_SpaceSunGlow`, `M_SpacePlanet`, `M_SpacePlanetClouds`, `M_SpacePlanetAtmosphere`, `M_SpaceRing`. High-detail terrain worlds use the licensed `/Game/Planet_Generator/M_SurfacePlanet` and `M_Cloud` graphs with five seeded terrain sources, aligned projection, generated normals, ocean separation, polar ice, and animated cloud masks. There is deliberately no dust material: distant gas belongs to the sky shader and near gas has no geometry.
 
 Asteroids are the one exception to "no unique textures" — see below.
 
@@ -61,6 +74,40 @@ Lighting is two independent seeded parts: an optional sun as the only directiona
 
 **A starless sector must have gas to light it.** The sun roll and the nebula roll were independent, so a seed could draw away its star *and* its gas at once. The result was a genuine void: no key light, and a near-black sky dome for the real-time capture to read, which meant the sky light's intensity multiplied almost nothing and the rock field rendered invisible against black. A starless sector is now only permitted where the gas is at least Moderate, so the thing that replaces the star is the glow it flies through. The correction re-enables the sun *after* the roll rather than reordering the draws, so it consumes no extra randomness and every other seed is byte-identical.
 
+The player also has a manual ship headlight on **F**. It starts off and remains
+available in every seed, because a nominally lit sector can still put the dark
+side of a nearby asteroid in the flight path. The Ace carries one broad,
+shadow-casting cool-white spotlight rather than two overlapping projectors:
+four co-op ships therefore cost at most four movable shadowed lights, not eight.
+Its 7,200uu reach is navigation range, not a substitute sun.
+
+Each rock owns a child material instance, and the pawn feeds it a cone- and
+distance-faded emissive fill while the headlight is on, tinted to match the
+beam. This is layered *on top of* the real spotlight rather than replacing it:
+under a sun the sector ambient floor is only a tenth of ambient, so a rock's far
+side sits near black and one movable spot at navigation range is thin on its
+own. The fill is what makes the beam read as finding a hazard.
+
+That second path was originally justified on the grounds that the rock shaders
+were unlit and could not receive a movable light at all. **They are not.**
+`MI_Asteroid_01`–`05` are instances of `M_AsteroidRock`, which is `MSM_DefaultLit`
+with baked base colour, normal and roughness/metallic maps from the generated
+models. The comments claiming otherwise outlived the material they described.
+The fill still earns its place for the reason above, but it is an artistic lift,
+not a workaround for a shading model.
+
+**The beam holds full brightness for the first three quarters of its range.**
+That ambient term, not the spotlight's intensity, is what decides how far a rock
+can be seen on a sunless seed, and it used to start dimming at 35% of reach — so
+the useful cone ended around 1,800uu while the light nominally carried 5,200.
+Rocks resolved out of the dark late and close, which is the one thing a
+navigation light exists to prevent. Holding full strength to
+`HeadlightFullBrightFraction` and falling off only over the last quarter is
+deliberately unphysical: a real torch obeys inverse square the whole way, but
+inverse square has already surrendered at exactly the distance where spotting a
+rock still leaves time to turn. The falloff is kept rather than removed so the
+beam still has an end, which is what stops it reading as a flat wash.
+
 The ambient tint stays near the nebula and stellar palette rather than being washed toward white; a desaturated fill reads as a second light source and visibly fights the sun.
 
 **A sector has one chromatic family.** The old recipe independently selected two dust colors, fog, ambient and a stellar family, then weakly blended them. That still allowed an orange star, green dust shell and blue shell in one view. The current recipe first selects the stellar family and palette hue, lightly tints the star toward the local gas, then derives `SectorTint`. Nebula A/B, sky, fog, ambient, every nebula mass and every dust pocket are brightness/saturation variations of that one tint—not independent hues. This preserves cloud-layer depth without looking composited. Directional light uses the same tinted star color, so flying inside green gas gives the key light a slight green influence instead of leaving objects under unrelated orange illumination. When a sun exists, its visible location and directional-light travel vector are derived from the same recipe vector (`light = -sun bearing`), so highlights and shadows cannot disagree with the disc.
@@ -71,35 +118,74 @@ Two rules keep the terminator working. First, the surface normal is **geometric*
 
 Second, **starlight is parallel**. Planets take `Sun.Direction` directly, not their own bearing to the disc. Per-planet bearing sounds more correct and is actively wrong here: the disc's distance is solved from its apparent angular size and typically lands around 12,000uu, while planets are placed 60,000–140,000uu out. A planet five to twelve times farther than the star has a bearing to it that points almost straight back at the camera, so the dot product at the sub-observer point sits at 0.98–1.0 and every world in the sky shows its fully lit face. With parallel rays the visible phase instead depends on the angle between the planet's bearing and the star's, so one sky can hold a gibbous world, a half-lit one, and a thin crescent. Planet placement already keeps bodies at least ~23° off the star's bearing, which bounds how thin a crescent can get.
 
+The two shader families disagree on the *sign* of that vector, and the parameter names do not warn you. Our authored materials take the bearing to the star (`Sun.Direction`); the licensed terrain and cloud graphs shade with `dot(N, -LightDirection)`, so they take the travel vector (`-Sun.Direction`) exactly like the directional light. Getting it backwards does not look broken in isolation — every planet still has a clean terminator, it just faces away from the visible disc, which only reads as wrong once a rock lit by the real light shares the frame.
+
 **There is deliberately no second "fill" directional light.** The project renders forward (`r.ForwardShading`), and forward shading promotes exactly *one* directional light to be the scene's light. A fill light competes for that slot, and when it wins, every hull and rock is lit from the bearing opposite the visible star — the bug reads as "the sun is on the wrong side" no matter how correct the sun's own rotation maths is. Ambient fill belongs to the sky light, which has no direction to get wrong. Key intensities are therefore single-digit lux: with the real sun finally owning the slot, the tens-of-lux values tuned against the old dim fill blow rock albedo past white.
 
-About 18% of seeds are **starless**. Otherwise, seeds select one of four coupled stellar families: **golden**, **white**, **blue**, or **red giant**. A family controls apparent size, temperature, key intensity, corona spread, halo, bloom, and lens flare together; it is not just a hue swap. Size is authored as an **apparent angular radius** (roughly 0.3° for the smallest blue star to 9° for the largest red giant) and the disc scale and distance are solved from it, because rolling scale and distance independently makes a huge far star and a small near one look identical.
+About 18% of seeds are **starless**. Otherwise, seeds select one of four coupled stellar families: **golden**, **white**, **blue**, or **red giant**. A family controls apparent size, temperature, key intensity, corona spread, halo, bloom, and lens flare together; it is not just a hue swap. Stars deliberately remain compact: apparent angular radius runs from roughly **0.18° to 2.8°**, with even a red giant reading as a small bright source rather than a backdrop body. Family is expressed through colour and a larger, brighter soft corona instead of an oversized hard disc. Disc scale and distance are solved from apparent size because rolling scale and distance independently makes a huge far star and a small near one look identical.
 
-The disc itself is **additive and soft-edged**: an unlit sphere whose emissive falls off toward its own silhouette by inverse fresnel, so it fades out instead of ending on a hard circle, wrapped in a second additive **corona** shell a few radii wider with a much steeper falloff. Bloom is kept on a tight kernel (`BloomSizeScale`) — the default spreads a clipped core into a grey wash that flattens the nebula behind it. The sky material receives the same sun bearing and adds a tight view-dependent halo, so cloud detail near the star warms and lifts rather than being erased. Exposure remains manual with the **physical camera model disabled** — leaving it on meters the scene for a real camera and buries anything lit by a low-lux star.
+The disc itself is **additive and soft-edged**: an unlit sphere whose emissive falls off toward its own silhouette by inverse fresnel, so it fades out instead of ending on a hard circle, wrapped in a second additive **corona** shell roughly 3–6 radii wide. The smaller core and brighter corona put most of the perceived size in a soft edge rather than a hard white circle. Bloom is kept on a tight kernel (`BloomSizeScale`) — the default spreads a clipped core into a grey wash that flattens the nebula behind it. The sky material receives the same sun bearing and adds a tight view-dependent halo, so cloud detail near the star warms and lifts rather than being erased. Exposure remains manual with the **physical camera model disabled** — leaving it on meters the scene for a real camera and buries anything lit by a low-lux star.
 
-Every body is the same engine sphere; the material does the work:
+Backdrop planets use the licensed 1,000uu-radius sphere; the director divides
+component scale by 20 so its physical and apparent sizes remain identical to
+the old 50uu-radius engine sphere recipes.
 
 | Body | Detail |
 | --- | --- |
 | Asteroid | Noise-driven albedo, crater darkening, and **world position offset** that pushes the silhouette off a circle. Displacement uses one low-frequency non-turbulent octave — anything finer than the mesh's ~11° vertex spacing tears the hull into spikes. |
-| Planet | One layered material covering ten archetypes — **gas giant, rocky, cloudy, ice, barren, oceanic, desert, volcanic, toxic, crystalline**. Broad continent, ocean, polar ice, crater, cloud, belt and emissive-fissure masks are weighted by the recipe, keeping silhouettes readable at backdrop distance. Bodies independently roll **moon, dwarf, world or giant** physical scale and an apparent angular radius; distance is solved from both, so physical size no longer collapses into one apparent size. A rare seed promotes one body to a foreground **orbital vista** with an 18–34° apparent radius, letting it occupy roughly a third to two-thirds of the view while remaining unreachable sky. Its required separation from the visible star includes both bodies' angular radii, preventing a giant planet from accidentally covering the sun. Bands run along warped latitude from the planet's local axis. The material's `Sine` has a period of 1, not 2π, so band scale is belt cycles; warp stays low enough to bend belts without dissolving them into a maze. Explicit geometric Lambert lighting preserves the day/night terminator. |
+| Planet | High-detail terrain worlds render an opaque licensed **surface** plus a 1.01-scale licensed **cloud/atmosphere shell**, matching the source asset's geometry while leaving our C++ seed as owner. Each seed selects two distinct terrain textures and drives terrain colors, aligned texture scale, generated normals, ocean level/noise/reflection, polar ice, cloud channel/speed/power (a wrap takes roughly 48 minutes to 3.5 hours, so the deck only drifts), atmosphere fresnel, shadows, and parallel light direction. **Gas giants** keep the authored latitude-belt shader; **volcanic** and **crystalline** worlds keep its night-side emissive fissures, because the purchased terrain graph cannot express those archetypes. Physical scale and apparent radius are continuous spectra, not moon/dwarf/world/giant buckets: physical scale spans **10–2,400** and visible radius spans **0.3–40°**, both heavily weighted toward ordinary distant bodies. The old size class is derived afterward only for ring rules and telemetry. At the rare large end, physical radius is raised to the minimum required for clearance not to shrink the requested angular size back down; only one such orbital vista is allowed per seed, and vistas omit rings so they cannot overrun the star dome or HUD. Volcanic worlds also omit the near-coplanar legacy cloud shell, use broader lower-frequency fissures, and cap emissive gain; this removes the translucent overlap and sub-pixel temporal shimmer that looked like animated surface flicker. |
 | Ring | A two-sided plane, not a flattened sphere. A radial mask cuts one continuous translucent annulus; low-contrast broad and fine radial waves vary color/value without discarding the sheet into bright hoops. The inner radius is solved from planet/ring scale so the ring begins outside the surface. Ringed planets constrain their axis to a 32–68° view inclination, preventing invisible edge-on seeds while retaining strong perspective. Rings receive the same per-planet sun bearing, sun color and ambient floor as the planet, so they no longer look like self-lit UI geometry. |
 
-Asteroids are individual `AShatteredAsteroid` rigid bodies rather than ISM instances. ISMs are appropriate for a static field, but cannot give every rock an independent Chaos body; actor-per-rock is the necessary trade for slow seeded drift, tumble, asteroid-to-asteroid impacts and ship collision. Gravity is disabled, damping is deliberately tiny, CCD is enabled, and mass scales with recipe volume so small fragments yield to larger bodies. Regeneration destroys the old actor pool and rebuilds the same initial transforms and velocities from the seed.
+Asteroids are individual `AShatteredAsteroid` rigid bodies rather than ISM instances. ISMs are appropriate for a static field, but cannot give every rock an independent Chaos body; actor-per-rock is the necessary trade for seeded drift, tumble, asteroid-to-asteroid impacts and ship collision. Gravity is disabled, damping is deliberately tiny, CCD is enabled, and mass scales with recipe volume so small fragments yield to larger bodies. Eighteen percent begin completely stationary. The rest follow a low-weighted continuous speed curve from **0.5–70uu/s** with independent random 3D direction and a **0.1–8°/s** tumble spectrum, so most remain subtle while rare cross-sector movers are visibly quicker.
+
+That roll is then **damped by size**, because rolling speed independently of scale let a 24× landmark draw the same 70uu/s as a pebble and skate across the sector. True momentum would divide by mass — radius cubed — and freeze every large body outright, so the damping is a gentler `(1.3 / radius)^0.65`, clamped to 1.0. Fragments up to about 1.3 scale are untouched, a 3.1 rock keeps roughly 57%, giants keep about a third, and a colossal keeps about a seventh — a ceiling near 10uu/s rather than 70. Tumble takes the same factor: angular speed on a large body means a much higher surface speed, so a spin that reads as lively on a fragment reads as a malfunction on a landmark. `RecipeDeterminism` asserts giants stay under half the drift cap and below 4°/s, so the top of the speed spectrum must belong to small rocks.
+
+Regeneration destroys the old actor pool and rebuilds the same initial transforms and velocities from the seed.
 
 ### The asteroid kit
 
-The placeholder sphere and its procedural rock shader are gone. `/Game/Meshes/Asteroids/SM_Asteroid_01`–`05` are authored rocks generated from the concept set in `art/asteroids/`, each roughly 460–490 triangles with one auto LOD at 35%, auto-decomposed convex collision (one or two hulls depending on silhouette), and baked 1K base colour / normal / roughness-metallic. Convex collision is required because these are simulated Chaos bodies; complex triangle collision cannot simulate as a dynamic rigid body.
+`/Game/Meshes/Asteroids/SM_Asteroid_01`–`08` are the authored runtime kit. The source GLBs live in `art/asteroids/models/` in semantic order: two Small, three Medium, then three High crater-density meshes. They carry 7,556–9,956 triangles at LOD0, engine-reduced LOD1/LOD2 at 35% and 12%, two coarse convex collision hulls, and baked base colour / normal / roughness-metallic. Runtime textures are capped at 1K while the preserved GLBs retain their embedded 2K maps. Convex collision is required because these are simulated Chaos bodies; complex triangle collision cannot simulate as a dynamic rigid body. `Scripts/convert_asteroid_glbs.py` and `Scripts/import_asteroid_kit.py` make this conversion repeatable; mesh numbering is a contract, so adding a variant to any family means re-running both over the whole kit rather than appending an index. The previous five-mesh runtime kit, its import intermediates, and its ~470-triangle source GLBs are preserved in `archive/unreal-asteroids-2026-08-24-before-big-asteroids/`.
 
-Each rock is modelled to about **100uu across, deliberately matching the engine sphere it replaced**. The recipe now builds 40–68 bodies per seed (about double the old 18–34), guarantees 2–4 giant landmarks at 5.5–8.5 base scale and 5–9 large rocks at 3.1–5.2, then fills the field with a weighted mix from small fragments at 0.45 scale through medium rocks. Mild per-axis variance prevents repeated silhouettes without stretching the visual away from its collider.
+Two import settings decide whether that triangle budget is actually visible. The meshes carry custom split normals authored against their baked normal maps, so the importer must be told to **import normals rather than compute them**; UE 5.8 routes FBX through Interchange, which ignores `FbxImportUI`, so `recompute_normals` has to be cleared on every LOD in a pass *after* reduction — `set_lods` rebuilds the mesh and discards settings written during the same call. Left on, normals are rebuilt from topology per LOD, hardening every UV seam into a facet and giving each level its own shading, which makes a 10k-triangle rock read as low-poly and change character as it swaps. Reduction is done by the engine for the same reason Blender cannot do it: collapse decimate will not weld across those UV seams, so each side reduces independently and cracks open. LOD screen sizes are set **explicitly to 1.0 / 0.09 / 0.025** rather than auto-computed. Auto-compute chose roughly 0.39 and 0.12, which dropped a rock to 3.4k triangles while it still filled a third of the screen; rocks are the primary subject here, so they earn far later switches than a background prop. The import script asserts the normal setting survives readback, because a silent revert is invisible until the field looks faceted in flight.
 
-Placement is size-aware. Spawn, ingress, and rock-to-rock tests add the candidate's scaled mesh radius; rock pairs retain a 55uu surface gap rather than comparing centre distance to one constant. This matters most for giant landmarks: an eight-times-scale rock no longer overlaps a smaller body or intrudes into a nominally clear route simply because its pivot passed the old test.
+Each source rock is modelled to about **100uu across**, deliberately preserving the old physical baseline. Depending on profile, the recipe requests **90–340 bodies per seed**. The ordinary population peaks at **small-medium**: roughly **28%** are 0.9–1.4 fragments, **52%** are 1.4–2.4 small/medium bodies, and **20%** reach 2.4–3.1. A separate pass adds just **10–18** large 3.1–5.2 rocks and **3–6** 5.5–9.0 giants.
 
-The recipe picks the variant, not the director: `FShatteredAsteroidRecipe::MeshIndex` is drawn from the same stream as the transform and folded into the layout hash, so a seed reproduces *which* rock sits where and not merely where rocks sit. The director wraps that index on its own loaded mesh count, so a missing asset repeats a rock rather than spawning an invisible collider.
+The floor was previously 0.45 and two thirds of every field sat under 1.1 scale, which is 110uu across — grit at combat range. The field read as debris with a few landmarks rather than as an asteroid belt, and the most common object in the game was one the player could neither aim at nor meaningfully avoid. The floor is now **0.9** and the mode is the band that reads as a rock from the cockpit, takes a visible number of hits, and is worth steering around. `RecipeDeterminism` measures the histogram across 256 seeds and asserts small-medium outnumbers both flanking bands; it currently reports **13,482 / 26,625 / 11,282**. Only **28%** of seeds receive a single colossal landmark at a continuous 14–24 base scale. The previous distribution guaranteed 25–45 large, 10–20 giant, and up to three colossal bodies, so roughly one rock in five read as a landmark and size stopped feeling exceptional. Large bodies are still generated and placed first so every smaller body routes around their full radius. Mild per-axis variance prevents repeated silhouettes without stretching the visual away from its collider.
+
+`MeshIndex` is no longer unrelated to physical size. Rocks at or below 1.4 scale always use one of the two Small meshes. From 1.4–2.4, selection blends progressively from Small into one of the three Medium variants; from 2.4 up to the 5.5 giant threshold it remains Medium-only. The three authored High meshes are the **large-asteroid silhouettes** and are now reserved absolutely for 5.5+ giants and colossals. The previous 3.5–5.5 Medium/High blend spent those imposing crater-dense models on ordinary rocks, so the model itself stopped communicating exceptional scale.
+
+Placement is size-aware and starts by choosing one weighted field grammar:
+
+| Profile | Weight | Count | Shape |
+| --- | ---: | ---: | --- |
+| **Cloud** | 34% | 190–300 | Broad 3D field; radius, height, and radial edge weighting vary per seed |
+| **Disk** | 24% | 220–340 | Wide 4,800–6,800uu plane only 500–1,100uu thick |
+| **Belt** | 18% | 150–250 | Seeded 12,000–15,600uu line with a soft 900–2,000uu width, rotated to any bearing |
+| **Clusters** | 16% | 150–260 | Three to five dense pockets separated by deliberate navigable voids |
+| **Sparse** | 8% | 110–170 | Largest 6,500–8,200uu radius and tallest volume with long quiet gaps |
+
+Cloud, Disk, and Sparse sample horizontal position by **area, not radius**; their
+seeded exponent varies around the even-density `sqrt(u)` case. Belt samples a
+uniform long axis and triangular soft cross-axis before rotating the whole
+structure. Clusters choose seeded pocket centres, then sample by area within
+each pocket. Pocket volume is the binding constraint on that profile rather than
+its requested count: placement enforces a surface gap, so a pocket only a couple
+of rock diameters deep saturates and silently discards the remainder. Raising the
+size floor exposed this — pockets could be 144uu thin, and two seeds placed under
+half their request — so pocket radius, depth, and count all carry floors sized
+against the larger rocks. All profiles retain triangular altitude, spawn/ingress exclusion,
+and collision-aware placement. Rock pairs keep a 55uu surface gap rather than
+comparing pivots to one constant. This matters most for colossal landmarks: a
+24-times-scale rock cannot overlap a smaller body or intrude into a nominally
+clear route simply because its pivot passed the test.
+
+Every rock owns its own dynamic material instance because headlight exposure is local. That instance is parented directly to the authored material instance; parenting it to a shared runtime MID is invalid in Unreal and previously generated one warning plus a failed material chain per asteroid.
+
+The recipe picks the size-appropriate variant, not the director, and folds `FShatteredAsteroidRecipe::MeshIndex` into the layout hash, so a seed reproduces *which* rock sits where and not merely where rocks sit. The director wraps that index on its own loaded mesh count, so a missing asset repeats a rock rather than spawning an invisible collider.
 
 This is the one place the environment carries unique texture memory, and it is the right trade: a procedural shader can fake a noisy sphere but not a crater with a raised rim, and rocks are the only environment geometry the player gets close enough to read. Distant bodies stay procedural because they are never approached.
 
-Shading is `M_AsteroidRock` plus one instance per rock (`MI_Asteroid_01`–`05`) holding that rock's textures. The seed still drives lighting through two parameters. `Color` is a **hue-only** sector tint: the ambient colour is normalised to its brightest channel before being blended 18% toward white, because multiplying authored albedo by the raw ambient colour — which is deliberately dark — would crush every rock to black. `AmbientStrength` is the emissive floor described above — a tenth of the ambient term under a sun, 55% of it in a starless sector. The director builds one dynamic instance per variant rather than per rock, since the ambient terms are uniform across the field and per-rock instances would only cost batching.
+Shading is `M_AsteroidRock` plus one authored material instance per variant (`MI_Asteroid_01`–`08`) holding that rock's textures. Every spawned actor makes its own dynamic child because headlight exposure is local. The seed still drives lighting through two parameters. `Color` is a **hue-only** sector tint: the ambient colour is normalised to its brightest channel before being blended 18% toward white, because multiplying authored albedo by the raw ambient colour — which is deliberately dark — would crush every rock to black. `AmbientStrength` is the emissive floor described above — a tenth of the ambient term under a sun, 55% of it in a starless sector.
 
 ### Distant gas: nebula masses in the sky shader
 
@@ -127,7 +213,15 @@ Out of this slice: hazards, POIs, galaxy-map selection, replication, volumetric 
 
 ## 4. Proof
 
-Automation: `ShatteredRogue.Environment.RecipeDeterminism` (equal seeds match, including asteroid scale, drift and mesh choice; every field contains 40–68 rocks; small and giant size classes and a maximum-population field appear; asteroid starting speeds stay in the deliberately slow 3–14 uu/s band; every asteroid mesh index stays inside the kit and all five variants appear across the seed sweep; all four sun families and ten planet archetypes appear; all four planet size classes and a rare orbital vista appear; natural clear-space, subtle-nebula, starless and inside-nebula sectors appear; clear space contains no hidden gas layers; no starless sector is also gasless; nebula-mass and dust-pocket hues remain aligned with the sector nebula; mass/ring opacity and dust density stay restrained; mass directions are unit length and falloff exponents stay in a sane band; dust pockets stay within the arena; both pools stay inside their component budgets; broad star-size variance; star gain always clears the tonemapping floor and spans dim and bright fields; 0- and 3-planet forced recipes; size-aware asteroid exclusion zones and backdrop clearance across 256 seeds).
+Automation: `ShatteredRogue.Environment.RecipeDeterminism` (equal seeds reproduce
+profile, extents, count, transforms, scale, drift and mesh choice; all five
+weighted field profiles appear across 256 seeds; every field stays inside its
+seeded radius/height and the global 8,300 × ±2,200 bounds; fields contain
+90–340 rocks; small silhouettes outnumber medium, medium outnumber large, and
+large models are giant-only; the motion sweep contains stationary, barely
+drifting and >50uu/s rocks in positive and negative 3D directions while never
+exceeding 70uu/s; spawn/ingress and pairwise surface clearance survive every
+profile; duplicate seeds reproduce the same layout hash).
 
 Play: Flight Training → `\` → note seed / layout hash → APPLY SEED twice → same hash. `NEW SEED` must change planets/sun bearing. Pressing `=` in flight must do the same, and the panel's seed field and layout hash must both follow it.
 

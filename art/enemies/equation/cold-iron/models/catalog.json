@@ -1,0 +1,315 @@
+{
+  "generated": "2026-08-26T12:48:43.689Z",
+  "targetTriangles": [
+    6000,
+    9000
+  ],
+  "summary": {
+    "concepts": 15,
+    "models": 15,
+    "target": 15,
+    "totalTriangles": 114728
+  },
+  "entries": [
+    {
+      "name": "needle-ballthorn",
+      "title": "Needle Ballthorn",
+      "family": "needle",
+      "description": "Machined plated ball with one long ramming thorn and an exposed cell.",
+      "image": "../needle-ballthorn.png",
+      "model": "needle-ballthorn.glb",
+      "preview": "needle-ballthorn-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7739,
+      "vertices": 11247,
+      "megabytes": 1.67,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "needle-hook",
+      "title": "Needle Hook",
+      "family": "needle",
+      "description": "Deep steel crescent with an inner muzzle and machinery along the open curve.",
+      "image": "../needle-hook.png",
+      "model": "needle-hook.glb",
+      "preview": "needle-hook-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7827,
+      "vertices": 10355,
+      "megabytes": 1.28,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "needle-spindle",
+      "title": "Needle Spindle",
+      "family": "needle",
+      "description": "Vertical steel spindle with a lower lance emitter and an off-centre battery pod.",
+      "image": "../needle-spindle.png",
+      "model": "needle-spindle.glb",
+      "preview": "needle-spindle-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7214,
+      "vertices": 10874,
+      "megabytes": 1.27,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "vector-gyro",
+      "title": "Vector Gyro",
+      "family": "vector",
+      "description": "Machined sphere in unequal gimbal rings with one short axial barrel.",
+      "image": "../vector-gyro.png",
+      "model": "vector-gyro.glb",
+      "preview": "vector-gyro-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7785,
+      "vertices": 11600,
+      "megabytes": 1.46,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "vector-mast",
+      "title": "Vector Mast",
+      "family": "vector",
+      "description": "Upright spar with a low thruster block, high sensor head, and offset systems.",
+      "image": "../vector-mast.png",
+      "model": "vector-mast.glb",
+      "preview": "vector-mast-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7564,
+      "vertices": 12293,
+      "megabytes": 1.61,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "vector-wedge",
+      "title": "Vector Wedge",
+      "family": "vector",
+      "description": "Deep chiselled wedge sheared open over its cell bank with one corner barrel.",
+      "image": "../vector-wedge.png",
+      "model": "vector-wedge.glb",
+      "preview": "vector-wedge-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7761,
+      "vertices": 11803,
+      "megabytes": 1.31,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "mortar-column",
+      "title": "Mortar Column",
+      "family": "mortar",
+      "description": "Mismatched rings and drums threaded onto a shaft with one clamped tube.",
+      "image": "../mortar-column.png",
+      "model": "mortar-column.glb",
+      "preview": "mortar-column-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7731,
+      "vertices": 5729,
+      "megabytes": 1.09,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "mortar-drum",
+      "title": "Mortar Drum",
+      "family": "mortar",
+      "description": "Stepped vertical drum with one angled launch tube, cells, and cooling fins.",
+      "image": "../mortar-drum.png",
+      "model": "mortar-drum.glb",
+      "preview": "mortar-drum-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7209,
+      "vertices": 10910,
+      "megabytes": 1.3,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "mortar-kettle",
+      "title": "Mortar Kettle",
+      "family": "mortar",
+      "description": "Squat iron spheroid with one broad mortar mouth and flank-mounted cells.",
+      "image": "../mortar-kettle.png",
+      "model": "mortar-kettle.glb",
+      "preview": "mortar-kettle-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7651,
+      "vertices": 10414,
+      "megabytes": 1.44,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "bastion-anvil",
+      "title": "Bastion Anvil",
+      "family": "bastion",
+      "description": "Compact overhanging mass with one lip-mounted cannon and recessed cells.",
+      "image": "../bastion-anvil.png",
+      "model": "bastion-anvil.glb",
+      "preview": "bastion-anvil-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7562,
+      "vertices": 10677,
+      "megabytes": 1.25,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "bastion-orb",
+      "title": "Bastion Orb",
+      "family": "bastion",
+      "description": "Dense iron sphere in unequal armour bands with an exposed battery core.",
+      "image": "../bastion-orb.png",
+      "model": "bastion-orb.glb",
+      "preview": "bastion-orb-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7808,
+      "vertices": 5423,
+      "megabytes": 1.04,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "bastion-pillar",
+      "title": "Bastion Pillar",
+      "family": "bastion",
+      "description": "Top-heavy monolith of stacked slabs with an exposed battery column.",
+      "image": "../bastion-pillar.png",
+      "model": "bastion-pillar.glb",
+      "preview": "bastion-pillar-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7777,
+      "vertices": 10872,
+      "megabytes": 1.32,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "relay-cage",
+      "title": "Relay Cage",
+      "family": "relay",
+      "description": "Asymmetric skeletal rib cage around a suspended violet core.",
+      "image": "../relay-cage.png",
+      "model": "relay-cage.glb",
+      "preview": "relay-cage-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7769,
+      "vertices": 11850,
+      "megabytes": 1.28,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "relay-spire",
+      "title": "Relay Spire",
+      "family": "relay",
+      "description": "Kinked obelisk of narrowing segments with one battery canister and emitter.",
+      "image": "../relay-spire.png",
+      "model": "relay-spire.glb",
+      "preview": "relay-spire-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7670,
+      "vertices": 11042,
+      "megabytes": 1.5,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    },
+    {
+      "name": "relay-stack",
+      "title": "Relay Stack",
+      "family": "relay",
+      "description": "Three offset discs on short struts with a violet field in the gaps.",
+      "image": "../relay-stack.png",
+      "model": "relay-stack.glb",
+      "preview": "relay-stack-preview.png",
+      "status": "model-ready",
+      "targetTriangles": [
+        6000,
+        9000
+      ],
+      "triangles": 7661,
+      "vertices": 11527,
+      "megabytes": 1.36,
+      "materials": 1,
+      "textures": 3,
+      "budget": "target"
+    }
+  ]
+}

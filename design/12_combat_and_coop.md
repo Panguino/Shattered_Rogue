@@ -36,6 +36,7 @@
 - Any incoming damage resets the three-second recharge delay. Recharge never repairs hull.
 - Asteroid collision damage uses **closing speed along the impact normal**, not total ship speed. A fast parallel scrape should slide along the rock; a head-on impact should hurt. Below 220 uu/s it is harmless, then damage rises with speed to a 45-point cap.
 - A short per-impact cooldown prevents a single sustained contact from applying damage every frame. Physical asteroids receive an impulse from the ship and collide with one another through Chaos.
+- **The hull's hitbox is a box, sized from the hull mesh's own bounds** (currently ~240 long × 241 wide × 59 tall) rather than the capsule it started as. That capsule was a 140 radius over a 145 half-height — a sphere in all but name — which stood roughly 290uu tall around a hull barely 60uu thick, so the ship stopped dead on rocks that clearly passed above and below it. A box is the crudest shape that still tells the three hull axes apart, and unlike a convex hull it is cheap to sweep every frame, which is what movement does. It is inset to 82% of the bounds: a fighter's bounding box is mostly empty air at the swept wingtips and tapered nose, and erring small is the kinder error — clipping a wingtip through a rock reads as a near miss, while stopping on clear space reads as a bug. Press `-` in game to draw every physics shape and check this against what you can see.
 
 ### Damage Numbers
 

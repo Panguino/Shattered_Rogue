@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shattered Rogue â€” flight HUD mockup</title>
+<link rel="stylesheet" href="fonts/chakra-petch.css">
+<link rel="stylesheet" href="hud.css">
+<style>
+  /* Harness chrome. Nothing below this line describes the HUD; it is the
+     scaffolding that holds the layers, so none of it ships to the game. */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%;
+    background: #0b0e12; color: #c7d4e0;
+    font: 12px/1.5 "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+  }
+  #app { display: flex; height: 100%; }
+
+  #viewer {
+    flex: 1 1 auto;
+    /* A flex item refuses to shrink below its content by default, and this
+       one's content is a 1920px stage. Without these it would push the panel
+       off screen instead of letting the stage scale down. */
+    min-width: 0; min-height: 0;
+    display: grid; place-items: center; overflow: hidden;
+    background: repeating-conic-gradient(#15191f 0% 25%, #10141a 0% 50%) 50% / 24px 24px;
+  }
+
+  /* scale() is a paint-time transform: the stage keeps its full 1920x1080
+     layout box however small it is drawn. The frame carries the *scaled* size
+     as its real layout box so ordinary centring lands it correctly. */
+  #stage-frame {
+    --stage-w: 1920px; --stage-h: 1080px; --fit: 1;
+    position: relative;
+    width: calc(var(--stage-w) * var(--fit));
+    height: calc(var(--stage-h) * var(--fit));
+  }
+  #stage {
+    position: absolute; top: 0; left: 0;
+    width: var(--stage-w); height: var(--stage-h);
+    transform: scale(var(--fit)); transform-origin: top left;
+    box-shadow: 0 0 0 1px #2a323d, 0 30px 80px rgba(0,0,0,.7);
+    overflow: hidden;
+  }
+
+  .layer { position: absolute; inset: 0; }
+  #layer-plate { background: #000; }
+  #layer-plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #layer-hud { pointer-events: none; }
+  #layer-hud.editing { pointer-events: auto; }
+
+  #layer-guides { pointer-events: none; opacity: .85; }
+  #layer-guides .safe { position: absolute; inset: 5%; border: 1px dashed rgba(120,200,255,.35); }
+  #layer-guides .third { position: absolute; background: rgba(120,200,255,.12); }
+  /* Where the ship actually sits in this plate, measured from the pixels. */
+  #layer-guides .ship-box {
+    position: absolute; left: 846px; top: 748px; width: 268px; height: 110px;
+    border: 1px dashed rgba(255,180,120,.5);
+  }
+
+  .hidden { display: none !important; }
+
+  #layer-hud.editing .pod { cursor: grab; outline: 1px solid rgba(120,200,255,.45); }
+  #layer-hud.editing .pod:hover { outline-color: rgba(120,200,255,.9); }
+  #layer-hud.editing .pod.dragging { cursor: grabbing; outline: 1px solid var(--gold); }
+  #layer-hud.editing .pod.selected { outline: 1px solid var(--gold); }
+
+  #panel {
+    width: 320px; flex: 0 0 320px;
+    background: #11151b; border-left: 1px solid #232b35;
+    padding: 16px; overflow-y: auto;
+  }
+  #panel h1 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #7fd4ef; margin: 0 0 4px; }
+  #panel p.sub { margin: 0 0 18px; color: #6b7c8c; font-size: 11px; }
+  #panel h2 {
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #5f7181;
+    margin: 20px 0 8px; padding-bottom: 6px; border-bottom: 1px solid #1e2630;
+  }
+  .field { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .field label { flex: 1 1 auto; color: #9db0c0; }
+  .field input[type=range] { flex: 0 0 130px; }
+  select, button {
+    background: #1a212a; color: #c7d4e0; border: 1px solid #2c3742;
+    padding: 6px 10px; font: inherit; border-radius: 3px; cursor: pointer;
+  }
+  button:hover, select:hover { border-color: #3d4c5a; background: #202932; }
+  button.primary { background: #17323d; border-color: #2b5f73; color: #9fe6ff; }
+  .stack > button { width: 100%; margin-bottom: 6px; }
+  #readout {
+    font-family: Consolas, monospace; font-size: 11px; color: #86e0a8;
+    background: #0c1014; border: 1px solid #1e2630; border-radius: 3px;
+    padding: 8px; min-height: 52px; white-space: pre-wrap;
+  }
+  #drop-hint { margin-top: 8px; padding: 10px; border: 1px dashed #2c3742; border-radius: 3px; color: #6b7c8c; font-size: 11px; text-align: center; }
+  kbd { background: #1a212a; border: 1px solid #2c3742; border-bottom-width: 2px; border-radius: 3px; padding: 1px 5px; font: 11px Consolas, monospace; color: #9db0c0; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <div id="viewer">
+   <div id="stage-frame">
+    <div id="stage">
+
+      <!-- Layer 0: a real frame from the game with the HUD switched off
+           (Shattered.ShowHUD 0). Drop any PNG on the window to swap it. -->
+      <div class="layer" id="layer-plate">
+        <img id="plate" src="../plates/plate_asteroid_field_01.png" alt="gameplay plate">
+      </div>
+
+      <!-- Layer 1: the HUD. Each .pod is one UCanvasPanelSlot; the custom
+           properties on it are the arguments the C++ passes. -->
+      <div class="layer hud" id="layer-hud">
+
+        <!-- ============ FRAME CLUSTER: what the run is doing ============ -->
+
+        <!-- One band across the top. Score left, sector centre, run state
+             right, sharing a single baseline rule. Stretched anchors so it
+             tracks the screen edge instead of sitting at a fixed 1920.
+             The runtime port currently draws the centre zone only; the sides
+             stay authored here so the band is designed whole. -->
+        <div class="pod stretch-x floating instrument header-bar" data-umg="HeaderBar"
+             style="--ax:0; --ay:0; --alx:0; --aly:0; --x:0; --y:0; --h:98;">
+          <div class="hdr-grid">
+
+            <!-- Score. Luck lives here: it is a run stat, not a currency. -->
+            <div class="zone left run-only">
+              <div class="stat">
+                <span class="lbl">SCORE</span>
+                <span class="big" id="v-score">124,850</span>
+              </div>
+              <div class="hdr-sep"></div>
+              <div class="stat" style="gap:7px;">
+                <span class="chip-kv"><b id="v-combo">&times;12</b> COMBO</span>
+                <span class="chip-kv"><b>37</b> KILLS</span>
+              </div>
+              <div class="stat" style="gap:7px;">
+                <span class="chip-kv"><b id="v-luck">24</b> LUCK</span>
+                <span class="chip-kv"><b>07</b> HOSTILES</span>
+              </div>
+            </div>
+
+            <!-- Sector. The centre is the only place a player reliably reads
+                 without looking away from the reticle, so the objective lives
+                 here rather than in a corner. -->
+            <div class="zone mid">
+              <div class="sector-name" id="v-scenario">PIRATE RAID</div>
+              <div class="sector-wave">
+                <span class="n">WAVE 3 / 5</span>
+                <span class="phase-pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+              </div>
+              <div class="sector-obj" id="v-objective">DESTROY THE FLAGSHIP</div>
+            </div>
+
+            <!-- Run state: clock and wallet. Ship level left for the footer. -->
+            <div class="zone right run-only">
+              <div class="stat sm">
+                <span class="lbl">TIME</span>
+                <span class="big" id="v-time">12:04</span>
+              </div>
+              <div class="hdr-sep"></div>
+              <div class="econ-inline">
+                <div class="cur">
+                  <svg width="18" height="18" viewBox="0 0 14 14"><polygon points="7,1 13,4.5 13,9.5 7,13 1,9.5 1,4.5" fill="none" stroke="#ffd04a" stroke-width="1.3"/></svg>
+                  <span>2,450</span>
+                </div>
+                <div class="cur">
+                  <svg width="18" height="18" viewBox="0 0 14 14"><polygon points="7,1 12,7 7,13 2,7" fill="none" stroke="#4ef4ff" stroke-width="1.3"/></svg>
+                  <span>18</span>
+                </div>
+                <div class="cur">
+                  <svg width="18" height="18" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5.3" fill="none" stroke="#c9a6ff" stroke-width="1.3"/><circle cx="7" cy="7" r="1.6" fill="#c9a6ff"/></svg>
+                  <span>730</span>
+                </div>
+                <div class="cur">
+                  <svg width="18" height="18" viewBox="0 0 14 14"><polygon points="8,1 3.5,7.5 6.5,7.5 6,13 10.5,6.5 7.5,6.5" fill="none" stroke="#ffd04a" stroke-width="1.2"/></svg>
+                  <span>3</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Stacks under the band while a named target is up. -->
+        <!-- Hangs off the header rule on a drop tick, so appearing reads as the
+             band extending rather than a new window opening. -->
+        <div class="pod floating instrument boss" data-umg="BossBar"
+             style="--ax:.5; --ay:0; --alx:.5; --aly:0; --x:0; --y:120; --w:780; --h:42;">
+          <div class="boss-slide">
+            <span class="boss-drop"></span>
+            <div class="boss-name" id="boss-name"></div>
+            <div class="boss-plates" id="boss-plates"></div>
+          </div>
+        </div>
+
+        <!-- Radar: 2D disc plus a vertical stem per contact for altitude.
+             Upper right, directly under the run-state end of the band. -->
+        <div class="pod floating instrument radar run-only" data-umg="RadarPod"
+             style="--ax:1; --ay:0; --alx:1; --aly:0; --x:-28; --y:116; --w:252; --h:236;">
+          <svg id="radar-svg" viewBox="0 0 218 220" width="100%" height="100%"></svg>
+        </div>
+
+        <!-- ============ SHIP CLUSTER: what the ship is doing ============ -->
+
+        <!-- Screen-space arcs over the projected ship. In game the centre is the
+             ship's projected bounds origin pushed 34 down, because the chase
+             camera frames the hull above its own bounds centre and an unshifted
+             halo rides across the fuselage. That lands at (980, 790) on this
+             plate, which is 10 above the ship's measured visual centre. -->
+        <div class="pod bare halo" data-umg="ShipHalo"
+             style="--ax:.5; --ay:.5; --alx:.5; --aly:.5; --x:20; --y:250; --w:460; --h:320;">
+          <svg id="halo-svg" viewBox="0 0 460 320" width="100%" height="100%"></svg>
+        </div>
+
+        <!-- Impact reticle. One pixel everywhere: the runtime draws this with
+             Slate lines at the thinnest width that still antialiases, and the
+             mark has to stay out of the way of the thing it is aimed at.
+             The two outboard ticks are the weapon-ready lights: aim is here, so
+             "can I shoot" is here too. Those are not in the runtime port yet. -->
+        <div class="pod bare reticle" data-umg="Reticle"
+             style="--ax:.5; --ay:.5; --alx:.5; --aly:.5; --x:0; --y:0; --w:110; --h:96;">
+          <i class="tick" style="--w:13; --h:1; --x:-20; --y:0;"></i>
+          <i class="tick" style="--w:13; --h:1; --x:20;  --y:0;"></i>
+          <i class="tick" style="--w:1; --h:13; --x:0;   --y:-20;"></i>
+          <i class="tick" style="--w:1; --h:13; --x:0;   --y:20;"></i>
+          <i class="tick" style="--w:10; --h:1; --x:-27; --y:-31;"></i>
+          <i class="tick" style="--w:1; --h:10; --x:-32; --y:-26;"></i>
+          <i class="tick" style="--w:10; --h:1; --x:27;  --y:-31;"></i>
+          <i class="tick" style="--w:1; --h:10; --x:32;  --y:-26;"></i>
+          <i class="tick" style="--w:10; --h:1; --x:-27; --y:31;"></i>
+          <i class="tick" style="--w:1; --h:10; --x:-32; --y:26;"></i>
+          <i class="tick" style="--w:10; --h:1; --x:27;  --y:31;"></i>
+          <i class="tick" style="--w:1; --h:10; --x:32;  --y:26;"></i>
+          <i class="tick weapon ready" style="--w:3; --h:16; --x:-46; --y:0;"></i>
+          <i class="tick weapon"       style="--w:3; --h:16; --x:46;  --y:0;"></i>
+          <i class="tick dot" style="--w:3; --h:3; --x:0; --y:0;"></i>
+        </div>
+
+        <!-- ============ BOTTOM: telemetry and loadout ============ -->
+
+        <!-- Speed is the headline; the strip beside it keeps 6DOF from reading
+             like a single throttle. Gold markers are per-axis caps. -->
+        <!-- No header. A dial reading M/S next to five labelled axis bars does
+             not need a caption telling you it is telemetry. -->
+        <div class="pod floating instrument telemetry" data-umg="TelemetryPod"
+             style="--ax:0; --ay:1; --alx:0; --aly:1; --x:28; --y:-24; --w:445; --h:212;">
+          <div class="tech-body">
+            <svg id="speed-dial" class="dial" viewBox="0 0 190 190" width="205" height="205"></svg>
+            <div class="axes" id="axes"></div>
+          </div>
+        </div>
+
+        <!-- Loadout schematic. Bottom-right rather than under the ship: the
+             ship sits at 74% down this frame, so the halo already owns the
+             space beneath it. -->
+        <div class="pod floating instrument blueprint" data-umg="ModsPod"
+             style="--ax:1; --ay:1; --alx:1; --aly:1; --x:-28; --y:-24; --w:228; --h:258;">
+          <svg id="blueprint-svg" class="schematic" viewBox="0 0 819 742"
+               preserveAspectRatio="xMaxYMid meet" width="100%" height="200"></svg>
+          <div class="aux-rows" id="aux-rows"></div>
+        </div>
+
+        <!-- Ship level, moved out of the run-state corner. Levelling is the one
+             number a player wants to watch climb, and the top-right corner is
+             the furthest point on screen from the reticle. Full width along the
+             bottom edge reads in peripheral vision without being looked at. -->
+        <div class="pod stretch-x floating levelbar run-only" data-umg="LevelBar"
+             style="--ax:0; --ay:1; --alx:0; --aly:1; --x:0; --y:0; --h:40;">
+          <div class="lvl-mark" id="v-level">LEVEL 7</div>
+          <div class="lvl-track" style="--pct:.42;"></div>
+        </div>
+
+      </div>
+
+      <!-- Layer 2: loadout overlay ------------------------------------------
+           Deliberately leaves the middle third of the screen empty. Stations
+           do not pause in co-op (design/07_stations.md), so this thing is on
+           top of a live ship - anything covering the centre is a death trap.
+           The header band and the ship halo stay lit underneath for the same
+           reason; everything else recesses. -->
+      <div class="layer loadout" id="layer-loadout">
+
+        <div class="lo-rail">
+          <span class="lo-pages"><b class="on">SHIP</b><b>MAP</b><b>CODEX</b></span>
+          <span class="hatch"></span>
+          <span class="lo-dock" id="lo-dock"></span>
+          <span class="lo-close"><kbd>TAB</kbd> CLOSE</span>
+        </div>
+
+        <section class="lo-pane lo-left">
+          <div class="tech-head bare">
+            <i></i><span>ACE &nbsp;//&nbsp; INTERCEPTOR</span>
+            <span class="hatch"></span><span class="badge">4 / 5 / 1</span>
+          </div>
+          <svg id="lo-ship-svg" class="schematic" viewBox="0 0 819 742"
+               preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="lo-racks" id="lo-racks"></div>
+        </section>
+
+        <section class="lo-pane lo-right">
+          <div class="tech-head bare">
+            <i></i><span>CARGO HOLD</span>
+            <span class="hatch"></span><span class="badge" id="lo-cargo-n"></span>
+          </div>
+          <div class="lo-list" id="lo-list"></div>
+          <div class="lo-detail" id="lo-detail"></div>
+        </section>
+
+        <div class="lo-live">ENGINES LIVE &nbsp;//&nbsp; GUNS OFFLINE WHILE OPEN</div>
+      </div>
+
+      <!-- Layer 3: alignment guides -->
+      <div class="layer hidden" id="layer-guides">
+        <div class="safe"></div>
+        <div class="ship-box"></div>
+        <div class="third" style="left:33.333%; top:0; width:1px; height:100%;"></div>
+        <div class="third" style="left:66.666%; top:0; width:1px; height:100%;"></div>
+        <div class="third" style="top:33.333%; left:0; height:1px; width:100%;"></div>
+        <div class="third" style="top:66.666%; left:0; height:1px; width:100%;"></div>
+      </div>
+
+    </div>
+   </div>
+  </div>
+
+  <div id="panel">
+    <h1>Flight HUD mockup</h1>
+    <p class="sub">Ship carries vitals. Frame carries the run.</p>
+
+    <h2>Layers</h2>
+    <div class="field"><label for="tog-plate">Gameplay plate</label><input type="checkbox" id="tog-plate" checked></div>
+    <div class="field"><label for="tog-hud">HUD</label><input type="checkbox" id="tog-hud" checked></div>
+    <div class="field"><label for="tog-guides">Guides + ship box</label><input type="checkbox" id="tog-guides"></div>
+    <div class="field"><label for="hud-opacity">HUD opacity</label><input type="range" id="hud-opacity" min="0" max="100" value="100"></div>
+    <div class="field"><label for="plate-dim">Plate dim</label><input type="range" id="plate-dim" min="0" max="100" value="0"></div>
+    <div id="drop-hint">Drop a PNG anywhere to swap the plate</div>
+
+    <h2>Framing</h2>
+    <div class="field">
+      <label for="res">Resolution</label>
+      <select id="res">
+        <option value="1920x1080" selected>1920 &times; 1080 (design)</option>
+        <option value="2560x1080">2560 &times; 1080 (ultrawide)</option>
+        <option value="3440x1440">3440 &times; 1440 (ultrawide)</option>
+        <option value="1280x720">1280 &times; 720</option>
+        <option value="1920x1200">1920 &times; 1200 (16:10)</option>
+      </select>
+    </div>
+
+    <h2>Run state</h2>
+    <div class="field">
+      <label for="mode">Mode</label>
+      <select id="mode">
+        <option value="raid" selected>Pirate Raid</option>
+        <option value="training">Flight Training</option>
+      </select>
+    </div>
+    <div class="field"><label for="tog-boss">Boss engaged</label><input type="checkbox" id="tog-boss"></div>
+    <div class="field"><label for="tog-loadout">Loadout overlay <kbd>Tab</kbd></label><input type="checkbox" id="tog-loadout"></div>
+    <div class="field"><label for="tog-docked">&nbsp;&nbsp;docked at Shipyard</label><input type="checkbox" id="tog-docked"></div>
+    <div class="field"><label for="tog-hit">Reticle on target</label><input type="checkbox" id="tog-hit"></div>
+    <div class="field"><label for="tog-flash">Halo damage flash</label><input type="checkbox" id="tog-flash"></div>
+    <p class="sub" style="margin:14px 0 8px;">One box = 25 points on every arc. Raise a max to grow the arc.</p>
+    <div class="field"><label for="shield">Shield <b id="n-shield"></b></label><input type="range" id="shield" min="0" max="100" value="78"></div>
+    <div class="field"><label for="shield-max">&nbsp;&nbsp;max</label><select id="shield-max" data-for="shield"></select></div>
+    <div class="field"><label for="hull">Hull <b id="n-hull"></b></label><input type="range" id="hull" min="0" max="100" value="62"></div>
+    <div class="field"><label for="hull-max">&nbsp;&nbsp;max</label><select id="hull-max" data-for="hull"></select></div>
+    <div class="field"><label for="boost">Boost <b id="n-boost"></b></label><input type="range" id="boost" min="0" max="50" value="50"></div>
+    <div class="field"><label for="boost-max">&nbsp;&nbsp;max</label><select id="boost-max" data-for="boost"></select></div>
+
+    <h2>Edit</h2>
+    <div class="field"><label for="tog-edit">Drag pods to reposition</label><input type="checkbox" id="tog-edit"></div>
+    <p class="sub" style="margin:0 0 10px;">Click a pod, then <kbd>&larr;</kbd><kbd>&uarr;</kbd><kbd>&darr;</kbd><kbd>&rarr;</kbd> to nudge. Hold <kbd>Shift</kbd> for 10.</p>
+    <div id="readout">No pod selected.</div>
+
+    <h2>Export</h2>
+    <div class="stack">
+      <button class="primary" id="copy-all">Copy every pod as C++</button>
+      <button id="copy-one">Copy selected pod as C++</button>
+      <button id="reset">Reset to saved layout</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs = {}) => {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    return n;
+  };
+
+  /* ======================= tabular digits ==================================
+     Chakra Petch has no `tnum` feature and genuinely proportional digits
+     (0.358em for the 1, 0.628em for the 0), so the browser cannot be asked for
+     tabular figures - they have to be built. Each digit goes in a cell as wide
+     as the widest glyph, which is what a tabular figure set does.
+
+     Done with an observer rather than a call at the end of every draw function,
+     because almost every panel rewrites its own numbers and one missed call
+     site would leave a single readout twitching. It is idempotent: digits
+     already in a cell are skipped, so re-running it settles immediately.
+
+     SVG is left alone - inline-block does nothing there. The one SVG number
+     that ticks is the dial speed, handled with textLength in drawDial.
+     ======================================================================== */
+
+  function tabularize(root) {
+    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        if (!/\d/.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        const p = n.parentElement;
+        if (!p || p.classList.contains("dg") || p.closest("svg")) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const hits = [];
+    while (walk.nextNode()) hits.push(walk.currentNode);
+
+    for (const node of hits) {
+      const frag = document.createDocumentFragment();
+      for (const part of node.nodeValue.split(/(\d)/)) {
+        if (!part) continue;
+        if (part.length === 1 && part >= "0" && part <= "9") {
+          const cell = document.createElement("span");
+          cell.className = "dg";
+          cell.textContent = part;
+          frag.appendChild(cell);
+        } else {
+          frag.appendChild(document.createTextNode(part));
+        }
+      }
+      node.replaceWith(frag);
+    }
+  }
+
+  /* ======================= ship halo =======================================
+     Elliptical because a ship in chase view is far wider than it is tall.
+
+     One box is always 25 points, on every arc, for every hull, forever. Read
+     it the way you read a magazine, not a percentage: a pickup that raises max
+     shields adds boxes rather than making the existing ones worth more, so
+     "three boxes down" costs you 75 points in the first sector and in the last.
+
+     The arc keeps its sweep and the boxes divide it, so a very buffed ship gets
+     thin boxes rather than a ring that creeps round to meet its neighbour.
+     ======================================================================== */
+
+  const POINTS_PER_BOX = 25;
+  const halo = { cx: 230, cy: 160, rx: 168, ry: 112 };
+
+  // Angles are degrees clockwise from the 3 o'clock position, y down.
+  const onEllipse = (a, rx, ry) => {
+    const r = (a * Math.PI) / 180;
+    return [halo.cx + rx * Math.cos(r), halo.cy + ry * Math.sin(r)];
+  };
+
+  // Corner radius as a fraction of plate thickness. Mirrors
+  // ShatteredHUDStyle::PlateCornerFraction.
+  const PLATE_CORNER = 0.28;
+
+  /* One plate, as a closed outline rather than a stroked arc.
+
+     A stroke cannot round its own corners, and stroke-linecap: round would dome
+     the entire end rather than easing it, so the boundary is walked by hand:
+     outer arc, corner, radial end, corner, inner arc back. An end that meets a
+     fill boundary instead of the edge of the plate stays square, because that
+     end is a level, not an end. */
+  function platePath(a0, a1, rx, ry, thickness, roundStart, roundEnd) {
+    const dir = Math.sign(a1 - a0);
+    const h = thickness / 2;
+    const mean = (rx + ry) / 2;
+
+    // A nearly drained plate cannot afford two full corners, so shrink the
+    // radius to fit rather than letting the two ends cross over each other.
+    const caps = (roundStart ? 1 : 0) + (roundEnd ? 1 : 0);
+    let capDeg = ((PLATE_CORNER * thickness) / mean) * (180 / Math.PI);
+    if (caps) capDeg = Math.min(capDeg, Math.abs(a1 - a0) / (caps * 2));
+    const r = ((capDeg * Math.PI) / 180) * mean;
+
+    const b0 = roundStart ? a0 + dir * capDeg : a0;
+    const b1 = roundEnd ? a1 - dir * capDeg : a1;
+    const sweep = dir > 0 ? 1 : 0;
+    const back = dir > 0 ? 0 : 1;
+    const P = (a, off) => onEllipse(a, rx + off, ry + off).map(n => n.toFixed(2));
+
+    const d = [`M ${P(b0, h)}`, `A ${rx + h} ${ry + h} 0 0 ${sweep} ${P(b1, h)}`];
+    if (roundEnd) d.push(`A ${r} ${r} 0 0 ${sweep} ${P(a1, h - r)}`);
+    d.push(`L ${P(a1, roundEnd ? r - h : -h)}`);
+    if (roundEnd) d.push(`A ${r} ${r} 0 0 ${sweep} ${P(b1, -h)}`);
+    d.push(`A ${rx - h} ${ry - h} 0 0 ${back} ${P(b0, -h)}`);
+    if (roundStart) d.push(`A ${r} ${r} 0 0 ${sweep} ${P(a0, r - h)}`);
+    d.push(`L ${P(a0, roundStart ? h - r : h)}`);
+    if (roundStart) d.push(`A ${r} ${r} 0 0 ${sweep} ${P(b0, h)}`);
+    return d.join(" ") + " Z";
+  }
+
+  // from/to run in the order the arc fills. Both arcs go left to right, so
+  // empty is always the left end and full is always the right, the way a
+  // straight bar would read.
+  function boxArc(group, { from, to, rx, ry, width, value, max }) {
+    // Ceil, not round: 110 points is five boxes with one part-filled, not four
+    // stretched ones. Matches ShatteredHUDStyle::GetPlateCount.
+    const count = Math.max(1, Math.ceil(max / POINTS_PER_BOX));
+    const span = (to - from) / count;
+    const gap = Math.sign(span) * Math.min(5, Math.abs(span) * 0.14);
+
+    for (let i = 0; i < count; i++) {
+      const a0 = from + i * span + gap / 2;
+      const a1 = from + (i + 1) * span - gap / 2;
+
+      // The box you are currently losing drains inside itself, so a hit of 10
+      // still moves something. Whole boxes remain the thing you count.
+      const frac = Math.min(1, Math.max(0, value / POINTS_PER_BOX - i));
+      const edge = a0 + (a1 - a0) * frac;
+
+      // Track and fill sit end to end, not stacked. At plate opacity a fill
+      // painted over the track would pick the track up and mute its colour.
+      if (frac < 1) {
+        group.appendChild(el("path", {
+          d: platePath(edge, a1, rx, ry, width, frac <= 0, true),
+          class: "plate"
+        }));
+      }
+      if (frac > 0) {
+        group.appendChild(el("path", {
+          d: platePath(a0, edge, rx, ry, width, true, frac >= 1),
+          class: "plate on"
+        }));
+      }
+    }
+  }
+
+  const haloSvg = document.getElementById("halo-svg");
+
+  /* Danger bands, matching ShatteredHUDStyle. Shields and hull only demand
+     attention in their bottom third. Boost has no band: a boost gauge that is
+     not topped off is already the thing you want to look at, which also covers
+     the whole recharge.
+
+     In game a row also lights for 1.8s after any drop, then eases back. That is
+     a timer, so the mockup exposes it as the "Damage flash" toggle instead. */
+  const DANGER = { shield: 0.35, hull: 0.35, boost: 1 };
+  let forceAlert = false;
+
+  const rowClass = (name, v) =>
+    "g-" + name +
+    (forceAlert || (v.max > 0 && v.value < v.max * DANGER[name]) ? " alert" : "");
+
+  function drawHalo(s, h, b) {
+    haloSvg.textContent = "";
+
+    // Shields sweep the top of the ship, hull and boost the bottom. 270deg is
+    // straight up, 90deg straight down.
+    const shield = el("g", { class: rowClass("shield", s) });
+    boxArc(shield, { from: 202, to: 338, rx: halo.rx, ry: halo.ry, width: 11, value: s.value, max: s.max });
+    haloSvg.appendChild(shield);
+
+    const hull = el("g", { class: rowClass("hull", h) });
+    boxArc(hull, { from: 158, to: 22, rx: halo.rx, ry: halo.ry, width: 11, value: h.value, max: h.max });
+    haloSvg.appendChild(hull);
+
+    // Boost shares the hull's sweep one band inboard: same shape, fewer and
+    // therefore wider boxes, so the two never read as one bar. Drawn thinner
+    // than hull on purpose - two boxes spanning the whole arc would otherwise
+    // out-shout the thing that actually kills you.
+    const boost = el("g", { class: rowClass("boost", b) });
+    boxArc(boost, { from: 158, to: 22, rx: halo.rx - 26, ry: halo.ry - 22, width: 6, value: b.value, max: b.max });
+    haloSvg.appendChild(boost);
+  }
+
+  /* ======================= flight telemetry ================================
+     A radial speed gauge plus one segmented bar per axis. The dial runs 0 to a
+     round scale maximum, not 0 to the current cap: the gold redline is the
+     hull's top speed, so a thruster module pushes it outward and you can see
+     the upgrade. A dial that always ends at your own maximum makes a freighter
+     and an interceptor look identically fast.
+     ======================================================================== */
+
+  const DIAL_MAX = 1000;
+
+  // Sweep runs lower-left to lower-right the long way round, so the needle
+  // travels up and over as you accelerate. Degrees clockwise from 3 o'clock.
+  const DIAL_FROM = 140, DIAL_TO = 400;
+
+  function drawDial(speed, cap) {
+    const svg = document.getElementById("speed-dial");
+    svg.textContent = "";
+    const cx = 95, cy = 100;
+
+    const p = (a, r) => {
+      const t = (a * Math.PI) / 180;
+      return [cx + r * Math.cos(t), cy + r * Math.sin(t)];
+    };
+    const arc = (a0, a1, r) => {
+      const [x0, y0] = p(a0, r), [x1, y1] = p(a1, r);
+      return `M ${x0} ${y0} A ${r} ${r} 0 ${Math.abs(a1 - a0) > 180 ? 1 : 0} 1 ${x1} ${y1}`;
+    };
+    const at = v => DIAL_FROM + (DIAL_TO - DIAL_FROM) * Math.min(1, v / DIAL_MAX);
+
+    const R = 70;
+
+    // Minor ticks inside the band, one every 25 units of scale.
+    for (let v = 0; v <= DIAL_MAX; v += 25) {
+      const a = at(v), long = v % 100 === 0;
+      const [x0, y0] = p(a, long ? 50 : 54), [x1, y1] = p(a, 59);
+      svg.appendChild(el("line", { x1: x0, y1: y0, x2: x1, y2: y1, class: long ? "tick major" : "tick" }));
+    }
+
+    // Numerals outside the band, in hundreds. Inside the band they crowd the
+    // digital readout, which is the thing you actually read.
+    for (let v = 0; v <= DIAL_MAX; v += 200) {
+      const [x, y] = p(at(v), 90);
+      svg.appendChild(Object.assign(
+        el("text", { x, y: y + 4, class: "num", "text-anchor": "middle" }),
+        { textContent: v / 100 }
+      ));
+    }
+
+    svg.appendChild(el("path", { d: arc(DIAL_FROM, DIAL_TO, R), class: "track", "stroke-width": 11 }));
+
+    // Anything past the cap is coral: you are only there because something
+    // temporary put you there.
+    const a = at(speed);
+    if (speed > 0) {
+      const aCap = at(Math.min(speed, cap));
+      svg.appendChild(el("path", { d: arc(DIAL_FROM, aCap, R), class: "val", "stroke-width": 11 }));
+      if (speed > cap) svg.appendChild(el("path", { d: arc(aCap, a, R), class: "over", "stroke-width": 11 }));
+      const [hx, hy] = p(a, R);
+      svg.appendChild(el("circle", { cx: hx, cy: hy, r: 4, class: "head" }));
+    }
+
+    const [rx0, ry0] = p(at(cap), R - 10), [rx1, ry1] = p(at(cap), R + 10);
+    svg.appendChild(el("line", { x1: rx0, y1: ry0, x2: rx1, y2: ry1, class: "redline" }));
+
+    svg.appendChild(el("path", { d: arc(DIAL_FROM, DIAL_TO, 79), class: "ghost", "stroke-width": 1 }));
+
+    // The dial is |velocity|, not forward thrust - in 6DOF you can be doing 400
+    // sideways. Tagging it stops it reading as a duplicate of the FWD row.
+    // The stack sits above the geometric centre: the sweep opens at the bottom,
+    // so the centre of the arc you actually see is higher than cy.
+    svg.appendChild(Object.assign(
+      el("text", { x: cx, y: cy - 40, class: "unit", "text-anchor": "middle" }),
+      { textContent: "VEL" }
+    ));
+    // inline-block digit cells do not exist in SVG, so the readout is pinned to
+    // a fixed advance per digit instead. Same result: the number stays put as
+    // it counts rather than breathing in and out around the centre.
+    const digits = String(Math.round(speed));
+    svg.appendChild(Object.assign(
+      el("text", {
+        x: cx, y: cy - 8, class: "big", "text-anchor": "middle",
+        textLength: digits.length * 24, lengthAdjust: "spacing"
+      }),
+      { textContent: digits }
+    ));
+    svg.appendChild(Object.assign(
+      el("text", { x: cx, y: cy + 19, class: "unit", "text-anchor": "middle" }),
+      { textContent: "M/S" }
+    ));
+  }
+
+  // One row per axis, every label clipped to three characters so the bars share
+  // a start column. The linear axes share one scale so the cap markers are
+  // comparable at a glance - strafe really is a fifth of forward. Roll is
+  // degrees per second, which has nothing to compare against, so it runs on its
+  // own cap.
+  const AXES = [
+    { key: "FWD", value: 412, cap: 800 },
+    { key: "BCK", value: 0, cap: 150 },
+    { key: "STR", value: 68, cap: 150 },
+    { key: "VRT", value: 30, cap: 125 },
+    { key: "ROL", value: 46, cap: 140, own: true, fill: "var(--gold)" }
+  ];
+
+  function drawAxes() {
+    const host = document.getElementById("axes");
+    const scale = Math.max(...AXES.filter(a => !a.own).map(a => a.cap));
+    host.textContent = "";
+    for (const ax of AXES) {
+      const s = ax.own ? ax.cap : scale;
+      const row = document.createElement("div");
+      row.className = "ax-row";
+      row.innerHTML =
+        `<span class="k">${ax.key}</span>` +
+        `<div class="line-bar capped" style="--pct:${ax.value / s}; --cap:${ax.cap / s};` +
+        (ax.fill ? ` --fill:${ax.fill};` : "") + `"></div>` +
+        `<span class="v">${Math.round(ax.value)}</span>`;
+      host.appendChild(row);
+    }
+  }
+
+  /* ======================= radar ===========================================
+     A disc in the ship's forward plane. Each contact gets a vertical stem: up
+     means above you, down means below. A cardinal compass would be meaningless
+     out here, and a full 3D sphere reads as static once it is moving.
+
+     The sweep is 3000 M: a tactical bubble around the ship, not a map of the
+     sector. Sizing it to the whole 5500 M rock field (or worse, the bounds wall
+     150000 M out) forces the entire field into 84 pixels, and everything you
+     could actually react to lands in the first few of them.
+
+     Rocks are drawn from a distance-strided sample of the field, not from the
+     nearest few. A nearest-N cut is what made the live instrument paint a clot
+     at the centre: the closest 44 of a few hundred rocks all sit inside the
+     first ring, so the disc showed a dense core ringed by empty space that does
+     not exist out there.
+     ======================================================================== */
+
+  function drawRadar() {
+    const svg = document.getElementById("radar-svg");
+    const cx = 109, cy = 112, r = 84;
+
+    svg.appendChild(el("circle", { cx, cy, r, class: "disc" }));
+    // Exact thirds, so the labelled sweep divides into 1000 M rings.
+    for (const k of [1, 2 / 3, 1 / 3]) svg.appendChild(el("circle", { cx, cy, r: r * k, class: "ring" }));
+    svg.appendChild(el("circle", { cx, cy, r: 0, class: "ping" }));
+
+    // Seconds the ring takes to cross the disc, read off the stylesheet so the
+    // period lives in exactly one place.
+    const period = parseFloat(getComputedStyle(document.querySelector(".radar")).getPropertyValue("--sweep-period")) || 2.6;
+
+    // Own ship, pointing along the forward axis.
+    svg.appendChild(el("path", { d: `M ${cx} ${cy - 8} L ${cx + 5} ${cy + 5} L ${cx} ${cy + 2} L ${cx - 5} ${cy + 5} Z`, class: "self" }));
+
+    // x, y on the disc; alt in stem pixels, positive is above the player.
+    // Three classes, and each gets a shape as well as a colour - a red dot and
+    // a grey dot are the same dot to a colourblind player at this size.
+    const contacts = [
+      { x: -38, y: -30, alt: 14, cls: "hostile" },
+      { x: 22, y: -48, alt: -9, cls: "hostile" },
+      { x: 52, y: 12, alt: 4, cls: "hostile" },
+      { x: -16, y: 44, alt: -18, cls: "hostile" },
+      { x: 61, y: -22, alt: 0, cls: "hostile" },
+      // Eight rocks in a rough 1 / 4 / 3 split across the rings, matching what
+      // the live disc samples at a 3000 M sweep. Only a couple of contacts
+      // belong inside the first ring - a crowded centre means the sweep is
+      // reaching further than the pilot can act on.
+      { x: -18, y: 12, alt: 5, cls: "rock" },
+      { x: 26, y: -14, alt: -3, cls: "rock" },
+      { x: -38, y: 22, alt: 11, cls: "rock" },
+      { x: 30, y: 34, alt: -6, cls: "rock" },
+      { x: -14, y: -46, alt: 4, cls: "rock" },
+      { x: -62, y: -8, alt: 0, cls: "rock" },
+      { x: 14, y: 74, alt: -12, cls: "rock" },
+      { x: 58, y: 55, alt: 15, cls: "rock" },
+      { x: 30, y: 52, alt: -6, cls: "ally" },
+      // Kept well clear of the centre: an ally chevron sitting on the player's
+      // own chevron is two blue arrows and no way to tell which one is you.
+      { x: -34, y: -8, alt: 9, cls: "ally" }
+    ];
+
+    for (const c of contacts) {
+      const g = el("g", { class: `${c.cls} contact` });
+      // Start the shimmer where the ring will be, offset by the 8% keyframe the
+      // spike sits on. A negative delay drops the element mid-cycle, so nothing
+      // has to wait for a first pass to look right.
+      g.style.animationDelay = `${(0.08 - Math.hypot(c.x, c.y) / r) * period}s`;
+      if (c.alt !== 0) g.appendChild(el("line", { x1: cx + c.x, y1: cy + c.y, x2: cx + c.x, y2: cy + c.y - c.alt, class: "stem" }));
+      const px = cx + c.x, py = cy + c.y - c.alt;
+      if (c.cls === "rock") g.appendChild(el("rect", { x: px - 2.5, y: py - 2.5, width: 5, height: 5, transform: `rotate(45 ${px} ${py})` }));
+      else if (c.cls === "ally") g.appendChild(el("path", { d: `M ${px} ${py - 4} L ${px + 4} ${py + 3} L ${px} ${py + 1} L ${px - 4} ${py + 3} Z` }));
+      else g.appendChild(el("circle", { cx: px, cy: py, r: 3 }));
+      svg.appendChild(g);
+    }
+
+    // Both scales are labelled, and both labels state the range they annotate.
+    // Altitude keeps its own 1600 M scale even though the sweep tightened: the
+    // field is still 1400 M tall, and clamping stems would hide real altitude.
+    svg.appendChild(Object.assign(el("text", { x: cx, y: 14, class: "scale", "text-anchor": "middle" }), { textContent: "RNG 3000 M" }));
+    svg.appendChild(Object.assign(el("text", { x: cx, y: 212, class: "scale", "text-anchor": "middle" }), { textContent: "ALT 1600 M" }));
+  }
+
+  /* ======================= loadout data ====================================
+     Slot counts come from the combo matrix in design/01_game_vision.md: every
+     named ship has exactly ten, split W/M/S by profession. Ace is 4/5/1 - the
+     only quad-gun interceptor - so it is the honest worst case for the weapon
+     row and the easiest layout to get wrong.
+
+     `slot` is which rack an item can go in. `q` marks quick-use consumables,
+     which are the one thing usable without a Shipyard.
+     ======================================================================== */
+
+  const ITEMS = {
+    pulse:   { name: "PULSE CANNON", slot: "W", rarity: "common", rank: 1,
+               stats: [["DMG", "34"], ["RATE", "4.0/s"], ["RNG", "1800"]] },
+    splinter:{ name: "SPLINTER RAILGUN", slot: "W", rarity: "epic", rank: 2,
+               stats: [["DMG", "148"], ["RATE", "0.8/s"], ["RNG", "2400"]],
+               proc: "PIERCES 3 TARGETS" },
+    cryo:    { name: "CRYO BLASTER", slot: "W", rarity: "rare", rank: 1,
+               stats: [["DMG", "52"], ["RATE", "2.4/s"], ["RNG", "1200"]],
+               proc: "SLOW 40% FOR 3S" },
+    lancer:  { name: "VOID LANCER", slot: "W", rarity: "cursed", rank: 2,
+               stats: [["DMG", "310"], ["RATE", "0.4/s"], ["RNG", "3000"]],
+               proc: "CHAINS 4", curse: "\u221215% HULL WHILE FITTED" },
+    plating: { name: "REACTIVE PLATING", slot: "M", rarity: "uncommon", rank: 2,
+               stats: [["HULL", "+18%"]] },
+    coolant: { name: "COOLANT LOOP", slot: "M", rarity: "common", rank: 1,
+               stats: [["HEAT", "\u221212%"]] },
+    gyro:    { name: "GYRO STABILISER", slot: "M", rarity: "rare", rank: 3,
+               stats: [["ROLL", "+22%"]] },
+    swarm:   { name: "SWARM CAPACITOR", slot: "M", rarity: "legendary", rank: 1,
+               stats: [["SHLD", "+30%"], ["RECHG", "+0.8/s"]],
+               proc: "OVERCHARGE ON KILL" },
+    scanner: { name: "WIDEBAND SCANNER", slot: "S", rarity: "uncommon", rank: 1,
+               stats: [["SCAN", "+40%"]] },
+    sniffer: { name: "ORE SNIFFER", slot: "S", rarity: "common", rank: 1,
+               stats: [["MINERAL", "+15%"]] },
+    medcell: { name: "REPAIR CELL", slot: "Q", rarity: "common", qty: 2,
+               stats: [["HULL", "+35"]] }
+  };
+
+  const LOADOUT = {
+    weapons: { "nose-l": "pulse", "nose-r": "pulse", "wing-l": "splinter", "wing-r": null },
+    modules: ["plating", "coolant", "gyro", null, null],
+    specialty: ["scanner"]
+  };
+
+  const CARGO = ["lancer", "cryo", "swarm", "sniffer", "medcell"];
+  const CARGO_CAP = 6;
+
+  // Install and swap are Shipyard-only (design/02_core_mechanics.md). In flight
+  // this screen is an inspector: you can read everything and drink a repair
+  // cell, but you cannot re-arm. Flip via the mockup panel to see both states.
+  const STATE = { docked: false, slot: "wing-r", pick: "lancer" };
+
+  /* ======================= ship schematic ==================================
+     Top-down orthographic trace of the Ace, measured off the actual render
+     rather than drawn by eye: the outline below is the mesh silhouette sampled
+     per scanline, and the pads are the centroids of the gold rings on the
+     model. Rescan with art/hud/plates/trace-ship.ps1 when the mesh changes.
+
+     Only the right half is authored, mirrored about x = 210. That guarantees
+     symmetry and halves the numbers to re-measure.
+
+     The render carries EIGHT gold rings: a nose pair, a wing pair, three tail
+     nozzles, and one on the spine. art/ship_prompts.md predicts seven (weapons
+     + engines). The spine ring is read here as the afterburner core, which is
+     the Interceptor's hull mechanic and wants a readout anyway.
+
+     Only the four weapon pads are slots. Nozzles and the afterburner core are
+     hull features - the design doc's 10-slot model is weapons/modules/specialty
+     and has no engine category, so they are drawn but never selectable.
+     ======================================================================== */
+
+  const ACE = {
+    // Coordinates are measured directly on ace-attachment-schematic.png.
+    // These four rings are weapon slots. The spine and three engine rings are
+    // visible in the art but intentionally have no interaction target.
+    weapons: [
+      { id: "nose-l", x: 357, y: 134, r: 25, name: "NOSE L" },
+      { id: "nose-r", x: 461, y: 134, r: 25, name: "NOSE R" },
+      { id: "wing-l", x: 211, y: 450, r: 39, name: "WING L" },
+      { id: "wing-r", x: 609, y: 450, r: 39, name: "WING R" }
+    ]
+  };
+
+  // Both the HUD pod and inventory use the same authored schematic. The SVG is
+  // retained only as an interaction layer over the raster art.
+  function drawShip(svg, opts = {}) {
+    svg.textContent = "";
+
+    svg.appendChild(el("image", {
+      href: "ace-attachment-schematic-transparent.png",
+      x: 0, y: 0, width: 819, height: 742,
+      class: "ship-art"
+    }));
+
+    for (const w of ACE.weapons) {
+      const fit = LOADOUT.weapons[w.id];
+      const g = el("g", {
+        class: "pad-g" + (fit ? "" : " empty") + (opts.onPick ? " pick" : "") +
+               (opts.selected === w.id ? " sel" : "")
+      });
+      // The source art already draws the socket. These overlays communicate
+      // fitted, empty, hover and selected state without redrawing the mount.
+      g.appendChild(el("circle", { cx: w.x, cy: w.y, r: w.r, class: "pad" }));
+      if (fit) g.appendChild(el("circle", { cx: w.x, cy: w.y, r: 5, class: "pad-core" }));
+      if (opts.onPick) {
+        g.appendChild(el("circle", { cx: w.x, cy: w.y, r: w.r + 14, class: "hit" }));
+        g.addEventListener("click", () => opts.onPick(w.id));
+      }
+      svg.appendChild(g);
+    }
+  }
+
+  function drawBlueprint() {
+    drawShip(document.getElementById("blueprint-svg"));
+  }
+
+  /* ======================= loadout overlay =================================
+     Two panes hugging the screen edges with the middle third left empty, so
+     the ship you are still flying stays visible between them.
+     ======================================================================== */
+
+  const SLOT_CAT = id =>
+    id.startsWith("mod-") ? "M" : id.startsWith("spec-") ? "S" : "W";
+
+  function fittedIn(id) {
+    if (id.startsWith("mod-")) return LOADOUT.modules[+id.slice(4)];
+    if (id.startsWith("spec-")) return LOADOUT.specialty[+id.slice(5)];
+    return LOADOUT.weapons[id];
+  }
+
+  const stars = (n, max = 3) =>
+    "\u2605".repeat(n) + "\u2606".repeat(Math.max(0, max - n));
+
+  function rackRow(id, label) {
+    const key = fittedIn(id);
+    const it = key && ITEMS[key];
+    const sel = STATE.slot === id ? " sel" : "";
+    const stat = it ? it.stats.map(([k, v]) => `${k} ${v}`).join("  ") : "";
+    return `<button class="lo-row${sel}${it ? "" : " empty"}" data-slot="${id}">
+      <span class="lo-dot r-${it ? it.rarity : "none"}"></span>
+      <span class="lo-nm">${it ? it.name : "EMPTY " + label}</span>
+      <span class="lo-rk">${it ? stars(it.rank) : ""}</span>
+      <span class="lo-st">${stat}</span>
+    </button>`;
+  }
+
+  function drawRacks() {
+    const host = document.getElementById("lo-racks");
+    const wf = ACE.weapons.filter(w => LOADOUT.weapons[w.id]).length;
+    const mf = LOADOUT.modules.filter(Boolean).length;
+    const sf = LOADOUT.specialty.filter(Boolean).length;
+
+    host.innerHTML =
+      `<div class="lo-rack-h"><span>WEAPONS</span><b>${wf} / 4</b></div>` +
+      ACE.weapons.map(w => rackRow(w.id, w.name)).join("") +
+      `<div class="lo-rack-h"><span>MODULES</span><b>${mf} / 5</b></div>` +
+      LOADOUT.modules.map((_, i) => rackRow("mod-" + i, "MODULE")).join("") +
+      `<div class="lo-rack-h"><span>SPECIALTY</span><b>${sf} / 1</b></div>` +
+      LOADOUT.specialty.map((_, i) => rackRow("spec-" + i, "SPECIALTY")).join("");
+
+    host.querySelectorAll("[data-slot]").forEach(b =>
+      b.addEventListener("click", () => { STATE.slot = b.dataset.slot; drawLoadout(); }));
+  }
+
+  function drawList() {
+    const host = document.getElementById("lo-list");
+    document.getElementById("lo-cargo-n").textContent = `${CARGO.length} / ${CARGO_CAP}`;
+    const cat = SLOT_CAT(STATE.slot);
+
+    host.innerHTML = CARGO.map(key => {
+      const it = ITEMS[key];
+      // Items that cannot go in the selected slot stay listed but recede: the
+      // hold is small enough that hiding them just makes things vanish.
+      const dim = it.slot !== cat && it.slot !== "Q" ? " dim" : "";
+      const sel = STATE.pick === key ? " sel" : "";
+      return `<button class="lo-item${dim}${sel}" data-item="${key}">
+        <span class="lo-tag t-${it.slot}">${it.slot}</span>
+        <span class="lo-nm r-${it.rarity}">${it.name}</span>
+        <span class="lo-rar r-${it.rarity}">${it.rarity.toUpperCase()}</span>
+        <span class="lo-rk">${it.qty ? "\u00d7" + it.qty : stars(it.rank)}</span>
+      </button>`;
+    }).join("");
+
+    host.querySelectorAll("[data-item]").forEach(b =>
+      b.addEventListener("click", () => { STATE.pick = b.dataset.item; drawLoadout(); }));
+  }
+
+  function drawDetail() {
+    const host = document.getElementById("lo-detail");
+    const pick = ITEMS[STATE.pick];
+    const cat = SLOT_CAT(STATE.slot);
+    const cur = fittedIn(STATE.slot);
+    const curIt = cur && ITEMS[cur];
+    const quick = pick.slot === "Q";
+    const compatible = quick || pick.slot === cat;
+
+    // Every reason the button can be dead, in the order the player hits them.
+    let action = "INSTALL", dead = false;
+    if (quick) action = "USE \u2014 [R]";
+    else if (!compatible) { action = "WRONG SLOT TYPE"; dead = true; }
+    else if (!STATE.docked) { action = "SHIPYARD REQUIRED"; dead = true; }
+    else if (curIt) action = "SWAP \u2014 25 MIN";
+
+    const col = (t, it) => `<div class="lo-col">
+      <div class="lo-col-h">${t}</div>
+      ${it ? `<div class="lo-col-n r-${it.rarity}">${it.name}</div>
+        ${it.stats.map(([k, v]) => `<div class="lo-s"><span>${k}</span><b>${v}</b></div>`).join("")}
+        ${it.proc ? `<div class="lo-proc">${it.proc}</div>` : ""}
+        ${it.curse ? `<div class="lo-curse">${it.curse}</div>` : ""}`
+        : `<div class="lo-col-n empty">\u2014 EMPTY \u2014</div>`}
+    </div>`;
+
+    host.innerHTML =
+      `<div class="lo-cols">${col("FITTED", curIt)}${col("SELECTED", pick)}</div>` +
+      `<button class="lo-act${dead ? " dead" : ""}">${action}</button>`;
+  }
+
+  function drawLoadout() {
+    document.getElementById("lo-dock").textContent = STATE.docked
+      ? "DOCKED \u2014 SHIPYARD ONLINE"
+      : "IN FLIGHT \u2014 NO SHIPYARD IN RANGE";
+    document.getElementById("lo-dock").classList.toggle("ok", STATE.docked);
+    drawShip(document.getElementById("lo-ship-svg"), {
+      selected: STATE.slot,
+      onPick: id => { STATE.slot = id; drawLoadout(); }
+    });
+    drawRacks();
+    drawList();
+    drawDetail();
+  }
+
+  /* ======================= boss bar ========================================
+     Same plate language as the shield and hull arcs, straightened out and run
+     along the top. Countable boxes, no readout - the player already learned to
+     read their own vitals by counting plates, so a boss should not ask them to
+     switch to parsing a number.
+
+     One phase is drawn as BOXES_PER_PHASE plates, deliberately the same count
+     as a full shield or hull bar. A three-phase boss then reads as three of
+     your own health bars laid end to end, which is a scale you already have a
+     feel for. It also puts every phase boundary on a gap, so the wider phase
+     gaps replace the tick marks that used to be drawn over the bar.
+     ======================================================================== */
+
+  const BOXES_PER_PHASE = 4;
+
+  const BOSS = {
+    name: "DREADNOUGHT VULKARR",
+    hp: 0.64,
+    ghost: 0.72,   // damage dealt but still draining, see below
+    phases: 3
+  };
+
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+
+  function drawBoss() {
+    document.getElementById("boss-name").textContent = BOSS.name;
+
+    const wrap = document.getElementById("boss-plates");
+    wrap.textContent = "";
+
+    const total = BOSS.phases * BOXES_PER_PHASE;
+    // The one plate holding the fill boundary. Only it gets the white-hot edge.
+    const lead = Math.min(total - 1, Math.floor(BOSS.hp * total));
+
+    for (let p = 0; p < BOSS.phases; p++) {
+      const phase = document.createElement("div");
+      phase.className = "boss-phase";
+      for (let i = 0; i < BOXES_PER_PHASE; i++) {
+        const n = p * BOXES_PER_PHASE + i;
+        const box = document.createElement("i");
+        box.className = "boss-box";
+        // Like the halo boxes, the plate being lost drains inside itself, so a
+        // burst still moves something on a bar this coarse.
+        box.style.setProperty("--f", clamp01(BOSS.hp * total - n));
+        // Ghost: the gap between "damage applied" and "bar caught up".
+        box.style.setProperty("--g", clamp01(BOSS.ghost * total - n));
+        if (n === lead) box.style.setProperty("--lead", 1);
+        phase.appendChild(box);
+      }
+      wrap.appendChild(phase);
+    }
+  }
+
+  /* ======================= aux slots =======================================
+     Modules and specialty have no socket on the mesh - the design doc is
+     explicit that only weapons and engine collars are gold rings - so they can
+     only ever exist as pips in this panel. Grouped as AUX because that is the
+     distinction that matters when you are looking at the schematic: physical
+     mounts above, everything else down here.
+     ======================================================================== */
+
+  function drawAux() {
+    const host = document.getElementById("aux-rows");
+    host.textContent = "";
+    // Read off the same loadout the overlay edits, so the HUD pip count can
+    // never drift from what the loadout screen says is fitted.
+    const rows = [
+      { key: "AUX", filled: LOADOUT.modules.filter(Boolean).length, total: LOADOUT.modules.length },
+      { key: "SPEC", filled: LOADOUT.specialty.filter(Boolean).length, total: LOADOUT.specialty.length },
+      { key: "CARGO", filled: CARGO.length, total: CARGO_CAP, warm: true }
+    ];
+    for (const row of rows) {
+      const div = document.createElement("div");
+      div.className = "aux-row";
+      const pips = Array.from({ length: row.total }, (_, i) =>
+        `<i class="${i < row.filled ? "on" : ""}${row.warm ? " warm" : ""}"></i>`
+      ).join("");
+      div.innerHTML =
+        `<span class="k">${row.key}</span>` +
+        `<span class="pips">${pips}</span>` +
+        `<span class="v">${row.filled} / ${row.total}</span>`;
+      host.appendChild(div);
+    }
+  }
+
+  /* ======================= harness ========================================= */
+
+  const frame = document.getElementById("stage-frame");
+  const viewer = document.getElementById("viewer");
+  const hudLayer = document.getElementById("layer-hud");
+  const pods = [...hudLayer.querySelectorAll(".pod")];
+  const saved = new Map(pods.map(p => [p, p.getAttribute("style")]));
+  let selected = null;
+
+  // ?shot drops the panel and pins the stage to 1:1, so a headless browser
+  // sized to the design resolution grabs a pixel-exact frame. Any other query
+  // key is applied to the control of the same name first, which is how a
+  // specific state gets captured without anyone clicking anything:
+  //   ?shot=1&shield=30&shield-max=150&hull=8
+  const query = new URLSearchParams(location.search);
+  const shotMode = query.has("shot");
+  // Hidden, not removed: the controls below still bind to these inputs.
+  if (shotMode) document.getElementById("panel").style.display = "none";
+
+  function fit() {
+    if (shotMode) { frame.style.setProperty("--fit", 1); return 1; }
+    // Read the design size off the frame rather than measuring the stage: the
+    // stage's measured width already has --fit folded into it.
+    const style = getComputedStyle(frame);
+    const w = parseFloat(style.getPropertyValue("--stage-w"));
+    const h = parseFloat(style.getPropertyValue("--stage-h"));
+    const scale = Math.min((viewer.clientWidth - 48) / w, (viewer.clientHeight - 48) / h);
+    frame.style.setProperty("--fit", scale);
+    return scale;
+  }
+  let fitScale = 1;
+  const refit = () => { fitScale = fit(); };
+  addEventListener("resize", refit);
+
+  const num = (n, name) => parseFloat(getComputedStyle(n).getPropertyValue(name)) || 0;
+  const f = v => (Number.isInteger(v) ? v + ".f" : v + "f");
+
+  function podCpp(pod) {
+    const auto = pod.classList.contains("autosize");
+
+    // Stretched horizontally: the anchors span 0..1 on X, so Slate treats left
+    // and right as insets and only the vertical numbers are a position.
+    if (pod.classList.contains("stretch-x")) {
+      const ay = f(num(pod, "--ay"));
+      return [
+        `// ${pod.dataset.umg}`,
+        `PodSlot->SetAnchors(FAnchors(0.f, ${ay}, 1.f, ${ay}));`,
+        `PodSlot->SetAlignment(FVector2D(0.f, ${f(num(pod, "--aly"))}));`,
+        `PodSlot->SetOffsets(FMargin(0.f, ${f(num(pod, "--y"))}, 0.f, 0.f));`,
+        `PodSlot->SetSize(FVector2D(0.f, ${f(num(pod, "--h"))})); // X ignored while stretched`
+      ].join("\n");
+    }
+
+    return [
+      `// ${pod.dataset.umg}`,
+      `PodSlot->SetAnchors(FAnchors(${f(num(pod, "--ax"))}, ${f(num(pod, "--ay"))}));`,
+      `PodSlot->SetAlignment(FVector2D(${f(num(pod, "--alx"))}, ${f(num(pod, "--aly"))}));`,
+      `PodSlot->SetPosition(FVector2D(${f(num(pod, "--x"))}, ${f(num(pod, "--y"))}));`,
+      auto ? `PodSlot->SetAutoSize(true);`
+           : `PodSlot->SetSize(FVector2D(${f(num(pod, "--w"))}, ${f(num(pod, "--h"))}));`
+    ].join("\n");
+  }
+
+  const readout = document.getElementById("readout");
+  function refresh() {
+    if (!selected) { readout.textContent = "No pod selected."; return; }
+    const auto = selected.classList.contains("autosize");
+    readout.textContent = [
+      selected.dataset.umg,
+      `anchor  ${num(selected, "--ax")}, ${num(selected, "--ay")}`,
+      `align   ${num(selected, "--alx")}, ${num(selected, "--aly")}`,
+      `pos     ${num(selected, "--x")}, ${num(selected, "--y")}`,
+      auto ? "size    auto" : `size    ${num(selected, "--w")} x ${num(selected, "--h")}`
+    ].join("\n");
+  }
+
+  pods.forEach(pod => {
+    pod.addEventListener("pointerdown", e => {
+      if (!hudLayer.classList.contains("editing")) return;
+      e.preventDefault();
+      pods.forEach(p => p.classList.toggle("selected", p === pod));
+      selected = pod;
+      refresh();
+
+      const sx = e.clientX, sy = e.clientY;
+      const ox = num(pod, "--x"), oy = num(pod, "--y");
+      pod.classList.add("dragging");
+      pod.setPointerCapture(e.pointerId);
+
+      const move = ev => {
+        // Undo the fit scale so a pixel of mouse travel is a pixel of Slate.
+        pod.style.setProperty("--x", ox + Math.round((ev.clientX - sx) / fitScale));
+        pod.style.setProperty("--y", oy + Math.round((ev.clientY - sy) / fitScale));
+        refresh();
+      };
+      const up = ev => {
+        pod.classList.remove("dragging");
+        pod.releasePointerCapture(ev.pointerId);
+        pod.removeEventListener("pointermove", move);
+        pod.removeEventListener("pointerup", up);
+      };
+      pod.addEventListener("pointermove", move);
+      pod.addEventListener("pointerup", up);
+    });
+  });
+
+  addEventListener("keydown", e => {
+    if (!selected) return;
+    const axis = { ArrowLeft: ["--x", -1], ArrowRight: ["--x", 1], ArrowUp: ["--y", -1], ArrowDown: ["--y", 1] }[e.key];
+    if (!axis) return;
+    e.preventDefault();
+    selected.style.setProperty(axis[0], num(selected, axis[0]) + axis[1] * (e.shiftKey ? 10 : 1));
+    refresh();
+  });
+
+  const bind = (id, fn) => document.getElementById(id).addEventListener("input", fn);
+
+  // Maxes are offered in 25s only. Anything else would put half a box on the
+  // arc, which is exactly the ambiguity the boxes exist to remove.
+  const vital = id => {
+    const v = document.getElementById(id), m = document.getElementById(id + "-max");
+    const max = +m.value;
+    const value = Math.min(+v.value, max);
+    document.getElementById("n-" + id).textContent = `${value} / ${max}`;
+    return { value, max };
+  };
+  const redrawHalo = () => drawHalo(vital("shield"), vital("hull"), vital("boost"));
+
+  for (const [id, def] of [["shield", 100], ["hull", 100], ["boost", 50]]) {
+    const m = document.getElementById(id + "-max");
+    for (let p = 25; p <= 200; p += 25) {
+      m.appendChild(Object.assign(document.createElement("option"), {
+        value: p, textContent: `${p}  (${p / 25} box${p === 25 ? "" : "es"})`, selected: p === def
+      }));
+    }
+    m.addEventListener("input", () => {
+      document.getElementById(id).max = m.value;
+      redrawHalo();
+    });
+  }
+
+  bind("tog-plate", e => document.getElementById("layer-plate").classList.toggle("hidden", !e.target.checked));
+  bind("tog-hud", e => hudLayer.classList.toggle("hidden", !e.target.checked));
+  bind("tog-guides", e => document.getElementById("layer-guides").classList.toggle("hidden", !e.target.checked));
+  bind("hud-opacity", e => hudLayer.style.opacity = e.target.value / 100);
+  bind("plate-dim", e => document.getElementById("plate").style.filter = `brightness(${1 - e.target.value / 100})`);
+  bind("tog-hit", e => hudLayer.querySelector(".reticle").classList.toggle("will-hit", e.target.checked));
+  bind("tog-edit", e => hudLayer.classList.toggle("editing", e.target.checked));
+  bind("tog-flash", e => { forceAlert = e.target.checked; redrawHalo(); });
+  bind("shield", redrawHalo);
+  bind("hull", redrawHalo);
+  bind("boost", redrawHalo);
+
+  bind("tog-boss", e => {
+    document.querySelector('[data-umg="BossBar"]').classList.toggle("in", e.target.checked);
+  });
+
+  const loadoutLayer = document.getElementById("layer-loadout");
+  function setLoadout(open) {
+    loadoutLayer.classList.toggle("in", open);
+    hudLayer.classList.toggle("recessed", open);
+    document.getElementById("tog-loadout").checked = open;
+  }
+  bind("tog-loadout", e => setLoadout(e.target.checked));
+  bind("tog-docked", e => { STATE.docked = e.target.checked; drawLoadout(); });
+
+  // Tab in the mockup does what Tab does in game. Default is swallowed so the
+  // browser does not walk focus through the control panel behind it.
+  addEventListener("keydown", e => {
+    if (e.key !== "Tab" || e.target.matches("input, select, textarea")) return;
+    e.preventDefault();
+    setLoadout(!loadoutLayer.classList.contains("in"));
+  });
+
+  // Training has no score, economy or contacts. The sockets stay in the layout
+  // and dim, so we keep designing the real HUD rather than a tutorial one.
+  bind("mode", e => {
+    const training = e.target.value === "training";
+    hudLayer.querySelectorAll(".run-only").forEach(p => p.classList.toggle("offline", training));
+    document.getElementById("v-scenario").textContent = training ? "FLIGHT TRAINING" : "PIRATE RAID";
+    document.getElementById("v-objective").textContent = training ? "FREE FLIGHT  //  F8 TUNING" : "DESTROY THE FLAGSHIP";
+    hudLayer.querySelector(".sector-wave").classList.toggle("hidden", training);
+  });
+
+  bind("res", e => {
+    const [w, h] = e.target.value.split("x");
+    frame.style.setProperty("--stage-w", w + "px");
+    frame.style.setProperty("--stage-h", h + "px");
+    refit();
+  });
+
+  const copy = text => navigator.clipboard.writeText(text).then(
+    () => { readout.textContent = "Copied.\n\n" + text; },
+    () => { readout.textContent = "Clipboard blocked. Copy by hand:\n\n" + text; }
+  );
+  document.getElementById("copy-all").addEventListener("click", () => copy(pods.map(podCpp).join("\n\n")));
+  document.getElementById("copy-one").addEventListener("click", () => copy(selected ? podCpp(selected) : "Select a pod first."));
+  document.getElementById("reset").addEventListener("click", () => {
+    pods.forEach(p => p.setAttribute("style", saved.get(p)));
+    refresh();
+  });
+
+  addEventListener("dragover", e => e.preventDefault());
+  addEventListener("drop", e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith("image/")) document.getElementById("plate").src = URL.createObjectURL(file);
+  });
+
+  // Maxes go first: a value slider is clamped by the max its select just set.
+  for (const wantMax of [true, false]) {
+    for (const [key, value] of query) {
+      if (key === "shot" || key.endsWith("-max") !== wantMax) continue;
+      const input = document.getElementById(key);
+      if (!input) continue;
+      if (input.type === "checkbox") input.checked = value !== "0";
+      else input.value = value;
+      input.dispatchEvent(new Event("input"));
+    }
+  }
+
+  drawRadar();
+  drawBlueprint();
+  drawAux();
+  drawBoss();
+  drawLoadout();
+  // 419 is the magnitude of the AXES components below, not a round number
+  // picked for the mockup - the dial and the bars have to agree.
+  drawDial(419, 800);
+  drawAxes();
+  redrawHalo();
+  refit();
+  refresh();
+
+  // Digit cells last, then kept up as panels redraw themselves. Coalesced to a
+  // microtask so a burst of edits during one redraw costs a single pass, and
+  // self-terminating because the pass it triggers finds every digit already
+  // wrapped and changes nothing.
+  const tnumRoots = [hudLayer, loadoutLayer];
+  let tnumQueued = false;
+  const tnumObserver = new MutationObserver(() => {
+    if (tnumQueued) return;
+    tnumQueued = true;
+    queueMicrotask(() => {
+      tnumQueued = false;
+      for (const root of tnumRoots) tabularize(root);
+    });
+  });
+
+  for (const root of tnumRoots) {
+    tabularize(root);
+    tnumObserver.observe(root, { childList: true, subtree: true, characterData: true });
+  }
+})();
+</script>
+</body>
+</html>

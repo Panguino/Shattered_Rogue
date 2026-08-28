@@ -29,7 +29,7 @@ Arena → Victory or Defeat → Main Menu
 | Language | C++ primary, UMG for menus, Blueprint only for widget layout / VFX wiring |
 | Agent | Official **Unreal MCP** in Cursor (`GenerateClientConfig`) |
 | Rendering | Forward+, DX12, **60 FPS** cap |
-| Input | Enhanced Input — Avorion-style mouse steering; W/S thrust, A/D strafe, Space/C vertical, Q/E roll, Shift boost, X brake |
+| Input | Enhanced Input — Avorion-style mouse steering; W/S thrust, A/D strafe, Space/C vertical, Q/E roll, Shift boost, X brake, **F headlight**, **- collision wireframe** |
 | Movement | Full **6DOF** inertial flight — forward thrust dominates, reverse/strafe capped near 120–150 vs 800 forward, gradual ship alignment, passive damping, hard brake |
 | Camera | Third-person chase default, raised so the hull sits below the crosshair and banks with the roll; **F1** toggles first-person; camera aims freely and the ship rotates toward its heading |
 | Net | **Solo only.** Still split `Pawn` / `PlayerController` / `GameMode` / `GameState` / `GameInstance` so a later listen-server is not a rewrite |
@@ -109,7 +109,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 
 ### Step 3 — Fly and shoot
 
-12. Enhanced Input: forward/reverse thrust, strafe, vertical thrust, mouse steering, roll, fire, boost, brake, camera toggle, pause, DebugOverlay.
+12. Enhanced Input: forward/reverse thrust, strafe, vertical thrust, mouse steering, roll, fire, boost, brake, **headlight**, camera toggle, pause, DebugOverlay.
 13. `AShatteredPawn`: full 6DOF inertial velocity, thruster-limited alignment to camera heading, Interceptor 800 cruise speed, boost burst.
 14. Third-person chase camera with lag and boost pullback; F1 first-person toggle.
 15. One `APulseProjectile`; fire rate on the pawn; no inventory, no rarity.

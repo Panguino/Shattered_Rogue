@@ -137,7 +137,7 @@ Heat modifiers stack with the existing enemy system:
 | ------------------------------ | ----------------------------------------------------------------------- |
 | **Hard Labor + Enraged**       | Enraged enemies now deal +75% on top of their normal +50% → devastating |
 | **Calisthenics + Armored**     | Armored tanks with doubled HP become genuine walls                      |
-| **Middle Management + Pack**   | Extra enemies + Pack trait = screen floods with coordinated swarms      |
+| **Middle Management + Consensus** | Extra enemies + Consensus protocol = the screen fills with linked formations |
 | **Benefits Package + Charger** | Charger enemies move +60% faster → nearly undodgeable ram attacks       |
 | **Tight Deadline + Supernova** | Supernova timer + sector timer = double time pressure                   |
 

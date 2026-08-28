@@ -126,8 +126,9 @@ Each player has their own independent camera (online only — no split-screen). 
 | **Camera toggle**  | F1              | Third-person / first-person        |
 | **Hull ability**   | Unassigned      | POC reserves Space/C for vertical  |
 | **Interact**       | Unassigned      | Rebind when stations enter scope   |
-| **Map**            | Tab / M         | Toggle galaxy map                  |
-| **Inventory**      | I               | Toggle cargo/loadout screen        |
+| **Ship screen**    | Tab             | Toggle the overlay (opens on SHIP) |
+| **Map**            | M               | Ship screen, MAP page              |
+| **Inventory**      | I               | Ship screen, SHIP page             |
 | **Drone command**  | Q               | Carrier-only: cycle drone behavior |
 | **Ping**           | Middle click    | Co-op: ping location for team      |
 | **Pause / Menu**   | Esc             | Pause (solo) / Menu (co-op)        |
@@ -143,13 +144,24 @@ Each player has their own independent camera (online only — no split-screen). 
 | **Boost/Dash**     | Left bumper     | Short burst, cooldown       |
 | **Hull ability**   | Right bumper    | Unique per hull             |
 | **Interact**       | A / X           | Dock, pick up               |
-| **Map**            | D-pad Up        | Toggle galaxy map           |
-| **Inventory**      | D-pad Right     | Toggle cargo/loadout screen |
+| **Map**            | D-pad Up        | Ship screen, MAP page       |
+| **Inventory**      | D-pad Right     | Ship screen, SHIP page      |
 | **Drone command**  | D-pad Left      | Carrier-only                |
 | **Ping**           | D-pad Down      | Co-op ping                  |
 | **Pause / Menu**   | Start           | Pause / Menu                |
 
 > All bindings are remappable in settings.
+
+> **Why `Tab` and `I` no longer point at different screens.** These were a
+> galaxy map and a cargo screen competing for the same third of the display.
+> They are now pages of one overlay: `Tab` toggles it, `M` and `I` jump to a
+> page. See [16_ui_hud_vfx.md](16_ui_hud_vfx.md#loadout-overlay-tab).
+>
+> **The ship screen does not pause.** Stations already do not pause in co-op
+> ([07_stations.md](07_stations.md)), and a screen that pauses solo but not in a
+> group teaches the wrong habit. While it is open the **throttle stays live and
+> the guns go offline** — the mouse belongs to the UI, so you can keep evading
+> but not shooting. Reading your inventory mid-fight should cost something.
 
 ---
 

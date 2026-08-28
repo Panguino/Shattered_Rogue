@@ -52,10 +52,34 @@ Equation signals identify them only with changing numeric expressions.
 > Needle and a Cryo Needle share the same authored frame but must read as
 > different calculations before either fires.
 >
-> The first visual exploration set covers Needle, Vector, Mortar, Bastion, and
-> Relay with three deliberately asymmetric concepts each:
+> The current visual direction is the cold iron pass:
+> [`art/enemies/equation/cold-iron/`](../art/enemies/equation/cold-iron/README.md).
+> Needle, Vector, Mortar, Bastion, and Relay each get three asymmetric concepts
+> built to one weapon mount, drone scale, and bare unpainted metal, with colour
+> only from batteries and energy links. Several are spherical or vertical rather
+> than aircraft-shaped, since nothing in this faction carries a pilot. A
+> [`larger cold iron pass`](../art/enemies/equation/cold-iron-larger/README.md)
+> moves each frame up one size class and tests three composite constructs whose
+> smaller drones dock into a single unit with one shared weapon. The
+> [`cold iron modular kit`](../art/enemies/equation/cold-iron-kit/README.md)
+> breaks that language into twenty compatible armor, power, structure,
+> propulsion, and systems blocks for further assemblies. The
+> earlier painted exploration is kept alongside it in
 > [`art/enemies/equation/`](../art/enemies/equation/README.md). Cipher remains
 > the sixth hero-frame exploration rather than being folded into Vector.
+>
+> **Primitive assembly lab:** the runtime main menu now includes **Enemy
+> Generator**, a deterministic shape study built from engine cubes, cylinders,
+> spheres, and cones. A seed plus min/max ranges controls electrical
+> connections, rods, panels, joints, weapons, propulsion, heat sinks, batteries,
+> and lights. The preview rotates live; saved notes persist with the exact seed
+> and ranges in the `ShatteredEnemyFavorites` save slot. Component-inspector
+> mode isolates one primitive and renders every declared socket as a green
+> sphere with a cyan normal stem: rods, cables, and batteries have two end
+> sockets; panels have four edge sockets; joints have six axis sockets; heat
+> sinks have two base sockets; weapons, propulsion, and lights have one mounting
+> socket. This is a silhouette exploration tool, not yet the combat enemy
+> implementation.
 
 ---
 

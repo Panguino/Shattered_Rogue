@@ -1,0 +1,77 @@
+---
+description: Tripo is for 3D meshes only, and how to spend the fewest credits per asset
+alwaysApply: true
+---
+
+# Tripo usage
+
+Tripo generates **3D models only**. Never use it for 2D work.
+
+Concept art, kit references, and any other image come from the image generation
+tool, which costs no Tripo credits. Never call `tripo generate text-to-image`,
+`image-to-image`, `image-to-multiview`, `edit-multiview`, or `image-to-splat`,
+and never pass `--model seedream_v4` or any other image model.
+
+Auth: the working key is the `tsk_` value in `.env`. The `tcli_` one named
+`TRIPO_API_KEY` returns 401. Set `$env:TRIPO_API_KEY` from the `tsk_` value.
+
+## Spend the minimum per asset
+
+One `image_to_model` call is 50 credits and already returns a finished GLB with
+2K JPEG PBR textures. Everything after that is an extra billed task.
+
+**Do not run `convert`** for texture resizing. It is a separate 10-credit task
+(non-default options bill at the "complex convert" tier) that re-bakes nothing —
+it only repacks the same mesh with smaller images. Unreal applies a maximum
+texture size at import for free, so ship the untouched generator GLB.
+
+Only convert when the *format* itself is required, such as FBX for a pipeline
+that cannot read glTF. Resolution alone is never a reason.
+
+```powershell
+# Good — one billed task, 50 credits
+tripo make art/enemies/equation/<kit>/<concept>.png `
+  --model tripo-p1 -p face_limit=800 -p texture=true -p pbr=true `
+  -p texture_quality=standard -p texture_alignment=original_image -p auto_size=false `
+  -o art/tripo-out --json --yes --no-open
+
+# Bad — 60 credits for textures Unreal would have downsized for nothing
+tripo make ... --then convert:format=GLTF,texture_size=512
+```
+
+Other budget rules: `--model tripo-p1` for kit parts (`face_limit` 50–20000);
+`texture_quality=standard` (`detailed` costs time and shows nothing at these
+sizes); `-n` candidates multiply the 50-credit charge, so re-roll with
+`tripo redo` only when a result is unusable.
+
+Check `tripo balance` before a batch and report the spend afterwards. Verify any
+result locally with `node art/glb-inspect.mjs <file.glb>` rather than paying for
+another task to inspect it.
+
+## Orientation
+
+Tripo aligns a result to the concept image's implied camera, not to any axis, so
+a 3/4 hero shot yields a mesh sitting on a diagonal. That is not cosmetic. Parts
+are fitted by scaling their bounding box, and a diagonal rod's box was fifteen
+times the volume it needed, so it was sized wrong however good its sockets were;
+socket seeding also finds end faces by slicing along world axes, which on a
+tilted part slices through its middle.
+
+So **render kit concepts as a flat elevation, straight down one axis**, with the
+part's mount axis vertical in frame and no perspective tilt. A 3/4 view is for
+presentation, never for something that will be assembled procedurally.
+
+Assume it still comes back crooked and check. This is a pipeline step, not a
+judgement call:
+
+```powershell
+node art/align-audit.mjs                     # tilt per mesh, before
+blender --background --python art/enemies/equation/cold-iron-kit/models/align-assets.py --
+node art/align-audit.mjs <aligned-dir>       # every mesh should read 0.0 deg
+```
+
+`align-assets.py` rotates geometry onto the family's canonical axes and bakes it
+in, because Unreal only ever applies a rigid rotation on top and cannot undo a
+baked tilt. Re-importing replaces the assets, which discards their sockets, so
+re-seed afterwards — never align a kit that has hand-corrected sockets without
+expecting to redo them.

@@ -1,0 +1,35 @@
+---
+description: When to rebuild, relaunch, or leave Unreal and the HUD mockup alone
+alwaysApply: true
+---
+
+# UE session discipline
+
+Two repos: this one is design/mockup (`Shattered_Rogue`). The live engine is the sibling `ShatteredRogue`. Never compile or launch from the design repo.
+
+## Do not restart by default
+
+1. List `UnrealEditor.exe`, `UnrealEditor-Cmd.exe`, `UnrealBuildTool.exe`, and `node.exe *serve.mjs*` before starting anything.
+2. Reuse a healthy process. A second `serve.mjs` or `-game` instance fights the first (`EADDRINUSE`, `LNK1104`).
+3. HTML/CSS mockup changes never need Unreal. Serve `http://localhost:5173/mockup/` (`node art/hud/mockup/serve.mjs`). Do not open `index.html` via `file://` — `@font-face` fails there.
+4. C++ that only compiles is not a reason to relaunch. Relaunch `-game` / PIE only after a **successful link** of gameplay or HUD code.
+
+## What may be killed vs asked
+
+- Agent-started `UnrealEditor-Cmd.exe … -game` for this `.uproject`: stop it to unlock `Binaries/Win64/UnrealEditor-ShatteredRogue.dll`, then rebuild.
+- `UnrealEditor.exe` (full editor the user may be in): **ask first**. Never `Stop-Process` it to win a link.
+- Stale `node serve.mjs` on 5173: stop only if MIME/type is wrong or it is not this mockup.
+
+`LNK1104` / “used by another process” means a playtest still holds the DLL. Close that `-game` Cmd, rebuild, relaunch. Do not close the editor “just in case”.
+
+## HUD / flight visual checks
+
+Launch **Flight Training**, not the main menu:
+
+```
+UnrealEditor-Cmd.exe ShatteredRogue.uproject "/Game/Maps/M_PirateRaid?game=/Script/ShatteredRogue.ShatteredTrainingGameMode" -game -windowed -ResX=1920 -ResY=1080
+```
+
+Wait for a client window before capturing (`art/hud/plates/capture-plate.ps1`).
+
+For the command checklist, follow `.cursor/skills/ue-playtest/SKILL.md`.

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cold iron kit — mesh viewer</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"
+    ></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #e7ecf2;
+        --dim: #8b97a6;
+        --line: #26303c;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 28px clamp(16px, 4vw, 48px) 56px;
+        background: radial-gradient(120% 90% at 50% 0%, #131a22 0%, #080b0f 70%);
+        color: var(--ink);
+        font: 14px/1.55 "Segoe UI", system-ui, sans-serif;
+      }
+      h1 { font-size: 19px; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 4px; }
+      p.lede { color: var(--dim); margin: 0 0 20px; max-width: 76ch; }
+      .summary { display: flex; gap: 18px; color: var(--dim); margin-bottom: 18px; }
+      .summary strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+      .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+      button, input {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #0d1218;
+        color: var(--ink);
+        font: inherit;
+      }
+      button { padding: 7px 11px; cursor: pointer; text-transform: capitalize; }
+      button:hover, button.active { border-color: #6584a7; background: #172231; }
+      input { min-width: 220px; padding: 7px 10px; }
+      .review-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(360px, 32vw);
+        gap: 22px;
+        align-items: start;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        padding: 0;
+        text-align: left;
+        text-transform: none;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #0d1218;
+        overflow: hidden;
+      }
+      .card.selected { border-color: #80a9d5; box-shadow: 0 0 0 1px #80a9d5; }
+      .card img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #070a0e; }
+      .card-copy { padding: 10px 11px 12px; }
+      .card h2 { font-size: 12px; margin: 0 0 6px; letter-spacing: 0.04em; }
+      .badges { display: flex; gap: 5px; flex-wrap: wrap; }
+      .badge { padding: 2px 6px; border-radius: 10px; background: #19222d; color: var(--dim); font-size: 11px; }
+      .badge.pass { background: #173426; color: #8ed4ab; }
+      .badge.review { background: #3b3218; color: #e3c76f; }
+      .badge.redo { background: #421f22; color: #ef9199; }
+      .inspector {
+        position: sticky;
+        top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #0d1218;
+        overflow: hidden;
+      }
+      model-viewer {
+        width: 100%;
+        height: min(58vh, 620px);
+        min-height: 430px;
+        background: #0a0e13;
+        --poster-color: transparent;
+      }
+      .meta { padding: 14px 16px 17px; border-top: 1px solid var(--line); }
+      .meta h2 { font-size: 15px; margin: 0 0 9px; letter-spacing: 0.06em; }
+      dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 14px; margin: 0; }
+      dt { color: var(--dim); }
+      dd { margin: 0; font-variant-numeric: tabular-nums; }
+      code { color: #b8d4ff; }
+      .empty { color: var(--dim); padding: 30px 0; }
+      @media (max-width: 900px) {
+        .review-layout { grid-template-columns: 1fr; }
+        .inspector { position: static; grid-row: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cold iron v2 — model review</h1>
+    <p class="lede">
+      All 30 untouched Tripo P1 generator GLBs. Select a card to inspect it in
+      3D; drag to orbit and scroll to zoom. No conversion tasks were used for the
+      remaining 27 models.
+    </p>
+    <div class="summary" id="summary"></div>
+    <div class="controls" id="controls">
+      <input id="search" type="search" placeholder="Filter models…" />
+    </div>
+    <div class="review-layout">
+      <main class="grid" id="grid"></main>
+      <aside class="inspector">
+        <model-viewer
+          id="viewer"
+          camera-controls
+          touch-action="pan-y"
+          exposure="1.1"
+          shadow-intensity="0.65"
+          environment-image="neutral"
+          auto-rotate
+          auto-rotate-delay="900"
+        ></model-viewer>
+        <div class="meta">
+          <h2 id="model-title">Loading catalog…</h2>
+          <dl id="model-stats"></dl>
+        </div>
+      </aside>
+    </div>
+    <script type="module">
+      const data = await fetch("./catalog.json").then((response) => response.json());
+      const categories = [...new Set(data.entries.map((entry) => entry.category))];
+      const grid = document.querySelector("#grid");
+      const viewer = document.querySelector("#viewer");
+      const title = document.querySelector("#model-title");
+      const stats = document.querySelector("#model-stats");
+      const search = document.querySelector("#search");
+      const controls = document.querySelector("#controls");
+      let category = "all";
+      let selected = data.entries[0];
+
+      const pretty = (value) => value.replaceAll("-", " ");
+      const summaryTriangles = data.entries.reduce((sum, entry) => sum + entry.triangles, 0);
+      const redoCount = data.entries.filter((entry) => entry.review.status === "redo").length;
+      const reviewCount = data.entries.filter((entry) => entry.review.status === "review").length;
+      document.querySelector("#summary").innerHTML = `
+        <span><strong>${data.entries.length}</strong> models</span>
+        <span><strong>${summaryTriangles.toLocaleString()}</strong> total triangles</span>
+        <span><strong>${Math.round(summaryTriangles / data.entries.length)}</strong> average</span>
+        <span><strong>${redoCount}</strong> redo</span>
+        <span><strong>${reviewCount}</strong> review</span>
+      `;
+
+      for (const value of ["all", ...categories]) {
+        const button = document.createElement("button");
+        button.textContent = pretty(value);
+        button.className = value === "all" ? "active" : "";
+        button.addEventListener("click", () => {
+          category = value;
+          for (const item of controls.querySelectorAll("button")) {
+            item.classList.toggle("active", item === button);
+          }
+          render();
+        });
+        controls.append(button);
+      }
+
+      function inspect(entry) {
+        selected = entry;
+        viewer.src = entry.model;
+        viewer.poster = entry.preview;
+        viewer.alt = entry.title;
+        title.textContent = entry.title;
+        stats.innerHTML = `
+          <dt>family</dt><dd>${pretty(entry.category)}</dd>
+          <dt>triangles</dt><dd>${entry.triangles.toLocaleString()}</dd>
+          <dt>vertices</dt><dd>${entry.vertices.toLocaleString()}</dd>
+          <dt>material</dt><dd>${entry.materials} · ${entry.textures} PBR textures</dd>
+          <dt>source maps</dt><dd>2048² JPEG</dd>
+          <dt>on disk</dt><dd>${entry.megabytes.toFixed(2)} MB</dd>
+          <dt>review</dt><dd>${entry.review.note}</dd>
+        `;
+        for (const card of grid.querySelectorAll(".card")) {
+          card.classList.toggle("selected", card.dataset.name === entry.name);
+        }
+      }
+
+      function render() {
+        const query = search.value.trim().toLowerCase();
+        const entries = data.entries.filter(
+          (entry) =>
+            (category === "all" || entry.category === category) &&
+            (!query || entry.title.toLowerCase().includes(query)),
+        );
+        grid.replaceChildren();
+        if (!entries.length) {
+          grid.innerHTML = `<p class="empty">No models match this filter.</p>`;
+          return;
+        }
+        for (const entry of entries) {
+          const card = document.createElement("button");
+          card.className = "card";
+          card.dataset.name = entry.name;
+          card.innerHTML = `
+            <img src="${entry.preview}" alt="${entry.title} preview" loading="lazy" />
+            <span class="card-copy">
+              <h2>${entry.title}</h2>
+              <span class="badges">
+                <span class="badge ${entry.review.status}">${entry.review.status}</span>
+                <span class="badge">${entry.triangles.toLocaleString()} tris</span>
+                <span class="badge">${entry.megabytes.toFixed(2)} MB</span>
+              </span>
+            </span>
+          `;
+          card.addEventListener("click", () => inspect(entry));
+          grid.append(card);
+        }
+        inspect(entries.includes(selected) ? selected : entries[0]);
+      }
+
+      search.addEventListener("input", render);
+      render();
+    </script>
+  </body>
+</html>

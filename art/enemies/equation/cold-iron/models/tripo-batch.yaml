@@ -1,0 +1,46 @@
+concurrency: 2
+defaults:
+  model: tripo-p1
+  out: ./art/tripo-out/cold-iron-ships
+  params:
+    face_limit: 8000
+    texture: true
+    pbr: true
+    texture_quality: standard
+    texture_alignment: original_image
+    auto_size: false
+jobs:
+  - input: art/enemies/equation/cold-iron/needle-spindle.png
+    name: needle-spindle
+  - input: art/enemies/equation/cold-iron/needle-ballthorn.png
+    name: needle-ballthorn
+  - input: art/enemies/equation/cold-iron/needle-hook.png
+    name: needle-hook
+
+  - input: art/enemies/equation/cold-iron/vector-gyro.png
+    name: vector-gyro
+  - input: art/enemies/equation/cold-iron/vector-mast.png
+    name: vector-mast
+  - input: art/enemies/equation/cold-iron/vector-wedge.png
+    name: vector-wedge
+
+  - input: art/enemies/equation/cold-iron/mortar-drum.png
+    name: mortar-drum
+  - input: art/enemies/equation/cold-iron/mortar-kettle.png
+    name: mortar-kettle
+  - input: art/enemies/equation/cold-iron/mortar-column.png
+    name: mortar-column
+
+  - input: art/enemies/equation/cold-iron/bastion-orb.png
+    name: bastion-orb
+  - input: art/enemies/equation/cold-iron/bastion-pillar.png
+    name: bastion-pillar
+  - input: art/enemies/equation/cold-iron/bastion-anvil.png
+    name: bastion-anvil
+
+  - input: art/enemies/equation/cold-iron/relay-cage.png
+    name: relay-cage
+  - input: art/enemies/equation/cold-iron/relay-spire.png
+    name: relay-spire
+  - input: art/enemies/equation/cold-iron/relay-stack.png
+    name: relay-stack

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cold Iron ships — image and model catalog</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer@4.0.0/dist/model-viewer.min.js"
+    ></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090c;
+        --panel: #0e1319;
+        --panel-2: #141b23;
+        --line: #283340;
+        --ink: #edf2f7;
+        --dim: #8f9aa7;
+        --amber: #ffb948;
+        --good: #8dd4ac;
+        --warn: #e3c76f;
+        --bad: #ef9199;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: 26px clamp(15px, 3vw, 42px) 52px;
+        background:
+          radial-gradient(90% 70% at 50% -10%, #1a232e 0%, transparent 70%),
+          var(--bg);
+        color: var(--ink);
+        font: 14px/1.5 "Segoe UI", system-ui, sans-serif;
+      }
+      header { display: flex; gap: 28px; justify-content: space-between; align-items: end; flex-wrap: wrap; }
+      h1 { margin: 0 0 4px; font-size: 20px; letter-spacing: .14em; text-transform: uppercase; }
+      .lede { margin: 0; max-width: 78ch; color: var(--dim); }
+      .summary { display: flex; gap: 18px; flex-wrap: wrap; color: var(--dim); }
+      .summary strong { display: block; color: var(--ink); font-size: 18px; font-variant-numeric: tabular-nums; }
+      .toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 18px; }
+      button, input {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #0b1016;
+        color: var(--ink);
+        font: inherit;
+      }
+      button { padding: 7px 11px; cursor: pointer; text-transform: capitalize; }
+      button:hover, button.active { border-color: #6e8dad; background: #172230; }
+      input { width: min(280px, 100%); padding: 7px 10px; }
+      .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(470px, 43vw); gap: 20px; align-items: start; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 11px; }
+      .card { padding: 0; overflow: hidden; text-align: left; text-transform: none; background: var(--panel); }
+      .card.selected { border-color: #82acd6; box-shadow: 0 0 0 1px #82acd6; }
+      .card img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #d8d8d8; }
+      /* A concept lives one level above this viewer, so serving models/ as the
+         web root 404s every image and leaves a silent grey box. Say which file
+         is missing instead. */
+      img.missing { background: #2a1d1f; padding: 14px; color: var(--bad); font-size: 11px; }
+      .copy { display: block; padding: 10px 11px 12px; }
+      .copy h2 { margin: 0 0 6px; font-size: 12px; letter-spacing: .045em; }
+      .badges { display: flex; gap: 5px; flex-wrap: wrap; }
+      .badge { padding: 2px 7px; border-radius: 10px; background: #1c2530; color: var(--dim); font-size: 11px; }
+      .badge.ready, .badge.target { background: #173527; color: var(--good); }
+      .badge.image { background: #30321a; color: var(--warn); }
+      .badge.over { background: #421f22; color: var(--bad); }
+      .inspector { position: sticky; top: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+      .comparison { display: grid; grid-template-columns: 1fr 1fr; min-height: 430px; }
+      .pane { position: relative; min-width: 0; background: #090d12; }
+      .pane + .pane { border-left: 1px solid var(--line); }
+      .pane-label { position: absolute; z-index: 2; top: 10px; left: 10px; padding: 3px 7px; border-radius: 4px; background: #080b0ed9; color: var(--dim); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+      #concept { width: 100%; height: 100%; min-height: 430px; object-fit: contain; background: #d8d8d8; }
+      model-viewer { width: 100%; height: 100%; min-height: 430px; --poster-color: transparent; }
+      .waiting { display: grid; place-items: center; min-height: 430px; padding: 30px; color: var(--dim); text-align: center; }
+      .meta { padding: 15px 17px 18px; border-top: 1px solid var(--line); }
+      .meta h2 { margin: 0 0 5px; font-size: 16px; letter-spacing: .06em; }
+      .description { margin: 0 0 13px; color: var(--dim); }
+      dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 14px; margin: 0; }
+      dt { color: var(--dim); }
+      dd { margin: 0; font-variant-numeric: tabular-nums; }
+      .empty { color: var(--dim); padding: 30px 0; }
+      @media (max-width: 1050px) {
+        .layout { grid-template-columns: 1fr; }
+        .inspector { position: static; grid-row: 1; }
+      }
+      @media (max-width: 620px) {
+        .comparison { grid-template-columns: 1fr; }
+        .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Cold Iron ship catalog</h1>
+        <p class="lede">
+          Complete concept-to-model inventory. Every source image remains visible;
+          completed models can be orbited and zoomed beside their concept.
+        </p>
+      </div>
+      <div class="summary" id="summary"></div>
+    </header>
+
+    <div class="toolbar" id="toolbar">
+      <input id="search" type="search" placeholder="Filter ships…" />
+    </div>
+
+    <div class="layout">
+      <main class="grid" id="grid"></main>
+      <aside class="inspector">
+        <div class="comparison">
+          <div class="pane">
+            <span class="pane-label">source image</span>
+            <img id="concept" alt="" />
+          </div>
+          <div class="pane" id="model-pane">
+            <span class="pane-label">3D model</span>
+            <model-viewer
+              id="viewer"
+              camera-controls
+              touch-action="pan-y"
+              exposure="1.1"
+              shadow-intensity=".7"
+              environment-image="neutral"
+              auto-rotate
+              auto-rotate-delay="900"
+            ></model-viewer>
+            <div class="waiting" id="waiting" hidden>
+              Model not generated yet.<br />The concept remains in the full catalog.
+            </div>
+          </div>
+        </div>
+        <div class="meta">
+          <h2 id="title">Loading catalog…</h2>
+          <p class="description" id="description"></p>
+          <dl id="stats"></dl>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module">
+      const data = await fetch("./catalog.json").then((response) => response.json());
+      const grid = document.querySelector("#grid");
+      const toolbar = document.querySelector("#toolbar");
+      const search = document.querySelector("#search");
+      const concept = document.querySelector("#concept");
+      const viewer = document.querySelector("#viewer");
+      const waiting = document.querySelector("#waiting");
+      const title = document.querySelector("#title");
+      const description = document.querySelector("#description");
+      const stats = document.querySelector("#stats");
+      let family = "all";
+      let selected = data.entries[0];
+
+      const pretty = (value) => value.replaceAll("-", " ");
+      const flagMissing = (image) => {
+        image.addEventListener("error", () => {
+          image.classList.add("missing");
+          image.alt = `Image not served: ${image.getAttribute("src")} — serve the cold-iron folder, not models/`;
+        });
+        image.addEventListener("load", () => image.classList.remove("missing"));
+      };
+      flagMissing(concept);
+      document.querySelector("#summary").innerHTML = `
+        <span><strong>${data.summary.concepts}</strong> concepts</span>
+        <span><strong>${data.summary.models}</strong> models</span>
+        <span><strong>${data.summary.target}</strong> in 6–9k target</span>
+        <span><strong>${data.summary.totalTriangles.toLocaleString()}</strong> total tris</span>
+      `;
+
+      for (const value of ["all", "needle", "vector", "mortar", "bastion", "relay"]) {
+        const button = document.createElement("button");
+        button.textContent = pretty(value);
+        button.classList.toggle("active", value === "all");
+        button.addEventListener("click", () => {
+          family = value;
+          for (const item of toolbar.querySelectorAll("button")) {
+            item.classList.toggle("active", item === button);
+          }
+          render();
+        });
+        toolbar.append(button);
+      }
+
+      function inspect(entry) {
+        selected = entry;
+        concept.src = entry.image;
+        concept.alt = `${entry.title} source concept`;
+        title.textContent = entry.title;
+        description.textContent = entry.description;
+
+        const ready = Boolean(entry.model);
+        viewer.hidden = !ready;
+        waiting.hidden = ready;
+        if (ready) {
+          viewer.src = entry.model;
+          viewer.poster = entry.preview;
+          viewer.alt = `${entry.title} interactive 3D model`;
+        } else {
+          viewer.removeAttribute("src");
+          viewer.removeAttribute("poster");
+        }
+
+        stats.innerHTML = ready
+          ? `
+            <dt>family</dt><dd>${pretty(entry.family)}</dd>
+            <dt>status</dt><dd>model ready</dd>
+            <dt>triangles</dt><dd>${entry.triangles.toLocaleString()} · ${entry.budget}</dd>
+            <dt>vertices</dt><dd>${entry.vertices.toLocaleString()}</dd>
+            <dt>PBR</dt><dd>${entry.materials} material · ${entry.textures} textures</dd>
+            <dt>on disk</dt><dd>${entry.megabytes.toFixed(2)} MB</dd>
+          `
+          : `
+            <dt>family</dt><dd>${pretty(entry.family)}</dd>
+            <dt>status</dt><dd>source image only</dd>
+            <dt>target</dt><dd>6,000–9,000 triangles</dd>
+          `;
+
+        for (const card of grid.querySelectorAll(".card")) {
+          card.classList.toggle("selected", card.dataset.name === entry.name);
+        }
+      }
+
+      function render() {
+        const query = search.value.trim().toLowerCase();
+        const entries = data.entries.filter(
+          (entry) =>
+            (family === "all" || entry.family === family) &&
+            (!query ||
+              entry.title.toLowerCase().includes(query) ||
+              entry.description.toLowerCase().includes(query)),
+        );
+        grid.replaceChildren();
+        if (!entries.length) {
+          grid.innerHTML = `<p class="empty">No ships match this filter.</p>`;
+          return;
+        }
+        for (const entry of entries) {
+          const card = document.createElement("button");
+          card.className = "card";
+          card.dataset.name = entry.name;
+          const statusClass = entry.model ? "ready" : "image";
+          const statusText = entry.model ? "model ready" : "image only";
+          const budget = entry.model
+            ? `<span class="badge ${entry.budget}">${entry.triangles.toLocaleString()} tris</span>`
+            : `<span class="badge">target 6–9k</span>`;
+          card.innerHTML = `
+            <img src="${entry.image}" alt="${entry.title} concept" loading="lazy" />
+            <span class="copy">
+              <h2>${entry.title}</h2>
+              <span class="badges">
+                <span class="badge ${statusClass}">${statusText}</span>
+                ${budget}
+              </span>
+            </span>
+          `;
+          flagMissing(card.querySelector("img"));
+          card.addEventListener("click", () => inspect(entry));
+          grid.append(card);
+        }
+        inspect(entries.includes(selected) ? selected : entries[0]);
+      }
+
+      search.addEventListener("input", render);
+      render();
+    </script>
+  </body>
+</html>

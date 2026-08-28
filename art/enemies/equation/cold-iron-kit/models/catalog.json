@@ -1,0 +1,501 @@
+{
+  "generated": "2026-08-25T19:55:00.111Z",
+  "entries": [
+    {
+      "name": "cold-iron-v2-electrical-terminal-a",
+      "title": "Electrical Terminal A",
+      "category": "electrical-terminal",
+      "model": "cold-iron-v2-electrical-terminal-a.glb",
+      "preview": "cold-iron-v2-electrical-terminal-a-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 434,
+      "vertices": 462,
+      "megabytes": 0.78,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-electrical-terminal-b",
+      "title": "Electrical Terminal B",
+      "category": "electrical-terminal",
+      "model": "cold-iron-v2-electrical-terminal-b.glb",
+      "preview": "cold-iron-v2-electrical-terminal-b-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 482,
+      "vertices": 511,
+      "megabytes": 0.99,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-electrical-terminal-c",
+      "title": "Electrical Terminal C",
+      "category": "electrical-terminal",
+      "model": "cold-iron-v2-electrical-terminal-c.glb",
+      "preview": "cold-iron-v2-electrical-terminal-c-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 500,
+      "vertices": 575,
+      "megabytes": 1.02,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-rod-a-spine",
+      "title": "Rod A Spine",
+      "category": "rod",
+      "model": "cold-iron-v2-rod-a-spine.glb",
+      "preview": "cold-iron-v2-rod-a-spine-preview.png",
+      "review": {
+        "status": "review",
+        "note": "End and side attachment sockets reconstructed as open bores."
+      },
+      "triangles": 654,
+      "vertices": 681,
+      "megabytes": 0.87,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-rod-b-telescoping",
+      "title": "Rod B Telescoping",
+      "category": "rod",
+      "model": "cold-iron-v2-rod-b-telescoping.glb",
+      "preview": "cold-iron-v2-rod-b-telescoping-preview.png",
+      "review": {
+        "status": "review",
+        "note": "One end attachment reconstructed as an open bore."
+      },
+      "triangles": 636,
+      "vertices": 613,
+      "megabytes": 1.03,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-rod-c-lattice",
+      "title": "Rod C Lattice",
+      "category": "rod",
+      "model": "cold-iron-v2-rod-c-lattice.glb",
+      "preview": "cold-iron-v2-rod-c-lattice-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "R2 reads as a straight truss rod with solid capped end plates."
+      },
+      "triangles": 705,
+      "vertices": 1135,
+      "megabytes": 0.82,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-panel-a-slab",
+      "title": "Panel A Slab",
+      "category": "panel",
+      "model": "cold-iron-v2-panel-a-slab.glb",
+      "preview": "cold-iron-v2-panel-a-slab-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 456,
+      "vertices": 520,
+      "megabytes": 0.83,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-panel-b-wedge",
+      "title": "Panel B Wedge",
+      "category": "panel",
+      "model": "cold-iron-v2-panel-b-wedge.glb",
+      "preview": "cold-iron-v2-panel-b-wedge-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Multiple attachment points reconstructed as open bores."
+      },
+      "triangles": 507,
+      "vertices": 883,
+      "megabytes": 1.21,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-panel-c-ribbed",
+      "title": "Panel C Ribbed",
+      "category": "panel",
+      "model": "cold-iron-v2-panel-c-ribbed.glb",
+      "preview": "cold-iron-v2-panel-c-ribbed-preview.png",
+      "review": {
+        "status": "review",
+        "note": "R3 is watertight (0 open edges) after R2 rendered see-through from below; confirm the ribs still read."
+      },
+      "triangles": 634,
+      "vertices": 850,
+      "megabytes": 0.71,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-panel-d-armored-pod",
+      "title": "Panel D Armored Pod",
+      "category": "panel",
+      "model": "cold-iron-v2-panel-d-armored-pod.glb",
+      "preview": "cold-iron-v2-panel-d-armored-pod-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 831,
+      "vertices": 923,
+      "megabytes": 0.79,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-joint-a-hinge",
+      "title": "Joint A Hinge",
+      "category": "joint",
+      "model": "cold-iron-v2-joint-a-hinge.glb",
+      "preview": "cold-iron-v2-joint-a-hinge-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 584,
+      "vertices": 609,
+      "megabytes": 0.93,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-joint-b-gimbal",
+      "title": "Joint B Gimbal",
+      "category": "joint",
+      "model": "cold-iron-v2-joint-b-gimbal.glb",
+      "preview": "cold-iron-v2-joint-b-gimbal-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Silhouette is compressed and less mechanically legible than the concept."
+      },
+      "triangles": 830,
+      "vertices": 856,
+      "megabytes": 0.93,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-joint-c-yoke",
+      "title": "Joint C Yoke",
+      "category": "joint",
+      "model": "cold-iron-v2-joint-c-yoke.glb",
+      "preview": "cold-iron-v2-joint-c-yoke-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 772,
+      "vertices": 858,
+      "megabytes": 1.04,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-weapon-a-cannon",
+      "title": "Weapon A Cannon",
+      "category": "weapon",
+      "model": "cold-iron-v2-weapon-a-cannon.glb",
+      "preview": "cold-iron-v2-weapon-a-cannon-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 868,
+      "vertices": 811,
+      "megabytes": 0.93,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-weapon-b-rail-lance",
+      "title": "Weapon B Rail Lance",
+      "category": "weapon",
+      "model": "cold-iron-v2-weapon-b-rail-lance.glb",
+      "preview": "cold-iron-v2-weapon-b-rail-lance-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 842,
+      "vertices": 915,
+      "megabytes": 0.76,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-weapon-c-missile-pod",
+      "title": "Weapon C Missile Pod",
+      "category": "weapon",
+      "model": "cold-iron-v2-weapon-c-missile-pod.glb",
+      "preview": "cold-iron-v2-weapon-c-missile-pod-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "R2 preserves six visible recessed missile noses in a 2x3 array."
+      },
+      "triangles": 949,
+      "vertices": 1079,
+      "megabytes": 0.82,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-propulsion-a-compact",
+      "title": "Propulsion A Compact",
+      "category": "propulsion",
+      "model": "cold-iron-v2-propulsion-a-compact.glb",
+      "preview": "cold-iron-v2-propulsion-a-compact-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Nozzle and cyan thrust face are not legible in the generated preview."
+      },
+      "triangles": 721,
+      "vertices": 973,
+      "megabytes": 0.73,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-propulsion-b-vector",
+      "title": "Propulsion B Vector",
+      "category": "propulsion",
+      "model": "cold-iron-v2-propulsion-b-vector.glb",
+      "preview": "cold-iron-v2-propulsion-b-vector-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 939,
+      "vertices": 1252,
+      "megabytes": 1.15,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-propulsion-c-cluster",
+      "title": "Propulsion C Cluster",
+      "category": "propulsion",
+      "model": "cold-iron-v2-propulsion-c-cluster.glb",
+      "preview": "cold-iron-v2-propulsion-c-cluster-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 958,
+      "vertices": 1526,
+      "megabytes": 1.25,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-heatsink-a-fin-bank",
+      "title": "Heatsink A Fin Bank",
+      "category": "heatsink",
+      "model": "cold-iron-v2-heatsink-a-fin-bank.glb",
+      "preview": "cold-iron-v2-heatsink-a-fin-bank-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 894,
+      "vertices": 851,
+      "megabytes": 0.71,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-heatsink-b-radial",
+      "title": "Heatsink B Radial",
+      "category": "heatsink",
+      "model": "cold-iron-v2-heatsink-b-radial.glb",
+      "preview": "cold-iron-v2-heatsink-b-radial-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Front attachment collar reconstructed as a deep open bore."
+      },
+      "triangles": 920,
+      "vertices": 1216,
+      "megabytes": 0.85,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-heatsink-c-cooling-plate",
+      "title": "Heatsink C Cooling Plate",
+      "category": "heatsink",
+      "model": "cold-iron-v2-heatsink-c-cooling-plate.glb",
+      "preview": "cold-iron-v2-heatsink-c-cooling-plate-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Both end attachment collars reconstructed as open bores."
+      },
+      "triangles": 610,
+      "vertices": 778,
+      "megabytes": 0.78,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-battery-a-cell",
+      "title": "Battery A Cell",
+      "category": "battery",
+      "model": "cold-iron-v2-battery-a-cell.glb",
+      "preview": "cold-iron-v2-battery-a-cell-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 748,
+      "vertices": 777,
+      "megabytes": 0.73,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-battery-b-cell-bank",
+      "title": "Battery B Cell Bank",
+      "category": "battery",
+      "model": "cold-iron-v2-battery-b-cell-bank.glb",
+      "preview": "cold-iron-v2-battery-b-cell-bank-preview.png",
+      "review": {
+        "status": "review",
+        "note": "One attachment collar reconstructed as an open bore."
+      },
+      "triangles": 862,
+      "vertices": 1046,
+      "megabytes": 0.79,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-battery-c-capacitor",
+      "title": "Battery C Capacitor",
+      "category": "battery",
+      "model": "cold-iron-v2-battery-c-capacitor.glb",
+      "preview": "cold-iron-v2-battery-c-capacitor-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Bottom attachment collar reconstructed as an open bore."
+      },
+      "triangles": 838,
+      "vertices": 928,
+      "megabytes": 0.97,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-light-a-spot",
+      "title": "Light A Spot",
+      "category": "light",
+      "model": "cold-iron-v2-light-a-spot.glb",
+      "preview": "cold-iron-v2-light-a-spot-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 537,
+      "vertices": 740,
+      "megabytes": 0.75,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-light-b-beacon-cluster",
+      "title": "Light B Beacon Cluster",
+      "category": "light",
+      "model": "cold-iron-v2-light-b-beacon-cluster.glb",
+      "preview": "cold-iron-v2-light-b-beacon-cluster-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "R2 preserves three distinct amber lenses and a solid rear mount."
+      },
+      "triangles": 606,
+      "vertices": 735,
+      "megabytes": 0.85,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-light-c-flood-bar",
+      "title": "Light C Flood Bar",
+      "category": "light",
+      "model": "cold-iron-v2-light-c-flood-bar.glb",
+      "preview": "cold-iron-v2-light-c-flood-bar-preview.png",
+      "review": {
+        "status": "review",
+        "note": "Bottom attachment collar reconstructed as an open bore."
+      },
+      "triangles": 664,
+      "vertices": 730,
+      "megabytes": 0.85,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-hub-a-sphere",
+      "title": "Hub A Sphere",
+      "category": "hub",
+      "model": "cold-iron-v2-hub-a-sphere.glb",
+      "preview": "cold-iron-v2-hub-a-sphere-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 605,
+      "vertices": 690,
+      "megabytes": 0.78,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-hub-b-polyhedron",
+      "title": "Hub B Polyhedron",
+      "category": "hub",
+      "model": "cold-iron-v2-hub-b-polyhedron.glb",
+      "preview": "cold-iron-v2-hub-b-polyhedron-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 740,
+      "vertices": 644,
+      "megabytes": 0.76,
+      "materials": 1,
+      "textures": 3
+    },
+    {
+      "name": "cold-iron-v2-hub-c-ring-cage",
+      "title": "Hub C Ring Cage",
+      "category": "hub",
+      "model": "cold-iron-v2-hub-c-ring-cage.glb",
+      "preview": "cold-iron-v2-hub-c-ring-cage-preview.png",
+      "review": {
+        "status": "pass",
+        "note": "No obvious issue in the generator preview."
+      },
+      "triangles": 870,
+      "vertices": 745,
+      "megabytes": 0.8,
+      "materials": 1,
+      "textures": 3
+    }
+  ]
+}

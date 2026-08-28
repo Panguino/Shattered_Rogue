@@ -13,10 +13,38 @@ marked.setOptions({ gfm: true, breaks: false });
 
 const PAGES = [
   { id: "home", title: "Command Deck", group: "Start", kind: "home" },
-  { id: "ships", title: "Ship Matrix", group: "Start", kind: "ships", source: "art/ships.json" },
   { id: "poc", title: "POC Plan", group: "Start", source: "00_POC_PLAYABLE_LOOP.md" },
   { id: "plan", title: "Catalog", group: "Start", source: "00_GAME_DEVELOPMENT_PLAN.md" },
   { id: "readme", title: "README", group: "Start", source: "README.md" },
+
+  { id: "ships", title: "Player Ships", group: "Asset Catalogs", kind: "ships", source: "art/ships.json" },
+  {
+    id: "enemy-ships",
+    title: "Enemy Ships",
+    group: "Asset Catalogs",
+    kind: "asset-catalog",
+    catalog: "art/enemies/equation/cold-iron/models/catalog.json",
+    assetRoot: "art/enemies/equation/cold-iron",
+    distRoot: "catalogs/enemy-ships",
+    intro: "Fifteen complete Cold Iron combat frames. Compare each source concept with its orbitable 6–9k-triangle PBR model.",
+  },
+  {
+    id: "enemy-components",
+    title: "Enemy Components",
+    group: "Asset Catalogs",
+    kind: "asset-catalog",
+    catalog: "art/enemies/equation/cold-iron-kit/models/catalog.json",
+    assetRoot: "art/enemies/equation/cold-iron-kit",
+    distRoot: "catalogs/enemy-components",
+    intro: "The aligned Cold Iron modular kit used by the procedural enemy generator, with concept art, mesh statistics, and review status.",
+  },
+  {
+    id: "asteroids",
+    title: "Asteroids",
+    group: "Asset Catalogs",
+    kind: "asteroids",
+    distRoot: "catalogs/asteroids",
+  },
 
   { id: "d01", title: "01 · Game Vision", group: "Design", source: "design/01_game_vision.md" },
   { id: "d02", title: "02 · Core Mechanics", group: "Design", source: "design/02_core_mechanics.md" },
@@ -34,6 +62,8 @@ const PAGES = [
   { id: "d14", title: "14 · Lore", group: "Design", source: "design/14_lore_and_narrative.md" },
   { id: "d15", title: "15 · Controls & Camera", group: "Design", source: "design/15_controls_and_camera.md" },
   { id: "d16", title: "16 · UI HUD VFX", group: "Design", source: "design/16_ui_hud_vfx.md" },
+  { id: "d17", title: "17 · Anti-Kiting Combat", group: "Design", source: "design/17_anti_kiting_combat.md" },
+  { id: "d18", title: "18 · Procedural Environments", group: "Design", source: "design/18_procedural_environments.md" },
 
   { id: "art-prompts", title: "Ship Prompts (Markdown)", group: "Art", source: "art/ship_prompts.md" },
   { id: "toolchain", title: "AI Toolchain", group: "Technical", source: "technical/ai_toolchain.md" },
@@ -54,6 +84,21 @@ const PAGES = [
   { id: "r-engine", title: "Engine MCP Research", group: "Research", source: "research/engine_mcp_ai_integration.md" },
   { id: "r-genre", title: "Roguelike Genre Research", group: "Research", source: "research/01_ROGUELIKE_GENRE_RESEARCH.md" },
 ];
+
+// Titles here are curated, so the list stays hand-written rather than being read
+// off the folder. The cost is drift: docs 17 and 18 existed in design/ for weeks
+// without ever appearing in the wiki, and nothing said so. Refuse to build a
+// documentation site that silently omits documentation.
+const registered = new Set(
+  PAGES.filter((page) => page.source).map((page) => path.basename(page.source)),
+);
+const unregistered = fs
+  .readdirSync(path.join(ROOT, "design"))
+  .filter((name) => name.endsWith(".md") && !registered.has(name));
+if (unregistered.length) {
+  console.error(`Not in PAGES, so they would be missing from the wiki: ${unregistered.join(", ")}`);
+  process.exit(1);
+}
 
 const GAMES = [
   ["01_hades.md", "Hades"],
@@ -154,7 +199,9 @@ function esc(s) {
 }
 
 function shell(page, body) {
-  const extra = page.kind === "ships" ? " content-ships" : "";
+  const extra = ["ships", "asset-catalog", "asteroids"].includes(page.kind)
+    ? " content-assets"
+    : "";
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -257,7 +304,10 @@ function homeBody(ships) {
 
   <p class="kicker">Jump in</p>
   <div class="grid-3">
-    <a class="card" href="ships.html"><h3>Ship matrix</h3><p>Concept images, on-demand 3D, and a copy-prompt button per named combo.</p></a>
+    <a class="card" href="ships.html"><h3>Player ships</h3><p>Thirty hull × profession concepts and every available on-demand 3D model.</p></a>
+    <a class="card" href="enemy-ships.html"><h3>Enemy ships</h3><p>Fifteen complete Cold Iron concepts beside their 6–9k-triangle models.</p></a>
+    <a class="card" href="enemy-components.html"><h3>Enemy components</h3><p>The aligned modular mesh kit used by the procedural enemy generator.</p></a>
+    <a class="card" href="asteroids.html"><h3>Asteroids</h3><p>Active size-family concepts and all eight Unreal runtime source GLBs.</p></a>
     <a class="card" href="d01.html"><h3>Game vision</h3><p>Hulls, professions, combos, art direction, pillars.</p></a>
     <a class="card" href="poc.html"><h3>POC plan</h3><p>Pirate Raid loop: menus, placeholder Ace, waves, flagship. Sibling UE 5.8 project.</p></a>
     <a class="card" href="toolchain.html"><h3>AI toolchain</h3><p>Tripo targets, concept pipeline, editor MCP setup.</p></a>
@@ -307,57 +357,255 @@ function shipChecklist(s) {
     </div>`;
 }
 
-function shipsBody(data, art) {
+function shipEntries(data, art) {
   const hulls = ["Interceptor", "Corvette", "Carrier", "Organic", "Phantom", "Juggernaut"];
-  const sections = hulls
-    .map((h) => {
-      const list = data.ships
-        .filter((s) => s.hull === h)
-        .map((s) => {
-          const img = findArt(art.images, s.hull, s.id, [".png", ".webp", ".jpg", ".jpeg"]);
-          const model = findArt(art.models, s.hull, s.id, [".glb", ".gltf"]);
-          const imageBlock = img
-            ? `<a class="asset-frame" href="${esc(img)}" target="_blank" rel="noopener"><img src="${esc(img)}" alt="${esc(s.name)} concept" /></a>`
-            : `<div class="placeholder">Concept image not created yet</div>`;
-          const modelBlock = model
-            ? `<div class="model-slot" data-src="${esc(model)}" data-alt="${esc(s.name)}"><button class="load-3d" type="button">Load 3D</button><p class="hint">Loads the viewer only for this ship.</p></div>`
-            : `<div class="placeholder">3D model not created yet</div>`;
-          return `
-        <article class="card ship-page" id="${esc(s.id)}">
-          <header>
-            <div>
-              <h3>${esc(s.name)}</h3>
-              <p class="meta">${esc(s.hull)} × ${esc(s.profession)} · ${esc(s.mechanic)}</p>
-              <p class="meta"><em>${esc(s.read || "")}</em></p>
-            </div>
-            <button class="copy-prompt" type="button" data-copy="${esc(s.id)}-prompt">Copy prompt</button>
-          </header>
-          ${shipChecklist(s)}
-          <div class="ship-media">
-            <figure class="ship-asset">
-              <figcaption>Concept</figcaption>
-              ${imageBlock}
-            </figure>
-            <figure class="ship-asset">
-              <figcaption>3D model</figcaption>
-              ${modelBlock}
-            </figure>
-          </div>
-          <textarea class="ship-prompt" id="${esc(s.id)}-prompt" readonly hidden>${esc(s.prompt)}</textarea>
-        </article>`;
-        })
-        .join("");
-      return `<h2 id="hull-${h.toLowerCase()}">${esc(h)}</h2>${list}`;
-    })
-    .join("\n");
+  return hulls.flatMap((hull) =>
+    data.ships
+      .filter((ship) => ship.hull === hull)
+      .map((ship) => ({
+        id: ship.id,
+        title: ship.name,
+        group: hull,
+        image: findArt(art.images, ship.hull, ship.id, [".png", ".webp", ".jpg", ".jpeg"]),
+        model: findArt(art.models, ship.hull, ship.id, [".glb", ".gltf"]),
+        preview: null,
+        note: ship.read || "",
+        status: ship.profession,
+        stats: [
+          ["mechanic", ship.mechanic],
+          ["weapons", String(ship.slots.weapons)],
+          ["modules", String(ship.slots.modules)],
+          ["specialty", String(ship.slots.specialty)],
+          ["gold rings", String(ship.goldCount)],
+        ],
+        extraHtml: shipChecklist(ship),
+        prompt: ship.prompt,
+      })),
+  );
+}
+
+function inspectGlb(file) {
+  const buffer = fs.readFileSync(file);
+  if (buffer.readUInt32LE(0) !== 0x46546c67) throw new Error(`${file}: not a GLB`);
+  let offset = 12;
+  let json = null;
+  while (offset < buffer.length) {
+    const length = buffer.readUInt32LE(offset);
+    const type = buffer.readUInt32LE(offset + 4);
+    if (type === 0x4e4f534a) {
+      json = JSON.parse(
+        buffer.subarray(offset + 8, offset + 8 + length).toString("utf8"),
+      );
+      break;
+    }
+    offset += 8 + length + ((4 - (length % 4)) % 4);
+  }
+  if (!json) throw new Error(`${file}: missing glTF JSON`);
+
+  let triangles = 0;
+  let vertices = 0;
+  for (const mesh of json.meshes ?? []) {
+    for (const primitive of mesh.primitives) {
+      const positions = json.accessors[primitive.attributes.POSITION];
+      vertices += positions.count;
+      triangles +=
+        primitive.indices == null
+          ? positions.count / 3
+          : json.accessors[primitive.indices].count / 3;
+    }
+  }
+  return {
+    triangles: Math.round(triangles),
+    vertices,
+    megabytes: Number((buffer.length / 1024 / 1024).toFixed(2)),
+    materials: (json.materials ?? []).length,
+    textures: (json.images ?? []).length,
+  };
+}
+
+function copyCatalogFile(source, distRoot) {
+  if (!source || !fs.existsSync(source)) return null;
+  const name = path.basename(source);
+  const destination = path.join(DIST, distRoot, name);
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.copyFileSync(source, destination);
+  return `${distRoot}/${name}`.replaceAll("\\", "/");
+}
+
+function loadAssetCatalog(page) {
+  const catalogFile = path.join(ROOT, page.catalog);
+  const catalogDir = path.dirname(catalogFile);
+  const sourceRoot = path.join(ROOT, page.assetRoot);
+  const data = JSON.parse(fs.readFileSync(catalogFile, "utf8"));
+
+  return data.entries.map((entry) => {
+    const inferredImage = path.join(sourceRoot, `${entry.name}.png`);
+    const imageSource = entry.image
+      ? path.resolve(catalogDir, entry.image)
+      : inferredImage;
+    const modelSource = entry.model
+      ? path.resolve(catalogDir, entry.model)
+      : null;
+    const previewSource = entry.preview
+      ? path.resolve(catalogDir, entry.preview)
+      : null;
+
+    const stats = [];
+    if (entry.triangles != null) {
+      stats.push(["triangles", Number(entry.triangles).toLocaleString()]);
+    }
+    if (entry.vertices != null) {
+      stats.push(["vertices", Number(entry.vertices).toLocaleString()]);
+    }
+    if (entry.materials != null) {
+      stats.push([
+        "material",
+        `${entry.materials} · ${entry.textures ?? 0} PBR textures`,
+      ]);
+    }
+    if (entry.megabytes != null) {
+      stats.push(["on disk", `${Number(entry.megabytes).toFixed(2)} MB`]);
+    }
+    if (entry.budget) stats.push(["budget", entry.budget]);
+
+    return {
+      id: entry.name,
+      title: entry.title,
+      triangles: entry.triangles ?? 0,
+      group: entry.family ?? entry.category ?? "other",
+      image: copyCatalogFile(imageSource, page.distRoot),
+      model: copyCatalogFile(modelSource, page.distRoot),
+      preview: copyCatalogFile(previewSource, page.distRoot),
+      note: entry.review?.note ?? entry.description ?? "",
+      status: entry.review?.status ?? entry.budget ?? entry.status ?? "",
+      stats,
+    };
+  });
+}
+
+function titleFromFile(file) {
+  return path
+    .basename(file, path.extname(file))
+    .replace(/^ast_\d+_/, "")
+    .replace(/^runtime_/, "")
+    .split("_")
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+function loadAsteroidCatalog(page) {
+  const sourceRoot = path.join(ROOT, "art/asteroids");
+  const modelRoot = path.join(sourceRoot, "models");
+  const concepts = fs
+    .readdirSync(sourceRoot)
+    .filter((file) => /^ast_\d+_.+\.png$/i.test(file))
+    .sort();
+  const models = fs
+    .readdirSync(modelRoot)
+    .filter((file) => /^runtime_(small|medium|high)_\d+\.glb$/i.test(file))
+    .sort();
+
+  const familyFor = (name) => {
+    if (name.includes("_small_")) return "small";
+    if (name.includes("_medium_")) return "medium";
+    if (name.includes("_large_") || name.includes("_high_")) return "large";
+    return "other";
+  };
+  const modelFamilies = new Map([
+    ["small", models.filter((name) => name.includes("_small_"))],
+    ["medium", models.filter((name) => name.includes("_medium_"))],
+    ["large", models.filter((name) => name.includes("_high_"))],
+  ]);
+  const used = new Map();
+
+  return concepts.map((imageName) => {
+    const group = familyFor(imageName);
+    const index = used.get(group) ?? 0;
+    used.set(group, index + 1);
+    const modelName = modelFamilies.get(group)?.[index] ?? null;
+    const modelSource = modelName ? path.join(modelRoot, modelName) : null;
+    const measured = modelSource ? inspectGlb(modelSource) : null;
+    return {
+      id: path.basename(imageName, ".png"),
+      title: titleFromFile(imageName),
+      triangles: measured?.triangles ?? 0,
+      group,
+      image: copyCatalogFile(path.join(sourceRoot, imageName), page.distRoot),
+      model: copyCatalogFile(modelSource, page.distRoot),
+      preview: copyCatalogFile(path.join(sourceRoot, imageName), page.distRoot),
+      note: modelName
+        ? `Runtime ${group} variant ${index + 1} · ${modelName}`
+        : "Concept variation; no dedicated runtime GLB.",
+      status: modelName ? "runtime" : "concept only",
+      stats: measured
+        ? [
+            ["triangles", measured.triangles.toLocaleString()],
+            ["vertices", measured.vertices.toLocaleString()],
+            ["material", `${measured.materials} · ${measured.textures} PBR textures`],
+            ["on disk", `${measured.megabytes.toFixed(2)} MB`],
+            ["source", modelName],
+          ]
+        : [],
+    };
+  });
+}
+
+function assetCatalogLinks(activeId) {
+  const links = [
+    ["ships", "Player ships"],
+    ["enemy-ships", "Enemy ships"],
+    ["enemy-components", "Enemy components"],
+    ["asteroids", "Asteroids"],
+  ];
+  return `<nav class="asset-catalog-nav" aria-label="Asset catalogs">${links
+    .map(
+      ([id, label]) =>
+        `<a class="${id === activeId ? "active" : ""}" href="${id}.html">${label}</a>`,
+    )
+    .join("")}</nav>`;
+}
+
+// Entries ride along as JSON rather than as pre-rendered cards. The browse pane
+// and the inspector show the same asset in two shapes and swap constantly, so
+// rendering both server-side would mean shipping every record twice and keeping
+// them in sync by hand.
+function catalogData(entries) {
+  return JSON.stringify({ entries }).replaceAll("<", "\\u003c");
+}
+
+function assetCatalogBody(page, entries) {
+  const groups = [...new Set(entries.map((entry) => entry.group))];
+  const models = entries.filter((entry) => entry.model).length;
+  const triangles = entries.reduce(
+    (total, entry) => total + (entry.triangles ?? 0),
+    0,
+  );
 
   return `
-  <p class="kicker">Art pipeline</p>
-  <h1>Ship matrix</h1>
-  <p class="lede">Concept stills and Tripo GLBs live here. Each card lists the gold rings you should actually see — weapons and engine collars (Carrier also lists drone bays). Modules and specialty never get a gold pad. Copy prompt still dumps the full ChatGPT one-shot. 3D viewers load only when you press the button. Open this wiki via <code>cd wiki && npm run serve</code> — a file:// page cannot fetch GLBs.</p>
-  <div class="toc">${hulls.map((h) => `<a href="#hull-${h.toLowerCase()}">${esc(h)}</a>`).join("")}</div>
-  ${sections}
-`;
+    ${assetCatalogLinks(page.id)}
+    <p class="kicker">Asset wiki</p>
+    <h1>${esc(page.title)}</h1>
+    <p class="lede">${esc(page.intro ?? "Source images and runtime-ready models in one searchable catalog.")}</p>
+    <div class="catalog-summary">
+      <span><strong>${entries.length}</strong> assets</span>
+      <span><strong>${models}</strong> with 3D</span>
+      ${triangles ? `<span><strong>${triangles.toLocaleString()}</strong> total triangles</span>` : ""}
+    </div>
+    <div class="catalog-controls">
+      <input id="catalog-search" type="search" placeholder="Filter this catalog…" />
+      <button class="catalog-filter active" type="button" data-catalog-filter="all">All</button>
+      ${groups.map((group) => `<button class="catalog-filter" type="button" data-catalog-filter="${esc(group)}">${esc(String(group).replaceAll("-", " "))}</button>`).join("")}
+      <span class="catalog-views">
+        <button class="catalog-view active" type="button" data-catalog-view="grid">Grid</button>
+        <button class="catalog-view" type="button" data-catalog-view="list">List</button>
+      </span>
+    </div>
+    <div class="catalog-layout">
+      <div class="catalog-browse" id="catalog-browse" data-view="grid"></div>
+      <aside class="catalog-inspector" id="catalog-inspector"></aside>
+    </div>
+    <script type="application/json" id="catalog-data">${catalogData(entries)}</script>
+  `;
 }
 
 function mdBody(page, raw) {
@@ -377,7 +625,17 @@ const shipArt = copyShipArt();
 for (const page of PAGES) {
   let body;
   if (page.kind === "home") body = homeBody(ships.ships);
-  else if (page.kind === "ships") body = shipsBody(ships, shipArt);
+  else if (page.kind === "ships") {
+    page.intro =
+      "Thirty hull × profession concepts. Pick a ship to inspect its concept, 3D model, gold-ring checklist, and full generation prompt.";
+    body = assetCatalogBody(page, shipEntries(ships, shipArt));
+  } else if (page.kind === "asset-catalog") {
+    body = assetCatalogBody(page, loadAssetCatalog(page));
+  } else if (page.kind === "asteroids") {
+    page.intro =
+      "Active asteroid concepts paired by size family with the eight source-of-truth runtime GLBs used by Unreal.";
+    body = assetCatalogBody(page, loadAsteroidCatalog(page));
+  }
   else {
     const abs = path.join(ROOT, page.source);
     const raw = fs.readFileSync(abs, "utf8");

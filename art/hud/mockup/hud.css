@@ -1,0 +1,1003 @@
+/* ============================================================================
+   Shattered Rogue - flight HUD mockup
+   ----------------------------------------------------------------------------
+   This is the file you iterate. Everything in here is written so it can be
+   copied back into Source/ShatteredRogue/ShatteredHUD.cpp without translation:
+
+     - Colours match ShatteredHUDStyle, converted linear -> sRGB for the browser.
+     - Geometry uses the same anchor / alignment / position / size model as
+       UMG's UCanvasPanelSlot, so a pod's numbers here are its numbers there.
+     - 1px in this file == 1 Slate unit at the 1920x1080 design resolution.
+
+   Layout follows design/16_ui_hud_vfx.md section 2: the ship carries combat
+   vitals, the frame carries run state.
+   ========================================================================== */
+
+:root {
+  /* Palette. These hexes are the source of truth: ShatteredHUDStyle builds its
+     FLinearColors from the same strings, so the browser and Slate land on the
+     same pixel. Change one and change the other. Older entries still carry the
+     FLinearColor they were derived from. */
+  --rim: rgba(111, 223, 249, 0.50);     /* FLinearColor(0.16, 0.74, 0.95, 0.50) */
+  --track: rgba(63, 93, 111, 0.65);     /* FLinearColor(0.05, 0.11, 0.16, 0.65) */
+  --cyan: #14d2ff;                      /* vitals: saturated so they hold up at plate opacity */
+  --coral: #ff483a;                     /* vitals: saturated so they hold up at plate opacity */
+  --gold: #ffc63d;                      /* vitals: saturated so they hold up at plate opacity */
+  --text: #eff7ff;                      /* FLinearColor(0.86, 0.93, 1.00) */
+  --muted: #adc4d4;                     /* FLinearColor(0.42, 0.55, 0.66) */
+  --dim: #869bad;                       /* FLinearColor(0.24, 0.33, 0.42) */
+
+  --violet: #c9a6ff;                    /* research data, epic rarity */
+  --lime: #8ce696;                      /* uncommon rarity, docked-ok state */
+  --green: #2fdc7a;                     /* progression: XP and ship level only */
+  --blue: #5f9dff;                      /* allies - not the player's own cyan */
+  --rock: #93a3ad;                      /* asteroids and other inert contacts */
+
+  /* One family for the whole UI: Chakra Petch, a squared-off techy sans with
+     clipped counters. It is proportional, not a mono - see the tabular digit
+     cells further down for what that costs and how it is paid.
+
+     Self-hosted from fonts/ rather than the Google CDN so the mockup renders
+     identically offline and under headless capture. Slate needs the TTFs as a
+     UFontFace; the fallbacks below are only for a missing-font accident. */
+  --ui: "Chakra Petch", "Roboto Mono", Consolas, ui-monospace, monospace;
+}
+
+/* --- UMG canvas slot emulation ---------------------------------------------
+   A .pod is one UCanvasPanelSlot. Drive it with four custom properties that
+   carry the same meaning as the C++ calls:
+
+     --ax / --ay    SetAnchors(FAnchors(ax, ay))
+     --alx / --aly  SetAlignment(FVector2D(alx, aly))
+     --x / --y      SetPosition(FVector2D(x, y))
+     --w / --h      SetSize(FVector2D(w, h))
+
+   Slate resolves a slot as: anchor point, plus position, minus alignment times
+   size. The transform below is that formula, so a pod lands on the same pixel
+   in the browser and in the game.
+   -------------------------------------------------------------------------- */
+
+.pod {
+  --ax: 0; --ay: 0;
+  --alx: 0; --aly: 0;
+  --x: 0; --y: 0;
+  --w: 100; --h: 100;
+
+  position: absolute;
+  left: calc(var(--ax) * 100%);
+  top: calc(var(--ay) * 100%);
+  width: calc(var(--w) * 1px);
+  height: calc(var(--h) * 1px);
+  transform: translate(
+    calc(var(--x) * 1px - var(--alx) * 100%),
+    calc(var(--y) * 1px - var(--aly) * 100%)
+  );
+}
+
+/* SetAutoSize(true): the slot hugs its content, so width and height come from
+   the box rather than --w / --h. */
+.pod.autosize { width: auto; height: auto; }
+
+/* A slot whose anchors span the horizontal axis: FAnchors(0, ay, 1, ay). Left
+   and right stop being a position and become offsets, which is how Slate
+   treats a stretched axis, so the band tracks the screen edge on ultrawide
+   instead of sitting at a fixed 1920. --w is ignored; --h still applies. */
+.pod.stretch-x {
+  left: 0;
+  right: 0;
+  width: auto;
+  transform: translateY(calc(var(--y) * 1px - var(--aly) * 100%));
+}
+
+/* Clusters drawn over the ship carry no panel, only line art. */
+.pod.bare > * { width: 100%; height: 100%; }
+
+/* --- Type ------------------------------------------------------------------ */
+
+.hud {
+  font-family: var(--ui);
+  color: var(--text);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Tabular digits ---------------------------------------------------------
+   Chakra Petch ships no `tnum` feature, so `font-variant-numeric: tabular-nums`
+   is silently a no-op on it - measured, not assumed. Its digits are properly
+   proportional too, not just a narrow "1": advances run from 0.358em for the 1
+   to 0.628em for the 0. A score ticking 111,111 -> 222,222 would grow by about
+   a third of its own width.
+
+   So the tabular behaviour is built rather than requested. Every digit is put in
+   a cell as wide as the widest glyph and centred in it, which is what a tabular
+   figure set does; the difference is only that the glyphs keep their proportional
+   shapes instead of being redrawn. Applied to all digits, not just the ticking
+   ones, so a static number never sits at a different rhythm to a live one.
+
+   In UMG this is the same problem with the same answer: Slate cannot synthesise
+   tabular figures either, so the ticking readouts need fixed-width digit cells.
+   -------------------------------------------------------------------------- */
+
+.hud, .loadout { --digit: 0.63em; }
+
+.dg {
+  display: inline-block;
+  width: var(--digit);
+  text-align: center;
+}
+
+.t9  { font-size: 9px;  } .t10 { font-size: 10px; } .t11 { font-size: 11px; }
+.t12 { font-size: 12px; } .t13 { font-size: 13px; } .t14 { font-size: 14px; }
+.t16 { font-size: 16px; } .t18 { font-size: 18px; } .t20 { font-size: 20px; }
+.t26 { font-size: 26px; } .t34 { font-size: 34px; } .t40 { font-size: 40px; }
+
+.c-cyan { color: var(--cyan); } .c-coral { color: var(--coral); }
+.c-gold { color: var(--gold); } .c-text  { color: var(--text); }
+.c-muted { color: var(--muted); } .c-dim { color: var(--dim); }
+.c-violet { color: var(--violet); }
+
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.center { align-items: center; }
+.between { justify-content: space-between; }
+.fill { flex: 1 1 auto; }
+
+/* A socket whose system is switched off this run. Kept in the layout so we are
+   designing the real HUD rather than a training-only one. */
+.pod.offline { opacity: 0.28; }
+
+/* --- Reticle ---------------------------------------------------------------
+   Open centre, short cardinal rails, broken corner brackets. In game the whole
+   group is driven to the projected impact point. The two outboard ticks are the
+   weapon-ready lights: aim lives here, so "can I shoot" lives here too.
+   -------------------------------------------------------------------------- */
+
+/* Off target the whole mark drops to a quarter alpha: it still shows where the
+   muzzle points, without competing with the halo or the scene behind it. Gold
+   at full alpha is reserved for "this shot connects". */
+.reticle { opacity: 0.25; }
+.reticle.will-hit { opacity: 1; }
+
+.reticle .tick {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: calc(var(--w) * 1px);
+  height: calc(var(--h) * 1px);
+  transform: translate(calc(var(--x) * 1px - 50%), calc(var(--y) * 1px - 50%));
+  background: var(--cyan);
+}
+
+.reticle .tick.dot { background: var(--gold); }
+
+/* Weapon-ready lights. Dim = cooling, bright = ready. */
+.reticle .tick.weapon { background: var(--track); }
+.reticle .tick.weapon.ready { background: var(--cyan); }
+
+.reticle.will-hit .tick { background: var(--gold); }
+.reticle.will-hit .tick.dot { background: var(--coral); }
+.reticle.will-hit .tick.weapon { background: var(--track); }
+.reticle.will-hit .tick.weapon.ready { background: var(--gold); }
+
+/* --- Ship halo -------------------------------------------------------------
+   Screen-space arcs ringing the projected ship: shields above, hull and boost
+   below. Screen-space matters - a barrel roll must spin the ship, not the
+   health arc. Elliptical because a ship in chase view is much wider than it is
+   tall.
+
+   No labels, no numbers. Every box on every arc is 25 points, so the count is
+   the readout; a word next to it would only be repeating what the shape and
+   the colour already said.
+   -------------------------------------------------------------------------- */
+
+.halo svg { overflow: visible; display: block; }
+
+/* Outlined paths, not stroked arcs. A stroke cannot round its own corners, and
+   stroke-linecap: round would dome the whole end instead of easing it, so each
+   plate is built as a closed outline. Corners are 28% of plate thickness, which
+   matches ShatteredHUDStyle::PlateCornerFraction.
+
+   Track and fill are laid end to end rather than stacked, so the opacity below
+   is safe: overlapping them would let the dark track mute the fill colour. */
+.halo .plate {
+  fill: var(--track);
+  stroke: none;
+  opacity: var(--plate-alpha, 0.7);
+}
+
+.halo .plate.on { fill: var(--arc); }
+
+.halo .g-shield { --arc: var(--cyan); }
+.halo .g-hull   { --arc: var(--coral); }
+.halo .g-boost  { --arc: var(--gold); }
+
+/* Rows rest translucent so the halo reads as glass over the scene, and go to
+   full when the row has something to say: a value that just dropped, or a value
+   sitting in its danger band. Rows light independently, so a shield hit does
+   not drag the hull up with it. */
+.halo .alert { --plate-alpha: 1; }
+
+/* Recharge delay reads as a gap that closes rather than a separate timer. */
+.halo .g-shield.recharging { --plate-alpha: 0.45; }
+
+/* Brief tick on the arc facing an impact. Space has no ground, so a ring tick
+   beats a screen-centre hit marker for telling you where damage came from. */
+.halo .incoming { fill: #fff; opacity: 0; }
+.halo.hit .incoming { opacity: 1; }
+
+/* --- Radar -----------------------------------------------------------------
+   A 2D disc in the ship's forward plane, with a vertical stem on each contact
+   showing how far above or below you it sits. A full 3D sphere radar turns into
+   static in 6DOF, and a cardinal compass is meaningless in an asteroid field.
+   -------------------------------------------------------------------------- */
+
+/* Matches ShatteredHUDStyle::RadarSweepPeriod. drawRadar() reads it back to
+   phase-lock the contact pings, so the two only need changing here. */
+.radar { --sweep-period: 2.6s; }
+.radar svg { display: block; flex: 1 1 auto; }
+.radar .ring { fill: none; stroke: var(--rim); stroke-width: 1; opacity: 0.45; }
+
+/* The one filled shape in a floating pod. Without it the dots have no plane to
+   sit on and the whole thing stops reading as a radar. */
+.radar .disc { fill: rgba(8, 30, 42, 0.42); }
+.radar .self { fill: var(--cyan); }
+.radar .stem { stroke: currentColor; stroke-width: 1; opacity: 0.5; }
+
+/* Scan ring. This replaced a static quarter-wedge: the wedge implied a spinning
+   dish that never actually turned, and a parked ship had a dead instrument. The
+   ring wells up out of the chevron and thins out at the rim, so the disc reads
+   as live without anything on screen having to move. */
+.radar .ping {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 1.5;
+  animation: radar-sweep var(--sweep-period) linear infinite;
+}
+
+@keyframes radar-sweep {
+  0% { r: 0; opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { r: 84px; opacity: 0; }
+}
+
+/* Contacts lift as the ring reaches them, phase-locked by a per-contact delay in
+   drawRadar(). Baseline never drops below 0.7 - the disc has to stay readable
+   between passes, so this is a shimmer, not a reveal. */
+.radar .contact { animation: radar-contact var(--sweep-period) linear infinite; }
+
+@keyframes radar-contact {
+  0% { opacity: 0.7; }
+  8% { opacity: 1; }
+  20% { opacity: 0.7; }
+  100% { opacity: 0.7; }
+}
+
+/* Three classes only: shoot it, mine it, do not shoot it. Each carries a shape
+   as well as a colour, because a red dot and a grey dot are the same dot to a
+   colourblind player at 5px. Ally blue is deliberately not the cyan the player's
+   own marker uses - "me" and "not me but friendly" have to stay separable. */
+.radar .hostile { fill: var(--coral); color: var(--coral); }
+.radar .rock { fill: var(--rock); color: var(--rock); }
+.radar .ally { fill: var(--blue); color: var(--blue); }
+.radar .scale {
+  fill: var(--dim);
+  font: 9px var(--ui);
+  letter-spacing: 0.14em;
+}
+
+/* --- Blueprint -------------------------------------------------------------
+   Shared authored attachment schematic for the HUD and inventory. The source
+   has a near-black background; screen blending drops that background into the
+   scene while retaining its cyan linework.
+   -------------------------------------------------------------------------- */
+
+.schematic { display: block; }
+.schematic .ship-art {
+  opacity: 0.96;
+  filter: saturate(1.12) contrast(1.16);
+}
+
+/* The four weapon pads are the only interactive sockets. The art itself draws
+   all eight physical rings; overlays only communicate loadout state. */
+.schematic .pad {
+  fill: rgba(255, 208, 74, 0.08);
+  stroke: rgba(255, 221, 124, 0.65);
+  stroke-width: 4;
+}
+.schematic .pad-core { fill: var(--gold); }
+.schematic .empty .pad {
+  fill: rgba(3, 7, 12, 0.3);
+  stroke: var(--coral);
+  stroke-width: 5;
+  stroke-dasharray: 10 8;
+}
+.schematic .hit { fill: transparent; }
+.schematic .pick { cursor: pointer; }
+.schematic .pick:hover .pad { stroke: var(--text); stroke-width: 7; }
+.schematic .sel .pad {
+  stroke: var(--gold);
+  stroke-width: 8;
+  fill: rgba(255, 221, 124, 0.18);
+}
+.schematic .sel .pad-core { fill: var(--gold); }
+
+/* --- Aux slots -------------------------------------------------------------
+   Modules and specialty have no socket on the mesh, so they can only be pips.
+   Grouping them as AUX keeps the distinction the schematic is making: physical
+   mounts on the hull above, everything else listed below it.
+   -------------------------------------------------------------------------- */
+
+/* Right-aligned block of fixed-width rows. The counts used to be pushed out on
+   a `margin-left: auto`, which left a dead gap between the pips and the number
+   and made the panel read as two things instead of one. Fixed columns keep the
+   labels and counts aligned down the block without that gap. */
+.aux-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 6px 0 0;
+}
+
+.aux-row {
+  display: grid;
+  /* Widest label, six pips, widest count. */
+  grid-template-columns: 44px 99px 38px;
+  align-items: center;
+  gap: 7px;
+  font: 9px/1 var(--ui);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+.aux-row .k { color: var(--muted); }
+.aux-row .v { color: var(--dim); text-align: right; }
+
+.aux-row .pips { display: flex; gap: 3px; }
+.aux-row .pips i {
+  width: 14px; height: 7px;
+  background: var(--track);
+  display: block;
+}
+.aux-row .pips i.on { background: var(--cyan); }
+.aux-row .pips i.warm { background: rgba(255, 208, 74, 0.16); }
+.aux-row .pips i.on.warm { background: var(--gold); }
+
+/* Power cores double as the level-up meter. */
+.xp {
+  height: 3px;
+  background: var(--track);
+  position: relative;
+  overflow: hidden;
+}
+.xp::after {
+  content: "";
+  position: absolute; inset: 0 auto 0 0;
+  width: calc(var(--pct, 0) * 100%);
+  background: var(--gold);
+}
+
+/* --- Scenario / boss -------------------------------------------------------- */
+
+.phase-pips { display: flex; gap: 4px; }
+.phase-pips i {
+  width: 16px; height: 3px;
+  background: var(--track);
+  display: block;
+}
+.phase-pips i.on { background: var(--gold); }
+
+/* --- Instrument chrome -----------------------------------------------------
+   Every pod floats: no panel, no frame, content straight on the scene the way
+   the halo and reticle already sat. A framed variant was tried first and cut -
+   it read as a window pasted over the game, and once one pod lost its frame
+   the rest looked like leftovers from a different HUD.
+
+   Floating costs contrast, so each pod carries its own shadow. Slate has no
+   filter equivalent; see the note in design/16_ui_hud_vfx.md for what this
+   becomes in UMG.
+   -------------------------------------------------------------------------- */
+
+.pod.floating {
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.95));
+}
+
+/* Titles the pod and gives it a baseline to hang from. The rule is what makes
+   a cluster of readouts read as one instrument. */
+.tech-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 7px 2px;
+  border-bottom: 1px solid rgba(111, 223, 249, 0.22);
+  font: 9px/1 var(--ui);
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  flex: 0 0 auto;
+}
+.tech-head i { width: 6px; height: 6px; background: var(--gold); flex: 0 0 auto; }
+
+/* Hatched filler. Pure decoration, and the cheapest way to make a header read
+   as instrumentation rather than as a web page heading. */
+.tech-head .hatch {
+  flex: 1 1 auto;
+  max-width: 90px;
+  height: 7px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(111, 223, 249, 0.34) 0 1px,
+    transparent 1px 4px
+  );
+}
+.tech-head .badge { color: var(--dim); flex: 0 0 auto; margin-left: auto; }
+
+/* --- Axis bar --------------------------------------------------------------
+   A continuous rounded line rather than discrete cells. Velocity is a smooth
+   quantity you watch move, unlike the halo's shield boxes, where the count is
+   the information - notching it here only adds shimmer as the number ramps.
+   -------------------------------------------------------------------------- */
+
+.line-bar {
+  --pct: 0;
+  --cap: 1;
+  --fill: var(--cyan);
+
+  position: relative;
+  height: 9px;
+  flex: 1 1 auto;
+  border-radius: 4px;
+  background: var(--track);
+}
+
+.line-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--pct) * 100%);
+  border-radius: inherit;
+  background: var(--fill);
+}
+
+/* The axis cap: how much this hull can ever do on this axis, so a thruster
+   module visibly pushes the marker out instead of silently rescaling the bar.
+   Opt-in, since not every bar has a cap worth marking. */
+.line-bar.capped::before {
+  content: "";
+  position: absolute;
+  top: -3px; bottom: -3px;
+  left: calc(var(--cap) * 100%);
+  width: 1px;
+  margin-left: -1px;
+  background: var(--gold);
+  z-index: 1;
+}
+
+/* --- Instrument palette ----------------------------------------------------
+   Hotter than the shared tokens. Anything floating has no glass behind it, so
+   washed-out cyan disappears into nebula. Scoped to `.instrument` rather than
+   pushed into :root so the remaining glass pods are unaffected until they are
+   converted too.
+   -------------------------------------------------------------------------- */
+
+.instrument {
+  --cyan: #4ef4ff;
+  --gold: #ffd04a;
+  --coral: #ff7d6a;
+  --muted: #8fd6ef;
+  --dim: #6eb8d4;
+  --rim: rgba(70, 240, 255, 0.78);
+  --track: rgba(42, 110, 138, 0.58);
+  /* Struck-just-now. Hotter and brighter than any fill it sits next to, so it
+     reads as an ember rather than as a half-filled cell. */
+  --hot: #ffc27a;
+}
+
+/* --- Flight telemetry ------------------------------------------------------ */
+
+.telemetry .tech-head {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+.telemetry .tech-head i { width: 8px; height: 8px; }
+.telemetry .tech-head .hatch { max-width: 110px; height: 8px; }
+
+.telemetry .tech-body {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  padding: 8px 20px 14px 10px;
+  flex: 1 1 auto;
+}
+
+/* The dial is the headline and this strip is reference, so it runs a size down
+   and a stop dimmer. Read as equals, six numbers all compete for one glance. */
+.telemetry .axes { flex: 1 1 auto; opacity: 0.6; }
+
+/* No panel edges to sit inside, so the body only needs breathing room, not
+   padding that keeps content clear of a corner cut. */
+.telemetry.floating .tech-body { padding: 6px 0 0 0; }
+
+.telemetry .line-bar { height: 7px; border-radius: 3px; }
+
+.ax-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 16px;
+  font: 9px/1 var(--ui);
+  letter-spacing: 0.14em;
+}
+.ax-row .k { width: 27px; color: var(--muted); flex: 0 0 auto; }
+.ax-row .v { width: 28px; text-align: right; color: var(--muted); flex: 0 0 auto; }
+
+/* --- Header band -----------------------------------------------------------
+   One strip across the top instead of three separate pods. Score left, sector
+   centre, run state right, all sharing a single baseline rule so the top of the
+   screen reads as one instrument rather than as scattered windows.
+   -------------------------------------------------------------------------- */
+
+.header-bar { border-bottom: 1px solid rgba(70, 240, 255, 0.28); }
+
+.hdr-grid {
+  /* Equal side columns are what actually centres the middle zone: with `auto`
+     sides it would drift whenever the score got longer. */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  height: 100%;
+  padding: 0 34px 9px;
+  gap: 28px;
+}
+
+.hdr-grid .zone { display: flex; align-items: flex-end; gap: 20px; min-width: 0; }
+
+/* Pinned to the middle column rather than left to flow, so the sector stays
+   centred even when a side zone is switched off for the run. */
+.hdr-grid .zone.mid {
+  grid-column: 2;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hdr-grid .zone.right { justify-content: flex-end; }
+
+/* Short tick at each end of the rule, so the band terminates rather than just
+   running out of screen. */
+.header-bar::before,
+.header-bar::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  width: 26px;
+  height: 7px;
+  border-bottom: 2px solid var(--cyan);
+}
+.header-bar::before { left: 0; border-left: 2px solid var(--cyan); }
+.header-bar::after { right: 0; border-right: 2px solid var(--cyan); }
+
+/* A label over a value. The unit of the whole band. */
+.stat { position: relative; display: flex; flex-direction: column; gap: 5px; }
+.stat .lbl {
+  font: 10px/1 var(--ui);
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.stat .big { font: 34px/1 var(--ui); color: var(--text); }
+.stat.sm .big { font-size: 24px; }
+
+/* Secondary run stats. Value first, then what it is - scanning down a column
+   of numbers is the point, the words are only there to disambiguate. */
+.chip-kv {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font: 12px/1 var(--ui);
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  white-space: nowrap;
+}
+.chip-kv b { font-weight: 400; font-size: 14px; color: var(--cyan); }
+
+.hdr-sep { width: 1px; height: 38px; background: var(--rim); opacity: 0.35; }
+
+.sector-name { font: 22px/1 var(--ui); letter-spacing: 0.22em; color: var(--cyan); }
+.sector-obj {
+  font: 12px/1 var(--ui);
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.sector-wave { display: flex; align-items: center; gap: 10px; }
+.sector-wave .n { font: 10px/1 var(--ui); letter-spacing: 0.2em; color: var(--dim); }
+
+/* --- Loadout overlay -------------------------------------------------------
+   Two edge-hugging panes with the middle third of the screen left empty. That
+   gap is not styling: stations do not pause in co-op, so this screen is drawn
+   over a ship that is still being shot at. Covering the centre would make
+   opening your own inventory the most dangerous thing in the game.
+   -------------------------------------------------------------------------- */
+
+.loadout {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+}
+.loadout.in { opacity: 1; pointer-events: auto; }
+.loadout .lo-pane,
+.loadout .lo-rail { transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1); }
+.loadout:not(.in) .lo-left { transform: translateX(-40px); }
+.loadout:not(.in) .lo-right { transform: translateX(40px); }
+.loadout:not(.in) .lo-rail { transform: translateY(-16px); }
+
+/* While it is open the run info you still need stays lit and everything else
+   steps back, rather than the whole HUD being blanked. */
+#layer-hud.recessed .pod { opacity: 0.14; transition: opacity 0.18s ease; }
+#layer-hud.recessed .pod[data-umg="HeaderBar"],
+#layer-hud.recessed .pod[data-umg="BossBar"],
+#layer-hud.recessed .pod[data-umg="ShipHalo"],
+#layer-hud.recessed .pod[data-umg="Reticle"] { opacity: 1; }
+/* The overlay draws the same schematic ten times the size. Leaving the pod
+   dimmed underneath just puts a ghost of it behind the compare panel. */
+#layer-hud.recessed .pod[data-umg="ModsPod"] { opacity: 0; }
+
+.lo-rail {
+  position: absolute;
+  left: 0; right: 0; top: 96px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 48px;
+  font: 10px/1 var(--ui);
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.lo-pages { display: flex; gap: 18px; }
+.lo-pages b { font-weight: 400; color: var(--dim); }
+.lo-pages b.on { color: var(--cyan); border-bottom: 1px solid var(--cyan); padding-bottom: 4px; }
+.lo-rail .hatch {
+  flex: 1;
+  height: 5px;
+  background: repeating-linear-gradient(-45deg, rgba(122, 214, 255, 0.16) 0 1px, transparent 1px 4px);
+}
+.lo-dock { color: var(--coral); }
+.lo-dock.ok { color: var(--lime); }
+.lo-close { color: var(--dim); }
+.lo-close kbd {
+  border: 1px solid var(--rim);
+  padding: 2px 5px;
+  margin-right: 4px;
+  border-radius: 2px;
+}
+
+.lo-pane {
+  position: absolute;
+  top: 132px;
+  bottom: 84px;
+  display: flex;
+  flex-direction: column;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.95));
+}
+/* The wash fades toward the centre so the pane has contrast where the text is
+   and none at all where the ship is. */
+.lo-left {
+  left: 0; width: 660px; padding: 0 44px 0 48px;
+  background: linear-gradient(90deg, rgba(3, 7, 12, 0.9) 0%, rgba(3, 7, 12, 0.78) 58%, transparent 100%);
+}
+.lo-right {
+  right: 0; width: 640px; padding: 0 48px 0 44px;
+  background: linear-gradient(270deg, rgba(3, 7, 12, 0.9) 0%, rgba(3, 7, 12, 0.78) 58%, transparent 100%);
+}
+#lo-ship-svg { width: 100%; height: 300px; flex: 0 0 auto; margin: 4px 0 10px; }
+
+.lo-live {
+  position: absolute;
+  left: 50%; bottom: 40px;
+  transform: translateX(-50%);
+  font: 9px/1 var(--ui);
+  letter-spacing: 0.26em;
+  color: var(--coral);
+  opacity: 0.75;
+}
+
+/* --- racks --- */
+
+.lo-racks { overflow: hidden; }
+.lo-rack-h {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rim);
+  font: 9px/1 var(--ui);
+  letter-spacing: 0.24em;
+  color: var(--muted);
+}
+.lo-rack-h b { color: var(--dim); font-weight: 400; }
+
+.lo-row,
+.lo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 5px 8px;
+  border: 0;
+  border-left: 2px solid transparent;
+  background: transparent;
+  font: 11px/1 var(--ui);
+  letter-spacing: 0.1em;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.lo-row:hover,
+.lo-item:hover { background: rgba(122, 214, 255, 0.06); }
+.lo-row.sel,
+.lo-item.sel {
+  background: rgba(122, 214, 255, 0.12);
+  border-left-color: var(--cyan);
+}
+.lo-row.empty .lo-nm { color: var(--dim); }
+.lo-item.dim { opacity: 0.32; }
+
+.lo-dot { width: 6px; height: 6px; flex: 0 0 auto; background: var(--dim); }
+.lo-nm { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Fixed width because this column holds either a star rank or a "xN" count, and
+   the stars are outside Chakra Petch's latin subset - no text face carries
+   U+2605 - so they come from a fallback with unrelated metrics. Pinning the
+   column keeps the rarity column beside it from moving row to row. */
+.lo-rk {
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  width: 34px;
+  flex: 0 0 auto;
+  text-align: right;
+}
+.lo-st { font-size: 9px; color: var(--muted); letter-spacing: 0.14em; }
+.lo-rar { font-size: 9px; letter-spacing: 0.16em; width: 84px; flex: 0 0 auto; }
+
+.lo-tag {
+  width: 15px; height: 15px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  border: 1px solid var(--rim);
+  color: var(--muted);
+}
+.t-W { color: var(--coral); border-color: rgba(255, 125, 106, 0.5); }
+.t-M { color: var(--cyan); border-color: rgba(122, 214, 255, 0.5); }
+.t-S { color: var(--gold); border-color: rgba(240, 190, 90, 0.5); }
+.t-Q { color: var(--lime); border-color: rgba(140, 230, 150, 0.5); }
+
+/* Rarity is the one place colour carries meaning on its own, so it also drives
+   the dot, the name and the label together. */
+.r-none   { background: var(--dim); }
+.r-common    { color: var(--muted); background: var(--muted); }
+.r-uncommon  { color: var(--lime); background: var(--lime); }
+.r-rare      { color: var(--cyan); background: var(--cyan); }
+.r-epic      { color: var(--violet); background: var(--violet); }
+.r-legendary { color: var(--gold); background: var(--gold); }
+.r-cursed    { color: var(--coral); background: var(--coral); }
+.lo-nm.r-common, .lo-nm.r-uncommon, .lo-nm.r-rare,
+.lo-nm.r-epic, .lo-nm.r-legendary, .lo-nm.r-cursed,
+.lo-rar, .lo-col-n { background: transparent; }
+
+/* --- cargo list + compare --- */
+
+.lo-list { flex: 1; overflow: hidden; margin-top: 6px; }
+
+.lo-detail { border-top: 1px solid var(--rim); padding-top: 12px; }
+.lo-cols { display: flex; gap: 26px; }
+.lo-col { flex: 1; }
+.lo-col-h {
+  font: 9px/1 var(--ui);
+  letter-spacing: 0.24em;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.lo-col-n { font: 12px/1 var(--ui); letter-spacing: 0.12em; margin-bottom: 8px; }
+.lo-col-n.empty { color: var(--dim); }
+.lo-s {
+  display: flex;
+  justify-content: space-between;
+  font: 10px/1.7 var(--ui);
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.lo-s b { color: var(--text); font-weight: 400; }
+.lo-proc { margin-top: 6px; font: 9px/1.4 var(--ui); letter-spacing: 0.16em; color: var(--gold); }
+.lo-curse { margin-top: 4px; font: 9px/1.4 var(--ui); letter-spacing: 0.16em; color: var(--coral); }
+
+.lo-act {
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px;
+  border: 1px solid var(--cyan);
+  background: rgba(122, 214, 255, 0.14);
+  font: 11px/1 var(--ui);
+  letter-spacing: 0.24em;
+  color: var(--cyan);
+  cursor: pointer;
+}
+/* Locked, not hidden: the player should see that installing is a thing that
+   exists and that a Shipyard is what unlocks it. */
+.lo-act.dead {
+  border-color: var(--rim);
+  border-style: dashed;
+  background: transparent;
+  color: var(--dim);
+  cursor: not-allowed;
+}
+
+/* --- Boss bar --------------------------------------------------------------
+   Only on screen during a named fight, so it is allowed to be the widest thing
+   on the HUD. It hangs off the header rule on a drop tick: sliding out then
+   reads as the band extending downward rather than a separate window opening,
+   which is the whole reason it lives at top-centre instead of somewhere with
+   more free space.
+   -------------------------------------------------------------------------- */
+
+.boss-slide { transition: opacity 0.22s ease, transform 0.22s ease; }
+.boss:not(.in) .boss-slide {
+  opacity: 0;
+  /* Slides up behind the band, so it looks like it came out of the header. */
+  transform: translateY(-18px);
+  pointer-events: none;
+}
+
+/* Connects the bar to the header rule above it. */
+.boss-drop {
+  position: absolute;
+  left: 50%;
+  top: -22px;
+  width: 1px;
+  height: 22px;
+  background: var(--rim);
+  opacity: 0.5;
+}
+
+/* The only text on it. Centred over the plates so the drop tick, the name and
+   the middle of the bar all share one axis. */
+.boss-name {
+  text-align: center;
+  font: 13px/1 var(--ui);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  /* Tracking is added after the last glyph too, which drags the string left of
+     true centre at this letter-spacing. */
+  text-indent: 0.32em;
+  color: var(--coral);
+  margin-bottom: 9px;
+}
+
+/* Plates, not a bar: the same discrete boxes as the shield and hull arcs, just
+   unrolled. One phase per group, so the wide gaps between groups mark the phase
+   boundaries and no tick marks have to be drawn over the fill. */
+.boss-plates { display: flex; gap: 13px; }
+.boss-phase  { display: flex; gap: 4px; flex: 1 1 0; }
+
+.boss-box {
+  flex: 1 1 0;
+  height: 13px;
+  background: var(--track);
+  position: relative;
+}
+
+/* Remaining health. Fills left to right inside its own plate, matching the
+   direction the arcs fill. */
+.boss-box::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--f, 0) * 100%);
+  background: var(--coral);
+}
+
+/* Damage already applied that the bar has not finished draining, so a burst
+   reads as landing before the plates catch up. Collapses to nothing once the
+   fill overtakes it.
+
+   Hot orange-white rather than a dimmed coral. A washed-out version of the fill
+   colour is the same language every other UI uses for "partially filled" or
+   "preview", so it read as a third tier of health instead of as a hit. Going
+   brighter than the fill inverts that: nothing else on the bar is hotter than
+   the health itself, so the only thing it can mean is impact. */
+.boss-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--f, 0) * 100%);
+  right: calc((1 - var(--g, 0)) * 100%);
+  background: var(--hot);
+  /* White-hot on the leading edge, cooling to orange behind it. That edge is
+     the live boundary the fill is chasing, so the brightest pixel on the bar is
+     the exact point damage is landing. A small hit is nearly all edge and reads
+     as a white spark, which is the right behaviour.
+
+     Gated on --lead because a ghost spanning two plates would otherwise paint
+     an edge at the start of the second one too, inventing a boundary that is
+     just where the plates happen to divide. */
+  box-shadow:
+    inset 2px 0 0 rgba(255, 244, 228, var(--lead, 0)),
+    0 0 7px rgba(255, 194, 122, 0.5);
+}
+
+/* Currencies run horizontally in the band; the column layout only made sense
+   when they had a pod to themselves. */
+.econ-inline { display: flex; align-items: center; gap: 18px; }
+.econ-inline .cur { display: flex; align-items: center; gap: 7px; }
+.econ-inline .cur span { font: 16px/1 var(--ui); color: var(--text); }
+
+/* --- Level footer ----------------------------------------------------------
+   XP runs the full width of the bottom edge with the level centred over it.
+   This was a 52px stub in the top-right corner, which is both the furthest
+   point from the reticle and the smallest the bar could have been drawn.
+
+   Green is used nowhere else in the HUD: cyan is nominal, gold is a cap, coral
+   is a threat, and progression is the one thing on screen that is never a
+   warning. Bleeding the fill to the screen edge is deliberate - the bar is
+   background information, so it should be seen without ever being looked at.
+   -------------------------------------------------------------------------- */
+
+.levelbar { align-items: center; justify-content: flex-end; gap: 11px; }
+
+.lvl-mark {
+  font: 16px/1 var(--ui);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.lvl-track {
+  width: 100%;
+  height: 7px;
+  background: var(--track);
+  position: relative;
+  overflow: hidden;
+}
+.lvl-track::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--pct, 0) * 100%);
+  background: var(--green);
+  /* The leading edge is the only part worth tracking, so it gets the glow and
+     the rest of the fill stays flat. */
+  box-shadow: 0 0 12px rgba(47, 220, 122, 0.55);
+}
+
+/* --- Speed dial ------------------------------------------------------------
+   Reads 0 to a round scale maximum rather than 0 to the current cap, so the
+   gold redline moves outward when a module raises top speed. A dial that
+   always ends at "your maximum" makes every ship feel identically fast.
+   -------------------------------------------------------------------------- */
+
+.dial { display: block; overflow: visible; }
+.dial .track { fill: none; stroke: var(--track); }
+.dial .val { fill: none; stroke: var(--cyan); }
+.dial .over { fill: none; stroke: var(--coral); }
+.dial .tick { stroke: var(--rim); opacity: 0.65; }
+.dial .tick.major { stroke: var(--cyan); opacity: 1; }
+.dial .redline { stroke: var(--gold); stroke-width: 2; }
+.dial .ghost { fill: none; stroke: var(--cyan); opacity: 0.28; stroke-dasharray: 3 6; }
+.dial .head { fill: var(--text); }
+.dial .num { fill: var(--dim); font: 11px var(--ui); }
+.dial .big { fill: var(--text); font: 37px var(--ui); }
+.dial .unit { fill: var(--muted); font: 11px var(--ui); letter-spacing: 0.22em; }
+
+/* --- Prompts ---------------------------------------------------------------- */
+
+.prompt-key {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 1px 6px;
+  font-size: 11px;
+  margin-right: 8px;
+}

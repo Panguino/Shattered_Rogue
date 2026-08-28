@@ -102,22 +102,56 @@ Each ring of the galaxy has a distinct musical identity — the closer to the Co
 
 ## 6. AI Music Generation Pipeline
 
-| Tool                | Use Case                           | Approach                                                                 |
-| ------------------- | ---------------------------------- | ------------------------------------------------------------------------ |
-| **Suno AI**         | Full track generation              | Generate base tracks per ring/environment, then stem-separate for mixing |
-| **Udio**            | Alternative / variation generation | Use for B-sides, alternate themes, remixes                               |
-| **AIVA**            | Orchestral elements                | Generate orchestral layers for boss themes and Inner Ring drama          |
-| **Stem separation** | Post-processing all AI tracks      | Split every generated track into stems for adaptive mixing               |
-| **Manual polish**   | DAW editing (Reaper/Ableton)       | Adjust transitions, loop points, stem volumes, add FX                    |
+| Tool                | Use Case                      | Approach                                                                   |
+| ------------------- | ----------------------------- | -------------------------------------------------------------------------- |
+| **ElevenLabs Music**| Full instrumental beds        | `art/audio/generate_music_beds.mjs`, briefs checked in beside the output   |
+| **ElevenLabs SFX**  | One-shots and loops           | `art/audio/generate_elevenlabs.mjs`                                        |
+| **Stem separation** | Post-processing all AI tracks | Split every generated track into stems for adaptive mixing                 |
+| **Manual polish**   | DAW editing (Reaper/Ableton)  | Adjust transitions, loop points, stem volumes, add FX                      |
+
+Both scripts read `ELEVENLABS_API_KEY` from `.env` and write to `art/audio/elevenlabs/`.
+Music costs roughly **750 credits per minute**, so a 2-minute bed is ~1,500 of the
+40,000-credit annual pool — about 26 full-length attempts before a top-up.
+
+### Writing a music brief
+
+The prompt is a session brief for a composer, not a search query. Four things
+carry most of the result, and everything else is noise:
+
+1. **Tempo, key, and instrument list.** Concrete and small. "Fretless bass, clean
+   guitar through tape delay, layered polysynth" beats "epic space music."
+2. **A structure over time.** "No drums for the first twenty seconds, kit enters,
+   one long crescendo" is a shape the model can execute. "Builds up" is not.
+3. **Production adjectives.** Tape saturation, plate reverb, analog noise floor,
+   wide stereo. This is what separates a demo from a soundtrack.
+4. **An explicit banned list.** Vocals, choir, trailer braams, vocal chops. The
+   model reaches for these by default and they instantly date a track.
+
+**Reference recordings cannot be uploaded.** ElevenLabs copyright-checks audio
+references and rejects prompts built around a named commercial artist. When a
+released track is the target, the workflow is to translate it into the four
+categories above and generate something original with the same behaviour — a
+style transfer done in words, not a cover.
+
+### Designing for the thousandth listen
+
+A roguelite soundtrack fails differently from a linear game's. The player will
+hear a given bed for hours across dozens of runs, so the thing that makes a
+track grab you on first listen is the same thing that makes it unbearable on the
+fiftieth. Briefs therefore ask for **evolving texture instead of a hook**, and
+loops start at **two minutes** rather than the eight or sixteen bars that would
+be cheaper to generate. Length is not decoration here; it is what delays
+recognition. Once a two-minute bed survives real play, it gets extended rather
+than replaced.
 
 ### Production Workflow
 
 ```
-1. Generate base track (Suno/Udio) with specific style prompt
-2. Stem-separate into 4-6 layers
-3. Import stems into UE5 MetaSound
-4. Build adaptive mixing graph (game state → stem volume/filter)
-5. Test in-game transitions and adjust
+1. Write the brief into art/audio/generate_music_beds.mjs and generate 2-3 variants
+2. Play each one under an actual run, not at the desk
+3. Stem-separate the survivor into 4-6 layers
+4. Import stems into UE5 MetaSound
+5. Build adaptive mixing graph (game state → stem volume/filter)
 6. Polish loop points and crossfades in DAW
 7. Export final stems + integration
 ```

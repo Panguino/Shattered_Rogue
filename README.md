@@ -11,11 +11,11 @@
 | **Run Length** | ~40–60 minutes                            |
 | **Ships**      | 6 Hulls × 5 Professions = 30 named combos |
 
-Choose your **hull** and **profession**, launch into procedural hex-grid galaxies. Mine asteroids, scan anomalies, trade at stations, fight jellyfish-like alien parasites. Upgrade with weapons, modules, and tech. Die, unlock new options, try again — solo or with up to 3 friends.
+Choose your **hull** and **profession**, launch into procedural hex-grid galaxies. Mine asteroids, scan anomalies, trade at stations, fight the Equation's machine swarms. Upgrade with weapons, modules, and tech. Die, unlock new options, try again — solo or with up to 3 friends.
 
 **Active plan:** [POC playable loop](00_POC_PLAYABLE_LOOP.md) — Pirate Raid arena, menus, debug sliders. Unreal project lives in a **sibling** folder (`C:\Projects\_personal\Shattered\ShatteredRogue`). This repo is design, wiki, and art.
 
-**Browse the wiki:** [`wiki/dist/index.html`](wiki/dist/index.html) or `cd wiki && npm run serve` → http://localhost:4173 . Rebuild: `cd wiki && npm run build`.
+**Browse the wiki:** `cd wiki && npm run build` then `npm run serve` → http://localhost:4173.
 
 ---
 
@@ -86,7 +86,7 @@ C:\Projects\_personal\Shattered\ShatteredRogue   ← UE 5.8 .uproject
 
 | #   | Document                                            | Covers                                                              |
 | --- | --------------------------------------------------- | ------------------------------------------------------------------- |
-| 14  | [Lore & Narrative](design/14_lore_and_narrative.md) | The Shattering, Breach, jellyfish parasite, 3 Glyphs, bosses, Loop+ |
+| 14  | [Lore & Narrative](design/14_lore_and_narrative.md) | The Shattering, Breach, the Equation, 3 Glyphs, bosses, Loop+ |
 
 ### 📊 Player Data
 

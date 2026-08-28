@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "serve": "npx --yes serve dist -p 4173"
+    "serve": "node ../art/hud/mockup/serve.mjs --root dist --port 4173"
   },
   "dependencies": {
     "marked": "^15.0.12"

@@ -1,4 +1,8 @@
-# The Equation — enemy concept set
+# The Equation — enemy concept set (first pass)
+
+> **Superseded.** The current direction is [`cold-iron/`](cold-iron/README.md):
+> one weapon mount, drone scale, bare unpainted metal, and volumetric rather
+> than aircraft-shaped hulls. This first pass is kept for reference.
 
 Fifteen visual concepts: three asymmetric machine-made variants for each of five
 core combat frames. These are unmanned constructs driven by distributed

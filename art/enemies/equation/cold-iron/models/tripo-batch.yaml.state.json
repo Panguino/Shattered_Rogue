@@ -1,0 +1,94 @@
+{
+  "jobs": {
+    "needle-spindle": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "34c22f58-a56c-4017-85e3-972a1b5bf2cf",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\needle-spindle-34c22f58"
+    },
+    "needle-ballthorn": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "dc39a5aa-b863-458d-abd5-5ec928238f5f",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\needle-ballthorn-dc39a5aa"
+    },
+    "needle-hook": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "fc13425c-fd08-4d3f-a0dc-8f694ef233f6",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\needle-hook-fc13425c"
+    },
+    "vector-gyro": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "ce1217eb-8997-47e5-a84a-6d0180fa1fa4",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\vector-gyro-ce1217eb"
+    },
+    "vector-mast": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "13cbafdc-aea3-4fe4-bd2d-fe4d133be2c0",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\vector-mast-13cbafdc"
+    },
+    "vector-wedge": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "d875ef55-e6d4-4a8a-ba20-5e480740a86f",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\vector-wedge-d875ef55"
+    },
+    "mortar-drum": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "1705554c-39a3-4746-95e6-e31cbcf19e95",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\mortar-drum-1705554c"
+    },
+    "mortar-kettle": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "ece1a84d-ed7e-488b-841c-8d72a1840018",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\mortar-kettle-ece1a84d"
+    },
+    "mortar-column": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "3ee426bc-730a-48e9-8172-3463092cd48b",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\mortar-column-3ee426bc"
+    },
+    "bastion-orb": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "93e3215f-0e22-48dc-b0a3-cd189a516b86",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\bastion-orb-93e3215f"
+    },
+    "bastion-pillar": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "8d66128b-e795-407b-bdf5-daa63be3a267",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\bastion-pillar-8d66128b"
+    },
+    "bastion-anvil": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "690583ae-3f0f-4c07-aa98-df38ade0d944",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\bastion-anvil-690583ae"
+    },
+    "relay-cage": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "db39713c-a19a-4b4e-a7ff-256967201002",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\relay-cage-db39713c"
+    },
+    "relay-spire": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "cae88a4b-db73-4c67-beb2-2138063fe8bc",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\relay-spire-cae88a4b"
+    },
+    "relay-stack": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "3f59c642-8fa3-4843-8b18-ed81bb86c1db",
+      "output_dir": "art\\tripo-out\\cold-iron-ships\\tripo-out\\relay-stack-3f59c642"
+    }
+  }
+}

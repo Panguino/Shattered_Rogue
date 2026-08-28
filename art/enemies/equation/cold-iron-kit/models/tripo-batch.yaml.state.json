@@ -1,0 +1,166 @@
+{
+  "jobs": {
+    "cold-iron-v2-electrical-terminal-a": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "80e26d54-8be1-4ecb-a6ec-81bfd9170c44",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-electrical-terminal-2-80e26d54"
+    },
+    "cold-iron-v2-electrical-terminal-b": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "c0e76094-b1ed-4ae5-a76d-8eca092672c8",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-electrical-terminal-c0e76094"
+    },
+    "cold-iron-v2-electrical-terminal-c": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "241dd3f3-9ea9-4056-af07-c7400017b1a5",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-electrical-terminal-3-241dd3f3"
+    },
+    "cold-iron-v2-rod-a-spine": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "02809822-a1b0-49e1-9a71-fbb643103b85",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-rod-a-spine-02809822"
+    },
+    "cold-iron-v2-rod-b-telescoping": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "6a2fea32-5cae-4f5a-a9b4-d72b8027ec4d",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-rod-b-telescoping-6a2fea32"
+    },
+    "cold-iron-v2-rod-c-lattice": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "90762cee-a8a4-4a36-b330-7b87572735cd",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-rod-c-lattice-90762cee"
+    },
+    "cold-iron-v2-panel-a-slab": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "5e4a6ed2-723b-4eb2-a01f-53e9e0ead0c6",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-panel-a-slab-5e4a6ed2"
+    },
+    "cold-iron-v2-panel-b-wedge": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "d23625af-f024-4446-809d-249878575b2a",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-panel-b-wedge-d23625af"
+    },
+    "cold-iron-v2-panel-c-ribbed": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "59cbfd5c-34c3-44d3-9f89-fb0831860d51",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-panel-c-ribbed-59cbfd5c"
+    },
+    "cold-iron-v2-joint-a-hinge": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "88d3002d-4e4c-481f-a590-0943da1d0ddd",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-joint-a-hinge-88d3002d"
+    },
+    "cold-iron-v2-joint-b-gimbal": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "1c1e53ed-55d7-4b0d-8486-86f54354ab4b",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-joint-b-gimbal-1c1e53ed"
+    },
+    "cold-iron-v2-joint-c-yoke": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "d0cc645d-2a1b-44ad-92f5-b5e2c9b32b05",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-joint-c-yoke-d0cc645d"
+    },
+    "cold-iron-v2-weapon-a-cannon": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "e527e5c4-7067-4031-9d37-61cc648dbf5f",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-weapon-a-cannon-e527e5c4"
+    },
+    "cold-iron-v2-weapon-b-rail-lance": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "fb265246-d9c4-4009-ab58-d0262dc457ff",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-weapon-b-rail-lance-fb265246"
+    },
+    "cold-iron-v2-weapon-c-missile-pod": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "574ac9dc-74ca-43b4-8bc4-c84727f7732e",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-weapon-c-missile-po-574ac9dc"
+    },
+    "cold-iron-v2-propulsion-a-compact": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "b421f891-f319-44b9-8667-f3d96d0caeb6",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-propulsion-a-compac-b421f891"
+    },
+    "cold-iron-v2-propulsion-b-vector": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "1c233665-0784-4d85-add3-4a03fce1db09",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-propulsion-b-vector-1c233665"
+    },
+    "cold-iron-v2-propulsion-c-cluster": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "0f06a776-c72b-4277-8d6e-64f15d706bbe",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-propulsion-c-cluste-0f06a776"
+    },
+    "cold-iron-v2-heatsink-a-fin-bank": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "b17290f2-c716-44f1-801f-6710125c9c4a",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-heatsink-a-fin-bank-b17290f2"
+    },
+    "cold-iron-v2-heatsink-b-radial": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "a9119552-0c2f-431b-9512-ca4f3252cd5f",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-heatsink-b-radial-a9119552"
+    },
+    "cold-iron-v2-heatsink-c-cooling-plate": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "e9d25400-7287-45b4-b786-95d3a9a1b88f",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-heatsink-c-cooling-e9d25400"
+    },
+    "cold-iron-v2-battery-a-cell": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "1c61e226-b41e-4761-b581-3d57a82f3ec6",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-battery-a-cell-1c61e226"
+    },
+    "cold-iron-v2-battery-b-cell-bank": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "52962905-ec98-4871-af4b-589b348a48eb",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-battery-b-cell-bank-52962905"
+    },
+    "cold-iron-v2-battery-c-capacitor": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "38fc8a66-8cc3-4419-bf75-c70b52de34ee",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-battery-c-capacitor-38fc8a66"
+    },
+    "cold-iron-v2-light-a-spot": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "2809417f-2982-43e3-a94e-2626e32f274b",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-light-a-spot-2809417f"
+    },
+    "cold-iron-v2-light-b-beacon-cluster": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "f83af112-ad79-4132-96fb-f0d4d95fe606",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-light-b-beacon-clus-f83af112"
+    },
+    "cold-iron-v2-light-c-flood-bar": {
+      "status": "success",
+      "attempts": 1,
+      "task_id": "2e5066b8-63aa-4580-978c-2b9b5bd79849",
+      "output_dir": "art\\tripo-out\\cold-iron-v2-batch\\tripo-out\\cold-iron-v2-light-c-flood-bar-2e5066b8"
+    }
+  }
+}

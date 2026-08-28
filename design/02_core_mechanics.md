@@ -145,11 +145,11 @@ Bosses ONLY appear in **💀 Boss Fight** encounter types. Not every sector has 
 | Ring      | Boss                     | Environment               | Mechanic                                                                       | Loot                                            |
 | --------- | ------------------------ | ------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
 | **Outer** | **Pirate Warlord**       | Debris Field / Asteroid   | Calls in reinforcement waves; destroy supply ships to stop reinforcements      | Rare weapon + contraband stash                  |
-| **Outer** | **Hive Queen**           | Nebula / Asteroid         | Spawns drone swarms; target egg sacs to thin the herd                          | Drone modules (Carrier synergy)                 |
+| **Outer** | **Fractal Foundry**      | Nebula / Asteroid         | Fabricates Needle swarms; destroy assembly vertices to stop each production branch | Drone modules (Carrier synergy)              |
 | **Mid**   | **Void Stalker**         | Any dark environment      | Cloaks and ambushes; you track it via sonar pings in reduced visibility        | Stealth tech (Phantom synergy)                  |
-| **Mid**   | **Rogue AI Dreadnought** | Debris Field / Open Space | Multi-phase: disable shields → board interior → destroy core                   | Military modules + epic weapons                 |
+| **Mid**   | **Consensus Dreadnought** | Debris Field / Open Space | Linked armor nodes vote damage away; isolate nodes, disable consensus, destroy inference core | Military modules + epic weapons        |
 | **Inner** | **Supernova Guardian**   | Supernova Remnant         | Fights inside the timer — you're racing both the boss AND the explosion        | Legendary drops if you beat it before the timer |
-| **Inner** | **Alien Architect**      | Void Rift / Ice Field     | Manipulates the environment — builds walls, creates gravity wells, warps space | Alien tech cards, void-tier loot                |
+| **Inner** | **Proof Engine**         | Void Rift / Ice Field     | Draws visible geometric constraints through the arena, then turns completed shapes into hazards | Equation tech cards, void-tier loot   |
 
 ### Boss Design Philosophy
 
@@ -167,10 +167,10 @@ The center of the galaxy. The reason the galaxy shattered.
 
 | Phase                      | Name                 | Mechanic                                                                                                                                                           |
 | -------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Phase 1**                | "The Approach"       | Navigate through collapsing reality while fighting guardian ships. The arena itself shifts and rotates                                                             |
-| **Phase 2**                | "The Shatter Entity" | The core manifests — massive entity uses gravity beams, reality tears, and void projectiles. Environment fragments break apart and can be used as cover OR weapons |
-| **Phase 3**                | "The Collapse"       | Entity goes berserk. Arena shrinks. All environmental hazards activate simultaneously. This is a DPS race — kill it before reality collapses entirely              |
-| **Phase 4** _(Loop+ only)_ | "The Truth"          | The entity reveals its true form. New attacks, reverses your controls, turns your own proc chains against you. Only appears in New Game+                           |
+| **Phase 1**                | "Measure"            | Navigate scanning planes while fighting guardian frames. The arena rotates into measured sectors and predicted projectile paths become visible                    |
+| **Phase 2**                | "Model"              | The Architect assembles around the Breach and fabricates optimized copies of frames and protocols observed during this run                                        |
+| **Phase 3**                | "Converge"           | Hard-light constraints remove movement options until only one predicted safe solution remains; break the pattern and expose the inference core                    |
+| **Phase 4** _(Loop+ only)_ | "Counterexample"     | The Remainder uses a model trained on the player's prior runs, predicts favorite proc chains, and deliberately creates situations where those chains become unsafe |
 
 > **Victory:** Reality stabilizes. The galaxy begins to heal. You get a massive loot explosion, unique cosmetics for that Hull × Profession combo, and unlock Loop+ mode.
 

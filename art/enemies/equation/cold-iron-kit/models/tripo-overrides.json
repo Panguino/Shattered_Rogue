@@ -1,0 +1,18 @@
+{
+  "cold-iron-v2-rod-c-lattice": {
+    "task_id": "e626ba32-1b9a-4545-87b7-e5251e600d4f",
+    "output_dir": "art/tripo-out/revisions/tripo-out/rod-c-lattice-r2-e626ba32"
+  },
+  "cold-iron-v2-panel-c-ribbed": {
+    "task_id": "7962fd18-9f55-4cb0-868e-1081ee6857de",
+    "output_dir": "art/tripo-out/revisions/tripo-out/panel-c-ribbed-r3-7962fd18"
+  },
+  "cold-iron-v2-weapon-c-missile-pod": {
+    "task_id": "0401d42a-bc30-4bdd-9dba-bc6e02587df4",
+    "output_dir": "art/tripo-out/revisions/tripo-out/weapon-c-missile-pod-r2-0401d42a"
+  },
+  "cold-iron-v2-light-b-beacon-cluster": {
+    "task_id": "b65dd829-90b0-4261-9cd0-e432a2445448",
+    "output_dir": "art/tripo-out/revisions/tripo-out/light-b-beacon-r2-b65dd829"
+  }
+}

@@ -1,0 +1,101 @@
+concurrency: 2
+defaults:
+  model: tripo-p1
+  out: ./art/tripo-out/cold-iron-v2-batch
+  params:
+    face_limit: 800
+    texture: true
+    pbr: true
+    texture_quality: standard
+    texture_alignment: original_image
+    auto_size: false
+jobs:
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-electrical-terminal-a.png
+    name: cold-iron-v2-electrical-terminal-a
+    params: { face_limit: 500 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-electrical-terminal-b.png
+    name: cold-iron-v2-electrical-terminal-b
+    params: { face_limit: 500 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-electrical-terminal-c.png
+    name: cold-iron-v2-electrical-terminal-c
+    params: { face_limit: 500 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-rod-a-spine.png
+    name: cold-iron-v2-rod-a-spine
+    params: { face_limit: 650 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-rod-b-telescoping.png
+    name: cold-iron-v2-rod-b-telescoping
+    params: { face_limit: 650 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-rod-c-lattice.png
+    name: cold-iron-v2-rod-c-lattice
+    params: { face_limit: 750 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-panel-a-slab.png
+    name: cold-iron-v2-panel-a-slab
+    params: { face_limit: 500 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-panel-b-wedge.png
+    name: cold-iron-v2-panel-b-wedge
+    params: { face_limit: 500 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-panel-c-ribbed.png
+    name: cold-iron-v2-panel-c-ribbed
+    params: { face_limit: 600 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-joint-a-hinge.png
+    name: cold-iron-v2-joint-a-hinge
+    params: { face_limit: 700 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-joint-b-gimbal.png
+    name: cold-iron-v2-joint-b-gimbal
+    params: { face_limit: 800 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-joint-c-yoke.png
+    name: cold-iron-v2-joint-c-yoke
+    params: { face_limit: 750 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-weapon-a-cannon.png
+    name: cold-iron-v2-weapon-a-cannon
+    params: { face_limit: 900 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-weapon-b-rail-lance.png
+    name: cold-iron-v2-weapon-b-rail-lance
+    params: { face_limit: 900 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-weapon-c-missile-pod.png
+    name: cold-iron-v2-weapon-c-missile-pod
+    params: { face_limit: 1000 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-propulsion-a-compact.png
+    name: cold-iron-v2-propulsion-a-compact
+    params: { face_limit: 850 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-propulsion-b-vector.png
+    name: cold-iron-v2-propulsion-b-vector
+    params: { face_limit: 950 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-propulsion-c-cluster.png
+    name: cold-iron-v2-propulsion-c-cluster
+    params: { face_limit: 1000 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-heatsink-a-fin-bank.png
+    name: cold-iron-v2-heatsink-a-fin-bank
+    params: { face_limit: 900 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-heatsink-b-radial.png
+    name: cold-iron-v2-heatsink-b-radial
+    params: { face_limit: 1000 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-heatsink-c-cooling-plate.png
+    name: cold-iron-v2-heatsink-c-cooling-plate
+    params: { face_limit: 700 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-battery-a-cell.png
+    name: cold-iron-v2-battery-a-cell
+    params: { face_limit: 750 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-battery-b-cell-bank.png
+    name: cold-iron-v2-battery-b-cell-bank
+    params: { face_limit: 900 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-battery-c-capacitor.png
+    name: cold-iron-v2-battery-c-capacitor
+    params: { face_limit: 800 }
+
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-light-a-spot.png
+    name: cold-iron-v2-light-a-spot
+    params: { face_limit: 600 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-light-b-beacon-cluster.png
+    name: cold-iron-v2-light-b-beacon-cluster
+    params: { face_limit: 700 }
+  - input: art/enemies/equation/cold-iron-kit/cold-iron-v2-light-c-flood-bar.png
+    name: cold-iron-v2-light-c-flood-bar
+    params: { face_limit: 700 }

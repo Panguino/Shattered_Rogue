@@ -1,0 +1,1378 @@
+{
+  "space": "unreal-cm",
+  "meshes": {
+    "cold-iron-v2-electrical-terminal-a": {
+      "category": "electrical-terminal",
+      "boundsSize": [
+        75.61,
+        72.43,
+        104.67
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -2.42,
+            -1.55,
+            52.34
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -0.55,
+            0.9,
+            -52.34
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-electrical-terminal-b": {
+      "category": "electrical-terminal",
+      "boundsSize": [
+        103.93,
+        103.37,
+        56.89
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            51.97,
+            7.19,
+            -3.55
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -51.97,
+            -1.09,
+            2.67
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-electrical-terminal-c": {
+      "category": "electrical-terminal",
+      "boundsSize": [
+        106.7,
+        106.64,
+        33.44
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            53.35,
+            1.89,
+            3.21
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -53.35,
+            8.34,
+            2.21
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-rod-a-spine": {
+      "category": "rod",
+      "boundsSize": [
+        21.22,
+        17.21,
+        140.44
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -2.11,
+            -0.23,
+            70.22
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -2.12,
+            0.2,
+            -70.22
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-rod-b-telescoping": {
+      "category": "rod",
+      "boundsSize": [
+        22.91,
+        21.67,
+        118.73
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -0.2,
+            -0.14,
+            59.36
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -0.49,
+            0.22,
+            -59.36
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-rod-c-lattice": {
+      "category": "rod",
+      "boundsSize": [
+        14.79,
+        7.71,
+        99.81
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -0.1,
+            -0.02,
+            49.91
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -0.33,
+            0.02,
+            -49.91
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-panel-a-slab": {
+      "category": "panel",
+      "boundsSize": [
+        120.45,
+        104.71,
+        23.97
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Edge +X",
+          "position": [
+            60.23,
+            -14.42,
+            0.41
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -X",
+          "position": [
+            -60.23,
+            13.57,
+            0.5
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge +Y",
+          "position": [
+            -6.24,
+            52.35,
+            0.16
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -Y",
+          "position": [
+            4.35,
+            -52.35,
+            0.24
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-panel-b-wedge": {
+      "category": "panel",
+      "boundsSize": [
+        120.58,
+        96.81,
+        19.19
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Edge +X",
+          "position": [
+            60.29,
+            12.33,
+            -1.03
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -X",
+          "position": [
+            -60.29,
+            16.51,
+            0.24
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge +Y",
+          "position": [
+            16.06,
+            48.41,
+            0.89
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -Y",
+          "position": [
+            11.91,
+            -48.41,
+            -0.13
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-panel-c-ribbed": {
+      "category": "panel",
+      "boundsSize": [
+        99.17,
+        81.42,
+        68.72
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Edge +X",
+          "position": [
+            49.59,
+            -6.5,
+            3.34
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -X",
+          "position": [
+            -49.59,
+            4.79,
+            -4.63
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge +Y",
+          "position": [
+            -5.81,
+            40.71,
+            -6.77
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -Y",
+          "position": [
+            7.67,
+            -40.71,
+            4.98
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-panel-d-armored-pod": {
+      "category": "panel",
+      "boundsSize": [
+        101.14,
+        84.84,
+        64.43
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Edge +X",
+          "position": [
+            50.57,
+            0.05,
+            -1.21
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -X",
+          "position": [
+            -50.57,
+            0.25,
+            1.6
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge +Y",
+          "position": [
+            -23.16,
+            42.42,
+            -0.67
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "Edge -Y",
+          "position": [
+            -17.36,
+            -42.42,
+            3.09
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-joint-a-hinge": {
+      "category": "joint",
+      "boundsSize": [
+        49.78,
+        100.04,
+        57.52
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "+X",
+          "position": [
+            -0.48,
+            50.02,
+            -0.01
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-X",
+          "position": [
+            0.04,
+            -50.02,
+            -0.02
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Y",
+          "position": [
+            0.04,
+            -1.13,
+            28.76
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Y",
+          "position": [
+            0.68,
+            -2.99,
+            -28.76
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Z",
+          "position": [
+            24.89,
+            -1.74,
+            1.15
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Z",
+          "position": [
+            -24.89,
+            -0.85,
+            -0.34
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-joint-b-gimbal": {
+      "category": "joint",
+      "boundsSize": [
+        96.43,
+        43.55,
+        95.73
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "+X",
+          "position": [
+            48.22,
+            0.64,
+            3.66
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-X",
+          "position": [
+            -48.22,
+            1.16,
+            -3.72
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Y",
+          "position": [
+            -2.9,
+            1.02,
+            47.86
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Y",
+          "position": [
+            4.08,
+            0.73,
+            -47.86
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Z",
+          "position": [
+            -0.27,
+            21.78,
+            0.26
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Z",
+          "position": [
+            -0.2,
+            -21.78,
+            0.2
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-joint-c-yoke": {
+      "category": "joint",
+      "boundsSize": [
+        27.54,
+        99.81,
+        92.04
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "+X",
+          "position": [
+            0.03,
+            49.9,
+            -37.92
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-X",
+          "position": [
+            0,
+            -49.9,
+            -38.02
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Y",
+          "position": [
+            0,
+            -0.13,
+            46.02
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Y",
+          "position": [
+            0.02,
+            0,
+            -46.02
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "+Z",
+          "position": [
+            13.77,
+            -0.14,
+            -4.77
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "-Z",
+          "position": [
+            -13.77,
+            0.02,
+            -4.75
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-weapon-a-cannon": {
+      "category": "weapon",
+      "boundsSize": [
+        57.21,
+        50.69,
+        100.42
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Weapon Base",
+          "position": [
+            0.54,
+            0.02,
+            -50.21
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-weapon-b-rail-lance": {
+      "category": "weapon",
+      "boundsSize": [
+        18.77,
+        19.44,
+        99.81
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Weapon Base",
+          "position": [
+            0.25,
+            0.24,
+            -49.9
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-weapon-c-missile-pod": {
+      "category": "weapon",
+      "boundsSize": [
+        80.81,
+        69.27,
+        100.83
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Weapon Base",
+          "position": [
+            3.46,
+            -0.4,
+            50.42
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-propulsion-a-compact": {
+      "category": "propulsion",
+      "boundsSize": [
+        85.62,
+        82.89,
+        102.57
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Engine Mount",
+          "position": [
+            -2.53,
+            3.47,
+            51.29
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-propulsion-b-vector": {
+      "category": "propulsion",
+      "boundsSize": [
+        80.4,
+        54.11,
+        99.9
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Engine Mount",
+          "position": [
+            3.29,
+            2.81,
+            49.95
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-propulsion-c-cluster": {
+      "category": "propulsion",
+      "boundsSize": [
+        72.45,
+        42.13,
+        99.87
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Engine Mount",
+          "position": [
+            2.22,
+            -0.96,
+            49.94
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-heatsink-a-fin-bank": {
+      "category": "heatsink",
+      "boundsSize": [
+        112.84,
+        59.37,
+        102.92
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Base A",
+          "position": [
+            -56.42,
+            -1.38,
+            38.36
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        },
+        {
+          "name": "Base B",
+          "position": [
+            -56.42,
+            -1.38,
+            -6.92
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-heatsink-b-radial": {
+      "category": "heatsink",
+      "boundsSize": [
+        100.38,
+        79.53,
+        93.5
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Base A",
+          "position": [
+            -50.19,
+            19.22,
+            19.61
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        },
+        {
+          "name": "Base B",
+          "position": [
+            -50.19,
+            19.22,
+            -21.53
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-heatsink-c-cooling-plate": {
+      "category": "heatsink",
+      "boundsSize": [
+        100.28,
+        28.29,
+        66.93
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Base A",
+          "position": [
+            50.14,
+            -1.51,
+            5.39
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        },
+        {
+          "name": "Base B",
+          "position": [
+            50.14,
+            -1.51,
+            -24.06
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Base end inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-battery-a-cell": {
+      "category": "battery",
+      "boundsSize": [
+        52.92,
+        39.73,
+        99.86
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -1.4,
+            -0.73,
+            49.93
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -1.03,
+            -0.98,
+            -49.93
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-battery-b-cell-bank": {
+      "category": "battery",
+      "boundsSize": [
+        60.93,
+        62.05,
+        100.15
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            0.13,
+            -0.38,
+            50.07
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            0.35,
+            0.66,
+            -50.07
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-battery-c-capacitor": {
+      "category": "battery",
+      "boundsSize": [
+        62.22,
+        55.58,
+        99.98
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "End A",
+          "position": [
+            -3.08,
+            -4.14,
+            49.99
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "high"
+        },
+        {
+          "name": "End B",
+          "position": [
+            -4.15,
+            -3.85,
+            -49.99
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "confidence": "high"
+        }
+      ]
+    },
+    "cold-iron-v2-light-a-spot": {
+      "category": "light",
+      "boundsSize": [
+        107.51,
+        105.91,
+        79.6
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Light Base",
+          "position": [
+            53.75,
+            -12.39,
+            5.37
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-light-b-beacon-cluster": {
+      "category": "light",
+      "boundsSize": [
+        89.14,
+        71.4,
+        104.02
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Light Base",
+          "position": [
+            -1.47,
+            4.43,
+            52.01
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    },
+    "cold-iron-v2-light-c-flood-bar": {
+      "category": "light",
+      "boundsSize": [
+        28.78,
+        12.79,
+        99.84
+      ],
+      "boundsCenter": [
+        0,
+        0,
+        0
+      ],
+      "sockets": [
+        {
+          "name": "Light Base",
+          "position": [
+            -0.17,
+            -0.26,
+            49.92
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "confidence": "low",
+          "note": "Which end mounts is inferred from cross-section; confirm in the Socket Manager."
+        }
+      ]
+    }
+  }
+}

@@ -4,4 +4,5 @@
 art/.env
 tripo-out/
 art/tripo-out/
+.tripo/
 *.log

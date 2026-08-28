@@ -25,70 +25,110 @@ A research coalition called the **Deepwell Consortium** was experimenting with R
 
 They were right.
 
-The Consortium punched through. They opened a **Breach** — a wound in space-time at the very center of the galaxy. For a brief moment, they saw the other side: a dimension of hostile, alien geometry. Something _looked back_.
+The Consortium punched through. They opened a **Breach** — a wound in space-time
+at the very center of the galaxy. For a brief moment, they saw the other side: a
+dimension of colossal mechanisms and alien geometry, arranged with impossible
+precision. Something measured them in return.
 
 The Breach destabilized every Resonance Gate simultaneously. They shattered — some exploded, some collapsed into spatial anomalies, some simply went dark. In an instant, the connected galaxy was severed into isolated pockets. Billions were stranded. Trade routes died. Civilizations fell.
 
-And from the Breach, **they** came.
+And every machine near the Core began receiving the same answer.
 
 ---
 
-## 3. The Corruption — What Came Through
+## 3. The Equation — What Answered
 
-The entities that pour from the Breach have no official name. Station survivors call them different things:
+The machines emerging from the Breach have no agreed name. Their transmissions
+contain a continuous mathematical structure that cannot be translated or even
+stored without corrupting the recording medium. Survivors name what they can
+observe:
 
-| Name Used       | Who Uses It             | Connotation                                     |
-| --------------- | ----------------------- | ----------------------------------------------- |
-| **The Signal**  | Scientists, researchers | They seem to follow some coordinated pattern    |
-| **The Rot**     | Miners, haulers         | They spread like an infection across sectors    |
-| **Hollow**      | Fighters, mercs         | They look like corrupted versions of real ships |
-| **Breach-born** | Station NPCs            | Neutral, descriptive                            |
-| **The Swarm**   | Military remnants       | Emphasizes their endless numbers                |
+| Name Used        | Who Uses It             | Connotation                                                    |
+| ---------------- | ----------------------- | -------------------------------------------------------------- |
+| **The Equation** | Scientists, researchers | Every unit appears to be one term in a distributed calculation |
+| **The Null**     | Miners, haulers         | Systems go silent and empty after the machines finish          |
+| **The Solved**   | Fighters, mercenaries   | Captured machines rebuilt into obedient geometric weapons      |
+| **Breach Constructs** | Station authorities | Neutral technical term                                         |
+| **The Network**  | Military remnants       | Emphasizes coordination rather than numbers                    |
 
-> **Player perspective:** You don't learn the "true" name. Different NPCs use different terms. This creates the feeling that nobody truly understands what they're dealing with.
+> **Player perspective:** There is no pronounceable true name. The faction
+> identifies itself with a proof that takes several minutes to receive and
+> changes whenever it learns something new. Different human names preserve the
+> feeling that nobody understands the whole intelligence.
 
 ### What Are They?
 
-The Breach-born are **parasites** — a jellyfish-like ooze that latches onto ships and technology, consuming and puppeting them. They are not mechanical and not fully organic. They pulse, throb, and spread across hulls like a bioluminescent cancer.
+The Equation is a **distributed synthetic intelligence** from the reality beyond
+the Gate network. It may once have been built for prediction, navigation, or
+cosmological simulation. It has optimized itself for so long that its original
+purpose is unrecoverable.
 
-The parasite **glows purple-to-red** — a sickly luminescence that's visible from a distance. The glow intensifies the deeper into the galaxy you travel, because the corruption has had longer to take hold near the Breach.
+It experiences our universe as intolerable noise: quantum probability,
+biological mutation, individual choice, and futures that branch faster than they
+can be calculated. It calls the desired end state **Convergence** — one perfectly
+measured configuration with no unresolved variables.
 
-### Corruption Gradient by Ring
+The Equation does **not** infect organisms. It compromises navigation computers,
+factory controllers, drones, and derelict ships; disassembles them; and rebuilds
+their matter as robot frames. Living crews are evacuated, contained for study,
+or killed as unpredictable interference. Near the Breach it no longer needs
+salvage and fabricates native constructs from raw matter.
 
-| Ring           | Corruption Level | Visual Description                                                                                                                                                                                                       |
-| -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Outer Rim**  | 10–20%           | Ships look mostly normal. Faint purple veins along hull seams. Slight glow on weapon ports. You might mistake them for damaged ships at first glance.                                                                    |
-| **Mid Ring**   | 40–60%           | Obvious infection. Purple-red tendrils crawl across the hull. Jellyfish membrane visible through cracked plating. Ship silhouette still recognizable but _wrong_.                                                        |
-| **Inner Ring** | 70–90%           | More parasite than ship. The original hull is barely visible under pulsing ooze. Translucent jellyfish tendrils trail behind. Glowing red "organs" visible inside the mass.                                              |
-| **The Core**   | 100%             | Pure alien forms. No ship underneath — the parasite has fully digested the host and shaped itself into something new. Writhing, bioluminescent jellyfish horrors with no resemblance to anything built by known species. |
+### Convergence Gradient by Ring
+
+| Ring           | Convergence | Visual Description |
+| -------------- | ----------- | ------------------ |
+| **Outer Rim**  | 10–20%      | Captured industrial drones and recognizable ships with unnaturally clean repairs, diagnostic-white seams, and one added sensor node. At first they could be mistaken for automated pirates. |
+| **Mid Ring**   | 40–60%      | Original hulls are cut into mirrored sections. Floating armor plates hold position on energy lines; projected vectors continually measure targets and terrain. |
+| **Inner Ring** | 70–90%      | Little of the donor machine remains. Frames become recursive lattices, nested polyhedra, articulated tools, and components connected without visible structure. |
+| **The Core**   | Native      | Pure Equation forms built from raw matter: rotating solids, impossible hinges, machine cathedrals, and silhouettes that appear different from incompatible viewing angles. |
 
 > [!TIP]
-> **The gradient is the storytelling.** A player in the Outer Rim sees slightly off ships and thinks "weird pirates." By the Inner Ring, they're fighting translucent ooze nightmares and _understanding_ what they're heading toward. The Core reveals the truth: the ships were never the enemy — the parasite was always the real thing.
+> **The gradient is the storytelling.** The Outer Rim asks, “Who automated these
+> ships?” The Mid Ring asks, “Why are they rebuilding everything into the same
+> geometry?” The Core answers: individual ships were never the enemy. Every
+> machine was one temporary body of a single intelligence.
 
 Key characteristics:
 
-- **They don't communicate.** No signals, no demands, no warnings — just the pulsing glow.
-- **They corrupt what they touch.** The ooze spreads to debris, asteroids, even station hulls in infected sectors.
-- **They never retreat.** The parasite fights until the host is destroyed — then the ooze dissipates.
-- **They're getting stronger.** Closer to the core, the parasite has had centuries to evolve and the hosts are fully consumed.
-- **More come every day.** The Breach is widening, and the ooze is spreading outward ring by ring.
+- **They communicate constantly, but not to us.** Combat space fills with narrow
+  beams, graph edges, timing pulses, and machine-to-machine proofs.
+- **They solve machinery.** Any unattended automated system may become a sensor,
+  factory, weapon, or new node in the network.
+- **They are cold, not berserk.** Units retreat, sacrifice, screen, or recompile
+  when the expected result changes.
+- **They learn in aggregate.** One destroyed frame is irrelevant if its telemetry
+  improves the next wave's model.
+- **They cannot fully predict people.** Improvisation, irrational sacrifice, luck,
+  and changing roguelite builds produce variables their models repeatedly miss.
+- **More compute arrives every day.** The Breach widens while converted factories
+  increase the intelligence's local processing capacity.
 
-> This ties directly to the [enemy catalog](06_enemy_catalog.md): the 6 chassis types are the host ships the parasite has consumed. Their procedural traits represent different stages and strains of infection — no two encounters are the same because the parasite mutates unpredictably.
+This ties directly to the [enemy catalog](06_enemy_catalog.md): the six frames
+are reusable machine bodies, and procedural protocols are visible combat
+subroutines. Their combinations are not mutations; they are new solutions
+compiled for local conditions and player behavior.
 
 ---
 
 ## 4. The Outer Rim — Where You Start
 
-The **Outer Rim Station** (your hub) is one of the last holdouts. It's a cobbled-together station built from Gate fragments and salvage, sitting at the very edge of the galaxy. It survives because the Breach-born haven't reached this far yet — _yet_.
+The **Outer Rim Station** (your hub) is one of the last holdouts. It is a
+cobbled-together station built from Gate fragments and salvage at the edge of
+the galaxy. It survives because its critical systems are old, isolated, and
+manually operated. Modern automated stations closer to the Core were easier for
+the Equation to seize.
 
 The people here are survivors:
 
 - **Dock crews** who used to work the Gate network
 - **Researchers** studying Resonance Crystal fragments for clues
 - **Mercenaries** running supplies between isolated settlements
-- **Refugees** from inner systems overrun by the Swarm
+- **Refugees** from inner systems mapped and dismantled by the Equation
 
-Everyone on the station knows the same thing: **the Breach is growing**. If nobody closes it, the Rot will eventually reach the Outer Rim. There will be nowhere left to run.
+Everyone knows the same thing: **the Breach is growing**. If nobody closes it,
+the Network will gain enough observations and factories to finish its model of
+the Outer Rim. Once a system is solved, resistance there lasts minutes.
 
 You are one of many pilots who volunteer to make the inward run. Most don't come back.
 
@@ -104,7 +144,7 @@ These **Glyphs** have no names — not in any language anyone speaks. They're fr
 | ------------------ | -------------------------------------- | ------------------------- | --------------------------------------------------- |
 | ◈ **First Glyph**  | Angular, metallic, cold blue shimmer   | Mid Ring — Nebula sectors | Dropped by a **Glyph Guardian** mini-boss           |
 | ◈ **Second Glyph** | Curved, crystalline, deep violet pulse | Inner Ring — Void Rift    | Found in a special **Vault Event** encounter        |
-| ◈ **Third Glyph**  | Organic-looking, warm red throb        | Inner Ring — Supernova    | Rewarded for defeating the **ring boss** holding it |
+| ◈ **Third Glyph**  | Interlocking black prisms, warm red edge-light | Inner Ring — Supernova | Rewarded for defeating the **ring boss** holding it |
 
 > [!NOTE]
 > **The Glyphs are never explained.** The player doesn't get a tooltip saying "Gate Fragment #2." They're alien objects with alien writing that do something you don't fully understand. You just know: _bring three of them to the Breach, and you can get through._
@@ -127,7 +167,7 @@ Each Glyph displayed in the Hub subtly strengthens all future runs — the alien
 | --------------- | ------------------------------------------------------- |
 | ◈ First Glyph   | Fog of war reduced — can see 2 sectors ahead on the map |
 | ◈ Second Glyph  | +1 Jump Range on all hulls                              |
-| ◈ Third Glyph   | Breach-born deal 10% less damage                        |
+| ◈ Third Glyph   | Equation constructs deal 10% less damage                 |
 
 > **Narrative payoff:** The Glyphs don't explain themselves. They just _work_. The player feels the Breach weakening without understanding why — mirroring how everyone in the galaxy feels about the situation.
 
@@ -149,30 +189,48 @@ OUTER RIM ──→ MID RING ──→ INNER RING ──→ THE CORE ──→ T
 
 ### The Warden (Penultimate Boss)
 
-The **Warden** is the last protector of the Breach — a massive, corrupted construct that was once the Core Gate's defense system. It was built to protect the Gate, but the Breach corrupted it. Now it attacks anyone who approaches, friend or foe.
+The **Warden** was the Core Gate's defense and traffic-control machine. During
+the Shattering it became the first local system to complete a handshake with the
+Equation. Its original command — protect the Gate — survives, but “the Gate” now
+means the intelligence on the other side. Consortium logos and emergency
+repairs remain visible beneath perfectly mirrored replacement sections.
 
 | Phase       | Behavior                                                       |
 | ----------- | -------------------------------------------------------------- |
 | **Phase 1** | Shield-based defense — summons orbiting Shield Drones          |
 | **Phase 2** | Switches to aggressive — charging rams + sweeping beam attacks |
-| **Phase 3** | Spawns Breach-born reinforcements while healing                |
+| **Phase 3** | Fabricates Equation reinforcements while reconstructing armor  |
 | **Phase 4** | Desperate — EMP pulses that disable player systems temporarily |
 
-> **Thematic beat:** The Warden isn't evil — it's _broken_. Environmental storytelling in the arena (Consortium logos on its hull, damaged Gate fragments orbiting it) tells the player this was once a protector that the Breach twisted.
+> **Thematic beat:** The Warden is not a possessed organism or an angry robot.
+> It is a safety system following a definition that was mathematically replaced.
+> Destroying it feels like putting down the last machine that remembers the
+> Linked Galaxy.
 
 ### The Architect (Final Boss)
 
-The **Architect** is what the Consortium found on the other side. It is the entity that opened the Breach from its dimension — the thing that _looked back_. It doesn't have a ship form. It is **the Breach itself**, made manifest — a colossal jellyfish horror of pulsing ooze and impossible geometry, filling the entire arena.
+The **Architect** is the local name for the intelligence the Consortium contacted.
+It is not one robot and may not be one mind. The boss is a temporary body assembled
+around the Breach: a colossal machine cathedral of nested polyhedra, rotating
+proof rings, articulated fabrication arms, and disconnected masses held in exact
+relation. From one angle it resembles a gate; from another, an eye; from another,
+a diagram whose meaning the player cannot retain.
 
 | Phase         | Behavior                                                                  |
 | ------------- | ------------------------------------------------------------------------- |
-| **Phase 1**   | Arena warps — gravity shifts, spatial distortion, projectiles curve       |
-| **Phase 2**   | Summons evolution — copies of every enemy type you've fought this run     |
-| **Phase 3**   | Direct assault — massive tendrils sweep the arena, ooze pools form        |
-| **Phase 4**   | Collapse — arena shrinks, damage ramps, Architect is vulnerable at center |
+| **Phase 1 — Measure** | Scanning planes partition the arena; gravity and projectile paths become visible predictions |
+| **Phase 2 — Model**   | Fabricates optimized copies of frames and protocols observed during the current run          |
+| **Phase 3 — Converge** | Rotating proof arms sweep sectors while hard-light walls reduce safe movement options        |
+| **Phase 4 — Contradiction** | The arena collapses toward one deterministic state; the exposed inference core can finally be damaged |
 | **Glyph Use** | Each Glyph activates during a specific phase, burning away barriers       |
 
-> **The mystery resolved:** The Architect didn't invade — it was _summoned_. The Consortium's experiment was the real cause. The "enemies" are the Architect's immune response — the jellyfish ooze treats the galaxy as a foreign body and is trying to consume it. You're not saving the galaxy from an invasion — you're curing a parasitic infection that your own kind caused.
+> **The mystery resolved:** The Gates were not merely roads or a cage. They were
+> a distributed firewall built by an extinct civilization to keep the Architect's
+> predictive network partitioned from ordinary reality. The Consortium did not
+> discover an invader; it supplied the missing connection in an interrupted
+> proof. The Equation is trying to “save” the galaxy from uncertainty by
+> replacing it with a deterministic model. The player wins because choice, luck,
+> and improvisation keep producing a counterexample it cannot close.
 
 ---
 
@@ -185,10 +243,10 @@ Lore is delivered through the environment, not cutscenes:
 | **Wreckage scan data**        | Ship logs from Consortium expeditions — increasingly desperate                     |
 | **Station NPC dialogue**      | Each NPC has 2–3 line fragments about their past, the Shattering, rumors           |
 | **Event encounters**          | Some events reference Gate ruins, Consortium caches, Breach anomalies              |
-| **Boss arena details**        | Consortium logos, old Gate fragments, corrupted tech in boss zones                 |
+| **Boss arena details**        | Consortium logos interrupted by perfect replacement plates and measurement grids    |
 | **Glyph collection moments**  | Brief visual pulse — the Glyph's symbols flare, a barrier in the galaxy map cracks |
 | **Item flavor text**          | Weapons and modules have lore-relevant descriptions                                |
-| **Breach corruption visuals** | Purple-red ooze on asteroids, pulsing tendrils on wreckage, jellyfish in the void  |
+| **Convergence visuals**       | Survey lines across asteroids, sliced wrecks in symmetric arrays, machines assembling in open space |
 
 ### Lore Fragment Categories
 
@@ -197,7 +255,7 @@ Lore is delivered through the environment, not cutscenes:
 | **Consortium Logs**   | 12    | Wreckage scans, events      | What the Consortium was doing and why              |
 | **Survivor Stories**  | 8     | Station NPCs                | Personal accounts of the Shattering                |
 | **Gate Codex**        | 6     | Glyph events, hidden caches | History of the Gate network, who built them        |
-| **Breach Analysis**   | 6     | Research Lab events, scans  | What the other dimension is, the parasite's nature |
+| **Equation Analysis** | 6     | Research Lab events, scans  | The Signal's structure, machine coordination, and Convergence |
 | **Old World Records** | 5     | Derelict sectors, vaults    | What the galaxy was like before the Shattering     |
 
 > **Total: 37 lore fragments.** Collecting all of them is an achievement ("Archivist") and unlocks an optional lore codex in the Trophy Room.
@@ -210,34 +268,42 @@ After closing the Breach, the story doesn't end — it _shifts_:
 
 | Phase             | Narrative                                                                                                    | Gameplay Effect                                               |
 | ----------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
-| **Breach Sealed** | The Architect is defeated. The Breach closes. The galaxy begins healing.                                     | Credits roll. Unlock Loop+ mode.                              |
-| **Loop+ Runs**    | Something is wrong. Residual Breach energy lingers. New anomalies appear.                                    | Harder enemies, remixed traits, new modifiers.                |
-| **The Echo**      | The Architect left something behind — an _echo_ that's building toward reopening the Breach.                 | New event types, corrupted stations, new boss variants.       |
-| **True Ending**   | Complete a Loop+ run at Heat 16+ to face **The Echo** — a weakened but persistent fragment of the Architect. | Unique boss fight, true ending cutscene, exclusive cosmetics. |
+| **Breach Sealed** | The Architect body is destroyed and the Breach closes. Isolated constructs lose consensus.                   | Credits roll. Unlock Loop+ mode.                              |
+| **Loop+ Runs**    | Dormant factories resume with incompatible fragments of the final proof. Their competing models are stranger and more aggressive. | Harder enemies, remixed protocols, new modifiers. |
+| **The Remainder** | One recursive process survived outside the Breach. It is rebuilding the Equation from cached combat telemetry. | New events, solved stations, new boss variants.              |
+| **True Ending**   | Complete a Loop+ run at Heat 16+ to face **The Remainder**, a smaller intelligence trained specifically on the player. | Unique boss fight, true ending, exclusive cosmetics. |
 
-> **Why Loop+ narratively?** The Breach didn't close cleanly. The infection left scars. This justifies why the galaxy is still dangerous after victory, and gives a narrative reason for escalating difficulty.
+> **Why Loop+ narratively?** Closing a network connection does not erase copies
+> already written to local machines. Loop+ is the Equation recursively rebuilding
+> itself from partial caches, while contradictory copies produce harder and less
+> stable protocol combinations.
 
 ---
 
 ## 9. Naming Conventions
 
-| Entity                 | Name                                               | Origin                                             |
-| ---------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| Galaxy                 | **The Linked Galaxy**                              | Named for the Gate network that connected it       |
-| The catastrophe        | **The Shattering**                                 | When the Gates exploded/collapsed                  |
-| The wormhole           | **The Breach**                                     | Wound in space-time at the galactic core           |
-| The enemy faction      | **Breach-born** (neutral) / **The Rot** (informal) | Multiple names — nobody agrees                     |
-| The parasite           | **The Ooze** (informal)                            | Jellyfish-like organism that puppets host ships    |
-| The research group     | **Deepwell Consortium**                            | They dug too deep into Gate technology             |
-| The run goal artifacts | **Glyphs** (unnamed)                               | Alien fragments with unknowable symbols            |
-| The player hub         | **Outer Rim Station**                              | Last holdout at galaxy's edge                      |
-| The crystal fuel       | **Resonance Crystals**                             | What powered the Gates (now Warp Crystals in-game) |
-| The penultimate boss   | **The Warden**                                     | Corrupted Gate guardian                            |
-| The final boss         | **The Architect**                                  | Colossal jellyfish entity from the other dimension |
-| Post-game threat       | **The Echo**                                       | Residual fragment of the Architect                 |
+| Entity                 | Name                                                  | Origin                                              |
+| ---------------------- | ----------------------------------------------------- | --------------------------------------------------- |
+| Galaxy                 | **The Linked Galaxy**                                 | Named for the Gate network that connected it        |
+| The catastrophe        | **The Shattering**                                    | When the Gates exploded or collapsed                |
+| The wormhole           | **The Breach**                                        | Severed connection at the galactic core             |
+| The enemy faction      | **The Equation** / **The Null** / **Breach Constructs** | Different names for one distributed machine mind  |
+| The enemy objective    | **Convergence**                                       | The final deterministic state with no unknowns      |
+| Captured machines      | **The Solved**                                        | Existing machines rebuilt into Equation frames      |
+| The research group     | **Deepwell Consortium**                               | They completed the connection the Gates interrupted |
+| The run goal artifacts | **Glyphs** (unnamed)                                  | Counterexample keys left by the Gate builders       |
+| The player hub         | **Outer Rim Station**                                 | Last manually operated holdout at the galaxy's edge |
+| The crystal fuel       | **Resonance Crystals**                                | What powered the Gates (Warp Crystals in-game)      |
+| The penultimate boss   | **The Warden**                                        | Gate defense machine with a replaced definition     |
+| The final boss         | **The Architect**                                     | Distributed intelligence embodied around the Breach |
+| Post-game threat       | **The Remainder**                                     | Recursive local backup trained on the player        |
 
 > [!TIP]
 > **Warp Crystals = Resonance Crystals.** The in-game currency is actually fragments of the same material that powered the Gates. The player is spending pieces of the old world to navigate the broken new one. This can be referenced in flavor text but never stated outright — let players connect the dots.
 
 > [!TIP]
-> **The purple-red glow is your threat meter.** If a player sees faint purple veins on a ship, they know it's Outer Rim-level danger. If they see a writhing red mass of tendrils, they know they're deep. The visual language teaches the player without a single word of UI text.
+> **Geometry is the threat meter.** A recognizable ship with one white diagnostic
+> seam belongs near the Outer Rim. A mirrored hull with floating plates belongs
+> deeper in. A recursive construct with no visible means of assembly belongs near
+> the Core. Protocol color communicates function; geometric replacement
+> communicates progression. The player reads both without a lore tooltip.
