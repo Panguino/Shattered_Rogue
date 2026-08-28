@@ -24,9 +24,9 @@ coincident vertices takes the count to zero.
 
 Conversion and import:
 
-1. Run `ShatteredRogue/Scripts/convert_asteroid_glbs.py` through Blender 5.1 in
+1. Run `game/Scripts/convert_asteroid_glbs.py` through Blender 5.1 in
    the table order. It recentres pivots and exports LOD0 and the textures only.
-2. Run `ShatteredRogue/Scripts/import_asteroid_kit.py` through the full Unreal
+2. Run `game/Scripts/import_asteroid_kit.py` through the full Unreal
    editor with `-ExecutePythonScript`. UE 5.8's Python commandlet silently
    no-ops the LOD APIs, so the full editor is required.
 

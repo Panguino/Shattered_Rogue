@@ -10,7 +10,7 @@ You are a **spaceman** in a shattered galaxy. The long-term fantasy is 6 hulls �
 | **Genre** | Top-down roguelite space shooter |
 | **Players (vision)** | 1–4 online co-op — **POC is solo** |
 | **Engine** | Unreal Engine 5.8 (C++ primary, Unreal MCP) |
-| **UE project** | Sibling: `C:\Projects\_personal\Shattered\ShatteredRogue` |
+| **UE project** | Sibling folder `game` (`C:\Projects\_personal\Shattered\game`) |
 | **Art** | Cartoonish (Mario / Zelda); POC uses primitives first |
 | **Ships (vision)** | 6 hulls × 5 professions = 30 named combos |
 

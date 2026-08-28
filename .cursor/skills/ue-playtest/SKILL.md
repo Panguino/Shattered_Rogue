@@ -8,9 +8,9 @@ description: >-
 
 # UE playtest
 
-Engine project: `C:\Projects\_personal\Shattered\ShatteredRogue`
+Engine project: `C:\Projects\_personal\Shattered\game`
 UE: `C:\Program Files\Epic Games\UE_5.8`
-Mockup server: `C:\Projects\_personal\Shattered\Shattered_Rogue\art\hud\mockup\serve.mjs` on port **5173**
+Mockup server: `C:\Projects\_personal\Shattered\creative\art\hud\mockup\serve.mjs` on port **5173**
 
 ## 1. Inventory first
 
@@ -41,7 +41,7 @@ Stop agent-owned `-game` Cmd first if the DLL is locked.
 ```powershell
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Build\BatchFiles\Build.bat" `
   ShatteredRogueEditor Win64 Development `
-  "C:\Projects\_personal\Shattered\ShatteredRogue\ShatteredRogue.uproject" `
+  "C:\Projects\_personal\Shattered\game\ShatteredRogue.uproject" `
   -WaitMutex -NoHotReloadFromIDE
 ```
 
@@ -51,10 +51,10 @@ Success = `Result: Succeeded`. `LNK1104` = a process still has the DLL; go back 
 
 ```powershell
 & "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" `
-  "C:\Projects\_personal\Shattered\ShatteredRogue\ShatteredRogue.uproject" `
+  "C:\Projects\_personal\Shattered\game\ShatteredRogue.uproject" `
   "/Game/Maps/M_PirateRaid?game=/Script/ShatteredRogue.ShatteredTrainingGameMode" `
   -game -windowed -ResX=1920 -ResY=1080 -NoHotReloadFromIDE `
-  -abslog="C:\Projects\_personal\Shattered\ShatteredRogue\Saved\Logs\HaloPlaytest.log"
+  -abslog="C:\Projects\_personal\Shattered\game\Saved\Logs\HaloPlaytest.log"
 ```
 
 Wait until `MainWindowHandle` is non-zero (often 15–25s). Then capture with `art/hud/plates/capture-plate.ps1`.
@@ -62,7 +62,7 @@ Wait until `MainWindowHandle` is non-zero (often 15–25s). Then capture with `a
 ## 5. Mockup
 
 ```powershell
-cd C:\Projects\_personal\Shattered\Shattered_Rogue\art\hud\mockup
+cd C:\Projects\_personal\Shattered\creative\art\hud\mockup
 node serve.mjs 5173
 ```
 

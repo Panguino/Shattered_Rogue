@@ -172,7 +172,7 @@ and the solve will use it to pin the roll.
 ### Re-seeding from geometry
 
 `models/seed-sockets.mjs` walks the source GLB surfaces and writes
-`models/sockets.json`; `ShatteredRogue/Scripts/apply_cold_iron_sockets.py` bakes
+`models/sockets.json`; `game/Scripts/apply_cold_iron_sockets.py` bakes
 that onto the assets. Re-running overwrites only the sockets named in the file,
 so it will discard hand corrections to those same names.
 

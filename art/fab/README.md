@@ -4,7 +4,7 @@ Purchased Unreal packs are inspected in the sibling sandbox:
 
 `C:\Projects\_personal\Shattered\ShatteredVault`
 
-Never use **Add to Project** on the live `ShatteredRogue` project. Marketplace
+Never use **Add to Project** on the live `game` project. Marketplace
 packs often include project settings, example maps, Blueprints, plugins, and
 large source textures that should not enter the game by default.
 
@@ -20,7 +20,7 @@ large source textures that should not enter the game by default.
    and material parameter contracts.
 6. If an original asset is genuinely needed, migrate only its narrow folder
    with **Asset Actions → Migrate**, review the dependency list, and target
-   `ShatteredRogue\Content`.
+   `game\Content`.
 7. Rename migrated assets into the game's conventions and verify cook/package
    behavior before considering the intake complete.
 

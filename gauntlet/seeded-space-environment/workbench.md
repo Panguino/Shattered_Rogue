@@ -3,7 +3,7 @@
 Wave: implementation complete (recipe + director + materials + Flight Lab seed + tests + docs)
 
 ## How to run
-1. Open `C:\Projects\_personal\Shattered\ShatteredRogue\ShatteredRogue.uproject`
+1. Open `C:\Projects\_personal\Shattered\game\ShatteredRogue.uproject`
 2. Play → Flight Training (or PIE on `M_PirateRaid`)
 3. Press `\` (PIE) or F8 (standalone) for Flight Lab
 4. Note ENVIRONMENT SEED / LAYOUT HASH; APPLY SEED; NEW SEED

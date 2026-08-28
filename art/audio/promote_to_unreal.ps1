@@ -13,7 +13,7 @@
 $ErrorActionPreference = "Stop"
 
 $Engine = "C:\Program Files\Epic Games\UE_5.8"
-$Project = "C:\Projects\_personal\Shattered\ShatteredRogue"
+$Project = "C:\Projects\_personal\Shattered\game"
 $Candidates = Join-Path $PSScriptRoot "elevenlabs\sfx"
 $Staging = Join-Path $Project "Intermediate\AudioImport"
 

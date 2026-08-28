@@ -13,7 +13,7 @@
 
 Choose your **hull** and **profession**, launch into procedural hex-grid galaxies. Mine asteroids, scan anomalies, trade at stations, fight the Equation's machine swarms. Upgrade with weapons, modules, and tech. Die, unlock new options, try again — solo or with up to 3 friends.
 
-**Active plan:** [POC playable loop](00_POC_PLAYABLE_LOOP.md) — Pirate Raid arena, menus, debug sliders. Unreal project lives in a **sibling** folder (`C:\Projects\_personal\Shattered\ShatteredRogue`). This repo is design, wiki, and art.
+**Active plan:** [POC playable loop](00_POC_PLAYABLE_LOOP.md) — Pirate Raid arena, menus, debug sliders. Unreal project lives in the sibling **`game`** folder. This repo is design, wiki, and art (`creative`).
 
 **Browse the wiki:** `cd wiki && npm run build` then `npm run serve` → http://localhost:4173.
 
@@ -22,7 +22,7 @@ Choose your **hull** and **profession**, launch into procedural hex-grid galaxie
 ## 📂 Repository Structure
 
 ```
-Shattered_Rogue/                    ← this repo (design + wiki + art)
+creative/                           ← this repo (design + wiki + art)
 ├── 00_POC_PLAYABLE_LOOP.md         ← ACTIVE plan (Pirate Raid POC)
 ├── 00_GAME_DEVELOPMENT_PLAN.md     ← catalog index
 ├── README.md
@@ -35,8 +35,8 @@ Shattered_Rogue/                    ← this repo (design + wiki + art)
 │   └── architecture.md
 └── archive/full-game-roadmap-2026-08/   ← 18-phase plan snapshot
 
-Sibling (not in this repo yet):
-C:\Projects\_personal\Shattered\ShatteredRogue   ← UE 5.8 .uproject
+Sibling:
+C:\Projects\_personal\Shattered\game   ← UE 5.8 .uproject
 ```
 
 ---
@@ -176,4 +176,4 @@ C:\Projects\_personal\Shattered\ShatteredRogue   ← UE 5.8 .uproject
 | **Current work** | POC Pirate Raid loop — follow [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) |
 | **Design docs** | 16/16 North Star (not blocking the POC) |
 | **Full-game roadmap** | Archived 2026-08-20 |
-| **UE 5.8 project** | Not created yet (sibling `ShatteredRogue`) |
+| **UE 5.8 project** | Sibling `game` |

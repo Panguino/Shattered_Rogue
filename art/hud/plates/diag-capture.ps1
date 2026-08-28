@@ -11,8 +11,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $Engine = "C:\Program Files\Epic Games\UE_5.8\Engine\Binaries\Win64\UnrealEditor-Cmd.exe"
-$Project = "C:\Projects\_personal\Shattered\ShatteredRogue\ShatteredRogue.uproject"
-$Plates = "C:\Projects\_personal\Shattered\Shattered_Rogue\art\hud\plates"
+$Project = "C:\Projects\_personal\Shattered\game\ShatteredRogue.uproject"
+$Plates = "C:\Projects\_personal\Shattered\creative\art\hud\plates"
 
 Get-Process -Name "UnrealEditor-Cmd" -ErrorAction SilentlyContinue | Stop-Process -Force
 Start-Sleep -Seconds 3
@@ -26,7 +26,7 @@ $Arguments = @(
     # unquoted "viewmode unlit" reaches the engine as two arguments and silently
     # does nothing.
     "-ExecCmds=`"$ExecCmds`"",
-    "-abslog=C:\Projects\_personal\Shattered\ShatteredRogue\Saved\Logs\Diagnostic.log"
+    "-abslog=C:\Projects\_personal\Shattered\game\Saved\Logs\Diagnostic.log"
 )
 Start-Process -FilePath $Engine -ArgumentList $Arguments
 

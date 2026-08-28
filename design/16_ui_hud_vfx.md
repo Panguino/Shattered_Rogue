@@ -201,7 +201,7 @@ ever want it, belongs in a hold-to-inspect panel, not on the ring.
 #### Runtime port status
 
 The first runtime slice is implemented in the live UE project at
-`../ShatteredRogue/Source/ShatteredRogue/ShatteredHUD.*`. It replaces the old
+`../game/Source/ShatteredRogue/ShatteredHUD.*`. It replaces the old
 placeholder pods with a paint-only halo and reticle:
 
 - pawn bounds origin projected to widget-local space every frame, then pushed
@@ -783,7 +783,7 @@ and every judgement made from it is about the wrong typeface.
 The game does **not** go through a `UFont` asset. `UShatteredHUD` paints with
 Slate primitives rather than `UTextBlock`s, so it builds an
 `FStandaloneCompositeFont` over the full TTFs in
-`ShatteredRogue/Content/UI/Fonts/`, with Regular / Medium / SemiBold / Bold as
+`game/Content/UI/Fonts/`, with Regular / Medium / SemiBold / Bold as
 typeface entries. That keeps the face a code-side decision that no one has to
 re-import after editing the HUD, and it fails soft: if the files are missing the
 widget logs once and falls back to the Slate default rather than drawing

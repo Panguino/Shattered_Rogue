@@ -33,7 +33,7 @@ Arena → Victory or Defeat → Main Menu
 | Movement | Full **6DOF** inertial flight — forward thrust dominates, reverse/strafe capped near 120–150 vs 800 forward, gradual ship alignment, passive damping, hard brake |
 | Camera | Third-person chase default, raised so the hull sits below the crosshair and banks with the roll; **F1** toggles first-person; camera aims freely and the ship rotates toward its heading |
 | Net | **Solo only.** Still split `Pawn` / `PlayerController` / `GameMode` / `GameState` / `GameInstance` so a later listen-server is not a rewrite |
-| UE project | Sibling folder **`C:\Projects\_personal\Shattered\ShatteredRogue`** — this repo stays design / wiki / art |
+| UE project | Sibling folder **`game`** (`C:\Projects\_personal\Shattered\game`) — this repo stays design / wiki / art |
 | Death FX | Hide mesh + burst particles. Do not explode a split GLB |
 
 Do not switch to Unity or Godot. See [research/engine_mcp_ai_integration.md](research/engine_mcp_ai_integration.md) and [technical/architecture.md](technical/architecture.md).
@@ -92,7 +92,7 @@ Do **not** write 20 substeps for 6–7 until step 5 is fun.
 
 ### Step 1 — Project
 
-1. Create UE **5.8** Blank **C++** project `ShatteredRogue` at `C:\Projects\_personal\Shattered\ShatteredRogue` (no starter content, Windows).
+1. Create UE **5.8** Blank **C++** project `ShatteredRogue` at `C:\Projects\_personal\Shattered\game` (no starter content, Windows).
 2. Project settings: Desktop, Forward Renderer, DX12, frame rate 60, Enhanced Input + Niagara on.
 3. Enable **Unreal MCP**, Auto Start Server, generate Cursor client config.
 4. Git init + `.gitignore` (UE) + LFS for `uasset` / `umap` / `fbx` / `png` / `wav`.

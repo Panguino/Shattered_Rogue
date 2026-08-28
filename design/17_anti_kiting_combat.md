@@ -34,7 +34,7 @@ Ships fly **through and around** the fight. Running away stays useful, but it ha
 
 ## 2. Current architecture (POC)
 
-Sibling Unreal project: `C:\Projects\_personal\Shattered\ShatteredRogue`. Solo only; `Pawn` / `PlayerController` / `GameMode` / `GameState` / `GameInstance` are already split.
+Sibling Unreal project: `C:\Projects\_personal\Shattered\game`. Solo only; `Pawn` / `PlayerController` / `GameMode` / `GameState` / `GameInstance` are already split.
 
 | System | Where | What it does today |
 | --- | --- | --- |

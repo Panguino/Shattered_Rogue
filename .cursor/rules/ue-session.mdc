@@ -5,7 +5,7 @@ alwaysApply: true
 
 # UE session discipline
 
-Two repos: this one is design/mockup (`Shattered_Rogue`). The live engine is the sibling `ShatteredRogue`. Never compile or launch from the design repo.
+Two repos: this one is design/mockup (`creative`). The live engine is the sibling `game`. Never compile or launch from the creative repo.
 
 ## Do not restart by default
 

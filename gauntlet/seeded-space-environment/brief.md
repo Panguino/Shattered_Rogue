@@ -2,7 +2,7 @@
 
 Slug: `seeded-space-environment`
 Scope: task
-Repo: `C:\Projects\_personal\Shattered\Shattered_Rogue` (design) + sibling `ShatteredRogue` Unreal project
+Repo: `C:\Projects\_personal\Shattered\creative` (design) + sibling `game` Unreal project
 Created: 2026-08-21
 Clock: ~4h
 Height: polished
