@@ -45,6 +45,17 @@ const PAGES = [
     kind: "asteroids",
     distRoot: "catalogs/asteroids",
   },
+  {
+    id: "audio",
+    title: "Music & SFX",
+    group: "Asset Catalogs",
+    kind: "audio",
+    catalog: "art/audio/catalog.json",
+    assetRoot: "art/audio",
+    distRoot: "catalogs/audio",
+    intro:
+      "Music beds and SFX candidates with the prompts that produced them. Play samples in the inspector; copy a brief to regenerate or iterate.",
+  },
 
   { id: "d01", title: "01 · Game Vision", group: "Design", source: "design/01_game_vision.md" },
   { id: "d02", title: "02 · Core Mechanics", group: "Design", source: "design/02_core_mechanics.md" },
@@ -64,6 +75,7 @@ const PAGES = [
   { id: "d16", title: "16 · UI HUD VFX", group: "Design", source: "design/16_ui_hud_vfx.md" },
   { id: "d17", title: "17 · Anti-Kiting Combat", group: "Design", source: "design/17_anti_kiting_combat.md" },
   { id: "d18", title: "18 · Procedural Environments", group: "Design", source: "design/18_procedural_environments.md" },
+  { id: "d00-ideas", title: "Unsorted ideas", group: "Design", source: "design/00_random_unsorted_ideas.md" },
 
   { id: "art-prompts", title: "Ship Prompts (Markdown)", group: "Art", source: "art/ship_prompts.md" },
   { id: "toolchain", title: "AI Toolchain", group: "Technical", source: "technical/ai_toolchain.md" },
@@ -199,7 +211,7 @@ function esc(s) {
 }
 
 function shell(page, body) {
-  const extra = ["ships", "asset-catalog", "asteroids"].includes(page.kind)
+  const extra = ["ships", "asset-catalog", "asteroids", "audio"].includes(page.kind)
     ? " content-assets"
     : "";
   return `<!doctype html>
@@ -308,6 +320,7 @@ function homeBody(ships) {
     <a class="card" href="enemy-ships.html"><h3>Enemy ships</h3><p>Fifteen complete Cold Iron concepts beside their 6–9k-triangle models.</p></a>
     <a class="card" href="enemy-components.html"><h3>Enemy components</h3><p>The aligned modular mesh kit used by the procedural enemy generator.</p></a>
     <a class="card" href="asteroids.html"><h3>Asteroids</h3><p>Active size-family concepts and all eight Unreal runtime source GLBs.</p></a>
+    <a class="card" href="audio.html"><h3>Music &amp; SFX</h3><p>Playable beds and cues with the prompts that produced them.</p></a>
     <a class="card" href="d01.html"><h3>Game vision</h3><p>Hulls, professions, combos, art direction, pillars.</p></a>
     <a class="card" href="poc.html"><h3>POC plan</h3><p>Pirate Raid loop: menus, placeholder Ace, waves, flagship. Sibling UE 5.8 project.</p></a>
     <a class="card" href="toolchain.html"><h3>AI toolchain</h3><p>Tripo targets, concept pipeline, editor MCP setup.</p></a>
@@ -556,6 +569,7 @@ function assetCatalogLinks(activeId) {
     ["enemy-ships", "Enemy ships"],
     ["enemy-components", "Enemy components"],
     ["asteroids", "Asteroids"],
+    ["audio", "Music & SFX"],
   ];
   return `<nav class="asset-catalog-nav" aria-label="Asset catalogs">${links
     .map(
@@ -563,6 +577,52 @@ function assetCatalogLinks(activeId) {
         `<a class="${id === activeId ? "active" : ""}" href="${id}.html">${label}</a>`,
     )
     .join("")}</nav>`;
+}
+
+function loadAudioCatalog(page) {
+  const catalogFile = path.join(ROOT, page.catalog);
+  const sourceRoot = path.join(ROOT, page.assetRoot);
+  const data = JSON.parse(fs.readFileSync(catalogFile, "utf8"));
+
+  return data.entries.map((entry) => {
+    const fileSource = entry.file ? path.join(sourceRoot, entry.file) : null;
+    const onDisk = Boolean(fileSource && fs.existsSync(fileSource));
+    const audio = onDisk ? copyCatalogFile(fileSource, page.distRoot) : null;
+    const bytes = onDisk ? fs.statSync(fileSource).size : null;
+
+    const stats = [];
+    if (entry.kind) stats.push(["kind", entry.kind]);
+    if (entry.durationSec != null) stats.push(["duration", `${entry.durationSec}s`]);
+    if (entry.bpm != null) stats.push(["bpm", String(entry.bpm)]);
+    if (entry.key) stats.push(["key", entry.key]);
+    if (entry.model) stats.push(["model", entry.model]);
+    if (entry.songId) stats.push(["song id", entry.songId]);
+    if (entry.generatedAt) stats.push(["generated", entry.generatedAt]);
+    if (bytes != null) stats.push(["on disk", `${(bytes / 1024).toFixed(0)} KB`]);
+    if (entry.referenceIntent) stats.push(["intent", entry.referenceIntent]);
+    if (!onDisk && entry.file) stats.push(["file", "not generated yet"]);
+
+    const status = onDisk
+      ? entry.status || "on disk"
+      : entry.status === "brief-only"
+        ? "brief only"
+        : entry.status || "missing file";
+
+    return {
+      id: entry.id,
+      title: entry.title,
+      group: entry.group || entry.kind || "audio",
+      image: null,
+      model: null,
+      preview: null,
+      audio,
+      note: entry.note || "",
+      status,
+      stats,
+      prompt: entry.prompt || "",
+      mediaKind: "audio",
+    };
+  });
 }
 
 // Entries ride along as JSON rather than as pre-rendered cards. The browse pane
@@ -576,10 +636,12 @@ function catalogData(entries) {
 function assetCatalogBody(page, entries) {
   const groups = [...new Set(entries.map((entry) => entry.group))];
   const models = entries.filter((entry) => entry.model).length;
+  const audioFiles = entries.filter((entry) => entry.audio).length;
   const triangles = entries.reduce(
     (total, entry) => total + (entry.triangles ?? 0),
     0,
   );
+  const isAudio = page.kind === "audio";
 
   return `
     ${assetCatalogLinks(page.id)}
@@ -588,7 +650,11 @@ function assetCatalogBody(page, entries) {
     <p class="lede">${esc(page.intro ?? "Source images and runtime-ready models in one searchable catalog.")}</p>
     <div class="catalog-summary">
       <span><strong>${entries.length}</strong> assets</span>
-      <span><strong>${models}</strong> with 3D</span>
+      ${
+        isAudio
+          ? `<span><strong>${audioFiles}</strong> playable</span>`
+          : `<span><strong>${models}</strong> with 3D</span>`
+      }
       ${triangles ? `<span><strong>${triangles.toLocaleString()}</strong> total triangles</span>` : ""}
     </div>
     <div class="catalog-controls">
@@ -635,8 +701,9 @@ for (const page of PAGES) {
     page.intro =
       "Active asteroid concepts paired by size family with the eight source-of-truth runtime GLBs used by Unreal.";
     body = assetCatalogBody(page, loadAsteroidCatalog(page));
-  }
-  else {
+  } else if (page.kind === "audio") {
+    body = assetCatalogBody(page, loadAudioCatalog(page));
+  } else {
     const abs = path.join(ROOT, page.source);
     const raw = fs.readFileSync(abs, "utf8");
     body = mdBody(page, raw);

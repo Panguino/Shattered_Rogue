@@ -120,5 +120,13 @@ spending credits, which is the cheap way to confirm a selection is right.
   follow this directory layout.
 - `probe_credits.mjs` checks the live ElevenLabs allowance.
 
+## Wiki catalog
+
+`catalog.json` is the record of music/SFX candidates the wiki shows: title,
+status, BPM/key, file path, and the prompt that produced (or will produce)
+each take. Rebuild the wiki after editing it (`cd wiki && npm run build`).
+The Music & SFX page plays files that exist on disk and still shows briefs
+that have not been generated yet.
+
 The API key is read from the repository `.env`; generated audio never embeds
 the key.

@@ -95,7 +95,7 @@ function initCatalog() {
     const query = searchBox?.value.trim().toLowerCase() || "";
     return entries.filter((entry) => {
       const inGroup = group === "all" || entry.group === group;
-      const haystack = `${entry.title} ${entry.group} ${entry.note}`.toLowerCase();
+      const haystack = `${entry.title} ${entry.group} ${entry.note} ${entry.prompt || ""} ${entry.status || ""}`.toLowerCase();
       return inGroup && (!query || haystack.includes(query));
     });
   }
@@ -108,7 +108,20 @@ function initCatalog() {
       image.loading = "lazy";
       return image;
     }
+    if (entry.audio || entry.mediaKind === "audio") {
+      const mark = el("span", `thumb-audio${entry.audio ? "" : " missing"}`);
+      mark.textContent = entry.audio ? "♪" : "…";
+      mark.title = entry.audio ? "Playable audio" : "Brief only — no file yet";
+      return mark;
+    }
     return el("span", "thumb-missing", "No image");
+  }
+
+  function mediaMeta(entry) {
+    if (entry.audio) return "playable";
+    if (entry.mediaKind === "audio") return "brief only";
+    if (entry.model) return "3D ready";
+    return "image only";
   }
 
   function renderBrowse() {
@@ -134,12 +147,14 @@ function initCatalog() {
           "span",
           "tile-meta",
           view === "list"
-            ? `${pretty(entry.group)} · ${entry.model ? "3D ready" : "image only"}`
+            ? `${pretty(entry.group)} · ${mediaMeta(entry)}`
             : pretty(entry.group),
         ),
       );
       card.append(copy);
-      if (!entry.model) card.append(el("span", "tile-flag", "2D"));
+      if (entry.audio) card.append(el("span", "tile-flag", "AUDIO"));
+      else if (entry.mediaKind === "audio") card.append(el("span", "tile-flag", "BRIEF"));
+      else if (!entry.model) card.append(el("span", "tile-flag", "2D"));
 
       card.addEventListener("click", () => select(entry));
       browse.append(card);
@@ -193,50 +208,72 @@ function initCatalog() {
     if (entry.status) header.append(el("span", "asset-status", pretty(entry.status)));
     inspector.append(header);
 
-    const tabs = el("div", "inspector-tabs");
-    const stage = el("div", "inspector-stage");
-    // Clicking a thumbnail should land on the thing you cannot see in the
-    // thumbnail, so 3D is the default whenever the asset has a model.
-    let mode = entry.model ? "model" : "image";
-
-    function paint() {
-      for (const tab of tabs.children) {
-        tab.classList.toggle("active", tab.dataset.mode === mode);
-      }
-      if (mode === "model" && entry.model) {
-        stage.classList.add("is-model");
-        stage.replaceChildren(el("div", "placeholder", "Loading 3D…"));
-        mountModel(stage, entry);
-        return;
-      }
-      stage.classList.remove("is-model");
-      if (entry.image || entry.preview) {
-        const link = el("a", "asset-frame");
-        link.href = entry.image || entry.preview;
-        link.target = "_blank";
-        link.rel = "noopener";
-        link.append(thumb(entry, `${entry.title} source image`));
-        stage.replaceChildren(link);
+    if (entry.mediaKind === "audio" || entry.audio) {
+      const stage = el("div", "inspector-stage is-audio");
+      if (entry.audio) {
+        const player = el("audio");
+        player.controls = true;
+        player.preload = "metadata";
+        player.src = entry.audio;
+        player.setAttribute("controlsList", "nodownload");
+        stage.append(player);
       } else {
-        stage.replaceChildren(el("div", "placeholder", "No source image on disk."));
+        stage.append(
+          el(
+            "div",
+            "placeholder",
+            "Brief only — generate this cue to hear it here.",
+          ),
+        );
       }
-    }
+      inspector.append(stage);
+    } else {
+      const tabs = el("div", "inspector-tabs");
+      const stage = el("div", "inspector-stage");
+      // Clicking a thumbnail should land on the thing you cannot see in the
+      // thumbnail, so 3D is the default whenever the asset has a model.
+      let mode = entry.model ? "model" : "image";
 
-    for (const [value, label] of [
-      ["model", entry.model ? "3D model" : "3D model (none)"],
-      ["image", "Source image"],
-    ]) {
-      const tab = el("button", "inspector-tab", label);
-      tab.type = "button";
-      tab.dataset.mode = value;
-      tab.disabled = value === "model" && !entry.model;
-      tab.addEventListener("click", () => {
-        mode = value;
-        paint();
-      });
-      tabs.append(tab);
+      function paint() {
+        for (const tab of tabs.children) {
+          tab.classList.toggle("active", tab.dataset.mode === mode);
+        }
+        if (mode === "model" && entry.model) {
+          stage.classList.add("is-model");
+          stage.replaceChildren(el("div", "placeholder", "Loading 3D…"));
+          mountModel(stage, entry);
+          return;
+        }
+        stage.classList.remove("is-model");
+        if (entry.image || entry.preview) {
+          const link = el("a", "asset-frame");
+          link.href = entry.image || entry.preview;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.append(thumb(entry, `${entry.title} source image`));
+          stage.replaceChildren(link);
+        } else {
+          stage.replaceChildren(el("div", "placeholder", "No source image on disk."));
+        }
+      }
+
+      for (const [value, label] of [
+        ["model", entry.model ? "3D model" : "3D model (none)"],
+        ["image", "Source image"],
+      ]) {
+        const tab = el("button", "inspector-tab", label);
+        tab.type = "button";
+        tab.dataset.mode = value;
+        tab.disabled = value === "model" && !entry.model;
+        tab.addEventListener("click", () => {
+          mode = value;
+          paint();
+        });
+        tabs.append(tab);
+      }
+      inspector.append(tabs, stage);
+      paint();
     }
-    inspector.append(tabs, stage);
 
     if (entry.note) inspector.append(el("p", "asset-note", entry.note));
 
@@ -256,6 +293,11 @@ function initCatalog() {
     }
 
     if (entry.prompt) {
+      const promptBox = el("div", "audio-prompt");
+      promptBox.append(el("p", "kicker", "Generation prompt"));
+      const pre = el("pre", "prompt-body");
+      pre.textContent = entry.prompt;
+      promptBox.append(pre);
       const button = el("button", "copy-prompt", "Copy prompt");
       button.type = "button";
       button.addEventListener("click", async () => {
@@ -263,10 +305,9 @@ function initCatalog() {
         button.textContent = "Copied";
         setTimeout(() => (button.textContent = "Copy prompt"), 1200);
       });
-      inspector.append(button);
+      promptBox.append(button);
+      inspector.append(promptBox);
     }
-
-    paint();
   }
 
   function select(entry) {

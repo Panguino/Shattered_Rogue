@@ -524,6 +524,55 @@ a:hover { color: var(--gold); }
   font-size: 12px;
   background: var(--void-2);
 }
+.thumb-audio {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: linear-gradient(160deg, #1a2740, #0d1424 60%);
+  color: var(--cyan, #5ee0ff);
+  font-size: 42px;
+  line-height: 1;
+}
+.thumb-audio.missing {
+  color: var(--muted);
+  font-size: 28px;
+}
+.inspector-stage.is-audio {
+  aspect-ratio: auto;
+  min-height: 88px;
+  padding: 18px 16px;
+  place-items: stretch;
+}
+.inspector-stage.is-audio audio {
+  width: 100%;
+  height: 40px;
+}
+.audio-prompt {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.audio-prompt .kicker { margin: 0 0 8px; }
+.audio-prompt .prompt-body {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--void-2);
+  color: var(--cream);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+.catalog-browse[data-view="list"] .thumb-audio {
+  aspect-ratio: 1;
+  height: 54px;
+  border-radius: 10px 0 0 10px;
+  font-size: 22px;
+}
 .tile-copy { display: block; padding: 8px 10px 10px; min-width: 0; }
 .tile-title {
   display: -webkit-box;
