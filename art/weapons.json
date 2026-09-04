@@ -1,0 +1,60 @@
+{
+  "generated": "2026-09-02",
+  "note": "Starter trio of ship hardpoint weapons. Each fills one gold weapon pad. Same Ace art family as the player fleet. Concepts live in art/weapons/{id}.png. No GLBs yet.",
+  "styleLock": "3D game-ready concept of a SINGLE standalone spaceship weapon module, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.\n\nCAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog. Entire weapon fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as Ace (StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic, bright colors, slightly low-poly, thick panel lines). SAME materials language: crimson-red plates, cream/white plates, charcoal mechanics. NOT photoreal, NOT grimdark.\n\nMOUNT: Circular gold mounting collar at the BOTTOM — the piece that bolts onto a ship's gold hardpoint pad. Underside has a dark hexagonal plug. Gold exists ONLY as that one mounting collar.\n\nMOD SLOTS: Exactly 4 empty hexagonal crystal wells with cream bezels and dark empty glass. NOT gold. Count them: 4. Nothing inserted.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, extra gold circles, crystals already plugged in, cropped weapon.",
+  "rules": {
+    "shipSlot": "one gold weapon hardpoint",
+    "levels": 5,
+    "maxOwnedPerType": 3,
+    "modSlotsByLevel": [0, 1, 2, 3, 4],
+    "modItem": "Mod Crystal",
+    "stash": "At the end of each level, stash found items into persistent inventory or keep them on this run. Death keeps what you entered with; run-only finds are lost."
+  },
+  "weapons": [
+    {
+      "id": "laser-cannon",
+      "name": "Laser Cannon",
+      "family": "pulse",
+      "starting": true,
+      "live": "The current Ace pulse gun — hot-orange bolts, rapid fire.",
+      "role": "Point-and-shoot DPS",
+      "damage": "Medium",
+      "fireRate": "Fast",
+      "range": "Medium",
+      "special": "Hits what the reticle is on. The reliable gun.",
+      "read": "long cream pulse barrel on a gold collar, fat crimson housing, hot-orange muzzle",
+      "color": "#ff3804",
+      "prompt": "3D game-ready concept of a SINGLE standalone spaceship weapon module, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.\n\nCAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire weapon fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as Ace — StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic. Bright colors, slightly low-poly, thick panel lines, chunky readable shapes, faint edge wear. SAME materials language as Ace: crimson-red plates, cream/white plates, charcoal mechanical recesses, stylized toy look. NOT photoreal, NOT grimdark, NOT sleek anime mecha.\n\nWEAPON IDENTITY: Laser Cannon. ONE-LINE SILHOUETTE: a long cream pulse barrel on a gold circular collar, with a fat crimson housing and a hot-orange muzzle. If it looks like a missile box or a tesla coil, it is wrong.\n\nSHAPE: compact fighter hardpoint gun, sized to bolt onto Ace's wing gold pad — not a capital-ship turret. Circular gold mounting collar at the BOTTOM of the weapon (the only gold on the whole object). Underside of the collar has a dark hexagonal plug that would seat into a ship's gold hardpoint. Above the collar: a chunky crimson-red rectangular receiver/housing with cream cheek plates. A long forward cream barrel with charcoal cooling fins along the sides, ending in a single circular muzzle. Inside the barrel and at the muzzle: hot orange energy glow (warm orange like Ace's engine bells, RGB-ish 255, 56, 4). Small charcoal heat vents. Thick panel lines. Chunky toy proportions, slightly low-poly.\n\nMOD SLOTS: exactly 4 empty hexagonal crystal wells in a row on top of the crimson housing. Cream bezels, dark empty glass, nothing inserted. These wells are NOT gold. Count them: 4 empty wells.\n\nGOLD RULE: gold exists ONLY as the single circular mounting collar at the base. No gold barrel rings, no gold wells, no gold screws.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, missiles, rockets, lightning bolts, copper coils, extra gold circles, crystals already plugged in, flame exhaust, cropped weapon."
+    },
+    {
+      "id": "seeker-rocket",
+      "name": "Seeker Rocket Launcher",
+      "family": "missile",
+      "starting": true,
+      "live": "Not in the live pawn yet. Lock-on rockets, slower than the laser.",
+      "role": "Lock-on burst",
+      "damage": "High",
+      "fireRate": "Slow",
+      "range": "Long",
+      "special": "Seeks the locked target. Hates cover and clutter.",
+      "read": "boxy twin-pair crimson missile pod on a gold collar, four cream rocket noses in charcoal tubes",
+      "color": "#f0c14b",
+      "prompt": "3D game-ready concept of a SINGLE standalone spaceship weapon module, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.\n\nCAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire weapon fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as Ace — StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic. Bright colors, slightly low-poly, thick panel lines, chunky readable shapes, faint edge wear. SAME materials language as Ace: crimson-red plates, cream/white plates, charcoal mechanical recesses, stylized toy look. NOT photoreal, NOT grimdark.\n\nWEAPON IDENTITY: Seeker Rocket Launcher. ONE-LINE SILHOUETTE: a boxy twin-tube crimson missile pod on a gold circular collar, with four cream rocket noses visible in charcoal launch tubes. If it looks like a long laser barrel or a tesla coil, it is wrong.\n\nSHAPE: compact fighter hardpoint launcher, sized to bolt onto Ace's wing gold pad — not a capital-ship silo. Circular gold mounting collar at the BOTTOM of the weapon (the only gold on the whole object). Underside of the collar has a dark hexagonal plug. Above the collar: a short wide boxy crimson-red magazine body, cream top plate, charcoal rectangular launch tubes facing forward. Two stacked pairs of tubes (four tubes total) showing cream/white rounded rocket noses peeking out. Tiny hot-orange dots only on the rocket tail rings, not a glowing barrel. Chunky toy proportions, slightly too fat, thick panel lines, hazard-stripe hint on one cream side panel (ochre-yellow, small).\n\nMOD SLOTS: exactly 4 empty hexagonal crystal wells in a row along the top cream plate. Cream bezels, dark empty glass, nothing inserted. These wells are NOT gold. Count them: 4 empty wells.\n\nGOLD RULE: gold exists ONLY as the single circular mounting collar at the base. No gold tube rims, no gold wells.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, a long cannon barrel, lightning, copper coils, extra gold circles, crystals already plugged in, huge exhaust flames, cropped weapon."
+    },
+    {
+      "id": "lightning-coil",
+      "name": "Lightning Coil Gun",
+      "family": "arc",
+      "starting": true,
+      "live": "Not in the live pawn yet. Close-range chain arcs.",
+      "role": "Short-range chain",
+      "damage": "Medium",
+      "fireRate": "Medium",
+      "range": "Short",
+      "special": "Arcs to nearby enemies. Wants you in the mix.",
+      "read": "fat stacked cream coils on a gold collar, cyan-white spark cage, no long barrel",
+      "color": "#5ee0ff",
+      "prompt": "3D game-ready concept of a SINGLE standalone spaceship weapon module, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.\n\nCAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire weapon fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.\n\nSTYLE: Same locked ART FAMILY as Ace — StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic. Bright colors, slightly low-poly, thick panel lines, chunky readable shapes, faint edge wear. SAME materials language as Ace: crimson-red plates, cream/white plates, charcoal mechanical recesses, stylized toy look. NOT photoreal, NOT grimdark.\n\nWEAPON IDENTITY: Lightning Coil Gun. ONE-LINE SILHOUETTE: a fat stacked-coil spark cage on a gold circular collar, short and wide, with cyan-white electricity between cream coils. If it looks like a long laser barrel or a missile box, it is wrong.\n\nSHAPE: compact fighter hardpoint coil gun, sized to bolt onto Ace's wing gold pad — not a laboratory Tesla tower. Circular gold mounting collar at the BOTTOM of the weapon (the only gold on the whole object). Underside of the collar has a dark hexagonal plug. Above the collar: a short crimson-red squat housing. Three thick cream doughnut coils stacked around a charcoal spark cage, slightly offset like toy hardware. Between the coils: cyan-white electric glow matching Ace's canopy cyan (bright teal-cyan, NOT orange). Two charcoal electrode prongs poke a short distance forward from the cage, with tiny cyan sparks at the tips — no long barrel. Fat, round, instantly different silhouette from a gun or a rocket pod.\n\nMOD SLOTS: exactly 4 empty hexagonal crystal wells around the crimson base housing. Cream bezels, dark empty glass, nothing inserted. These wells are NOT gold. Count them: 4 empty wells.\n\nGOLD RULE: gold exists ONLY as the single circular mounting collar at the base. Coils are cream, not gold. No extra gold rings.\n\nLighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.\n\nDO NOT INCLUDE: a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, missiles, a long cannon barrel, extra gold circles, crystals already plugged in, orange engine glow, cropped weapon."
+    }
+  ]
+}

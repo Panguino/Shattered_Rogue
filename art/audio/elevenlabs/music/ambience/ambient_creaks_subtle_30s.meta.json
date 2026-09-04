@@ -1,0 +1,136 @@
+{
+  "file": "ambient_creaks_subtle_30s.mp3",
+  "songId": "Ad6NttFKrgYmqAplDaZO",
+  "lengthMs": 30000,
+  "bpm": 150,
+  "bars": 18.75,
+  "barMs": 1600,
+  "seed": 20260908,
+  "model": "music_v2",
+  "compositionPlan": {
+    "chunks": [
+      {
+        "text": "[Ambience] {no vocals, no drums, sound design only}",
+        "duration_ms": 10000,
+        "positive_styles": [
+          "ambient sound design bed for a derelict machine interior, not a song",
+          "submarine engine room underneath: low motor drones, gyros winding, ballast hiss, pressure rumble, all understated",
+          "a few sharp metal creaks scattered across the section at uneven intervals",
+          "very slow, spacious, long decays, wide stereo, deep low end",
+          "loosely melodic: faint sustained tones drift in and out of the noise, detuned, no clear tune",
+          "tonal centre F sharp minor so it can sit under the battle tracks",
+          "the drones, whirrs and pressure rumble are subtle: pulled back, quieter, sitting low under everything",
+          "discrete creaking events on top: individual metal creaks, single stress groans, one at a time",
+          "each creak is a separate event with silence around it, not a continuous texture",
+          "creak timing is random and unpredictable, irregular gaps of varying length",
+          "the creaks are the most audible thing in the piece but are never loud"
+        ],
+        "negative_styles": [
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, singing, choir, humming, spoken word, robot voice, vocoder, talking",
+          "trailer braams, orchestral stabs",
+          "EDM anthem, festival build, big drop",
+          "anthemic chorus, triumphant hands-up climax",
+          "supersaw chord stabs",
+          "sidechain pumping the whole mix",
+          "drums, percussion, drum kit",
+          "steady beat, pulse or groove of any kind",
+          "chord progression",
+          "clear melody or hook",
+          "song structure, verse, chorus",
+          "guitar",
+          "sonar ping beeping on a regular interval",
+          "creaks arriving on a regular interval",
+          "loud drones or whirrs dominating the mix"
+        ],
+        "context_adherence": "high",
+        "conditioning_ref": {
+          "song_id": "HmdxDgCWg5KkI7234mHn",
+          "range": {
+            "start_ms": 0,
+            "end_ms": 15000
+          },
+          "condition_strength": "medium"
+        }
+      },
+      {
+        "text": "[Ambience 2] {no vocals, no drums, sound design only}",
+        "duration_ms": 10000,
+        "positive_styles": [
+          "creaking clusters here: two or three stress groans close together, then a long gap",
+          "one closer, louder creak as if the hull shifts nearby",
+          "the drones stay back and barely move",
+          "a faint sustained tone bends slowly across the section, never resolving",
+          "the drones, whirrs and pressure rumble are subtle: pulled back, quieter, sitting low under everything",
+          "discrete creaking events on top: individual metal creaks, single stress groans, one at a time",
+          "each creak is a separate event with silence around it, not a continuous texture",
+          "creak timing is random and unpredictable, irregular gaps of varying length",
+          "the creaks are the most audible thing in the piece but are never loud"
+        ],
+        "negative_styles": [
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, singing, choir, humming, spoken word, robot voice, vocoder, talking",
+          "trailer braams, orchestral stabs",
+          "EDM anthem, festival build, big drop",
+          "anthemic chorus, triumphant hands-up climax",
+          "supersaw chord stabs",
+          "sidechain pumping the whole mix",
+          "drums, percussion, drum kit",
+          "steady beat, pulse or groove of any kind",
+          "chord progression",
+          "clear melody or hook",
+          "song structure, verse, chorus",
+          "guitar",
+          "sonar ping beeping on a regular interval",
+          "creaks arriving on a regular interval",
+          "loud drones or whirrs dominating the mix"
+        ],
+        "context_adherence": "high"
+      },
+      {
+        "text": "[Ambience 3] {no vocals, no drums, sound design only}",
+        "duration_ms": 10000,
+        "positive_styles": [
+          "sparser again: long quiet stretches with single distant creaks",
+          "a motor winds down somewhere deep in the hull",
+          "relay clicks and faint electrical arcing scattered far back, irregular",
+          "stays quiet and unresolved, no build and no arrival",
+          "the drones, whirrs and pressure rumble are subtle: pulled back, quieter, sitting low under everything",
+          "discrete creaking events on top: individual metal creaks, single stress groans, one at a time",
+          "each creak is a separate event with silence around it, not a continuous texture",
+          "creak timing is random and unpredictable, irregular gaps of varying length",
+          "the creaks are the most audible thing in the piece but are never loud"
+        ],
+        "negative_styles": [
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, singing, choir, humming, spoken word, robot voice, vocoder, talking",
+          "trailer braams, orchestral stabs",
+          "EDM anthem, festival build, big drop",
+          "anthemic chorus, triumphant hands-up climax",
+          "supersaw chord stabs",
+          "sidechain pumping the whole mix",
+          "drums, percussion, drum kit",
+          "steady beat, pulse or groove of any kind",
+          "chord progression",
+          "clear melody or hook",
+          "song structure, verse, chorus",
+          "guitar",
+          "sonar ping beeping on a regular interval",
+          "creaks arriving on a regular interval",
+          "loud drones or whirrs dominating the mix"
+        ],
+        "context_adherence": "high"
+      }
+    ]
+  },
+  "generatedAt": "2026-09-02T22:41:57.772Z"
+}

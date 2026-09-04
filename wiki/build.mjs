@@ -19,6 +19,13 @@ const PAGES = [
 
   { id: "ships", title: "Player Ships", group: "Asset Catalogs", kind: "ships", source: "art/ships.json" },
   {
+    id: "weapons",
+    title: "Player Weapons",
+    group: "Asset Catalogs",
+    kind: "weapons",
+    source: "art/weapons.json",
+  },
+  {
     id: "enemy-ships",
     title: "Enemy Ships",
     group: "Asset Catalogs",
@@ -78,6 +85,7 @@ const PAGES = [
   { id: "d00-ideas", title: "Unsorted ideas", group: "Design", source: "design/00_random_unsorted_ideas.md" },
 
   { id: "art-prompts", title: "Ship Prompts (Markdown)", group: "Art", source: "art/ship_prompts.md" },
+  { id: "weapon-prompts", title: "Weapon Prompts (Markdown)", group: "Art", source: "art/weapon_prompts.md" },
   { id: "toolchain", title: "AI Toolchain", group: "Technical", source: "technical/ai_toolchain.md" },
   { id: "arch", title: "Architecture", group: "Technical", source: "technical/architecture.md" },
 
@@ -219,7 +227,7 @@ function shell(page, body) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${esc(page.title)} · Shattered Rogue</title>
+  <title>${esc(page.title)} · Shattered Slop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
@@ -249,6 +257,72 @@ function shell(page, body) {
 
 function hullFolder(hull) {
   return String(hull).toLowerCase();
+}
+
+function copyWeaponArt() {
+  const srcRoot = path.join(ROOT, "art/weapons");
+  const dstRoot = path.join(DIST, "catalogs/weapons");
+  const images = new Set();
+  const models = new Set();
+  if (!fs.existsSync(srcRoot)) return { images, models };
+
+  fs.mkdirSync(dstRoot, { recursive: true });
+  for (const f of fs.readdirSync(srcRoot)) {
+    const ext = path.extname(f).toLowerCase();
+    if (![".png", ".jpg", ".jpeg", ".webp", ".glb", ".gltf"].includes(ext)) continue;
+    fs.copyFileSync(path.join(srcRoot, f), path.join(dstRoot, f));
+    const key = path.basename(f, ext);
+    if (ext === ".glb" || ext === ".gltf") models.add(`${key}${ext}`);
+    else images.add(`${key}${ext}`);
+  }
+  return { images, models };
+}
+
+function weaponChecklist(w, rules) {
+  const slots = (rules.modSlotsByLevel || [0, 1, 2, 3, 4])
+    .map((n, i) => `L${i + 1}=${n}`)
+    .join(", ");
+  return `
+    <p class="meta inventory">Fills <em>one</em> ship weapon hardpoint. Max ${esc(String(rules.maxOwnedPerType))} owned of this type. ${esc(String(rules.levels))} levels. Mod crystals: ${esc(slots)}.</p>
+    <div class="gold-check">
+      <p class="gold-title">Visible gold — count exactly <strong>1</strong> circular mounting collar (the ship-pad mount). Extra gold = wrong. Four empty crystal wells, never gold.</p>
+      <ol class="gold-list">
+        <li class="gold-weapon"><span class="n">1</span><span class="k">Mount</span><span class="d">gold circular collar with dark hexagonal plug</span></li>
+        <li class="gold-engine"><span class="n">2</span><span class="k">Wells</span><span class="d">four empty hexagonal crystal sockets (cream/charcoal, not gold)</span></li>
+      </ol>
+    </div>`;
+}
+
+function findWeaponArt(set, id, exts) {
+  for (const ext of exts) {
+    const key = `${id}${ext}`;
+    if (set.has(key)) return `catalogs/weapons/${key}`;
+  }
+  return null;
+}
+
+function weaponEntries(data, art) {
+  const rules = data.rules || {};
+  return data.weapons.map((weapon) => ({
+    id: weapon.id,
+    title: weapon.name,
+    group: weapon.family,
+    image: findWeaponArt(art.images, weapon.id, [".png", ".webp", ".jpg", ".jpeg"]),
+    model: findWeaponArt(art.models, weapon.id, [".glb", ".gltf"]),
+    preview: null,
+    note: weapon.read || "",
+    status: weapon.starting ? "starter" : "concept",
+    stats: [
+      ["role", weapon.role],
+      ["damage", weapon.damage],
+      ["fire rate", weapon.fireRate],
+      ["range", weapon.range],
+      ["special", weapon.special],
+      ["own cap", String(rules.maxOwnedPerType ?? 3)],
+    ],
+    extraHtml: weaponChecklist(weapon, rules),
+    prompt: weapon.prompt,
+  }));
 }
 
 function copyShipArt() {
@@ -317,6 +391,7 @@ function homeBody(ships) {
   <p class="kicker">Jump in</p>
   <div class="grid-3">
     <a class="card" href="ships.html"><h3>Player ships</h3><p>Thirty hull × profession concepts and every available on-demand 3D model.</p></a>
+    <a class="card" href="weapons.html"><h3>Player weapons</h3><p>Three hardpoint guns that bolt onto gold ship pads, with empty wells for mod crystals.</p></a>
     <a class="card" href="enemy-ships.html"><h3>Enemy ships</h3><p>Fifteen complete Cold Iron concepts beside their 6–9k-triangle models.</p></a>
     <a class="card" href="enemy-components.html"><h3>Enemy components</h3><p>The aligned modular mesh kit used by the procedural enemy generator.</p></a>
     <a class="card" href="asteroids.html"><h3>Asteroids</h3><p>Active size-family concepts and all eight Unreal runtime source GLBs.</p></a>
@@ -566,6 +641,7 @@ function loadAsteroidCatalog(page) {
 function assetCatalogLinks(activeId) {
   const links = [
     ["ships", "Player ships"],
+    ["weapons", "Player weapons"],
     ["enemy-ships", "Enemy ships"],
     ["enemy-components", "Enemy components"],
     ["asteroids", "Asteroids"],
@@ -592,6 +668,7 @@ function loadAudioCatalog(page) {
 
     const stats = [];
     if (entry.kind) stats.push(["kind", entry.kind]);
+    if (entry.rating != null) stats.push(["rating", `${entry.rating}/10`]);
     if (entry.durationSec != null) stats.push(["duration", `${entry.durationSec}s`]);
     if (entry.bpm != null) stats.push(["bpm", String(entry.bpm)]);
     if (entry.key) stats.push(["key", entry.key]);
@@ -618,7 +695,11 @@ function loadAudioCatalog(page) {
       audio,
       note: entry.note || "",
       status,
+      rating: entry.rating ?? null,
       stats,
+      extraHtml: entry.review
+        ? `<div class="asset-review"><p class="kicker">Review</p><p>${esc(entry.review)}</p></div>`
+        : null,
       prompt: entry.prompt || "",
       mediaKind: "audio",
     };
@@ -687,6 +768,8 @@ for (const f of fs.readdirSync(ASSETS_SRC)) {
 
 const ships = JSON.parse(fs.readFileSync(path.join(ROOT, "art/ships.json"), "utf8"));
 const shipArt = copyShipArt();
+const weapons = JSON.parse(fs.readFileSync(path.join(ROOT, "art/weapons.json"), "utf8"));
+const weaponArt = copyWeaponArt();
 
 for (const page of PAGES) {
   let body;
@@ -695,6 +778,10 @@ for (const page of PAGES) {
     page.intro =
       "Thirty hull × profession concepts. Pick a ship to inspect its concept, 3D model, gold-ring checklist, and full generation prompt.";
     body = assetCatalogBody(page, shipEntries(ships, shipArt));
+  } else if (page.kind === "weapons") {
+    page.intro =
+      "Starter trio of ship hardpoint weapons. Each bolts onto one gold pad, levels 1–5, and grows empty wells for mod crystals. Copy the prompt to regenerate.";
+    body = assetCatalogBody(page, weaponEntries(weapons, weaponArt));
   } else if (page.kind === "asset-catalog") {
     body = assetCatalogBody(page, loadAssetCatalog(page));
   } else if (page.kind === "asteroids") {

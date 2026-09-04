@@ -1,0 +1,80 @@
+{
+  "file": "ambient_creaks_submarine_30s.mp3",
+  "songId": "HmdxDgCWg5KkI7234mHn",
+  "lengthMs": 30000,
+  "bpm": 150,
+  "bars": 18.75,
+  "barMs": 1600,
+  "seed": 20260907,
+  "model": "music_v2",
+  "compositionPlan": {
+    "chunks": [
+      {
+        "text": "[Ambience] {no vocals, no drums, sound design only}",
+        "duration_ms": 15000,
+        "positive_styles": [
+          "ambient sound design bed for a derelict machine interior, not a song",
+          "metal creaking is the subject: slow structural groans, hull plates under pressure, rusted hinge creaks, cooling metal pops",
+          "submarine engine room whirrs: low motor drones, gyros winding, ballast hiss, pressure rumble",
+          "distant muffled clanks somewhere else in the hull",
+          "very slow, spacious, long decays, wide stereo, deep low end",
+          "loosely melodic: faint sustained tones drift in and out of the noise, detuned, no clear tune",
+          "tonal centre F sharp minor so it can sit under the battle tracks",
+          "no rhythm and no pulse anywhere, everything arrives at its own pace"
+        ],
+        "negative_styles": [
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, singing, choir, humming, spoken word, robot voice, vocoder, talking",
+          "trailer braams, orchestral stabs",
+          "EDM anthem, festival build, big drop",
+          "anthemic chorus, triumphant hands-up climax",
+          "supersaw chord stabs",
+          "sidechain pumping the whole mix",
+          "drums, percussion, drum kit",
+          "steady beat, pulse or groove of any kind",
+          "chord progression",
+          "clear melody or hook",
+          "song structure, verse, chorus",
+          "guitar",
+          "sonar ping beeping on a regular interval"
+        ],
+        "context_adherence": "high"
+      },
+      {
+        "text": "[Ambience 2] {no vocals, no drums, sound design only}",
+        "duration_ms": 15000,
+        "positive_styles": [
+          "the whirrs rise slightly and a motor spins up somewhere deep in the hull",
+          "creaks answer it, longer and closer than before",
+          "a faint sustained tone bends slowly across the section, almost a melody but never resolving",
+          "electrical arcing and relay clicks scattered far back, irregular",
+          "stays quiet and unresolved, no build and no arrival"
+        ],
+        "negative_styles": [
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, singing, choir, humming, spoken word, robot voice, vocoder, talking",
+          "trailer braams, orchestral stabs",
+          "EDM anthem, festival build, big drop",
+          "anthemic chorus, triumphant hands-up climax",
+          "supersaw chord stabs",
+          "sidechain pumping the whole mix",
+          "drums, percussion, drum kit",
+          "steady beat, pulse or groove of any kind",
+          "chord progression",
+          "clear melody or hook",
+          "song structure, verse, chorus",
+          "guitar",
+          "sonar ping beeping on a regular interval"
+        ],
+        "context_adherence": "high"
+      }
+    ]
+  },
+  "generatedAt": "2026-09-02T22:33:48.044Z"
+}

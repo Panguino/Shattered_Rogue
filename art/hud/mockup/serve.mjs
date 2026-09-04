@@ -44,7 +44,10 @@ const types = {
   ".otf": "font/otf",
   ".json": "application/json; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
-  ".ico": "image/x-icon"
+  ".ico": "image/x-icon",
+  ".mp3": "audio/mpeg",
+  ".wav": "audio/wav",
+  ".ogg": "audio/ogg"
 };
 
 createServer(async (req, res) => {

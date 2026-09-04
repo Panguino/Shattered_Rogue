@@ -1,4 +1,4 @@
-# Shattered Rogue — Catalog
+# Shattered Slop — Catalog
 
 > **Active plan:** [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) (Pirate Raid playable loop).
 > **Full-game roadmap (archived):** [archive/full-game-roadmap-2026-08/](archive/full-game-roadmap-2026-08/) — includes the 70+ [confirmed decisions log](archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md#confirmed-decisions-log).
@@ -38,7 +38,7 @@ You are a **spaceman** in a shattered galaxy. The long-term fantasy is 6 hulls �
 
 | # | Document | Covers |
 | --- | --- | --- |
-| 03 | [Weapons & Upgrades](design/03_weapons_and_upgrades.md) | W/M/S slots; specialty is inventory-only |
+| 03 | [Weapons & Upgrades](design/03_weapons_and_upgrades.md) | Starter trio, levels, mod crystals, stash |
 | 04 | [Meta-Progression](design/04_meta_progression.md) | Research Data, toggle pool |
 
 ### World & content
@@ -73,6 +73,7 @@ You are a **spaceman** in a shattered galaxy. The long-term fantasy is 6 hulls �
 | | |
 | --- | --- |
 | **Ship prompts** | [art/ship_prompts.md](art/ship_prompts.md) |
+| **Weapon prompts** | [art/weapon_prompts.md](art/weapon_prompts.md) · [art/weapons.json](art/weapons.json) |
 | **Wiki** | [wiki/dist/index.html](wiki/dist/index.html) — `cd wiki && npm run build` then `npm run serve` |
 
 ---

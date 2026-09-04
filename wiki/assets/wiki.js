@@ -142,13 +142,15 @@ function initCatalog() {
 
       const copy = el("span", "tile-copy");
       copy.append(el("span", "tile-title", entry.title));
+      const meta =
+        view === "list"
+          ? `${pretty(entry.group)} · ${mediaMeta(entry)}`
+          : pretty(entry.group);
       copy.append(
         el(
           "span",
           "tile-meta",
-          view === "list"
-            ? `${pretty(entry.group)} · ${mediaMeta(entry)}`
-            : pretty(entry.group),
+          entry.rating != null ? `${entry.rating}/10 · ${meta}` : meta,
         ),
       );
       card.append(copy);

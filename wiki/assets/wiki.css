@@ -699,6 +699,16 @@ a:hover { color: var(--gold); }
 }
 .asset-note { color: var(--muted); margin: 12px 0 0; }
 
+.asset-review {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  background: var(--void-2);
+}
+.asset-review .kicker { margin: 0 0 6px; }
+.asset-review p:last-child { margin: 0; color: var(--cream); }
+
 .toc {
   background: var(--panel);
   border: 1px solid var(--line);

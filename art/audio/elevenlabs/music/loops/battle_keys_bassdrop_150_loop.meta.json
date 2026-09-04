@@ -1,0 +1,123 @@
+{
+  "file": "battle_keys_bassdrop_150_loop.mp3",
+  "songId": "9VaJgbvXyRLOhPeORcfy",
+  "lengthMs": 51200,
+  "bpm": 150,
+  "bars": 32,
+  "barMs": 1600,
+  "seed": 20260902,
+  "model": "music_v2",
+  "compositionPlan": {
+    "chunks": [
+      {
+        "text": "[Loop A] {instrumental, no vocals}",
+        "duration_ms": 12800,
+        "positive_styles": [
+          "driving sci-fi combat music for a roguelite space shooter",
+          "150 BPM, F sharp minor, four four",
+          "grand piano and electric keyboard carry the lead melody",
+          "melody moves in long phrases across bars, never a two-note figure",
+          "deep analog sub bass, sixteenth-note bass movement",
+          "wide space synth ambience behind the keys: filter sweeps, distant sheens, telemetry blips",
+          "syncopated evolving percussion, ghost notes, off-grid hats, kit mixed low",
+          "urgent, aggressive, high energy, forward momentum, battle",
+          "already mid-song, full arrangement from the first beat",
+          "clean polished studio mix, wide stereo, great production quality"
+        ],
+        "negative_styles": [
+          "repetitive two-note keyboard ostinato",
+          "loud pounding four-on-the-floor kick",
+          "heavy repetitive beat dominating the mix",
+          "percussion louder than the melody",
+          "relaxed chill lounge mood",
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, choir, spoken word",
+          "trailer braams, orchestral stabs",
+          "static, hiss, noise wash"
+        ],
+        "context_adherence": "high"
+      },
+      {
+        "text": "[Loop B] {bass drop, keys answer}",
+        "duration_ms": 12800,
+        "positive_styles": [
+          "heavy sub bass drop lands and holds",
+          "piano and keyboard answer the drop with a rising motif",
+          "space synth sweep rides over the drop",
+          "percussion stays secondary to keys and bass",
+          "energy climbs, no release, no breakdown"
+        ],
+        "negative_styles": [
+          "repetitive two-note keyboard ostinato",
+          "loud pounding four-on-the-floor kick",
+          "heavy repetitive beat dominating the mix",
+          "percussion louder than the melody",
+          "relaxed chill lounge mood",
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, choir, spoken word",
+          "trailer braams, orchestral stabs",
+          "static, hiss, noise wash"
+        ],
+        "context_adherence": "high"
+      },
+      {
+        "text": "[Loop C] {ambience forward, motif mutates}",
+        "duration_ms": 12800,
+        "positive_styles": [
+          "space synth ambience steps forward, shimmering pads and metallic ticks",
+          "keyboard motif mutates rather than repeating",
+          "percussion opens up with fills and varied hats, still low in the mix",
+          "sustained synth lead threads under the keys",
+          "density stays full, tension held"
+        ],
+        "negative_styles": [
+          "repetitive two-note keyboard ostinato",
+          "loud pounding four-on-the-floor kick",
+          "heavy repetitive beat dominating the mix",
+          "percussion louder than the melody",
+          "relaxed chill lounge mood",
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, choir, spoken word",
+          "trailer braams, orchestral stabs",
+          "static, hiss, noise wash"
+        ],
+        "context_adherence": "high"
+      },
+      {
+        "text": "[Loop D] {turn back to the top}",
+        "duration_ms": 12800,
+        "positive_styles": [
+          "harmonic turnaround that leads straight back to the opening figure",
+          "piano and bass land together on the final bar and keep driving",
+          "space ambience thins slightly so the top of the loop reads as an arrival",
+          "no ending, no resolution, no final hit, still at full energy on the last beat"
+        ],
+        "negative_styles": [
+          "repetitive two-note keyboard ostinato",
+          "loud pounding four-on-the-floor kick",
+          "heavy repetitive beat dominating the mix",
+          "percussion louder than the melody",
+          "relaxed chill lounge mood",
+          "quiet sparse intro",
+          "fade in",
+          "fade out",
+          "ending, final chord, slowing down",
+          "vocals, choir, spoken word",
+          "trailer braams, orchestral stabs",
+          "static, hiss, noise wash"
+        ],
+        "context_adherence": "high"
+      }
+    ]
+  },
+  "generatedAt": "2026-09-02T21:30:04.917Z"
+}

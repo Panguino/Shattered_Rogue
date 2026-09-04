@@ -155,7 +155,42 @@ Hull table numbers below are the **Fighter** identity for that family. Other pro
 
 ### ⚔️ Category 1: Weapons
 
-Weapons fill **weapon slots**. Each weapon has a type, rarity, and potential perks.
+Weapons fill **weapon slots** on the ship — one gold hardpoint each. Concepts: [art/weapons.json](../art/weapons.json). Wiki catalog: [wiki/dist/weapons.html](../wiki/dist/weapons.html).
+
+#### Starter trio (current)
+
+Three guns to start. Each is a standalone module that bolts onto a gold pad. You can own **at most 3 of the same type**. Every copy levels **1–5** on its own and grows **modifier wells** for **Mod Crystals**.
+
+| Weapon | Reads as | Envelope | Special |
+| --- | --- | --- | --- |
+| 🔫 **Laser Cannon** | Long cream pulse barrel, hot-orange muzzle | Medium range, fast | What Ace fires now. Hits what you point at. |
+| 🚀 **Seeker Rocket Launcher** | Boxy 2×2 pod, cream rocket noses | Long range, slow | Lock-on. Hates cover. |
+| ⚡ **Lightning Coil Gun** | Fat stacked cream coils, cyan spark cage | Short range, medium | Arcs to nearby enemies. Wants you close. |
+
+| Weapon level | Mod Crystal slots |
+| --- | --- |
+| 1 | 0 |
+| 2 | 1 |
+| 3 | 2 |
+| 4 | 3 |
+| 5 | 4 |
+
+Empty wells are part of the mesh (cream/charcoal, **never gold**). Gold on the weapon is **only** the circular collar that seats on the ship pad.
+
+#### Run inventory & stash
+
+Persistent inventory. Keep this small until it is fun.
+
+| Moment | What happens |
+| --- | --- |
+| **Enter a run** | You take stashed weapons / crystals you choose to equip. That loadout is "what you went in with." |
+| **During a level** | New finds sit in run cargo. They can be equipped this run. |
+| **End of a level** | Stash an item (keep it forever) **or** keep using it on this run. |
+| **Death / fail** | You keep what you went in with. Unstashed finds from this run are gone. |
+
+Do not build the full inventory UI until these three guns exist in-world.
+
+#### Later pool (not the starter set)
 
 Range and behavior should **move the fight**, not just scale DPS. Plasma belongs in close; railguns punish straight-line retreat from far away; missiles hate cover. A gun that is equally good at every distance is why kiting wins. Envelopes and anti-kite rules: [17_anti_kiting_combat.md](17_anti_kiting_combat.md). (Cryo "kiting" below means *that gun* can harass at range — it does not mean the whole encounter should reward flying in a straight line forever.)
 
@@ -290,7 +325,7 @@ On level-up (via Power Cores), you choose **1 of 3 options**. The pool draws fro
 
 | Starting Choice        | Default             | Unlock Method                                             |
 | ---------------------- | ------------------- | --------------------------------------------------------- |
-| **Starting Weapon**    | Autocannon (Common) | Find any weapon in-run → unlocks as Common starter option |
+| **Starting Weapon**    | Laser Cannon        | Find any weapon in-run → unlocks as a starter option |
 | **Starting Module**    | None                | Meta-progression unlocks (Research Data)                  |
 | **Starting Specialty** | None                | Profession milestone unlocks                              |
 | **Starting Bonus**     | None                | Achievements (e.g., "start with 5 extra minerals")        |
