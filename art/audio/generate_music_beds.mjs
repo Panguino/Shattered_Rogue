@@ -1,5 +1,5 @@
 /**
- * Long-form music beds for Shattered Rogue.
+ * Long-form music beds for Shattered Slop.
  *
  * Briefs are written as production direction rather than as references to any
  * released recording: ElevenLabs copyright-checks audio references and rejects

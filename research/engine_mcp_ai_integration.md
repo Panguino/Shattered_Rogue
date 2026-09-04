@@ -9,7 +9,7 @@
 
 ## 1. Question
 
-Which engine has the best MCP (Model Context Protocol) AI integration in 2026, and should Shattered Rogue switch off Unreal 5.5 before the project is created?
+Which engine has the best MCP (Model Context Protocol) AI integration in 2026, and should Shattered Slop switch off Unreal 5.5 before the project is created?
 
 ---
 

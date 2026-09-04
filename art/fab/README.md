@@ -16,7 +16,7 @@ large source textures that should not enter the game by default.
 3. Inventory Blueprints, materials, material functions, textures, meshes,
    example maps, plugins, and total disk cost.
 4. Inspect dependency chains and identify the smallest reusable technique.
-5. Prefer reimplementing the technique against Shattered Rogue's existing C++
+5. Prefer reimplementing the technique against Shattered Slop's existing C++
    and material parameter contracts.
 6. If an original asset is genuinely needed, migrate only its narrow folder
    with **Asset Actions → Migrate**, review the dependency list, and target

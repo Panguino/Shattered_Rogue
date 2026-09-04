@@ -1,7 +1,7 @@
 ---
 name: ue-playtest
 description: >-
-  Rebuild and launch Shattered Rogue in Unreal without duplicate processes.
+  Rebuild and launch Shattered Slop in Unreal without duplicate processes.
   Use when compiling C++, launching PIE/-game, capturing a HUD plate, or when
   LNK1104 / EADDRINUSE / a locked UnrealEditor-ShatteredRogue.dll appears.
 ---

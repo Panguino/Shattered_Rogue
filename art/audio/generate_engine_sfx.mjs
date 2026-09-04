@@ -1,5 +1,5 @@
 /**
- * Engine and boost cues for Shattered Rogue.
+ * Engine and boost cues for Shattered Slop.
  *
  * The sustained cues are generated with loop: true and written as WAV rather
  * than MP3. MP3 encoding pads both ends of the file with silence, which is

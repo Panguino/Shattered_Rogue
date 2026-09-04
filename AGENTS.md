@@ -1,10 +1,10 @@
-# Shattered Rogue — creative repo
+# Shattered Slop — creative repo
 
 This folder is design docs, art, and the HTML HUD mockup. The playable Unreal 5.8 project is the sibling:
 
 `C:\Projects\_personal\Shattered\game`
 
-C++ HUD/gameplay lives there (`Source/ShatteredRogue/`). Do not look for a `.uproject` here. GitHub remote is still `Panguino/Shattered_Rogue`.
+C++ HUD/gameplay lives there (`Source/ShatteredRogue/`). Do not look for a `.uproject` here. GitHub remote is `Panguino/shattered_slop_creative`.
 
 ## Sessions
 

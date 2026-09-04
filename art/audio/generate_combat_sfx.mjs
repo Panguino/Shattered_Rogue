@@ -1,5 +1,5 @@
 /**
- * Short combat cues for Shattered Rogue.
+ * Short combat cues for Shattered Slop.
  *
  * Running with no arguments regenerates only the cues still being auditioned;
  * see lib/elevenlabs.mjs for why superseded and promoted cues are held back.

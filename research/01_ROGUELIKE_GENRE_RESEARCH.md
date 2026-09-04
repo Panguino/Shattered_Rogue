@@ -1,6 +1,6 @@
 # 🎮 Roguelike Genre — Comprehensive Research
 
-> **Purpose:** Exhaustive research into the roguelike/roguelite genre — documenting innovations, mechanics, and player sentiment across 24 games to inform the design of _Shattered Rogue_.
+> **Purpose:** Exhaustive research into the roguelike/roguelite genre — documenting innovations, mechanics, and player sentiment across 24 games to inform the design of _Shattered Slop_.
 >
 > **Primary Focus:** 3D Action Shooter Roguelite — run-based structure with stacking power-ups, high scores, deep achievement systems, and cosmetic unlocks (Risk of Rain 2, Crab Champions, Megabonk model).
 >
@@ -40,7 +40,7 @@
 | S3               | Deep Rock Galactic: Survivor  | 2024 EA | Top-down 2D     | Survivor Roguelite         | No                 | Stylized 2D       | PC                           |
 | S4               | Everspace (1)                 | 2017    | First-person 3D | Space Shooter Roguelite    | No                 | Photorealistic 3D | PC, PS, Xbox, Switch         |
 
-> **Note:** Everspace 2 was excluded — it dropped the roguelite run structure in favor of open-world RPG, which doesn't match Shattered Rogue's run-based gameplay model.
+> **Note:** Everspace 2 was excluded — it dropped the roguelite run structure in favor of open-world RPG, which doesn't match Shattered Slop's run-based gameplay model.
 
 ---
 
@@ -140,7 +140,7 @@
 
 ## 🏃 Run Structure Comparison (3D Action Roguelite Focus)
 
-This section focuses specifically on the **run-based loop** that defines action roguelites — the structure Shattered Rogue will follow.
+This section focuses specifically on the **run-based loop** that defines action roguelites — the structure Shattered Slop will follow.
 
 ### Run Format Comparison (Core Reference Games)
 
@@ -156,7 +156,7 @@ This section focuses specifically on the **run-based loop** that defines action 
 | **Nuclear Throne**    | 10–20 min  | Area → Clear → Advance (7 worlds)                     | Reach Nuclear Throne         | Loop system (infinite)           | Per-loop escalation              |
 | **Everspace**         | 1–2 hrs    | Sector → Zones → Jump → Boss sector (7 sectors)       | Reach final sector           | —                                | Per-sector scaling               |
 
-### The Ideal Run Structure for Shattered Rogue
+### The Ideal Run Structure for Shattered Slop
 
 Based on the most successful 3D action roguelites:
 
@@ -187,7 +187,7 @@ This is a critical area for long-term engagement. The best 3D action roguelites 
 | **Spelunky 2**               | ✅ Score + time        | ✅ Daily leaderboards           | Gold, time, enemies killed            |
 | **Nova Drift**               | ✅ Score-based ranking | ✅ Global leaderboards          | Enemies killed × wave reached         |
 
-> **Recommendation for Shattered Rogue:** Implement both a **run scoring system** (kills × combo multiplier × difficulty modifier × time bonus) AND **global/friends leaderboards**. Daily/weekly seeded challenge runs add competitive replayability.
+> **Recommendation for Shattered Slop:** Implement both a **run scoring system** (kills × combo multiplier × difficulty modifier × time bonus) AND **global/friends leaderboards**. Daily/weekly seeded challenge runs add competitive replayability.
 
 ### Achievement / Unlock Systems — Deep Comparison
 
@@ -209,25 +209,25 @@ This is a critical area for long-term engagement. The best 3D action roguelites 
 1. **Per-Character Completion Marks** (Binding of Isaac, Gunfire Reborn, Risk of Rain 2)
    - Beat each difficulty with each character = trackable grid of completions
    - Creates natural goal-setting and character mastery incentive
-   - **Best for Shattered Rogue:** ✅ Each squid variant × each difficulty = completion matrix
+   - **Best for Shattered Slop:** ✅ Each squid variant × each difficulty = completion matrix
 
 2. **Quest-Based Unlocks** (Megabonk, Crab Champions)
    - "Kill 50 elites with the Shotgun" → Unlock new weapon
    - Specific objectives tied to content unlocks
-   - **Best for Shattered Rogue:** ✅ Quest chains unlock new squid abilities/weapons
+   - **Best for Shattered Slop:** ✅ Quest chains unlock new squid abilities/weapons
 
 3. **Discovery/Collection Log** (Risk of Rain 2, Binding of Isaac, Balatro)
    - Find every item/enemy/boss → completionist satisfaction
    - Logbook/Bestiary/Codex tracks discovered content
-   - **Best for Shattered Rogue:** ✅ Space creature codex + item encyclopedia
+   - **Best for Shattered Slop:** ✅ Space creature codex + item encyclopedia
 
 4. **Difficulty Milestone Achievements** (Dead Cells Boss Cells, Gunfire Reborn Reincarnation)
    - Beat higher difficulties → unlock harder modes + bragging rights
-   - **Best for Shattered Rogue:** ✅ Escalating difficulty tiers with unique rewards
+   - **Best for Shattered Slop:** ✅ Escalating difficulty tiers with unique rewards
 
 5. **Seeded Daily/Weekly Challenges** (Nuclear Throne, Returnal, Spelunky 2)
    - Same run seed for all players → compete on leaderboards
-   - **Best for Shattered Rogue:** ✅ Daily challenge with seeded RNG
+   - **Best for Shattered Slop:** ✅ Daily challenge with seeded RNG
 
 ### Cosmetic Systems Comparison
 
@@ -244,7 +244,7 @@ This is a critical area for long-term engagement. The best 3D action roguelites 
 | **Rogue Legacy 2**    | Equipment appearance                     | Found in runs             | ❌ No MTX      | Moderate |
 | **Returnal**          | Selene suits                             | Pre-order/DLC             | ✅ Limited DLC | Minimal  |
 
-> **Recommendation for Shattered Rogue:** Focus on **earn-through-play cosmetics** (skins, color palettes, effects, emotes, trails). No MTX at launch — cosmetics as achievement rewards creates strong player motivation. Consider:
+> **Recommendation for Shattered Slop:** Focus on **earn-through-play cosmetics** (skins, color palettes, effects, emotes, trails). No MTX at launch — cosmetics as achievement rewards creates strong player motivation. Consider:
 >
 > - **Squid body skins** — Patterns, markings, bioluminescent effects
 > - **Ink color palettes** — Different ink colors/effects
@@ -320,7 +320,7 @@ Making the game approachable to newcomers without sacrificing depth.
 
 ## 🚀 Space-Themed Roguelike Analysis
 
-Since _Shattered Rogue_ is targeting a **space 3D** setting, these games are particularly relevant:
+Since _Shattered Slop_ is targeting a **space 3D** setting, these games are particularly relevant:
 
 ### Key Space Roguelike Patterns
 
@@ -347,7 +347,7 @@ Since _Shattered Rogue_ is targeting a **space 3D** setting, these games are par
 
 ### Genre Fusion Innovations
 
-| Innovation                  | Pioneered By             | Adopted By                       | Relevance to Shattered Rogue              |
+| Innovation                  | Pioneered By             | Adopted By                       | Relevance to Shattered Slop              |
 | --------------------------- | ------------------------ | -------------------------------- | ----------------------------------------- |
 | Roguelike + Narrative       | Hades                    | Hades II, Returnal               | ✅ High — story through death cycles      |
 | Roguelike + Deckbuilding    | Slay the Spire           | Balatro, Inscryption             | ⬜ Low — not card-based                   |
@@ -455,7 +455,7 @@ Based on Reddit threads, Steam review analysis, and player interviews:
 
 - Players know if they like a roguelike within ONE run
 - Low barrier to first fun moment is critical
-- **Lesson for Shattered Rogue:** First run must feel amazing even if you die in 2 minutes
+- **Lesson for Shattered Slop:** First run must feel amazing even if you die in 2 minutes
 
 #### 2. **"I Discovered a Broken Combo"** — Emergent Discovery
 
@@ -520,7 +520,7 @@ Based on Reddit threads, Steam review analysis, and player interviews:
 | **Marketing spend**                | Near $0 (rely on streamers/word-of-mouth) | VS: $0 marketing spend                |
 | **Post-launch support**            | 1–3 years of updates/DLC                  | Isaac: 10+ years of DLC               |
 
-> **Bottom Line for Shattered Rogue:** A small indie team (2–5 people) with a $15–20 price point, Early Access launch, streamer-friendly design, and 20–30 minute runs is the proven formula. The 3D co-op niche (Risk of Rain 2, Crab Champions, Gunfire Reborn) is underserved and commercially validated — this is exactly where Shattered Rogue should position.
+> **Bottom Line for Shattered Slop:** A small indie team (2–5 people) with a $15–20 price point, Early Access launch, streamer-friendly design, and 20–30 minute runs is the proven formula. The 3D co-op niche (Risk of Rain 2, Crab Champions, Gunfire Reborn) is underserved and commercially validated — this is exactly where Shattered Slop should position.
 
 ---
 
@@ -538,7 +538,7 @@ Based on Reddit threads, Steam review analysis, and player interviews:
 | **Fantasy Survivors**      | VS-like with online co-op focus          | ✅ Online    | Early Access |
 | **Royal Revolt Survivors** | VS-like with 4P co-op                    | ✅ Online 4P | Upcoming     |
 
-> **Market Gap Identified:** There is NO multiplayer 3D survivor roguelite with Megabonk's depth. This is a wide-open opportunity for Shattered Rogue.
+> **Market Gap Identified:** There is NO multiplayer 3D survivor roguelite with Megabonk's depth. This is a wide-open opportunity for Shattered Slop.
 
 ---
 
@@ -585,11 +585,11 @@ Based on Reddit threads, Steam review analysis, and player interviews:
 | **Price Ceiling**     | $15–25 works                  | $15–25 works, co-op justifies       |
 | **3D Entries**        | Few (Returnal, Noita physics) | **Only 4–5 exist (massive gap)**    |
 
-> **The Opportunity:** Solo roguelites are an established, crowded market dominated by 2D games. Co-op 3D roguelites have far fewer entries but proven demand (Risk of Rain 2, Gunfire Reborn, Crab Champions all thriving). **A 3D co-op survivor roguelite — Shattered Rogue's exact niche — essentially doesn't exist yet.**
+> **The Opportunity:** Solo roguelites are an established, crowded market dominated by 2D games. Co-op 3D roguelites have far fewer entries but proven demand (Risk of Rain 2, Gunfire Reborn, Crab Champions all thriving). **A 3D co-op survivor roguelite — Shattered Slop's exact niche — essentially doesn't exist yet.**
 
 ---
 
-## 🎯 Key Takeaways for Shattered Rogue
+## 🎯 Key Takeaways for Shattered Slop
 
 Based on this research, the highest-impact innovations to incorporate:
 

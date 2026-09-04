@@ -1,4 +1,4 @@
-# 🚀 Shattered Rogue
+# 🚀 Shattered Slop
 
 > **A roguelite space shooter with 4-player co-op, procedural galaxies, and AI-powered development.**
 
