@@ -1,5 +1,7 @@
 # ⚔️ Weapons, Upgrades & Scaling
 
+**Status:** Design — starter trio has concept art; runtime has one pulse cannon.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
@@ -164,6 +166,8 @@ Three guns to start. Each is a standalone module that bolts onto a gold pad. You
 | Weapon | Reads as | Envelope | Special |
 | --- | --- | --- | --- |
 | 🔫 **Laser Cannon** | Long cream pulse barrel, hot-orange muzzle | Medium range, fast | What Ace fires now. Hits what you point at. |
+
+> **Runtime:** the starter gun in the build is the **pulse cannon** — `APulseProjectile`, damage 10, 8 shots/s, 2400 uu/s, 6000 uu range. "Laser Cannon" is its concept-art name; same weapon. The rocket launcher and coil gun exist only as concepts.
 | 🚀 **Seeker Rocket Launcher** | Boxy 2×2 pod, cream rocket noses | Long range, slow | Lock-on. Hates cover. |
 | ⚡ **Lightning Coil Gun** | Fat stacked cream coils, cyan spark cage | Short range, medium | Arcs to nearby enemies. Wants you close. |
 

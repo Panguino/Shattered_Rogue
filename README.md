@@ -1,17 +1,18 @@
 # 🚀 Shattered Slop
 
-> **A roguelite space shooter with 4-player co-op, procedural galaxies, and AI-powered development.**
+> **A 6DOF roguelite space shooter. Fly first, fight the Slop, reach the core.**
 
-|                |                                           |
-| -------------- | ----------------------------------------- |
-| **Genre**      | Top-down roguelite space shooter          |
-| **Players**    | 1–4 online co-op                          |
+|                |                                             |
+| -------------- | ------------------------------------------- |
+| **Genre**      | 6DOF roguelite space shooter                |
+| **Players**    | Solo (co-op later)                          |
 | **Engine**     | Unreal Engine 5.8 (C++ primary, Unreal MCP) |
-| **Art Style**  | Cartoonish (Mario / Zelda inspired)       |
-| **Run Length** | ~40–60 minutes                            |
-| **Ships**      | 6 Hulls × 5 Professions = 30 named combos |
+| **Art Style**  | Exploring                                   |
+| **Run Length** | TBD                                         |
 
-Choose your **hull** and **profession**, launch into procedural hex-grid galaxies. Mine asteroids, scan anomalies, trade at stations, fight the Equation's machine swarms. Upgrade with weapons, modules, and tech. Die, unlock new options, try again — solo or with up to 3 friends.
+You fly the **Ace**, an interceptor, through a shattered galaxy overrun by **the Slop** — a machine intelligence that turns everything it touches into more of itself. Every enemy is one body of it. At the galactic core sits the thing manufacturing it; the run ends when you get there and destroy it.
+
+**Where we are:** nailing the flight sim, a few enemies and a mini boss, then expanding through iteration. Camera and controls as implemented are the keeper. Art style is loose. The bigger systems (hulls, professions, stations, meta, co-op) are parked in [design/ideas/](design/ideas/) until the loop feels right.
 
 **Active plan:** [POC playable loop](00_POC_PLAYABLE_LOOP.md) — Pirate Raid arena, menus, debug sliders. Unreal project lives in the sibling **`game`** folder. This repo is design, wiki, and art (`creative`).
 
@@ -26,10 +27,12 @@ creative/                           ← this repo (design + wiki + art)
 ├── 00_POC_PLAYABLE_LOOP.md         ← ACTIVE plan (Pirate Raid POC)
 ├── 00_GAME_DEVELOPMENT_PLAN.md     ← catalog index
 ├── README.md
-├── wiki/
-├── art/
-├── design/                         ← 16 North Star design docs
-├── research/
+├── wiki/                           ← static wiki build (build.mjs → dist/)
+├── art/                            ← concept art, prompts, audio, enemy kit
+├── design/                         ← game vision & planned systems
+│   └── ideas/                      ← brainstorms & parked systems
+├── research/                       ← genre + engine research, 24 game studies
+├── gauntlet/                       ← task briefs / estimates (seeded-space-environment)
 ├── technical/
 │   ├── ai_toolchain.md
 │   └── architecture.md
@@ -39,99 +42,68 @@ Sibling:
 C:\Projects\_personal\Shattered\game   ← UE 5.8 .uproject
 ```
 
----
-
-## 🎨 Design Documents
-
-### 🎯 Game Foundation
-
-| #   | Document                                          | Covers                                                         |
-| --- | ------------------------------------------------- | -------------------------------------------------------------- |
-| 01  | [Game Vision & Concept](design/01_game_vision.md) | Elevator pitch, hulls, professions, combos, art style, pillars |
-
-### ⚙️ Core Gameplay
-
-| #   | Document                                                 | Covers                                                            |
-| --- | -------------------------------------------------------- | ----------------------------------------------------------------- |
-| 02  | [Core Mechanics](design/02_core_mechanics.md)            | Gameplay loop, galaxy grid, sectors, bosses, economy, progression |
-| 11  | [Difficulty & Heat System](design/11_difficulty_heat.md) | 12 toggleable modifiers, reward scaling, Heat achievements        |
-| 12  | [Combat & Co-op](design/12_combat_and_coop.md)           | Combat design, enemy philosophy, co-op scaling, communication     |
-
-### 🗡️ Items & Progression
-
-| #   | Document                                                | Covers                                                             |
-| --- | ------------------------------------------------------- | ------------------------------------------------------------------ |
-| 03  | [Weapons & Upgrades](design/03_weapons_and_upgrades.md) | Luck/scaling, proc chains, 3-category upgrade system, catalogs     |
-| 04  | [Meta-Progression](design/04_meta_progression.md)       | Research Data, toggle pool, in-run spending, cosmetics, RD economy |
-
-### 🌌 World & Content
-
-| #   | Document                                           | Covers                                                          |
-| --- | -------------------------------------------------- | --------------------------------------------------------------- |
-| 05  | [Event Encounters](design/05_event_encounters.md)  | 22 events, 5 categories, frequency, profession-specific options |
-| 06  | [Enemy Catalog](design/06_enemy_catalog.md)        | 6 chassis, traits, tiers, wave budgets, neutrals, Wanted system |
-| 07  | [Station Interactions](design/07_stations.md)      | Shipyard, Trade Post, Research Lab, Black Market, UX flows      |
-| 08  | [Hub UI — Outer Rim Station](design/08_hub_ui.md)  | 8 station areas, unlock manifestation, mood, area UX            |
-| 10  | [Carrier Drone Flock](design/10_carrier_drones.md) | Boids AI, drone types, behavior mods, engagement, items         |
-
-### 🎵 Presentation
-
-| #   | Document                                                | Covers                                                                  |
-| --- | ------------------------------------------------------- | ----------------------------------------------------------------------- |
-| 09  | [Audio & Music Direction](design/09_audio_direction.md) | Sound identity, adaptive music, ring progression, SFX, AI pipeline      |
-| 15  | [Controls & Camera](design/15_controls_and_camera.md)   | Arcade drift movement, twin-stick input, dynamic camera, hull abilities |
-| 16  | [UI, HUD & VFX](design/16_ui_hud_vfx.md)                | Astroneer/Crab Champions VFX style, HUD layout, menu screens            |
-
-### 📜 Lore & Story
-
-| #   | Document                                            | Covers                                                              |
-| --- | --------------------------------------------------- | ------------------------------------------------------------------- |
-| 14  | [Lore & Narrative](design/14_lore_and_narrative.md) | The Shattering, Breach, the Equation, 3 Glyphs, bosses, Loop+ |
-
-### 📊 Player Data
-
-| #   | Document                                                              | Covers                                                            |
-| --- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| 13  | [Statistics & Leaderboards](design/13_statistics_and_leaderboards.md) | Run summaries, career stats, leaderboards, dev analytics, sharing |
+Every design doc carries a **Status** line under its title: *Implemented*, *In progress*, *Design*, *Vision*, or *Idea*.
 
 ---
 
-## 🌐 Wiki & Art
+## 🎮 Game (vision & planned)
 
-| | |
-| --- | --- |
-| **Wiki home** | [`wiki/dist/index.html`](wiki/dist/index.html) |
-| **Ship prompts** | [`art/ship_prompts.md`](art/ship_prompts.md) |
+What the game is and what we intend to build. Some of it is in the build; each doc's Status line says how much.
 
----
+| #   | Document                                                     | Covers                                                                    |
+| --- | ------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| 01  | [Game Vision](design/01_game_vision.md)                      | Pitch, current focus, pillars, what's locked / exploring / parked         |
+| 02  | [Core Mechanics](design/02_core_mechanics.md)                | Loop, hex galaxy, sector generation, Pirate Raid, currencies (not final)  |
+| 03  | [Weapons & Upgrades](design/03_weapons_and_upgrades.md)      | Luck/scaling, proc chains, starter trio, pulse cannon                     |
+| 06  | [Enemy Catalog](design/06_enemy_catalog.md)                  | The Slop: frames, protocols, proof tiers, wave budgets, Enemy Generator   |
+| 09  | [Audio & Music Direction](design/09_audio_direction.md)      | Sound identity, adaptive music, ElevenLabs pipeline, runtime ship audio   |
+| 12  | [Combat & Co-op](design/12_combat_and_coop.md)               | Combat principles, enemy philosophy, co-op scaling (co-op not in build)   |
+| 14  | [Lore & Narrative](design/14_lore_and_narrative.md)          | The Slop, the Shattering, the Breach, the core entity (bosses not final)  |
+| 15  | [Controls & Camera](design/15_controls_and_camera.md)        | 6DOF inertial flight, hull-mounted chase camera, input map                |
+| 16  | [UI, HUD & VFX](design/16_ui_hud_vfx.md)                     | HUD layout, ship screen, menus, VFX references                            |
+| 17  | [Anti-Kiting Combat](design/17_anti_kiting_combat.md)        | Combat envelope, interception, why POC pirates blob                       |
+| 18  | [Procedural Environments](design/18_procedural_environments.md) | Seeded sun / planets / asteroid sector recipe                          |
+| —   | [POC playable loop](00_POC_PLAYABLE_LOOP.md)                 | **Active plan** — Pirate Raid, menus, settings, debug                     |
+| —   | [Architecture](technical/architecture.md)                    | UE 5.8 C++/UMG, Unreal MCP, later net model                               |
+| —   | [AI Toolchain](technical/ai_toolchain.md)                    | Tripo/Meshy, concept pipeline, MCP                                        |
 
-## Technical documentation
+## ✅ Implemented
 
-| Document | Covers |
-| --- | --- |
-| [POC playable loop](00_POC_PLAYABLE_LOOP.md) | **Active plan** — Pirate Raid, menus, settings, debug, steps 1–5 |
-| [Catalog](00_GAME_DEVELOPMENT_PLAN.md) | Index of design docs + status |
-| [Architecture](technical/architecture.md) | UE 5.8 C++/UMG, Unreal MCP, later net model |
-| [AI Toolchain](technical/ai_toolchain.md) | Tripo/Meshy, concept pipeline, MCP |
-| [Archived full roadmap](archive/full-game-roadmap-2026-08/) | 18-phase plan, M1–M5 scope, 70+ decisions |
+What is actually in the build today. Read these before touching the runtime.
 
----
+- **6DOF flight and chase camera** — [design/15_controls_and_camera.md](design/15_controls_and_camera.md) (matches the live build)
+- **Pirate wave combat as it stands** — [design/17_anti_kiting_combat.md §2](design/17_anti_kiting_combat.md#2-current-architecture-poc)
+- **Seeded asteroid sector** — [design/18_procedural_environments.md](design/18_procedural_environments.md)
+- **Enemy Generator and kit meshes** — [design/06_enemy_catalog.md](design/06_enemy_catalog.md), [art/enemies/equation/cold-iron-kit/](art/enemies/equation/cold-iron-kit/README.md)
+- **Runtime module map** — [technical/architecture.md](technical/architecture.md)
+- **Step-by-step checkmarks** — [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) (✅ = in the build)
 
-## 🔬 Research Library
+## 💡 Ideas & Research
 
-### Technical Research
+Brainstorms, parked systems, and background reading. Nothing here is scheduled.
 
-| Document                                                                | Covers                                                          |
-| ----------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [Engine MCP / AI Integration](research/engine_mcp_ai_integration.md)    | UE vs Unity vs Godot MCP (2026-08) — stay on Unreal 5.8         |
+### Parked design ([design/ideas/](design/ideas/))
 
-### Genre Research
+| Document                                                                   | Covers                                                            |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [Hull Roster & Professions](design/ideas/hull_roster_and_professions.md)  | 6 hulls, 5 professions, 30 named combos, per-hull movement/abilities |
+| [Meta-Progression](design/ideas/04_meta_progression.md)                    | Research Data, toggle pool, in-run spending, cosmetics             |
+| [Event Encounters](design/ideas/05_event_encounters.md)                    | 22 events, 5 categories, profession-specific options              |
+| [Station Interactions](design/ideas/07_stations.md)                        | Shipyard, Trade Post, Research Lab, Black Market                   |
+| [Hub UI — Outer Rim Station](design/ideas/08_hub_ui.md)                    | 8 station areas, unlock manifestation                             |
+| [Carrier Drone Flock](design/ideas/10_carrier_drones.md)                   | Boids AI, drone types, behaviour mods                              |
+| [Difficulty & Heat](design/ideas/11_difficulty_heat.md)                    | 12 toggleable modifiers, reward scaling, Heat achievements         |
+| [Statistics & Leaderboards](design/ideas/13_statistics_and_leaderboards.md) | Run summaries, career stats, leaderboards                        |
+| [Random unsorted ideas](design/ideas/00_random_unsorted_ideas.md)          | Scratch pad, store links, mechanics moved out of the vision doc    |
 
-| Document                                                            | Covers                                                           |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [Roguelike Genre Research](research/01_ROGUELIKE_GENRE_RESEARCH.md) | Comprehensive genre analysis, mechanics catalog, market insights |
+### Research ([research/](research/))
 
-### Game Deep-Dives (24 Studies)
+| Document                                                             | Covers                                                           |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Roguelike Genre Research](research/01_ROGUELIKE_GENRE_RESEARCH.md)  | Genre analysis, mechanics catalog, market insights               |
+| [Engine MCP / AI Integration](research/engine_mcp_ai_integration.md) | UE vs Unity vs Godot MCP (2026-08) — stay on Unreal 5.8          |
+
+#### Game Deep-Dives (24 Studies)
 
 | #   | Game                                                        | #   | Game                                                                      |
 | --- | ----------------------------------------------------------- | --- | ------------------------------------------------------------------------- |
@@ -148,6 +120,29 @@ C:\Projects\_personal\Shattered\game   ← UE 5.8 .uproject
 | 11  | [Spelunky 2](research/games/11_spelunky_2.md)               | S3  | [DRG: Survivor](research/games/S3_drg_survivor.md)                        |
 | 12  | [FTL](research/games/12_ftl.md)                             | S4  | [Everspace](research/games/S4_everspace.md)                               |
 
+### Gauntlet ([gauntlet/](gauntlet/))
+
+| Folder | Covers |
+| --- | --- |
+| [seeded-space-environment](gauntlet/seeded-space-environment/brief.md) | Brief, estimate, prompt and workbench for the seeded environment task |
+
+### Archive
+
+| Document | Covers |
+| --- | --- |
+| [Full-game roadmap (2026-08)](archive/full-game-roadmap-2026-08/) | 18-phase plan, M1–M5 scope, 70+ decisions — superseded by the POC plan |
+
+---
+
+## 🌐 Wiki & Art
+
+| | |
+| --- | --- |
+| **Wiki home** | [`wiki/dist/index.html`](wiki/dist/index.html) — `cd wiki && npm run build` then `npm run serve` |
+| **Ship prompts** | [`art/ship_prompts.md`](art/ship_prompts.md) (concept art; roster is parked) |
+| **Weapon prompts** | [`art/weapon_prompts.md`](art/weapon_prompts.md) · [`art/weapons.json`](art/weapons.json) |
+| **Enemy concepts** | [`art/enemies/equation/`](art/enemies/equation/README.md) |
+
 ---
 
 ## 📋 For AI Agents & Developers
@@ -156,14 +151,14 @@ C:\Projects\_personal\Shattered\game   ← UE 5.8 .uproject
 
 1. **This README**
 2. **[POC playable loop](00_POC_PLAYABLE_LOOP.md)** — what to build now
-3. **[Game Vision](design/01_game_vision.md)** — North Star fantasy
-4. **[Core Mechanics](design/02_core_mechanics.md)** — Pirate Raid lives here
-5. **[Controls](design/15_controls_and_camera.md)** — Interceptor feel numbers
-6. Archived 18-phase plan only when expanding past the POC
+3. **[Game Vision](design/01_game_vision.md)** — what's locked, exploring, parked
+4. **[Controls](design/15_controls_and_camera.md)** — the flight model to preserve
+5. **[Enemy Catalog](design/06_enemy_catalog.md)** and **[Lore](design/14_lore_and_narrative.md)** — the Slop
+6. [design/ideas/](design/ideas/) and the archived roadmap only when expanding past the POC
 
 ### Key references
 
-- **Confirmed decisions (full list):** [archived plan](archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md#confirmed-decisions-log)
+- **Confirmed decisions (historical):** [archived plan](archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md#confirmed-decisions-log) — many are now parked; [01_game_vision.md](design/01_game_vision.md) is current
 - **Architecture:** [technical/architecture.md](technical/architecture.md)
 - **AI tool setup:** [technical/ai_toolchain.md](technical/ai_toolchain.md)
 
@@ -173,7 +168,7 @@ C:\Projects\_personal\Shattered\game   ← UE 5.8 .uproject
 
 | | |
 | --- | --- |
-| **Current work** | POC Pirate Raid loop — follow [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) |
-| **Design docs** | 16/16 North Star (not blocking the POC) |
+| **Current work** | Flight feel, a few enemies, one mini boss — follow [00_POC_PLAYABLE_LOOP.md](00_POC_PLAYABLE_LOOP.md) |
+| **Design docs** | Split into game / implemented / ideas (see above) |
 | **Full-game roadmap** | Archived 2026-08-20 |
 | **UE 5.8 project** | Sibling `game` |

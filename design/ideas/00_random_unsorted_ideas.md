@@ -1,5 +1,7 @@
 # Random unsorted ideas
 
+**Status:** Idea — brainstorm, not planned for the current build.
+
 Scratch pad for concepts not yet folded into the main design docs.
 
 ---
@@ -219,3 +221,35 @@ Scratch pad for concepts not yet folded into the main design docs.
 - **FTL / Inscryption**: route choice and clocks are the lift; space combat is your differentiator—merge carefully so neither system fights the other.
 - **Nova Drift / Everspace**: upgrade density and moment-to-moment readability for arcade roguelike pacing.
 - **Dungeon of the Endless**: hold-the-point exit is a strong **contract type** for a sector: activate spire, survive N waves, extract—maps cleanly to co-op roles.
+
+## Spaceship & pilot mechanics (moved from the old vision doc)
+
+Kept when [01_game_vision.md](../01_game_vision.md) was cut down to the current direction. Boost and Warp Jump are the only ones near the build.
+
+| Mechanic            | Description                                                     | Inspiration            |
+| ------------------- | --------------------------------------------------------------- | ---------------------- |
+| **Boost Dash**      | Afterburner forward for dodge + traversal                       | Crab Champions sliding |
+| **Mining Laser**    | Mine asteroids, can also damage enemies at reduced rate         | No Man's Sky / DRG     |
+| **Scanner Pulse**   | Reveal nearby resources, enemies, secrets                       | No Man's Sky visor     |
+| **Shield Deploy**   | Temporary directional shield for blocking                       | Gunfire Reborn         |
+| **Tractor Beam**    | Pull loot, resources, and salvage to your ship                  | Space games standard   |
+| **Drone Flock**     | Drones orbit ship using flocking AI, auto-engage nearby enemies | StarCraft carriers     |
+| **Cloak**           | Temporary invisibility, breaks on attack                        | Star Trek / FTL        |
+| **Fortress Mode**   | Stop to deploy turrets and shields (Juggernaut hull)            | Tower defense hybrid   |
+| **Warp Jump**       | Sector-to-sector travel between nodes on the map                | FTL jump drive         |
+| **Module Slots**    | Equippable passive upgrades found during runs                   | Risk of Rain 2 items   |
+| **Emergency Eject** | Pilot ejects on ship destruction, brief on-foot survival        | Risk/reward mechanic   |
+
+## Differentiators (moved from the old vision doc)
+
+Most of these lean on the parked hull roster ([hull_roster_and_professions.md](hull_roster_and_professions.md)).
+
+| Differentiator                  | Description                                                                                                     |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **Ship Hull × Profession Grid** | 30 named combos with unique synergies; choose your playstyle before each run                                    |
+| **4-Player Co-op with Roles**   | Each player picks a different profession — Miner mines, Scout reveals map, Fighter protects, Scientist analyzes |
+| **4-Currency Economy**          | Minerals (in-run), Research Data (meta), Power Cores (leveling), Warp Crystals (jumps) — each profession interacts differently |
+| **Slower Exploration Pacing**   | FTL-style sector maps, mining minigames, station stops — not just combat arenas                                 |
+| **Living Ships**                | Organic hull type mutates visually based on upgrades — grows tentacles, armor plates, bio-weapons               |
+| **Drone Swarm Gameplay**        | Carrier hull deploys autonomous drones that inherit your profession's behavior                                  |
+| **Achievement-Based Unlocks**   | Play naturally to unlock new hulls and professions — mine a lot to unlock Miner, etc.                           |

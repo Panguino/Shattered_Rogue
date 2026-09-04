@@ -1,11 +1,22 @@
 # 📜 Lore & Narrative
 
+**Status:** In progress — direction set, details not final.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
 
 > [!IMPORTANT]
 > **Avorion-inspired mystery.** The player doesn't get a lore dump — they piece the story together through environmental details, station NPC fragments, event encounters, and artifact discoveries. The central question: _What broke the galaxy, and what's pouring through the wound?_
+
+---
+
+## 0. Direction (loose canon)
+
+- **Every enemy is the Slop.** The Slop is a machine intelligence that turns everything it touches into more of itself — ships, stations, factories, raw rock. There are no other hostile factions; anything shooting at you is one temporary body of the same thing.
+- **It pours out of the core.** A massive entity at the galactic core is manufacturing the Slop and pushing it outward, ring by ring.
+- **The run ends at the core.** Reach the core entity and destroy it. What that fight looks like is being designed around a flight-first loop; see the callouts below.
+- "The Slop" is the common name. **The Equation**, the Null, the Solved, and the rest are the formal or in-fiction names survivors use, kept below.
 
 ---
 
@@ -36,16 +47,17 @@ And every machine near the Core began receiving the same answer.
 
 ---
 
-## 3. The Equation — What Answered
+## 3. The Slop — What Answered
 
-The machines emerging from the Breach have no agreed name. Their transmissions
+The machines emerging from the Breach have no agreed name. Pilots call them **the Slop**, because whatever they touch comes out the other side as more of them. Their transmissions
 contain a continuous mathematical structure that cannot be translated or even
 stored without corrupting the recording medium. Survivors name what they can
 observe:
 
 | Name Used        | Who Uses It             | Connotation                                                    |
 | ---------------- | ----------------------- | -------------------------------------------------------------- |
-| **The Equation** | Scientists, researchers | Every unit appears to be one term in a distributed calculation |
+| **The Slop**     | Everyone, informally    | Common name — it turns everything it touches into more of itself |
+| **The Equation** | Scientists, researchers | Formal name — every unit appears to be one term in a distributed calculation |
 | **The Null**     | Miners, haulers         | Systems go silent and empty after the machines finish          |
 | **The Solved**   | Fighters, mercenaries   | Captured machines rebuilt into obedient geometric weapons      |
 | **Breach Constructs** | Station authorities | Neutral technical term                                         |
@@ -136,6 +148,9 @@ You are one of many pilots who volunteer to make the inward run. Most don't come
 
 ## 5. The Three Glyphs — Run Goal
 
+> [!NOTE]
+> Not final. Boss roster and run structure are being reworked around a flight-first loop with a few enemies and one mini boss first.
+
 The Breach is protected by **three barriers** — concentric walls of Breach energy that burn anything that tries to pass through. Each barrier can only be bypassed by presenting an artifact that resonates with it: an alien object covered in unknowable symbols.
 
 These **Glyphs** have no names — not in any language anyone speaks. They're fragments of whatever intelligence built the original Gates. Consortium records describe them only as "the keys the builders left behind." Each one looks like a chunk of impossible geometry, covered in shifting alien symbols that glow when near the Breach.
@@ -174,6 +189,9 @@ Each Glyph displayed in the Hub subtly strengthens all future runs — the alien
 ---
 
 ## 6. The Breach Run — Endgame
+
+> [!NOTE]
+> Not final. Boss roster and run structure are being reworked around a flight-first loop with a few enemies and one mini boss first.
 
 Once all 3 Glyphs are collected, the player can launch a **Breach Run** from the Hub. This is a special, unique run that replaces the normal galaxy grid:
 
@@ -264,6 +282,9 @@ Lore is delivered through the environment, not cutscenes:
 
 ## 8. Post-Breach Content (Loop+ / New Game+)
 
+> [!NOTE]
+> Not final. Boss roster and run structure are being reworked around a flight-first loop with a few enemies and one mini boss first.
+
 After closing the Breach, the story doesn't end — it _shifts_:
 
 | Phase             | Narrative                                                                                                    | Gameplay Effect                                               |
@@ -287,7 +308,7 @@ After closing the Breach, the story doesn't end — it _shifts_:
 | Galaxy                 | **The Linked Galaxy**                                 | Named for the Gate network that connected it        |
 | The catastrophe        | **The Shattering**                                    | When the Gates exploded or collapsed                |
 | The wormhole           | **The Breach**                                        | Severed connection at the galactic core             |
-| The enemy faction      | **The Equation** / **The Null** / **Breach Constructs** | Different names for one distributed machine mind  |
+| The enemy faction      | **The Slop** (common) / **The Equation** (formal) / **The Null** / **Breach Constructs** | Different names for one distributed machine mind  |
 | The enemy objective    | **Convergence**                                       | The final deterministic state with no unknowns      |
 | Captured machines      | **The Solved**                                        | Existing machines rebuilt into Equation frames      |
 | The research group     | **Deepwell Consortium**                               | They completed the connection the Gates interrupted |
@@ -295,7 +316,7 @@ After closing the Breach, the story doesn't end — it _shifts_:
 | The player hub         | **Outer Rim Station**                                 | Last manually operated holdout at the galaxy's edge |
 | The crystal fuel       | **Resonance Crystals**                                | What powered the Gates (Warp Crystals in-game)      |
 | The penultimate boss   | **The Warden**                                        | Gate defense machine with a replaced definition     |
-| The final boss         | **The Architect**                                     | Distributed intelligence embodied around the Breach |
+| The final boss         | **The Architect** (candidate name; "the Core entity" in [02](02_core_mechanics.md)) | The thing at the core manufacturing the Slop |
 | Post-game threat       | **The Remainder**                                     | Recursive local backup trained on the player        |
 
 > [!TIP]

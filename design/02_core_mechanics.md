@@ -1,5 +1,7 @@
 # ⚙️ Core Mechanics Design
 
+**Status:** In progress — loop not final. Enemies are the Slop ([14_lore_and_narrative.md](14_lore_and_narrative.md)); the run ends at the Core entity that manufactures it.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
@@ -22,7 +24,7 @@ graph TD
     J -->|Yes| C
     J -->|Sector Complete| B
     J -->|Fuel Empty| K[Stranded — Emergency Survival]
-    B -->|Reach Center| L[Final Boss — The Shatter Core]
+    B -->|Reach Center| L[Final Boss — the Core entity]
     L --> M{Victory?}
     M -->|Yes| N[Win! Unlock Loop+]
     M -->|No| O[Death → Meta Progression]
@@ -34,15 +36,14 @@ graph TD
 
 ## 2. Galaxy Grid & Navigation
 
-The run takes place on a **2D hex grid of sectors** — players start at the outer edge and navigate toward **The Shatter Core** at the center. Each run is a unique galaxy layout.
+The run takes place on a **2D hex grid of sectors** — players start at the outer edge and navigate toward **the Core** at the center. Each run is a unique galaxy layout. Rough sketch (hexes, so each sector touches six neighbours; rows are offset):
 
 ```
-    [Empty] [Nebula]  [Empty]  [Pirate]  [Empty]
-  [Asteroid] [Station] [Debris] [Empty] [Ice Field]
-    [Gas Giant] [Empty] [★ CORE ★] [Empty] [Alien]
-  [Empty] [Battle] [Station] [Supernova] [Empty]
-    [Asteroid] [Empty] [Nebula] [Empty] [Derelict]
-                                            ↑ YOU START HERE
+        [Nebula]   [Empty]   [Pirate]
+    [Asteroid] [Station]  [Debris]  [Ice Field]
+  [Gas Giant] [Empty]  [★ CORE ★]  [Empty]  [Alien]
+    [Battle]   [Station] [Supernova] [Empty]
+        [Asteroid] [Nebula]  [Derelict]  ← you start on the outer ring
 ```
 
 | Navigation Mechanic | Details                                                                                                 |
@@ -138,7 +139,10 @@ Not every encounter works in every environment. The ✅ marks valid combos (50+ 
 
 ## 4. Boss Encounter Design
 
-Bosses ONLY appear in **💀 Boss Fight** encounter types. Not every sector has one — expect **2–3 boss sectors per run** plus the final Shatter Core.
+> [!NOTE]
+> Not final. Boss roster and run structure are being reworked around a flight-first loop with a few enemies and one mini boss first.
+
+Bosses ONLY appear in **💀 Boss Fight** encounter types. Not every sector has one — expect **2–3 boss sectors per run** plus the Core entity at the end. The build's first target is **one mini boss**, not this roster.
 
 ### Ring-Scaled Boss Roster
 
@@ -161,9 +165,12 @@ Bosses ONLY appear in **💀 Boss Fight** encounter types. Not every sector has 
 | **Co-op Scaling** | More players = boss gets additional attack patterns, not just more HP                                                               |
 | **Loot Piñata**   | Bosses explode into loot like a piñata — the most satisfying moment in the run                                                      |
 
-### 🌀 The Shatter Core — Final Boss
+### 🌀 The Core entity — Final Boss (name TBD)
 
-The center of the galaxy. The reason the galaxy shattered.
+> [!NOTE]
+> Not final. Boss roster and run structure are being reworked around a flight-first loop with a few enemies and one mini boss first.
+
+The center of the galaxy: the massive entity manufacturing the Slop and pouring it outward. Destroying it ends the run. **Shatter Core** and **the Architect** ([14_lore_and_narrative.md](14_lore_and_narrative.md#6-the-breach-run--endgame)) are candidate names; the phase sketch below is one take on the fight.
 
 | Phase                      | Name                 | Mechanic                                                                                                                                                           |
 | -------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -194,7 +201,7 @@ The center of the galaxy. The reason the galaxy shattered.
 | Sector                  | Role                                                                  |
 | ----------------------- | --------------------------------------------------------------------- |
 | 🌟 **Starting Zone**    | Safe starting sector — tutorial-friendly, basic loot, your first jump |
-| 🌀 **The Shatter Core** | Center of grid — final boss arena                                     |
+| 🌀 **The Core**         | Center of grid — final boss arena (the Core entity, name TBD)         |
 
 > **Example sector generation:** The game rolls Environment = "Asteroid Field" (Common) + Encounter = "Pirate Raid" → you get a sector where pirates ambush you among dense asteroids, using rocks as cover. Same asteroid field with "Mining Run" → peaceful mining with escalating asteroid storms as time pressure. Same environment, completely different experience.
 
@@ -221,7 +228,9 @@ You don't equip upgrades the moment you find them. Instead:
 
 ---
 
-## 7. Run Structure (~40–60 minutes)
+## 7. Run Structure (target shape, not yet built)
+
+> Target shape, not yet built. Run length is TBD; the numbers below are the sketch we iterate from once the flight loop and a mini boss exist.
 
 Everything scales as you approach the center — enemies, loot, AND jump costs:
 
@@ -230,14 +239,16 @@ Everything scales as you approach the center — enemies, loot, AND jump costs:
 | **Outer Ring** | 3–4       | ★ Drones, scouts           | Common / Uncommon      | 3 crystals   | Starter zones — asteroid fields, easy nebulae, first station |
 | **Mid Ring**   | 2–3       | ★★ Fighters, pirates       | Uncommon / Rare        | 8 crystals   | Pirate territory, battle remnants, builds synergizing        |
 | **Inner Ring** | 1–2       | ★★★ Elites, void stalkers  | Rare / Epic            | 18 crystals  | Dangerous sectors — supernova remnants, alien homeworld      |
-| **The Core**   | 1         | ★★★★ Boss + guards         | Epic / Legendary       | 30 crystals  | Final boss — The Shatter Core                                |
+| **The Core**   | 1         | ★★★★ Boss + guards         | Epic / Legendary       | 30 crystals  | Final boss — the Core entity                                 |
 | **Loop+**      | Full grid | ★★★★★ Everything scaled up | All tiers, higher odds | 2× all costs | New galaxy, everything harder, items keep stacking           |
 
-> Players traverse **5–8 sectors per run**. The scaling creates a natural "power check" — if you're underpowered for the ring you're in, enemies will crush you AND you can't afford the next jump. Efficient play is rewarded: clear sectors quickly, grab what you need, and push inward before the costs outpace your income.
+> Players traverse **7–10 sectors per run** (3–4 outer, 2–3 mid, 1–2 inner, plus the Core). The scaling creates a natural "power check" — if you're underpowered for the ring you're in, enemies will crush you AND you can't afford the next jump. Efficient play is rewarded: clear sectors quickly, grab what you need, and push inward before the costs outpace your income.
 
 ---
 
 ## 8. Currency & Resource System
+
+Four currencies. Warp Crystals are the run-pacing one; the other three are standard roguelite in-run / meta / XP.
 
 | Currency             | Type            | How Earned                                              | What It Buys                                             |
 | -------------------- | --------------- | ------------------------------------------------------- | -------------------------------------------------------- |
@@ -269,7 +280,7 @@ Everything scales as you approach the center — enemies, loot, AND jump costs:
 
 ### Meta-Progression (Between Runs — Research Data)
 
-> _See [04_meta_progression.md](04_meta_progression.md) for full system_
+> _See [04_meta_progression.md](ideas/04_meta_progression.md) for full system_
 
 - **Unlock new content** — weapons, modules, specialties added to the **drop pool** (no permanent buffs)
 - **Toggle Pool** — turn unlocked items on/off before a run to curate what can drop

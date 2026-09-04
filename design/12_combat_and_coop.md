@@ -1,5 +1,7 @@
 # ⚔️ Combat & Co-op Design
 
+**Status:** Design — co-op not in the build.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
@@ -58,8 +60,8 @@
 | ----------------------- | -------------------------------------------------------------------------------------------------- |
 | **Read before react**   | Every enemy telegraphs its attack with visual + audio cues (1–2s warning)                          |
 | **Counter-play exists** | Every enemy behavior has a clear counter (dodge the charge, shoot the generator, etc.)             |
-| **Roles, not reskins**  | Each chassis fills a distinct role — Drones swarm, Tanks absorb, Supports buff                     |
-| **Composition matters** | Wave composition creates emergent challenges (Support + Tank = hard wall)                          |
+| **Roles, not reskins**  | Each frame fills a distinct role — Needles swarm, Bastions absorb, Relays buff ([06_enemy_catalog.md](06_enemy_catalog.md)) |
+| **Composition matters** | Wave composition creates emergent challenges (Relay + Bastion = hard wall)                          |
 | **Profession moments**  | Some enemies are designed to make specific professions feel special (Scientist reveals weaknesses) |
 | **Trait readability**   | Visual cues (glow, particles, size) telegraph traits so players learn the "language"               |
 

@@ -1,5 +1,7 @@
 # 🛰️ Dynamic 3D Combat & Anti-Kiting
 
+**Status:** Partially implemented — §2 describes the live build; §3+ is proposal.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md). Related: [12_combat_and_coop.md](12_combat_and_coop.md), [15_controls_and_camera.md](15_controls_and_camera.md), [06_enemy_catalog.md](06_enemy_catalog.md), [03_weapons_and_upgrades.md](03_weapons_and_upgrades.md).
 >
 > **Not in the POC.** Pirate Raid can stay dumb-chase until the loop is fun. This is the North Star for post-POC AI and the reason kiting should not win fights.
@@ -38,13 +40,13 @@ Sibling Unreal project: `C:\Projects\_personal\Shattered\game`. Solo only; `Pawn
 
 | System | Where | What it does today |
 | --- | --- | --- |
-| Player flight | `AShatteredPawn` | 6DOF inertial velocity, separate forward / strafe / vertical thrust, mouse steering, roll, timed boost, brake damping |
-| Player fire | `AShatteredPawn::TryFire` | Hitscan-aim along control rotation; one `APulseProjectile` family |
-| Projectiles | `APulseProjectile` | Thin emissive bolts; hits pawns / world, applies damage, impact burst, expires at a fixed travel range |
-| Enemy AI | `APiratePawn` | Per-tick seek toward player. Roles: Chase, Strafe, Tank, Flagship |
-| Waves | `AShatteredGameMode` | Warmup → 3 waves → flagship. No squad object, no coordinator |
+| Player flight | `AShatteredPawn` | 6DOF inertial velocity, separate forward / strafe / vertical thrust (800 forward, 120 reverse, 150 strafe/vertical caps), body-relative mouse steering, roll, 0.4s boost to 1550 on a 3s cooldown, brake damping |
+| Player fire | `AShatteredPawn::TryFire` | Spawns an `APulseProjectile` 175 units ahead along the **hull forward vector** (not the control rotation); 8 shots/s, 2400 uu/s, 6000 range, 10 damage |
+| Projectiles | `APulseProjectile` | Thin emissive bolts with a 7-unit sphere; hits pawns / world, applies damage, becomes an impact burst, expires at `MaxTravelDistance` |
+| Enemy AI | `APiratePawn` | Per-tick seek toward player. Roles: Chase (30 HP, 520 speed, 8 dmg), Strafe (25 HP, 640, 6 dmg), Tank (80 HP, 280, 16 dmg), Flagship (400 HP × New Game scale, 180, 22 dmg) |
+| Waves | `AShatteredGameMode` | 2s warmup → 3 waves splitting the New Game enemy count → flagship. Next wave 1.25s after the last kill. No squad object, no coordinator |
 | Training | `AShatteredTrainingGameMode` | Same arena, no enemies — flight lab, not a combat test bed |
-| Stats | pawn UPROPERTY defaults | HP, speed, fire rate. No shields, no subsystems, no weapon envelopes |
+| Stats | pawn UPROPERTY defaults | HP 100 plus a 100-point shield that absorbs first and recharges at 18/s after 3s without damage (`MaxShield`, `ShieldRechargeDelay`, `ShieldRechargePerSecond`). Collisions cost hull above 220 uu/s closing speed. No subsystems, no weapon envelopes |
 
 There is **no** fleet, formation, intercept prediction, attack slot, or pursuit policy. Each pirate independently:
 

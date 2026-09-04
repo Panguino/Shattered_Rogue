@@ -1,4 +1,5 @@
 # 18 — Procedural Environments
+**Status:** Implemented — matches the live `AShatteredEnvironmentDirector` recipe.
 
 > **POC slice:** one asteroid-sector recipe, zero or one sun, 0–3 planets, seeded dust and rocks.
 > Runtime lives in the sibling Unreal project: `AShatteredEnvironmentDirector` + `ShatteredEnvironment::BuildRecipe`.

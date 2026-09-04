@@ -1,5 +1,7 @@
 # 🖥️ UI, HUD & VFX Style Guide
 
+**Status:** In progress — runtime HUD port partially shipped.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
@@ -61,7 +63,11 @@
 | **Explosion (enemy)** | Astroneer-style: bright pop, colorful debris, satisfying crunch    |
 | **Explosion (boss)**  | Massive: screen-wide flash, slow-mo moment, debris rain            |
 
-### Niagara System Guidelines (UE5)
+### What effects are today
+
+No Niagara system exists in the project. The plugin is enabled in the `.uproject` and listed in `Build.cs`, but nothing references it. Every effect in the build is a **point light and/or a scaled emissive mesh**: muzzle flash (`MuzzleLight`), bolt and impact burst (`APulseProjectile::BecomeImpactBurst`), thruster plumes, the world-space exhaust trail and flight-dust motes on `AShatteredPawn`, damage/shield flash (`DamageFlashLight`), pirate death bursts, and the lightning arcs on the Enemy Generator preview. `Content/VFX` is empty. Swapping these for Niagara is a later step once the loop is fun; the guidelines below are for that swap.
+
+### Later: Niagara System Guidelines (UE5)
 
 | Guideline             | Rule                                                               |
 | --------------------- | ------------------------------------------------------------------ |
@@ -169,9 +175,9 @@ Drawn in screen space around the projected ship. Same angular language as the im
 | **Shield arc** | Upper arc, outer band | Yes | Cyan boxes. Drains first. Recharge delay reads as a gap that closes. |
 | **Hull arc** | Lower arc, outer band | Yes | Coral boxes. |
 | **Boost arc** | Lower arc, inner band | Yes | Gold boxes. Same sweep as hull, drawn thinner so it cannot out-shout it. |
-| **Brake pip** | Opposite the boost arc | When braking | Dim → gold while X is held. |
-| **Weapon ticks** | On the *impact reticle*, not the hull | Yes | One tick per fire group (primary / secondary). Empty = cooling, filled = ready, gold = will-hit. Infinite ammo still has a fire-rate cooldown. |
-| **Incoming pip** | On the halo, toward the hit | On damage | Brief tick on the arc facing the impact. Replaces a dedicated compass. |
+| **Brake pip** | Opposite the boost arc | Not yet (design: when braking) | Dim → gold while X is held. |
+| **Weapon ticks** | On the *impact reticle*, not the hull | Not yet | One tick per fire group (primary / secondary). Empty = cooling, filled = ready, gold = will-hit. Infinite ammo still has a fire-rate cooldown. |
+| **Incoming pip** | On the halo, toward the hit | Not yet (design: on damage) | Brief tick on the arc facing the impact. Replaces a dedicated compass. |
 
 Do **not** put weapon cooldown on the hull halo. Aim is at the reticle; "can I shoot" belongs there. Hull halo = "will I live / can I burst."
 
@@ -310,6 +316,8 @@ contract but does not pretend the underlying mechanic has already changed.
 
 ### Mods panel — silhouette + aux (bottom-right)
 
+> [!NOTE] Not implemented. Design only.
+
 Orthographic top-down schematic, bottom-right, opposite the telemetry. It is a
 schematic, never an overlay on the live mesh. The HUD pod has **no title bar**:
 the silhouette is the hull identity, and the AUX / SPEC / CARGO rows explain why
@@ -362,6 +370,8 @@ drift from what the loadout screen says is fitted. Names belong on the overlay;
 in flight, empty-vs-filled is the only thing worth reading.
 
 ### Boss bar (named fights only)
+
+> [!NOTE] Not implemented. Design only.
 
 Top-centre, 780 wide, hanging off the header rule on a short drop tick. It only
 exists during a named fight, so it is allowed to be the widest thing on the HUD.
@@ -427,7 +437,7 @@ it is the only cluster on the HUD that is entirely about a hostile.
 ### Dropped: the Contacts pod
 
 A dedicated `CONTACTS 07 / 14` pod under the economy was cut. It was the third
-place the same wave was being reported — the sector line already says `WAVE 3 / 5`
+place the same wave was being reported — the sector line already says `WAVE 2 / 3`
 and the radar already shows every hostile as a dot. The one part that was not
 duplicated, *how many are still alive*, survives as a `07 HOSTILES` chip in the
 score zone, which is where the other kill-related numbers already live.
@@ -437,12 +447,12 @@ score zone, which is where the other kill-related numbers already live.
 | Element | Position | Always? | Details |
 | ------- | -------- | ------- | ------- |
 | **Mission** | Header band, centre only | Yes | Sector / mode name, wave pips, one-line objective. The centre is the only spot a player reads without looking away from the reticle. No score, clock, ship level, or currencies flank it. |
-| **Boss / objective HP** | Hangs off the header rule, top-centre | Contextual | See below. |
+| **Boss / objective HP** | Hangs off the header rule, top-centre | Not yet (design: contextual) | See below. |
 | **Radar** | Top-**right**, under the mission rule | Yes | Bare disc, no header, no counts. See the contact key below. |
 | **Flight telemetry** | Bottom-left | Yes | See below. |
-| **Ship level / XP** | Footer bar, bottom edge | Yes | See below. |
-| **Low hull warning** | Screen-edge vignette | Hull < 20% | Coral pulse. Does not add another bar. |
-| **Level-up / interact** | Center-low, above the blueprint | Contextual | Tech card ready, dock, scan, tractor. One prompt at a time. |
+| **Ship level / XP** | Footer bar, bottom edge | Drawn, but `LEVEL 7` / 42% are hardcoded placeholders (`UShatteredHUD::ShipLevel`) until run progression exists | See below. |
+| **Low hull warning** | Screen-edge vignette | Not yet (design: hull < 20%) | Coral pulse. Does not add another bar. |
+| **Level-up / interact** | Center-low, above the blueprint | Not yet (design: contextual) | Tech card ready, dock, scan, tractor. One prompt at a time. |
 
 ### Level footer (bottom edge)
 
@@ -512,9 +522,11 @@ drawing outside it. Pirates ingress at ±2,100, so the fight still arrives insid
 the disc.
 
 Altitude carries a **separate** 1,600 scale, because the field is far wider than
-it is tall (±1,400) and a shared scale collapses every stem to a stub. It did
-*not* shrink alongside the sweep: the field is still 1,400 tall, so tightening
-this would clamp stems that are reporting real altitude. Culling is planar for
+it is tall (recipe bounds ±2,200 around the field centre, pirates ingress at
+Z 300–1,800; see [18_procedural_environments.md](18_procedural_environments.md))
+and a shared scale collapses every stem to a stub. It did *not* shrink alongside
+the sweep: most of the field's altitude still lands inside 1,600 of the ship, so
+tightening this would clamp stems that are reporting real altitude. Culling is planar for
 the same reason — a rock directly overhead still belongs on the disc.
 
 Both scales are **labelled from the constants they annotate** (`RNG 3000 M`
@@ -592,7 +604,7 @@ five bars normalised to their own caps would all look full and say nothing.
 
 | Element | Where | Notes |
 | ------- | ----- | ----- |
-| **Impact reticle** | Projected muzzle hit | Already shipped. Gold/coral on blocking hit. |
+| **Impact reticle** | Projected muzzle hit | Already shipped. Two states: gold on a blocking hit, dim cyan otherwise. |
 | **Damage numbers** | At the victim | White normal, gold crit. |
 | **Teammate tags** | Over allied ships | Name + hull pip. Off-screen = edge chevron. |
 | **Scientist scan** | Over scanned enemy | HP / weakness, only while analyzed. |
@@ -609,6 +621,8 @@ five bars normalised to their own caps would all look full and say nothing.
 | Solid glass pods over every corner | Frame info can stay glass; the ship cluster should be line-art, not boxes covering the model. |
 
 ## Loadout overlay (`Tab`)
+
+> [!NOTE] Not implemented. Design only. `Tab` is unbound in the build.
 
 Full-run ship screen: what is bolted on, what is in the hold, and what swapping
 one for the other would do.
@@ -632,7 +646,7 @@ one for the other would do.
 
 ### The middle third stays empty
 
-Stations do not pause in co-op ([07_stations.md](07_stations.md)) — three other
+Stations do not pause in co-op ([07_stations.md](ideas/07_stations.md)) — three other
 players are still fighting. So this screen is drawn over a ship that is still
 being shot at, and **anything covering screen centre makes opening your own
 inventory the most dangerous act in the game.**

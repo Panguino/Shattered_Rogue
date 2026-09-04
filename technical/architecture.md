@@ -1,164 +1,154 @@
 # 🏗️ Technical Architecture
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md). **Active plan:** [00_POC_PLAYABLE_LOOP.md](../00_POC_PLAYABLE_LOOP.md).
+**Status:** Implemented — describes the live module.
+
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md). **Active plan:** [00_POC_PLAYABLE_LOOP.md](../00_POC_PLAYABLE_LOOP.md). Project: `C:\Projects\_personal\Shattered\game`.
 
 ---
 
 ## 0. Engine
 
-**Unreal Engine 5.8**, C++ primary. Official **Unreal MCP** plugin for Cursor. Do not switch to Unity or Godot — see [engine_mcp_ai_integration.md](../research/engine_mcp_ai_integration.md).
+**Unreal Engine 5.8**, one runtime module, C++ only. Official **Unreal MCP** plugin for Cursor (editor-only, with `AllToolsets`, `PythonScriptPlugin`, `EditorScriptingUtilities`). Do not switch to Unity or Godot — see [engine_mcp_ai_integration.md](../research/engine_mcp_ai_integration.md).
+
+Rendering from `DefaultEngine.ini`: Forward shading, DX12, fixed 60 FPS, auto-exposure off. `GlobalDefaultGameMode` is `AShatteredMenuGameMode`; `GameInstanceClass` is `UShatteredGameInstance`; both editor and game start on `M_MainMenu`.
 
 ---
 
-## 1. UE5 C++ vs Blueprint Strategy
+## 1. How it is built
 
-> [!IMPORTANT]
-> **Target: 90% C++ / 10% Blueprint.** Core systems in C++, exposed to Blueprint for designer tuning and visual scripting where appropriate.
-
-| Layer               | Language  | Rationale                                                                          |
-| ------------------- | --------- | ---------------------------------------------------------------------------------- |
-| **Core Systems**    | C++       | Performance, type safety, version control — weapon system, proc engine, networking |
-| **Game Logic**      | C++       | Enemy AI, galaxy generation, progression, upgrade system                           |
-| **UI**              | UMG + C++ | C++ backend logic, UMG widgets for visual layout                                   |
-| **Prototyping**     | Blueprint | Rapid iteration on level design, VFX, animation state machines                     |
-| **Designer Tuning** | Blueprint | Exposed variables for balance tuning without code changes                          |
-| **Animation**       | AnimBP    | Animation state machines, blend spaces, montages                                   |
-
-### C++ Architecture Guidelines
-
-| Principle                  | Details                                                              |
-| -------------------------- | -------------------------------------------------------------------- |
-| **Component-based design** | Favor UActorComponents over deep inheritance hierarchies             |
-| **Data-driven**            | Use DataAssets and DataTables for game data (weapons, enemies, etc.) |
-| **Interface contracts**    | Define interfaces for systems that need to be swappable/mockable     |
-| **Event-driven**           | Use delegates and event dispatchers for loose coupling               |
-| **Plugin architecture**    | Each major system (weapons, enemies, progression) is a plugin        |
+| Rule | In practice |
+| --- | --- |
+| **100% C++** | Every actor, widget and setting is a C++ class. `Content/Blueprints/` holds only `.gitkeep` files. |
+| **Procedural UI** | Widgets override `RebuildWidget` and build their tree with `UWidgetTree::ConstructWidget`; the HUD paints in `NativePaint` with Slate draw elements. No `.uasset` widgets, no UMG designer. |
+| **No data assets** | Tuning lives in `UPROPERTY` defaults and `constexpr` namespaces (`ShatteredEnvironment`, `ShatteredHUDStyle`, `ShatteredMenuStyle`). No DataTables, DataAssets or GameplayTags. |
+| **No AI module** | Pirates steer in `APiratePawn::Tick`. No AIController, Behavior Trees, EQS or NavMesh. |
+| **Seeded, not authored** | The arena and enemy hulls are recipes derived from an `int32` seed via `FRandomStream`; determinism is covered by automation tests. |
+| **Niagara** | Plugin enabled and linked, no system referenced. Effects are point lights and scaled emissive meshes. |
+| **Assets by path** | Meshes and audio load through `ConstructorHelpers` on CDOs; environment materials through runtime `LoadObject`, which is why packaging lists them explicitly. |
 
 ---
 
-## 2. UE5 Built-in AI Systems
+## 2. Module `ShatteredRogue`
 
-Leverage Unreal's AI stack instead of rolling custom:
+`Source/ShatteredRogue/`, `IMPLEMENT_PRIMARY_GAME_MODULE`. Targets: `ShatteredRogue.Target.cs`, `ShatteredRogueEditor.Target.cs`.
 
-| UE5 System                  | Our Use Case                                                       |
-| --------------------------- | ------------------------------------------------------------------ |
-| **Behavior Trees**          | Enemy AI decision-making (attack, flee, patrol, support)           |
-| **Environment Query (EQS)** | Spatial reasoning — find cover, flanking positions, mining targets |
-| **AI Perception**           | Sight, hearing, damage sense for enemy awareness                   |
-| **Smart Objects**           | Station interaction points, mining nodes, scan targets             |
-| **Navigation Mesh**         | 3D NavMesh for space navigation (custom volume-based)              |
-| **Mass Entity (future)**    | Drone flock simulation at scale if needed                          |
-| **State Trees**             | Alternative to BTs for simpler enemies (drones, fodder)            |
-| **MetaSound**               | Adaptive music system, spatial SFX, dynamic mixing                 |
+**Build.cs** public dependencies: `Core`, `CoreUObject`, `Engine`, `InputCore`, `EnhancedInput`, `UMG`, `Slate`, `SlateCore`, `Niagara`. Explicit or shared PCHs.
 
-### Boids Implementation (Carrier Drones)
+### Flight / pawn
 
-| Component             | Implementation                                              |
-| --------------------- | ----------------------------------------------------------- |
-| **Flock Manager**     | C++ UActorComponent on Carrier hull — manages all drones    |
-| **Boid Agent**        | C++ class per drone — separation, alignment, cohesion rules |
-| **Engagement System** | EQS query to find nearest enemy → switch to combat behavior |
-| **Formation Presets** | DataAsset with orbit radius, spacing, formation patterns    |
-| **Visual Polish**     | Niagara particle trails, dynamic light on each drone        |
+| Class | Does |
+| --- | --- |
+| `AShatteredPawn` | Player ship. 6DOF inertial movement, body-relative steering, boost, brake, shields, collision damage, chase/first-person camera rig, headlight, thruster plumes, world-space exhaust trail, flight-dust motes, engine/cannon/boost/impact audio. Builds its own `UInputMappingContext` in `CreateInputMapping`. |
+| `AShatteredPlayerController` | Creates the HUD, binds Esc (pause), F8 / `\` (debug panel), `=` (reseed). Owns the pause / result overlay. |
+
+### Combat
+
+| Class | Does |
+| --- | --- |
+| `APulseProjectile` | Sphere-collided bolt with mesh and light; `Launch` for player or pirate, applies damage on hit, `BecomeImpactBurst` reuses the actor as the hit / death effect. |
+| `APiratePawn` | Enemy pawn. `EPirateRole` Chase / Strafe / Tank / Flagship set stats and primitive mesh in `Configure`; per-tick seek, face and fire; damage flash; death burst; reports to the game mode. |
+
+### Enemy generator
+
+| Class | Does |
+| --- | --- |
+| `ShatteredEnemyGeneratorTypes.h/.cpp` | `FShatteredEnemyGeneratorSettings` (per-part count ranges) → deterministic `FShatteredEnemyGeneratorRecipe` of primitive parts and attachment points. |
+| `ShatteredEnemyKit.h/.cpp` | Maps part types to the imported Cold Iron meshes (`SM_ColdIron_*`), solving orientation and sockets from authored mesh sockets. |
+| `AShatteredEnemyPreviewActor` | Assembles a recipe from kit meshes or engine primitives, lightning arcs between electrical parts, orbit / zoom camera, key-light bearing. |
+| `UShatteredEnemyGeneratorWidget` (+ `UShatteredEnemyRangeSlider`, `UShatteredEnemyFavoriteButton`, `UShatteredEnemyPreviewDragRegion`) | Main-menu screen: seed, range sliders, part inspector, favourites. |
+
+### Environment
+
+| Class | Does |
+| --- | --- |
+| `ShatteredEnvironmentTypes.h/.cpp` | Recipe structs (sun, planets, nebula masses, dust volumes, asteroids, field profile), the `ShatteredEnvironment` constants (arena extents, 90–340 asteroids, scale bands, bounds sphere) and `ApplySphericalBounds`. |
+| `AShatteredEnvironmentDirector` | Spawns the seeded sector: sky, sun mesh + directional light, sky light, planets with clouds / atmosphere / rings, height fog, local fog volumes, asteroid actors. `SetBackdropOnly` for menus. Exposes seed, layout hash and active recipe. |
+| `AShatteredAsteroid` | One physics-simulated rock from the recipe, with its own dynamic material for headlight exposure. |
+
+### HUD / menus
+
+| Class | Does |
+| --- | --- |
+| `UShatteredHUD` | Paint-only flight HUD: shield / hull / boost halo, impact reticle, telemetry, radar, mission header, level footer placeholder. Loads Chakra Petch from `Content/UI/Fonts`. Console vars `Shattered.ShowHUD`, `Shattered.HUDGaugePreview`. |
+| `UShatteredMainMenuWidget` | Main / New Game / Options / Enemy Generator screens. |
+| `UShatteredRaidOverlayWidget` | Pause / Options / Victory / Defeat. |
+| `UShatteredDebugWidget` | F8 flight lab: movement, weapon, enemy HP and seed sliders. |
+| `AShatteredMenuGameMode`, `AShatteredMenuPlayerController` | Menu map framework; spawn a backdrop-only environment. |
+
+### Game framework
+
+| Class | Does |
+| --- | --- |
+| `UShatteredGameInstance` | Session settings (enemy count, flagship scale, volume, sensitivity, seed, last result), level travel, settings load / save. |
+| `AShatteredGameMode` | Raid lifecycle: warmup → 3 waves → flagship → `FinishRaid`; enemy HP multiplier; ensures / regenerates the environment director. |
+| `AShatteredTrainingGameMode` | Same mode with `bTrainingMode`; no waves. |
+| `AShatteredGameState` | `EShatteredRaidPhase`, `WaveNumber`, `ActiveEnemyCount`. |
+
+### Save games
+
+| Class | Slot |
+| --- | --- |
+| `UShatteredSettingsSave` | `ShatteredSettings` — master volume, mouse sensitivity |
+| `UShatteredEnemyFavoritesSave` | `ShatteredEnemyFavorites` — generator favourites (note, seed, ranges) |
+
+### Tests
+
+`IMPLEMENT_SIMPLE_AUTOMATION_TEST`, editor context, engine filter:
+
+| Test | File |
+| --- | --- |
+| `ShatteredRogue.Environment.RecipeDeterminism` | `ShatteredEnvironmentRecipeTests.cpp` |
+| `ShatteredRogue.EnemyGenerator.RecipeDeterminism` | `ShatteredEnemyGeneratorTests.cpp` |
 
 ---
 
-## 3. Networking Architecture (Co-op)
-
-| Aspect               | Approach                                                         |
-| -------------------- | ---------------------------------------------------------------- |
-| **Model**            | Authoritative server (host is server). Clients predict + correct |
-| **Replication**      | Replicate ship positions, weapons, health. Loot is client-side   |
-| **RPCs**             | Server RPCs for damage, pickup, jump. Client RPCs for UI updates |
-| **Session**          | Steam / Epic Online Services for matchmaking and lobbies         |
-| **Max Players**      | 4 players per session                                            |
-| **Tick Rate**        | 30 Hz server tick, 60 Hz client simulation with interpolation    |
-| **Lag Compensation** | Projectile rollback for hit registration                         |
-
----
-
-## 4. Plugin/Module Structure
+## 3. Content
 
 ```
-ShatteredRogue/
-├── Source/
-│   ├── ShatteredCore/          ← Game framework, utility, data types
-│   ├── ShatteredShips/         ← Hull, profession, slot system, movement
-│   ├── ShatteredWeapons/       ← Weapon base, projectiles, proc system
-│   ├── ShatteredEnemies/       ← Chassis, traits, spawning, wave budget
-│   ├── ShatteredDrones/        ← Boids, drone types, flock manager
-│   ├── ShatteredProgression/   ← Research Data, meta unlocks, XP, levels
-│   ├── ShatteredGalaxy/        ← Grid generation, sectors, navigation
-│   ├── ShatteredStations/      ← Station types, services, UI
-│   ├── ShatteredEvents/        ← Event catalog, profession options
-│   ├── ShatteredCoop/          ← Networking, replication, session
-│   ├── ShatteredAudio/         ← MetaSound graphs, adaptive music
-│   └── ShatteredUI/            ← UMG widgets, HUD, menus
-├── Content/
-│   ├── Data/                   ← DataAssets, DataTables
-│   ├── Ships/                  ← Ship models, materials, animations
-│   ├── Enemies/                ← Enemy chassis, trait visuals
-│   ├── Environments/           ← Level assets, skyboxes, props
-│   ├── Audio/                  ← Music stems, SFX, MetaSound
-│   ├── UI/                     ← Widget blueprints, textures
-│   └── VFX/                    ← Niagara systems, materials
-└── Plugins/
-    └── (third-party plugins)
+Content/
+├── Maps/               M_MainMenu, M_PirateRaid
+├── Meshes/
+│   ├── Ships/          SM_Interceptor_Ace + T_Ace_* textures
+│   ├── Asteroids/      SM_Asteroid_01–08
+│   └── EnemyKit/       SM_ColdIron_* (Battery, Hub, Joint, Panel, Propulsion, Rod, Weapon, ...)
+├── Materials/
+│   ├── Environment/    M_AsteroidRock + MI_Asteroid_01–08, M_SpaceSky/Sun/SunGlow/Planet*/Ring
+│   └── Ships/          M_ShipHull, M_ThrusterGlow
+├── Textures/Asteroids/ per-rock BaseColor / Normal / RM
+├── Planet_Generator/   purchased planet shell materials, functions, textures, SM_Sphere_Planet
+├── EnemyKit/ColdIronImports/  raw kit import folders
+├── Audio/SFX/          Collisions (A_HullSmash_01/02), Movement (A_Engine_Drive, A_Boost_Burst), Weapons (A_Cannon_Laser)
+├── UI/Fonts/           ChakraPetch-*.ttf + OFL
+├── Blueprints/         .gitkeep only
+└── VFX/                empty
 ```
 
----
-
-## 5. Blueprint Documentation Standards
-
-All Blueprints must follow these standards for maintainability:
-
-| Standard                | Details                                                        |
-| ----------------------- | -------------------------------------------------------------- |
-| **Comment headers**     | Every Blueprint graph starts with a comment explaining purpose |
-| **Color coding**        | Blue = input, Green = logic, Red = output, Yellow = debug      |
-| **Collapsed subgraphs** | Any section > 15 nodes must be collapsed with a clear name     |
-| **Named reroute nodes** | Use named reroutes at every wire crossing                      |
-| **Variable categories** | Group variables: Config, Runtime, Debug, References            |
-| **Event dispatchers**   | Use dispatchers over direct references for decoupling          |
-| **C++ base classes**    | Blueprints should extend C++ classes, not other Blueprints     |
+`Scripts/` holds the editor Python used to import the asteroid and Cold Iron kits and apply sockets; it is tooling, not runtime.
 
 ---
 
-## 6. Development Phases & Milestones
+## 4. Packaging (`DefaultGame.ini`)
 
-| Phase                 | Duration    | Deliverables                                                      |
-| --------------------- | ----------- | ----------------------------------------------------------------- |
-| **Phase 1: Research** | ✅ Complete | Game vision, design docs, AI toolchain evaluation                 |
-| **Phase 2: MVP**      | 8–12 weeks  | Single hull, single profession, 3 sectors, basic combat, 1 boss   |
-| **Phase 3: Co-op**    | 6–8 weeks   | Networking, 2-player co-op, session management                    |
-| **Phase 4: Content**  | 12–16 weeks | All 6 hulls, 5 professions, full enemy system, stations, events   |
-| **Phase 5: Polish**   | 4–6 weeks   | VFX, SFX, music, UI polish, achievement system                    |
-| **Phase 6: Testing**  | 4–6 weeks   | Playtesting, balance tuning, performance optimization, bug fixing |
+| Setting | Why |
+| --- | --- |
+| `MapsToCook`: `M_MainMenu`, `M_PirateRaid` | Levels are opened by name from `UShatteredGameInstance`, so nothing references them. Every new map must be listed. |
+| `DirectoriesToAlwaysCook`: `/Game/Materials/Environment` | The director loads these with `LoadObject` at runtime; nothing on a CDO points at them. |
+| `DirectoriesToAlwaysStageAsUFS`: `UI/Fonts` | The HUD reads the `.ttf` files off disk rather than through a `UFont` asset. |
 
 ---
 
-## 7. Performance Targets
+## 5. Unreal MCP (Cursor)
 
-| Metric                | Target           | Notes                                    |
-| --------------------- | ---------------- | ---------------------------------------- |
-| **Frame Rate**        | 60 FPS stable    | On mid-range hardware (RTX 3060 equiv)   |
-| **Load Times**        | <5s per sector   | Async streaming, level instances         |
-| **Max Entities**      | 200 simultaneous | Enemies + drones + projectiles + loot    |
-| **Network Bandwidth** | <50 KB/s/player  | Efficient replication, delta compression |
-| **Memory**            | <4 GB            | Streaming textures, LOD system           |
+Editor hosts `http://127.0.0.1:8000/mcp`; Cursor connects via the generated `.mcp.json`. Plugins: `ModelContextProtocol` (server), `AllToolsets` (actor / scene / material / test tools). Loopback only, serial game-thread calls.
 
 ---
 
-## 8. Unreal MCP (Cursor)
+## 6. Later, if needed
 
-Enable in Phase 1. Editor hosts `http://127.0.0.1:8000/mcp`. Cursor connects via generated `.mcp.json`.
+Not planned yet. Listed so nobody assumes they exist:
 
-| Plugin | Role |
-| ------ | ---- |
-| **Unreal MCP** (`ModelContextProtocol`) | Server inside the editor |
-| **All Toolsets** | Default actor / scene / material / test tools |
-| **Toolset Registry** | Auto-enabled. Our custom `AICallable` tools go here |
-
-Game-specific tools to add later: spawn hull from DataTable, attach weapon to named socket, set engine trail color, run listen-server smoke test.
-
-Limits: Experimental, loopback only, serial game-thread calls. Fallback: ChiR24 or StraySpark — same engine.
+- **Behavior Trees / AIController** for pirates, once §3 of [17_anti_kiting_combat.md](../design/17_anti_kiting_combat.md) is pulled forward.
+- **DataAssets / DataTables** if hull or weapon counts grow past what `UPROPERTY` defaults can carry.
+- **Niagara** replacing the light-and-mesh effects.
+- **Replication** — the framework split exists so a listen server is not a rewrite, but nothing is replicated.
+- **Additional modules or plugins** — one module until there is a reason.

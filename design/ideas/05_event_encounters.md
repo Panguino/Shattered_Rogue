@@ -1,6 +1,8 @@
 # 🎲 Event Encounters
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+**Status:** Idea — brainstorm, not planned for the current build.
+
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
 

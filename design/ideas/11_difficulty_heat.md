@@ -1,6 +1,8 @@
 # 🔥 Difficulty & Heat System
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+**Status:** Idea — brainstorm, not planned for the current build.
+
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
 
@@ -18,15 +20,15 @@ After completing your **first full run** (beating The Shatter Core), the Difficu
 ║           🔥 HEAT CONFIGURATION — Pre-Run                 ║
 ╠════════════════════════════════════════════════════════════╣
 ║                                                            ║
-║  Total Heat: ████████████░░░░░░░░  12 / 64               ║
-║  Reward Bonus: +60% loot  |  +30% RD  |  +20% XP         ║
+║  Total Heat: ████░░░░░░░░░░░░░░░░   9 / 50               ║
+║  Reward Bonus: +50% loot  |  +30% RD  |  +20% XP         ║
 ║                                                            ║
 ║  ┌─────────────────────────────────────────────────┐      ║
 ║  │ MODIFIER               RANK    HEAT   STATUS   │      ║
 ║  │ ─────────────────────── ────── ─────── ──────── │      ║
-║  │ Hard Labor              ★★☆☆   +4     [ON]     │      ║
-║  │ Lasting Consequences    ★☆☆☆   +2     [ON]     │      ║
-║  │ Jury Duty               ★★★☆   +6     [ON]     │      ║
+║  │ Hard Labor              ★★★☆   +3     [ON]     │      ║
+║  │ Lasting Consequences    ★★☆☆   +2     [ON]     │      ║
+║  │ Jury Duty               ★★★☆   +4     [ON]     │      ║
 ║  │ Calisthenics            ☆☆☆☆   +0     [OFF]    │      ║
 ║  │ Benefits Package        ☆☆☆☆   +0     [OFF]    │      ║
 ║  │ Middle Management       ☆☆☆☆   +0     [OFF]    │      ║
@@ -93,10 +95,10 @@ Each modifier has **4 ranks**. Higher ranks add more Heat per modifier.
 | 9–16       | 🟠 Scorching    | +50%       | +30%     | +20%     | Guaranteed Rare+ from bosses                 |
 | 17–24      | 🔴 Inferno      | +80%       | +50%     | +35%     | Guaranteed Epic+ from final boss             |
 | 25–32      | 🟣 Hellfire     | +120%      | +75%     | +50%     | Exclusive Hellfire cosmetic set unlocks      |
-| 33–48      | ⚫ Extinction   | +175%      | +100%    | +75%     | Exclusive Extinction title + ship skin       |
-| 49–64      | 💀 **MAX HEAT** | +250%      | +150%    | +100%    | Exclusive MAX HEAT animated portrait + trail |
+| 33–42      | ⚫ Extinction   | +175%      | +100%    | +75%     | Exclusive Extinction title + ship skin       |
+| 43–50      | 💀 **MAX HEAT** | +250%      | +150%    | +100%    | Exclusive MAX HEAT animated portrait + trail |
 
-> **Max theoretical Heat = 64** (all 12 modifiers at Rank 4). This is nearly impossible to survive — a badge of honor for the most skilled players.
+> **Max theoretical Heat = 50** (all 12 modifiers at Rank 4: ten modifiers cap at +4, the two Pacing modifiers cap at +5). This is nearly impossible to survive — a badge of honor for the most skilled players.
 
 ---
 
@@ -108,7 +110,7 @@ Each modifier has **4 ranks**. Higher ranks add more Heat per modifier.
 | **"Feeling the Burn"**        | Complete a run at Heat 8+                 | Title: "Firewalker"                       |
 | **"Forged in Fire"**          | Complete a run at Heat 16+                | Exclusive weapon skin (fire effects)      |
 | **"Extinction Level Event"**  | Complete a run at Heat 32+                | Exclusive hull skin set (molten/magma)    |
-| **"MAX HEAT"**                | Complete a run at Heat 64 (ALL modifiers) | Animated portrait frame + death animation |
+| **"MAX HEAT"**                | Complete a run at Heat 50 (ALL modifiers) | Animated portrait frame + death animation |
 | **"Specialist"**              | Complete Heat 16+ with each profession    | Professor title + RD bonus per profession |
 | **"Fleet Admiral"**           | Complete Heat 16+ with each hull          | All ships get cosmetic thruster trail     |
 | **"The Masochist"**           | Complete Heat 32+ with -65% HP modifier   | Exclusive glowing red hull aura           |

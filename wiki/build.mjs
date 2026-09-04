@@ -11,98 +11,95 @@ const ASSETS_DST = path.join(DIST, "assets");
 
 marked.setOptions({ gfm: true, breaks: false });
 
+const STATUS = {
+  implemented: { label: "Implemented", cls: "implemented", note: "Describes what is in the live build." },
+  "in-progress": { label: "In progress", cls: "progress", note: "Direction set. Details are still moving with the build." },
+  vision: { label: "Vision", cls: "vision", note: "Current direction for the game. Not a spec." },
+  design: { label: "Design", cls: "design", note: "Planned for the game. Not built yet." },
+  idea: { label: "Idea", cls: "idea", note: "Brainstorm. Kept for later, not planned for the current build." },
+  research: { label: "Research", cls: "research", note: "Reference material, not game design." },
+  catalog: { label: "Catalog", cls: "catalog", note: "" },
+  archived: { label: "Archived", cls: "archived", note: "Snapshot of an earlier plan. Superseded." },
+};
+
 const PAGES = [
   { id: "home", title: "Command Deck", group: "Start", kind: "home" },
-  { id: "poc", title: "POC Plan", group: "Start", source: "00_POC_PLAYABLE_LOOP.md" },
-  { id: "plan", title: "Catalog", group: "Start", source: "00_GAME_DEVELOPMENT_PLAN.md" },
-  { id: "readme", title: "README", group: "Start", source: "README.md" },
+  { id: "poc", title: "Active plan", group: "Start", source: "00_POC_PLAYABLE_LOOP.md", status: "in-progress" },
+  { id: "plan", title: "Doc catalog", group: "Start", source: "00_GAME_DEVELOPMENT_PLAN.md", status: "in-progress" },
+  { id: "readme", title: "README", group: "Start", source: "README.md", status: "in-progress" },
 
-  { id: "ships", title: "Player Ships", group: "Asset Catalogs", kind: "ships", source: "art/ships.json" },
+  { id: "d01", title: "01 · Game Vision", group: "Game", source: "design/01_game_vision.md", status: "vision" },
+  { id: "d15", title: "15 · Controls & Camera", group: "Game", source: "design/15_controls_and_camera.md", status: "implemented" },
+  { id: "d18", title: "18 · Procedural Environments", group: "Game", source: "design/18_procedural_environments.md", status: "implemented" },
+  { id: "d17", title: "17 · Combat & Anti-Kiting", group: "Game", source: "design/17_anti_kiting_combat.md", status: "in-progress" },
+  { id: "d16", title: "16 · UI, HUD, VFX", group: "Game", source: "design/16_ui_hud_vfx.md", status: "in-progress" },
+  { id: "d06", title: "06 · Enemies", group: "Game", source: "design/06_enemy_catalog.md", status: "in-progress" },
+  { id: "d14", title: "14 · Lore", group: "Game", source: "design/14_lore_and_narrative.md", status: "in-progress" },
+  { id: "d02", title: "02 · Core Loop", group: "Game", source: "design/02_core_mechanics.md", status: "in-progress" },
+  { id: "d09", title: "09 · Audio", group: "Game", source: "design/09_audio_direction.md", status: "in-progress" },
+  { id: "d03", title: "03 · Weapons & Upgrades", group: "Game", source: "design/03_weapons_and_upgrades.md", status: "design" },
+  { id: "d12", title: "12 · Combat & Co-op", group: "Game", source: "design/12_combat_and_coop.md", status: "design" },
+  { id: "arch", title: "Architecture", group: "Game", source: "technical/architecture.md", status: "implemented" },
+  { id: "toolchain", title: "AI Toolchain", group: "Game", source: "technical/ai_toolchain.md", status: "in-progress" },
+
+  { id: "ships", title: "Player Ships", group: "Asset Catalogs", kind: "ships", source: "art/ships.json", status: "catalog" },
+  { id: "weapons", title: "Player Weapons", group: "Asset Catalogs", kind: "weapons", source: "art/weapons.json", status: "catalog" },
   {
-    id: "weapons",
-    title: "Player Weapons",
-    group: "Asset Catalogs",
-    kind: "weapons",
-    source: "art/weapons.json",
-  },
-  {
-    id: "enemy-ships",
-    title: "Enemy Ships",
-    group: "Asset Catalogs",
-    kind: "asset-catalog",
+    id: "enemy-ships", title: "Enemy Ships", group: "Asset Catalogs", kind: "asset-catalog", status: "catalog",
     catalog: "art/enemies/equation/cold-iron/models/catalog.json",
     assetRoot: "art/enemies/equation/cold-iron",
     distRoot: "catalogs/enemy-ships",
     intro: "Fifteen complete Cold Iron combat frames. Compare each source concept with its orbitable 6–9k-triangle PBR model.",
   },
   {
-    id: "enemy-components",
-    title: "Enemy Components",
-    group: "Asset Catalogs",
-    kind: "asset-catalog",
+    id: "enemy-components", title: "Enemy Components", group: "Asset Catalogs", kind: "asset-catalog", status: "catalog",
     catalog: "art/enemies/equation/cold-iron-kit/models/catalog.json",
     assetRoot: "art/enemies/equation/cold-iron-kit",
     distRoot: "catalogs/enemy-components",
     intro: "The aligned Cold Iron modular kit used by the procedural enemy generator, with concept art, mesh statistics, and review status.",
   },
+  { id: "asteroids", title: "Asteroids", group: "Asset Catalogs", kind: "asteroids", distRoot: "catalogs/asteroids", status: "catalog" },
   {
-    id: "asteroids",
-    title: "Asteroids",
-    group: "Asset Catalogs",
-    kind: "asteroids",
-    distRoot: "catalogs/asteroids",
-  },
-  {
-    id: "audio",
-    title: "Music & SFX",
-    group: "Asset Catalogs",
-    kind: "audio",
+    id: "audio", title: "Music & SFX", group: "Asset Catalogs", kind: "audio", status: "catalog",
     catalog: "art/audio/catalog.json",
     assetRoot: "art/audio",
     distRoot: "catalogs/audio",
-    intro:
-      "Music beds and SFX candidates with the prompts that produced them. Play samples in the inspector; copy a brief to regenerate or iterate.",
+    intro: "Music beds and SFX candidates with the prompts that produced them. Play samples in the inspector; copy a brief to regenerate or iterate.",
   },
+  { id: "art-prompts", title: "Ship Prompts", group: "Asset Catalogs", source: "art/ship_prompts.md", status: "catalog" },
+  { id: "weapon-prompts", title: "Weapon Prompts", group: "Asset Catalogs", source: "art/weapon_prompts.md", status: "catalog" },
 
-  { id: "d01", title: "01 · Game Vision", group: "Design", source: "design/01_game_vision.md" },
-  { id: "d02", title: "02 · Core Mechanics", group: "Design", source: "design/02_core_mechanics.md" },
-  { id: "d03", title: "03 · Weapons & Upgrades", group: "Design", source: "design/03_weapons_and_upgrades.md" },
-  { id: "d04", title: "04 · Meta-Progression", group: "Design", source: "design/04_meta_progression.md" },
-  { id: "d05", title: "05 · Event Encounters", group: "Design", source: "design/05_event_encounters.md" },
-  { id: "d06", title: "06 · Enemy Catalog", group: "Design", source: "design/06_enemy_catalog.md" },
-  { id: "d07", title: "07 · Stations", group: "Design", source: "design/07_stations.md" },
-  { id: "d08", title: "08 · Hub UI", group: "Design", source: "design/08_hub_ui.md" },
-  { id: "d09", title: "09 · Audio", group: "Design", source: "design/09_audio_direction.md" },
-  { id: "d10", title: "10 · Carrier Drones", group: "Design", source: "design/10_carrier_drones.md" },
-  { id: "d11", title: "11 · Difficulty & Heat", group: "Design", source: "design/11_difficulty_heat.md" },
-  { id: "d12", title: "12 · Combat & Co-op", group: "Design", source: "design/12_combat_and_coop.md" },
-  { id: "d13", title: "13 · Stats & Boards", group: "Design", source: "design/13_statistics_and_leaderboards.md" },
-  { id: "d14", title: "14 · Lore", group: "Design", source: "design/14_lore_and_narrative.md" },
-  { id: "d15", title: "15 · Controls & Camera", group: "Design", source: "design/15_controls_and_camera.md" },
-  { id: "d16", title: "16 · UI HUD VFX", group: "Design", source: "design/16_ui_hud_vfx.md" },
-  { id: "d17", title: "17 · Anti-Kiting Combat", group: "Design", source: "design/17_anti_kiting_combat.md" },
-  { id: "d18", title: "18 · Procedural Environments", group: "Design", source: "design/18_procedural_environments.md" },
-  { id: "d00-ideas", title: "Unsorted ideas", group: "Design", source: "design/00_random_unsorted_ideas.md" },
+  { id: "i-hulls", title: "Hull roster & professions", group: "Ideas & Brainstorm", source: "design/ideas/hull_roster_and_professions.md", status: "idea" },
+  { id: "d04", title: "04 · Meta-Progression", group: "Ideas & Brainstorm", source: "design/ideas/04_meta_progression.md", status: "idea" },
+  { id: "d05", title: "05 · Event Encounters", group: "Ideas & Brainstorm", source: "design/ideas/05_event_encounters.md", status: "idea" },
+  { id: "d07", title: "07 · Stations", group: "Ideas & Brainstorm", source: "design/ideas/07_stations.md", status: "idea" },
+  { id: "d08", title: "08 · Hub UI", group: "Ideas & Brainstorm", source: "design/ideas/08_hub_ui.md", status: "idea" },
+  { id: "d10", title: "10 · Carrier Drones", group: "Ideas & Brainstorm", source: "design/ideas/10_carrier_drones.md", status: "idea" },
+  { id: "d11", title: "11 · Difficulty & Heat", group: "Ideas & Brainstorm", source: "design/ideas/11_difficulty_heat.md", status: "idea" },
+  { id: "d13", title: "13 · Stats & Boards", group: "Ideas & Brainstorm", source: "design/ideas/13_statistics_and_leaderboards.md", status: "idea" },
+  { id: "d00-ideas", title: "Unsorted ideas", group: "Ideas & Brainstorm", source: "design/ideas/00_random_unsorted_ideas.md", status: "idea" },
 
-  { id: "art-prompts", title: "Ship Prompts (Markdown)", group: "Art", source: "art/ship_prompts.md" },
-  { id: "weapon-prompts", title: "Weapon Prompts (Markdown)", group: "Art", source: "art/weapon_prompts.md" },
-  { id: "toolchain", title: "AI Toolchain", group: "Technical", source: "technical/ai_toolchain.md" },
-  { id: "arch", title: "Architecture", group: "Technical", source: "technical/architecture.md" },
+  { id: "r-engine", title: "Engine MCP Research", group: "Research", source: "research/engine_mcp_ai_integration.md", status: "research" },
+  { id: "r-genre", title: "Roguelike Genre Research", group: "Research", source: "research/01_ROGUELIKE_GENRE_RESEARCH.md", status: "research" },
 
-  { id: "archive", title: "Archive index", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/README.md" },
-  { id: "plan-full", title: "Archived full plan", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md" },
-  { id: "scope", title: "Archived prototype scope", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/prototype_scope.md" },
-  { id: "impl", title: "Archived implementation", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/implementation_milestones.md" },
-  { id: "p0102", title: "Phase 1–2 Foundation", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_01_02_foundation_ship.md" },
-  { id: "p03", title: "Phase 3 Combat", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_03_combat.md" },
-  { id: "p04", title: "Phase 4 Run Structure", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_04_run_structure.md" },
-  { id: "p0506", title: "Phase 5–6 Progression", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_05_06_progression_coop.md" },
-  { id: "p0710", title: "Phase 7–10 Content", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_07_10_content_expansion.md" },
-  { id: "p1114", title: "Phase 11–14 Systems", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_11_14_systems_endgame.md" },
-  { id: "p1518", title: "Phase 15–18 Polish", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_15_18_audio_polish_release.md" },
+  { id: "archive", title: "Archive index", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/README.md", status: "archived" },
+  { id: "plan-full", title: "Archived full plan", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/00_GAME_DEVELOPMENT_PLAN.md", status: "archived" },
+  { id: "scope", title: "Archived prototype scope", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/prototype_scope.md", status: "archived" },
+  { id: "impl", title: "Archived implementation", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/implementation_milestones.md", status: "archived" },
+  { id: "p0102", title: "Phase 1–2 Foundation", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_01_02_foundation_ship.md", status: "archived" },
+  { id: "p03", title: "Phase 3 Combat", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_03_combat.md", status: "archived" },
+  { id: "p04", title: "Phase 4 Run Structure", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_04_run_structure.md", status: "archived" },
+  { id: "p0506", title: "Phase 5–6 Progression", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_05_06_progression_coop.md", status: "archived" },
+  { id: "p0710", title: "Phase 7–10 Content", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_07_10_content_expansion.md", status: "archived" },
+  { id: "p1114", title: "Phase 11–14 Systems", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_11_14_systems_endgame.md", status: "archived" },
+  { id: "p1518", title: "Phase 15–18 Polish", group: "Archived roadmap", source: "archive/full-game-roadmap-2026-08/technical/milestones/phase_15_18_audio_polish_release.md", status: "archived" },
+];
 
-  { id: "r-engine", title: "Engine MCP Research", group: "Research", source: "research/engine_mcp_ai_integration.md" },
-  { id: "r-genre", title: "Roguelike Genre Research", group: "Research", source: "research/01_ROGUELIKE_GENRE_RESEARCH.md" },
+// Section headers rendered above nav groups. "Game" through "Asset Catalogs" is
+// the game as planned or built; everything after is reference, not a commitment.
+const SECTIONS = [
+  { before: "Game", title: "The game", hint: "vision · planned · built" },
+  { before: "Ideas & Brainstorm", title: "Reference", hint: "ideas · research · archive" },
 ];
 
 // Titles here are curated, so the list stays hand-written rather than being read
@@ -112,9 +109,9 @@ const PAGES = [
 const registered = new Set(
   PAGES.filter((page) => page.source).map((page) => path.basename(page.source)),
 );
-const unregistered = fs
-  .readdirSync(path.join(ROOT, "design"))
-  .filter((name) => name.endsWith(".md") && !registered.has(name));
+const unregistered = ["design", "design/ideas"]
+  .filter((dir) => fs.existsSync(path.join(ROOT, dir)))
+  .flatMap((dir) => fs.readdirSync(path.join(ROOT, dir)).filter((name) => name.endsWith(".md") && !registered.has(name)));
 if (unregistered.length) {
   console.error(`Not in PAGES, so they would be missing from the wiki: ${unregistered.join(", ")}`);
   process.exit(1);
@@ -153,6 +150,7 @@ for (const [file, title] of GAMES) {
     title,
     group: "Game Studies",
     source: `research/games/${file}`,
+    status: "research",
   });
 }
 
@@ -192,6 +190,12 @@ function massageCallouts(html) {
     .replace(/<blockquote>\s*<p>\[!NOTE\]\s*/g, '<blockquote class="callout-tip"><p><strong>Note.</strong> ');
 }
 
+function badge(page) {
+  const s = STATUS[page.status];
+  if (!s || s.cls === "catalog") return "";
+  return `<span class="badge badge-${s.cls}" title="${esc(s.label)}">${esc(s.label)}</span>`;
+}
+
 function navHtml(activeId) {
   const groups = [];
   for (const page of PAGES) {
@@ -203,9 +207,13 @@ function navHtml(activeId) {
     .map((g) => {
       const open = g.pages.some((p) => p.id === activeId) ? " open" : "";
       const links = g.pages
-        .map((p) => `<a class="${p.id === activeId ? "active" : ""}" href="${hrefFor(p)}">${esc(p.title)}</a>`)
+        .map((p) => `<a class="${p.id === activeId ? "active" : ""}" href="${hrefFor(p)}"><span>${esc(p.title)}</span>${badge(p)}</a>`)
         .join("\n");
-      return `<details class="nav-group"${open}><summary>${esc(g.name)}</summary>${links}</details>`;
+      const section = SECTIONS.find((s) => s.before === g.name);
+      const header = section
+        ? `<div class="nav-section"><span>${esc(section.title)}</span><small>${esc(section.hint)}</small></div>`
+        : "";
+      return `${header}<details class="nav-group"${open}><summary>${esc(g.name)}</summary>${links}</details>`;
     })
     .join("\n");
 }
@@ -228,9 +236,8 @@ function shell(page, body) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${esc(page.title)} · Shattered Slop</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg" />
+  <link rel="stylesheet" href="assets/fonts/chakra-petch.css" />
   <link rel="stylesheet" href="assets/wiki.css" />
 </head>
 <body>
@@ -238,10 +245,10 @@ function shell(page, body) {
   <div class="layout">
     <aside class="sidebar">
       <a class="brand" href="index.html">
-        <div class="brand-mark"><span></span></div>
+        <img class="brand-mark" src="assets/logo-mark.svg" alt="" width="44" height="44" />
         <div>
           <h1>Shattered<br/>Slop</h1>
-          <small>Outer Rim Wiki</small>
+          <small>Design wiki</small>
         </div>
       </a>
       <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
@@ -359,55 +366,56 @@ function findArt(set, hull, id, exts) {
   return null;
 }
 
-function homeBody(ships) {
-  const hulls = ["Interceptor", "Corvette", "Carrier", "Organic", "Phantom", "Juggernaut"];
-  const profs = ["Fighter", "Miner", "Scout", "Hauler", "Scientist"];
-  const rows = hulls
-    .map((h) => {
-      const cells = profs
-        .map((p) => {
-          const s = ships.find((x) => x.hull === h && x.profession === p);
-          return `<td><a class="ship" href="ships.html#${s.id}">${esc(s.name)}</a></td>`;
-        })
-        .join("");
-      return `<tr><th>${h}</th>${cells}</tr>`;
-    })
-    .join("");
-
+function homeBody() {
+  const byStatus = (st) => PAGES.filter((p) => p.status === st && p.group === "Game");
+  const row = (p) => `<a class="board-row" href="${hrefFor(p)}"><span>${esc(p.title)}</span>${badge(p)}</a>`;
   return `
   <section class="hero">
-    <p class="kicker">Design bible · Art pipeline · POC plan</p>
-    <h2>A shattered galaxy.<br/>Thirty named ships.</h2>
-    <p class="lede">You are a spaceman. The North Star is hull × profession on a hex grid. The <strong>active build</strong> is a Pirate Raid playable loop (menus, one arena, flagship). Markdown stays the source of truth.</p>
+    <img class="hero-logo" src="assets/logo.svg" alt="Shattered Slop" width="560" height="140" />
+    <p class="lede">A 6DOF roguelite space shooter. Fly a fighter through a galaxy drowning in the Slop, a machine intelligence pouring out of the core and turning everything it touches into more of itself. Reach the core and kill whatever is making it.</p>
+    <p class="lede focus"><strong>Right now:</strong> nail the flight feel, a handful of enemy types, one mini boss. Expand by iteration.</p>
     <div class="chips">
-      <span class="chip">1–4 co-op</span>
-      <span class="chip">Unreal Engine 5.8</span>
-      <span class="chip">Unreal MCP + Cursor</span>
-      <span class="chip">Ace style lock</span>
-      <span class="chip">Tripo 6k tris · GLB 2K</span>
+      <span class="chip">Unreal Engine 5.8 · C++</span>
+      <span class="chip">6DOF chase-cam flight</span>
+      <span class="chip">Solo first, co-op later</span>
+      <span class="chip">Art style: exploring</span>
     </div>
   </section>
 
-  <p class="kicker">Jump in</p>
-  <div class="grid-3">
-    <a class="card" href="ships.html"><h3>Player ships</h3><p>Thirty hull × profession concepts and every available on-demand 3D model.</p></a>
-    <a class="card" href="weapons.html"><h3>Player weapons</h3><p>Three hardpoint guns that bolt onto gold ship pads, with empty wells for mod crystals.</p></a>
-    <a class="card" href="enemy-ships.html"><h3>Enemy ships</h3><p>Fifteen complete Cold Iron concepts beside their 6–9k-triangle models.</p></a>
-    <a class="card" href="enemy-components.html"><h3>Enemy components</h3><p>The aligned modular mesh kit used by the procedural enemy generator.</p></a>
-    <a class="card" href="asteroids.html"><h3>Asteroids</h3><p>Active size-family concepts and all eight Unreal runtime source GLBs.</p></a>
-    <a class="card" href="audio.html"><h3>Music &amp; SFX</h3><p>Playable beds and cues with the prompts that produced them.</p></a>
-    <a class="card" href="d01.html"><h3>Game vision</h3><p>Hulls, professions, combos, art direction, pillars.</p></a>
-    <a class="card" href="poc.html"><h3>POC plan</h3><p>Pirate Raid loop: menus, placeholder Ace, waves, flagship. Sibling UE 5.8 project.</p></a>
-    <a class="card" href="toolchain.html"><h3>AI toolchain</h3><p>Tripo targets, concept pipeline, editor MCP setup.</p></a>
-    <a class="card" href="d14.html"><h3>Lore</h3><p>The Shattering, the Breach, the ooze that puppeted the ships.</p></a>
-    <a class="card" href="r-engine.html"><h3>Engine research</h3><p>Why we stayed on Unreal instead of Unity or Godot.</p></a>
+  <div class="grid-2 board">
+    <section class="board-col">
+      <p class="kicker">Built</p>
+      ${byStatus("implemented").map(row).join("")}
+      <p class="kicker">In progress</p>
+      ${byStatus("in-progress").map(row).join("")}
+    </section>
+    <section class="board-col">
+      <p class="kicker">Vision &amp; planned</p>
+      ${byStatus("vision").map(row).join("")}
+      ${byStatus("design").map(row).join("")}
+      <p class="kicker">Start here</p>
+      <a class="board-row" href="poc.html"><span>Active plan</span><span class="badge badge-progress">In progress</span></a>
+      <a class="board-row" href="d01.html"><span>Game vision</span><span class="badge badge-vision">Vision</span></a>
+      <a class="board-row" href="d15.html"><span>Controls &amp; camera</span><span class="badge badge-implemented">Implemented</span></a>
+    </section>
   </div>
 
-  <p class="kicker">Hull × Profession</p>
-  <table class="matrix">
-    <thead><tr><th></th><th>Fighter</th><th>Miner</th><th>Scout</th><th>Hauler</th><th>Scientist</th></tr></thead>
-    <tbody>${rows}</tbody>
-  </table>
+  <p class="kicker">Assets</p>
+  <div class="grid-3">
+    <a class="card" href="enemy-ships.html"><h3>Enemy ships</h3><p>Fifteen Cold Iron concepts beside their 6–9k-triangle models.</p></a>
+    <a class="card" href="enemy-components.html"><h3>Enemy components</h3><p>The modular kit the procedural enemy generator assembles from.</p></a>
+    <a class="card" href="asteroids.html"><h3>Asteroids</h3><p>Size-family concepts and the eight runtime GLBs.</p></a>
+    <a class="card" href="audio.html"><h3>Music &amp; SFX</h3><p>Loops, beds and cues with the prompts that produced them.</p></a>
+    <a class="card" href="ships.html"><h3>Player ships</h3><p>Thirty hull × profession concepts. The Ace flies today; the roster is parked.</p></a>
+    <a class="card" href="weapons.html"><h3>Player weapons</h3><p>Starter trio concept art. The runtime fires one pulse cannon.</p></a>
+  </div>
+
+  <p class="kicker">Reference</p>
+  <div class="grid-3">
+    <a class="card" href="i-hulls.html"><h3>Ideas &amp; brainstorm</h3><p>Hull roster, meta-progression, stations, heat, drones. Kept, not planned.</p></a>
+    <a class="card" href="r-genre.html"><h3>Research</h3><p>Genre studies and engine notes that shaped the direction.</p></a>
+    <a class="card" href="archive.html"><h3>Archived roadmap</h3><p>The 18-phase full-game plan from August 2026, superseded.</p></a>
+  </div>
 `;
 }
 
@@ -755,16 +763,19 @@ function assetCatalogBody(page, entries) {
   `;
 }
 
+function statusBanner(page) {
+  const s = STATUS[page.status];
+  if (!s || !s.note) return "";
+  return `<div class="status-banner status-${s.cls}"><span class="badge badge-${s.cls}">${esc(s.label)}</span><span>${esc(s.note)}</span></div>`;
+}
+
 function mdBody(page, raw) {
   const html = massageCallouts(marked.parse(rewriteMdLinks(raw)));
-  return `<article class="doc">${html}</article>`;
+  return `${statusBanner(page)}<article class="doc">${html}</article>`;
 }
 
 fs.rmSync(DIST, { recursive: true, force: true });
-fs.mkdirSync(ASSETS_DST, { recursive: true });
-for (const f of fs.readdirSync(ASSETS_SRC)) {
-  fs.copyFileSync(path.join(ASSETS_SRC, f), path.join(ASSETS_DST, f));
-}
+fs.cpSync(ASSETS_SRC, ASSETS_DST, { recursive: true });
 
 const ships = JSON.parse(fs.readFileSync(path.join(ROOT, "art/ships.json"), "utf8"));
 const shipArt = copyShipArt();
@@ -773,7 +784,7 @@ const weaponArt = copyWeaponArt();
 
 for (const page of PAGES) {
   let body;
-  if (page.kind === "home") body = homeBody(ships.ships);
+  if (page.kind === "home") body = homeBody();
   else if (page.kind === "ships") {
     page.intro =
       "Thirty hull × profession concepts. Pick a ship to inspect its concept, 3D model, gold-ring checklist, and full generation prompt.";

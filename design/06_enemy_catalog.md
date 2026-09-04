@@ -1,6 +1,12 @@
-# 👾 Enemy Catalog — The Equation
+# 👾 Enemy Catalog — The Slop
+
+**Status:** In progress — generator and kit shipped; frame roster is design.
 
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+
+> **Naming.** Every enemy in the game is **the Slop**: one machine intelligence that turns everything it touches into more of itself, poured out of an entity at the galactic core. *The Equation* is its formal in-fiction name and is used below for the faction's design language; both words mean the same thing. See [14_lore_and_narrative.md](14_lore_and_narrative.md#0-direction-loose-canon).
+
+> **Live build.** The POC's pirates — Chase / Strafe / Tank / Flagship at 30 / 25 / 80 / 400 HP — are placeholders. They will be replaced by Slop constructs built from the frames and kit below; nothing about the pirate faction is canon.
 
 ---
 
@@ -9,7 +15,7 @@
 > [!IMPORTANT]
 > **The principal enemy is a networked machine intelligence, not an infection.**
 > It fabricates robot warships, captures existing machines, and rebuilds matter
-> into increasingly perfect geometric forms. Six base frames × five protocol
+> into increasingly perfect geometric forms. Five concepted frames (plus one unexplored sixth) × five protocol
 > layers × four proof tiers create hundreds of readable enemies from a compact
 > art kit.
 
@@ -32,7 +38,7 @@ reduce the galaxy to one final answer.
 
 ---
 
-## 2. Base Machine Frames (6 total)
+## 2. Base Machine Frames (5 concepted + Cipher)
 
 Each frame defines silhouette, base HP, movement, and attack pattern. Names are
 survivor shorthand based on the function each machine performs; intercepted
@@ -47,7 +53,8 @@ Equation signals identify them only with changing numeric expressions.
 | 🟣 **Relay**   | Slim spindle ringed by antennae and light nodes  | Low     | Medium    | Repair beam / logic aura | Network coordinator  |
 | ⚫ **Cipher**  | Flat asymmetric wedge with broken silhouette     | Low     | Fast      | Ambush burst             | Information warfare  |
 
-> **Art requirement: six hero frames.** Protocols add socketed plates, orbiting
+> **Art requirement: five hero frames with concepts, plus Cipher as an
+> unexplored sixth.** Protocols add socketed plates, orbiting
 > primitives, projected lines, shader states, and scale changes. A Thermal
 > Needle and a Cryo Needle share the same authored frame but must read as
 > different calculations before either fires.
@@ -62,24 +69,28 @@ Equation signals identify them only with changing numeric expressions.
 > moves each frame up one size class and tests three composite constructs whose
 > smaller drones dock into a single unit with one shared weapon. The
 > [`cold iron modular kit`](../art/enemies/equation/cold-iron-kit/README.md)
-> breaks that language into twenty compatible armor, power, structure,
-> propulsion, and systems blocks for further assemblies. The
+> breaks that language into **thirty** compatible pieces (v2) across ten
+> component families for further assemblies; the twenty-piece v1 kit is
+> archived beside it. The
 > earlier painted exploration is kept alongside it in
 > [`art/enemies/equation/`](../art/enemies/equation/README.md). Cipher remains
 > the sixth hero-frame exploration rather than being folded into Vector.
 >
-> **Primitive assembly lab:** the runtime main menu now includes **Enemy
-> Generator**, a deterministic shape study built from engine cubes, cylinders,
-> spheres, and cones. A seed plus min/max ranges controls electrical
-> connections, rods, panels, joints, weapons, propulsion, heat sinks, batteries,
+> **Enemy Generator (shipped):** the runtime main menu includes **Enemy
+> Generator**, a deterministic assembly tool. It loads the authored kit meshes
+> from `/Game/Meshes/EnemyKit` and falls back to engine primitives (cubes,
+> cylinders, spheres, cones) only when a kit mesh is missing. A seed plus
+> min/max ranges controls **ten part families**: the **Hub** (the root, with 16
+> symmetric omni sockets so growth can go in nearly any direction), electrical
+> terminals, rods, panels, joints, weapons, propulsion, heat sinks, batteries,
 > and lights. The preview rotates live; saved notes persist with the exact seed
 > and ranges in the `ShatteredEnemyFavorites` save slot. Component-inspector
-> mode isolates one primitive and renders every declared socket as a green
+> mode isolates one part and renders every declared socket as a green
 > sphere with a cyan normal stem: rods, cables, and batteries have two end
 > sockets; panels have four edge sockets; joints have six axis sockets; heat
 > sinks have two base sockets; weapons, propulsion, and lights have one mounting
-> socket. This is a silhouette exploration tool, not yet the combat enemy
-> implementation.
+> socket. This is a silhouette and assembly tool; the combat enemies that use
+> its output are not built yet.
 
 ---
 
@@ -173,9 +184,9 @@ Each encounter receives a **compute budget** based on ring and encounter type:
 
 | Ring      | Budget per Wave | Waves | Total Budget | Example Composition                                                     |
 | --------- | --------------- | ----- | ------------ | ----------------------------------------------------------------------- |
-| **Outer** | 6               | 2–3   | 12–18        | 6× Routine Needles → 2× Routine Vectors + 2× Routine Needles           |
-| **Mid**   | 10              | 3–4   | 30–40        | 4× Routine Vectors + 1× Iterant Mortar                                 |
-| **Inner** | 16              | 3–5   | 48–80        | 2× Theorem Vectors + 2× Iterant Needles → 1× Axiom Bastion + fodder   |
+| **Outer** | 6               | 2–3   | 12–18        | 6× Routine Needles → 4× Routine Vectors + 2× Routine Needles           |
+| **Mid**   | 10              | 3–4   | 30–40        | 4× Routine Vectors + 1× Iterant Mortar + 1× Iterant Relay + 2× Routine Needles |
+| **Inner** | 16              | 3–5   | 48–80        | 2× Theorem Vectors + 1× Iterant Needle + 6× Routine Needles → 1× Axiom Bastion + 8× Routine Needles |
 | **Core**  | 24              | 5+    | 120+         | Boss plus Theorem support equations; budget persists until win or death |
 
 ### Composition Rules
@@ -185,7 +196,7 @@ Each encounter receives a **compute budget** based on ring and encounter type:
 | **Always include fodder**       | At least 30% of budget is Routine constructs; machines still need satisfying pop targets |
 | **Max 1 Axiom per wave**        | Axioms are mini-bosses — one complete proof at a time                    |
 | **Relays need a network**       | Relay frames only spawn alongside 2+ constructs                          |
-| **Ciphers exploit attention**   | Cipher frames enter mid-wave after another unit establishes threat       |
+| **Ciphers exploit attention**   | Cipher frames (if built) enter mid-wave after another unit establishes threat |
 | **Show coordination**           | At least one formation, screen, relay, or synchronized attack per wave   |
 | **Ramp up within a sector**     | Wave 1 is easier than Wave 3. The last wave is the hardest               |
 

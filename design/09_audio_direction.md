@@ -1,5 +1,7 @@
 # 🎵 Audio & Music Direction
 
+**Status:** In progress — ElevenLabs loops generated; runtime ship audio shipped.
+
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---

@@ -1,6 +1,8 @@
 # 🔬 Meta-Progression System
 
-> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
+**Status:** Idea — brainstorm, not planned for the current build.
+
+> **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../../00_GAME_DEVELOPMENT_PLAN.md)
 
 ---
 
@@ -31,7 +33,7 @@ Unlock new weapons, modules, and specialties that can then appear during runs. E
 | --------------- | ------------ | ------------- | --------------- | ---------------------------------------------------- |
 | ⚔️ Weapons      | ~20 total    | 4 basic       | 50–500 RD each  | Found in-run = auto-unlock as starter option too     |
 | 🛡️ Modules      | ~20 total    | 4 basic       | 75–400 RD each  | Higher-tier modules cost more to unlock              |
-| 🔧 Specialties  | ~10 total    | 2 per prof    | 100–600 RD each | Profession-locked — only unlocks for that profession |
+| 🔧 Specialties  | ~20 total (4 per profession) | 2 per prof    | 100–600 RD each | Profession-locked — only unlocks for that profession |
 | 🎲 Cursed Items | ~8 total     | 2 basic       | 200–800 RD each | High-risk/reward items for gamblers                  |
 
 > **Example unlock path:** You start with Autocannon, Plasma Cutter, Shield Capacitor, and Thruster Boost in the drop pool. Spend 150 RD → unlock Rail Sniper. Now Rail Sniper can appear in level-up choices and station shops. Spend 300 RD → unlock Phase Repeater. Pool keeps growing.
