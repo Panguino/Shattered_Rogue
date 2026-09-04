@@ -1,4 +1,4 @@
-# 🚀 Shattered Rogue — Game Development Plan
+# 🚀 Shattered Slop — Game Development Plan
 
 > **Archived 2026-08-20.** Active plan: [../../00_POC_PLAYABLE_LOOP.md](../../00_POC_PLAYABLE_LOOP.md). This file is a snapshot of the 18-phase full-game roadmap.
 

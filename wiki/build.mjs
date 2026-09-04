@@ -240,7 +240,7 @@ function shell(page, body) {
       <a class="brand" href="index.html">
         <div class="brand-mark"><span></span></div>
         <div>
-          <h1>Shattered<br/>Rogue</h1>
+          <h1>Shattered<br/>Slop</h1>
           <small>Outer Rim Wiki</small>
         </div>
       </a>

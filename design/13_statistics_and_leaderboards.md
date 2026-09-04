@@ -298,7 +298,7 @@ After any run, players can generate a **shareable card** — a single image summ
 
 ```
 ┌──────────────────────────────────────┐
-│  SHATTERED ROGUE                     │
+│  SHATTERED SLOP                      │
 │  ──────────────────                  │
 │  🏆 VICTORY — Heat 16 🔥🔥🔥        │
 │                                      │

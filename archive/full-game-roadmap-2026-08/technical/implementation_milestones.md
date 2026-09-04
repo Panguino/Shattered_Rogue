@@ -1,4 +1,4 @@
-# 🗺️ Shattered Rogue — Complete Implementation Milestones
+# 🗺️ Shattered Slop — Complete Implementation Milestones
 
 > **3-level breakdown:** Milestones → Steps → Sub-steps
 > Every sub-step is a single, actionable task that can be handed to an AI coding agent or developer.

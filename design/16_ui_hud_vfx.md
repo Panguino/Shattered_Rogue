@@ -897,7 +897,7 @@ A floating readout has to carry its own contrast. The mockup uses a CSS
 ┌─────────────────────────────────────────┐
 │                                         │
 │          S H A T T E R E D              │
-│              R O G U E                  │
+│              S L O P                     │
 │                                         │
 │          ▸ Launch Run                   │
 │          ▸ Hub Station                  │
