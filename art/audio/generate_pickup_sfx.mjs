@@ -14,13 +14,15 @@ import { runCues } from "./lib/elevenlabs.mjs";
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..");
 const OUT_ROOT = join(HERE, "elevenlabs", "sfx");
+const ORB_ARCHIVE = join("..", "..", "archive", "2026-09-05-orb-round-1", "sfx", "pickups");
 
 const CUES = {
   // --- XP orb: rapid pickups, many per second when a cloud of orbs lands.
   // Short, bright, rising, so a burst of them stacks into a run rather than
   // a smear. Trimmed to well under half a second.
   xpCoin: {
-    file: join("pickups", "xp_orb_v01.wav"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "xp_orb_v01.wav"),
     duration: 0.5,
     outputFormat: "pcm_44100",
     trimSeconds: 0.32,
@@ -31,7 +33,7 @@ const CUES = {
   },
   xpChime: {
     promoted: true,
-    file: join("pickups", "xp_orb_v02.wav"),
+    file: join(ORB_ARCHIVE, "xp_orb_v02.wav"),
     duration: 0.5,
     outputFormat: "pcm_44100",
     trimSeconds: 0.4,
@@ -41,7 +43,8 @@ const CUES = {
       "sweet and satisfying, very short. Single pickup. No reverb tail, no echo.",
   },
   xpBloop: {
-    file: join("pickups", "xp_orb_v03.wav"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "xp_orb_v03.wav"),
     duration: 0.5,
     outputFormat: "pcm_44100",
     trimSeconds: 0.3,
@@ -226,7 +229,8 @@ const CUES = {
 
   // --- Level up: the bar filled. A real fanfare moment, one to two seconds.
   levelFanfare: {
-    file: join("pickups", "level_up_v01.mp3"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "level_up_v01.mp3"),
     duration: 1.6,
     prompt:
       "A triumphant retro arcade level-up jingle: a quick ascending four-note synth arpeggio " +
@@ -234,7 +238,8 @@ const CUES = {
       "punchy and joyful, short. Single jingle. No voice, no drums, no long reverb.",
   },
   levelChiptune: {
-    file: join("pickups", "level_up_v02.mp3"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "level_up_v02.mp3"),
     duration: 1.4,
     prompt:
       "An 8-bit chiptune level up: a fast rising square-wave run of six notes then two " +
@@ -242,7 +247,8 @@ const CUES = {
       "No voice, no reverb.",
   },
   levelPowerSurge: {
-    file: join("pickups", "level_up_v03.mp3"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "level_up_v03.mp3"),
     duration: 1.8,
     prompt:
       "A spaceship powering up to a new level in an arcade game: a rising energy surge sweep " +
@@ -250,7 +256,8 @@ const CUES = {
       "high sparkles trailing off, triumphant and satisfying. Single event. No voice, no drums.",
   },
   levelBell: {
-    file: join("pickups", "level_up_v04.mp3"),
+    superseded: true,
+    file: join(ORB_ARCHIVE, "level_up_v04.mp3"),
     duration: 1.6,
     prompt:
       "A rank-up chime for a sci-fi game: three ascending clear bell tones, each brighter than " +

@@ -1,12 +1,61 @@
 # 👾 Enemy Catalog — The Slop
 
-**Status:** In progress — generator and kit shipped; frame roster is design.
+**Status:** In progress — generator, kit, and first procedural boss implemented; broader frame/protocol roster remains design.
 
 > **Parent doc:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md)
 
 > **Naming.** Every enemy in the game is **the Slop**: one machine intelligence that turns everything it touches into more of itself, poured out of an entity at the galactic core. *The Equation* is its formal in-fiction name and is used below for the faction's design language; both words mean the same thing. See [14_lore_and_narrative.md](14_lore_and_narrative.md#0-direction-loose-canon).
 
-> **Live build.** The POC's pirates — Chase / Strafe / Tank / Flagship at 30 / 25 / 80 / 400 HP — are placeholders. They will be replaced by Slop constructs built from the frames and kit below; nothing about the pirate faction is canon.
+> **Live build (2026-09-05).** The raid's three waves use the authored Mortar Column, Bastion Anvil and Relay Cage. Its first boss is now **Iron Warden**, a sector-seeded cold-iron kit assembly, replacing the cube flagship. The `PiratePawn` / `Flagship` C++ names remain compatibility labels, not faction canon. Other frame/protocol combinations below are still design.
+
+### First boss: Iron Warden (initial playable pass)
+
+Appears after the third wave, using the existing boss victory and reward path.
+The sector seed produces a repeatable 22–29-part connected chassis: one hub,
+two weapon modules, two propulsion modules, and variable rods, joints, armor,
+power links and lamps. Uses the same kit placement/rendering as Enemy Generator,
+with a bounded 220-unit visual radius and a 230-unit collision radius. Its
+two generated weapon tips supply the actual projectile spawn positions.
+
+| Phase | Initial tuning | Player response |
+| --- | --- | --- |
+| Reposition | Orbit toward 1,450 units of standoff at 260 units/s; at least 2.5 seconds; seek a clear firing line | Follow or use rocks as cover |
+| Charge | 1.2-second amber muzzle swell; aim freezes for the final ~0.55 seconds | Strafe after the aim commits |
+| Volley | Two volleys, 0.38 seconds apart; each weapon fires a three-bolt fan at 11-degree spacing | Dodge the slow 1,000-unit/s bolts |
+| Recover | 2.4 seconds without firing; alternate orbit direction afterward | Punish with the starting pulse cannon |
+
+Base hull is 600 HP, multiplied by the existing flagship/debug health settings.
+Below half hull, movement rises to 320 units/s, reposition time drops to 1.8
+seconds, and the attack becomes three five-bolt fans per weapon. Charge and
+recovery windows remain unchanged. Each bolt deals 9 damage; rocks block shots.
+The mission HUD shows boss name, hull percentage and current attack phase.
+This is one shared hull-health pool, not destructible individual subsystems.
+Numbers are a first balancing pass, not a final difficulty target.
+
+### Rock avoidance and starting equipment (implemented)
+
+Moving enemies share hull-sized 3D look-ahead sweeps against scenery and drifting
+rocks. A scored direction fan can go left/right, over/under, or back out; previous
+direction biases equal-clearance routes to reduce side-to-side indecision.
+Short clearances reduce speed. Collision fallback spends the remaining movement
+sliding along the surface. A one-second lack-of-progress check initiates an
+escape replan; penetration correction accepts only a clear nearby destination.
+Spawns are clearance-tested for the configured hull size, with retries instead
+of silently embedding an entire wave or boss in rock. Mortar Columns intentionally
+remain stationary. Lightning also respects line of sight now.
+
+This is local avoidance, not a global route planner: tightly enclosed or moving
+rock clusters can still require further tuning. Next useful improvements are a
+coarse 3D waypoint graph for deep traps, squad spacing, and collision/health per
+generated module. These are not implemented in this pass.
+
+Fresh runs retain only the built-in starting pulse cannon. Optional hardpoints
+show no gun or gimbal base. Saved Ship Weapon Manager placement tuning remains
+available, but its preview loadout no longer grants equipment in a run.
+
+Development-only `-BossPlaytest` skips the waves for encounter audition. Normal
+raids still progress through all three waves. Regression tests live under
+`ShatteredRogue.EnemyCombat` plus the existing `EnemyGenerator` suite.
 
 ---
 
@@ -89,8 +138,8 @@ Equation signals identify them only with changing numeric expressions.
 > sphere with a cyan normal stem: rods, cables, and batteries have two end
 > sockets; panels have four edge sockets; joints have six axis sockets; heat
 > sinks have two base sockets; weapons, propulsion, and lights have one mounting
-> socket. This is a silhouette and assembly tool; the combat enemies that use
-> its output are not built yet.
+> socket. The first live consumer of this assembly system is Iron Warden above;
+> the three ordinary wave roles still use their authored complete hulls.
 
 ---
 

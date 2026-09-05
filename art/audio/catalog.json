@@ -2,6 +2,768 @@
   "version": 1,
   "entries": [
     {
+      "id": "xp_orb_v08",
+      "title": "XP orb 08 - Glass clink",
+      "kind": "sfx",
+      "group": "sfx-orb-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/xp_orb_v08.wav",
+      "durationSec": 0.48,
+      "peakDb": -9.42,
+      "rmsDb": -24,
+      "model": "eleven_text_to_sound_v2 + local edit",
+      "generatedAt": "2026-09-05",
+      "note": "Sparse high glass contact with a short ring: the light, clean option. Fresh independent physical recording, not a blend of the old chime/bloop. Attack-aligned, length capped, edge fades and headroom applied. No game import yet.",
+      "prompt": "Two small solid glass marbles strike together once: a crisp high glass TINK, a tiny tick just after it, a delicate inharmonic crystal ring dying away. Sparse, precise, light and clear. One hard contact, not a chime melody. Dry isolated game SFX. Immediate attack, short decay to silence. No water, bubbles, bloops, rubber pops, pitch sweeps, synth tones, music, voices, ambience or reverb.",
+      "sources": [
+        {
+          "file": "elevenlabs/sfx/pickups/orb-round-3-sources/orb_glass_clink.wav",
+          "sha256": "33d65afc0617761a5285f82b7c691b2b661fc7e3c1ee328502937732fe8497bc"
+        }
+      ]
+    },
+    {
+      "id": "xp_orb_v09",
+      "title": "XP orb 09 - Bag of orbs",
+      "kind": "sfx",
+      "group": "sfx-orb-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/xp_orb_v09.wav",
+      "durationSec": 0.85,
+      "peakDb": -9,
+      "rmsDb": -24.9,
+      "model": "eleven_text_to_sound_v2 + local edit",
+      "generatedAt": "2026-09-05",
+      "note": "Many irregular, slightly muffled hard bead collisions in one pouch shake: the busy rattling option. Fresh independent physical recording, not a blend of the old chime/bloop. Attack-aligned, length capped, edge fades and headroom applied. No game import yet.",
+      "prompt": "One brisk shake of a cloth bag packed with solid glass marbles. Many irregular dry hard clacks and bead collisions rattle rapidly then settle. Midrange woody-glassy chatter, slightly muffled by the pouch. Marbles dominate, cloth barely audible. No sustained ring. Dry isolated game SFX. Immediate attack, short decay to silence. No water, bubbles, bloops, rubber pops, pitch sweeps, synth tones, music, voices, ambience or reverb.",
+      "sources": [
+        {
+          "file": "elevenlabs/sfx/pickups/orb-round-3-sources/orb_bag_rattle.wav",
+          "sha256": "f9fb671cc885db719f15945d9ce067e590d559683a599666726f534beaa255d6"
+        }
+      ]
+    },
+    {
+      "id": "xp_orb_v10",
+      "title": "XP orb 10 - Orb smash",
+      "kind": "sfx",
+      "group": "sfx-orb-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/xp_orb_v10.wav",
+      "durationSec": 0.72,
+      "peakDb": -9,
+      "rmsDb": -26.76,
+      "model": "eleven_text_to_sound_v2 + local edit",
+      "generatedAt": "2026-09-05",
+      "note": "One brittle impact with crunchy fracture and scattered glass fragments: the aggressive option. Fresh independent physical recording, not a blend of the old chime/bloop. Attack-aligned, length capped, edge fades and headroom applied. No game import yet.",
+      "prompt": "A handful of brittle crystal orbs smashed together in one sharp forceful impact. Immediate crunchy CRASH, dense fractured-glass crackle, then a brief irregular scatter of tinkling hard fragments. Compact reward smash: brittle and noisy, not musical. No cinematic boom. Dry isolated game SFX. Immediate attack, short decay to silence. No water, bubbles, bloops, rubber pops, pitch sweeps, synth tones, music, voices, ambience or reverb.",
+      "sources": [
+        {
+          "file": "elevenlabs/sfx/pickups/orb-round-3-sources/orb_crystal_smash.wav",
+          "sha256": "053bdbfff52c55626aa775222fa7cc8dc92bffcc3edce12fe97413c33f16d562"
+        }
+      ]
+    },
+    {
+      "id": "xp_orb_v11",
+      "title": "XP orb 11 - Heavy orb crack",
+      "kind": "sfx",
+      "group": "sfx-orb-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/xp_orb_v11.wav",
+      "durationSec": 0.58,
+      "peakDb": -9,
+      "rmsDb": -24.13,
+      "model": "eleven_text_to_sound_v2 + local edit",
+      "generatedAt": "2026-09-05",
+      "note": "Low-mid mineral contact and ceramic fracture: the blunt, weighty option. Fresh independent physical recording, not a blend of the old chime/bloop. Attack-aligned, length capped, edge fades and headroom applied. No game import yet.",
+      "prompt": "One heavy solid mineral orb cracks against another. A low midrange stone KLOCK with a sharp ceramic fracture, then two granular chips settle. Thick, blunt, earthy and weighty: polished quartz billiard balls cracking. Minimal high ringing. No explosion or bass drop. Dry isolated game SFX. Immediate attack, short decay to silence. No water, bubbles, bloops, rubber pops, pitch sweeps, synth tones, music, voices, ambience or reverb.",
+      "sources": [
+        {
+          "file": "elevenlabs/sfx/pickups/orb-round-3-sources/orb_heavy_fracture.wav",
+          "sha256": "360aecb8774a1e0c2fbc454d126315ac7af9485dfa50db49ec81acb7c2a729b5"
+        }
+      ]
+    },
+    {
+      "id": "level_up_v09",
+      "title": "Level up 09 - Clink collection",
+      "kind": "sfx",
+      "group": "sfx-level-up-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/level_up_v09.wav",
+      "durationSec": 2.064,
+      "peakDb": -7,
+      "rmsDb": -23.67,
+      "model": "local physical orb assembly",
+      "generatedAt": "2026-09-05",
+      "note": "Individual glass contacts gather speed and strength, resolving in a collected handful of orbs. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "prompt": "Individual glass contacts gather speed and strength, resolving in a collected handful of orbs. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "events": [
+        {
+          "key": "clink",
+          "time": 0,
+          "gain": 0.15,
+          "semitones": -1.2
+        },
+        {
+          "key": "clink",
+          "time": 0.19,
+          "gain": 0.18347233187797557,
+          "semitones": 0.6
+        },
+        {
+          "key": "clink",
+          "time": 0.3591,
+          "gain": 0.23532503263246218,
+          "semitones": -0.4
+        },
+        {
+          "key": "clink",
+          "time": 0.5095989999999999,
+          "gain": 0.2975025956404975,
+          "semitones": 1.5
+        },
+        {
+          "key": "clink",
+          "time": 0.64354311,
+          "gain": 0.3675038542361351,
+          "semitones": 0
+        },
+        {
+          "key": "clink",
+          "time": 0.7627533679,
+          "gain": 0.4439648978880174,
+          "semitones": -1.2
+        },
+        {
+          "key": "clink",
+          "time": 0.8688504974310001,
+          "gain": 0.5260020016615441,
+          "semitones": 0.6
+        },
+        {
+          "key": "clink",
+          "time": 0.9632769427135901,
+          "gain": 0.6129864947759869,
+          "semitones": -0.4
+        },
+        {
+          "key": "clink",
+          "time": 1.0473164790150953,
+          "gain": 0.7044436977991314,
+          "semitones": 1.5
+        },
+        {
+          "key": "clink",
+          "time": 1.1221116663234347,
+          "gain": 0.8,
+          "semitones": 0
+        },
+        {
+          "key": "bag",
+          "time": 1.188679383027857,
+          "gain": 0.8,
+          "semitones": 0
+        }
+      ],
+      "sources": [
+        {
+          "id": "xp_orb_v08",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v08.wav",
+          "sha256": "cc97beec9ad8e327cb5e3073f4d484472b1d8ceb4cff2504dde13ef6d52c0946"
+        },
+        {
+          "id": "xp_orb_v09",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v09.wav",
+          "sha256": "b126aefc97a3418bb6c7e291be29248270df72e40ebed4afecf31a94f713db1b"
+        }
+      ]
+    },
+    {
+      "id": "level_up_v10",
+      "title": "Level up 10 - Bag overload",
+      "kind": "sfx",
+      "group": "sfx-level-up-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/level_up_v10.wav",
+      "durationSec": 2.38,
+      "peakDb": -7,
+      "rmsDb": -25.65,
+      "model": "local physical orb assembly",
+      "generatedAt": "2026-09-05",
+      "note": "Successive bag rattles overlap more densely with low hard knocks underneath; ends in a concentrated double handful. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "prompt": "Successive bag rattles overlap more densely with low hard knocks underneath; ends in a concentrated double handful. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "events": [
+        {
+          "key": "bag",
+          "time": 0,
+          "gain": 0.15,
+          "semitones": -1.2
+        },
+        {
+          "key": "heavy",
+          "time": 0.23,
+          "gain": 0.18924116336257185,
+          "semitones": 0.6
+        },
+        {
+          "key": "bag",
+          "time": 0.43470000000000003,
+          "gain": 0.25003048358427443,
+          "semitones": -0.4
+        },
+        {
+          "key": "bag",
+          "time": 0.6168830000000001,
+          "gain": 0.32292411753782513,
+          "semitones": 1.5
+        },
+        {
+          "key": "heavy",
+          "time": 0.7790258700000001,
+          "gain": 0.404989831816444,
+          "semitones": 0
+        },
+        {
+          "key": "bag",
+          "time": 0.9233330243000001,
+          "gain": 0.4946286509986382,
+          "semitones": -1.2
+        },
+        {
+          "key": "bag",
+          "time": 1.0517663916270001,
+          "gain": 0.5908045434552806,
+          "semitones": 0.6
+        },
+        {
+          "key": "heavy",
+          "time": 1.1660720885480302,
+          "gain": 0.6927804893427051,
+          "semitones": -0.4
+        },
+        {
+          "key": "bag",
+          "time": 1.2678041588077469,
+          "gain": 0.8,
+          "semitones": 1.5
+        },
+        {
+          "key": "bag",
+          "time": 1.3583457013388949,
+          "gain": 1.1,
+          "semitones": 0
+        },
+        {
+          "key": "bag",
+          "time": 1.428345701338895,
+          "gain": 0.65,
+          "semitones": -1.5
+        }
+      ],
+      "sources": [
+        {
+          "id": "xp_orb_v09",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v09.wav",
+          "sha256": "b126aefc97a3418bb6c7e291be29248270df72e40ebed4afecf31a94f713db1b"
+        },
+        {
+          "id": "xp_orb_v11",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v11.wav",
+          "sha256": "e2c6571ff34348c4a42fa80ea55a1fe471fcdc8f15ac70571686521ec23bb190"
+        }
+      ]
+    },
+    {
+      "id": "level_up_v11",
+      "title": "Level up 11 - Crack into smash",
+      "kind": "sfx",
+      "group": "sfx-level-up-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/level_up_v11.wav",
+      "durationSec": 2.108,
+      "peakDb": -7,
+      "rmsDb": -28.9,
+      "model": "local physical orb assembly",
+      "generatedAt": "2026-09-05",
+      "note": "Heavy cracks and light contacts accelerate into a single broad crystal smash. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "prompt": "Heavy cracks and light contacts accelerate into a single broad crystal smash. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "events": [
+        {
+          "key": "heavy",
+          "time": 0,
+          "gain": 0.15,
+          "semitones": -1.2
+        },
+        {
+          "key": "clink",
+          "time": 0.19,
+          "gain": 0.1790344334898126,
+          "semitones": 0.6
+        },
+        {
+          "key": "heavy",
+          "time": 0.3629,
+          "gain": 0.22401229152526989,
+          "semitones": -0.4
+        },
+        {
+          "key": "heavy",
+          "time": 0.520239,
+          "gain": 0.2779460994325491,
+          "semitones": 1.5
+        },
+        {
+          "key": "clink",
+          "time": 0.66341749,
+          "gain": 0.33866630543156817,
+          "semitones": 0
+        },
+        {
+          "key": "heavy",
+          "time": 0.7937099159000001,
+          "gain": 0.404989831816444,
+          "semitones": -1.2
+        },
+        {
+          "key": "heavy",
+          "time": 0.912276023469,
+          "gain": 0.47615012151160496,
+          "semitones": 0.6
+        },
+        {
+          "key": "clink",
+          "time": 1.02017118135679,
+          "gain": 0.551601855474548,
+          "semitones": -0.4
+        },
+        {
+          "key": "heavy",
+          "time": 1.1183557750346789,
+          "gain": 0.6309332892097341,
+          "semitones": 1.5
+        },
+        {
+          "key": "heavy",
+          "time": 1.2077037552815577,
+          "gain": 0.7138203468219075,
+          "semitones": 0
+        },
+        {
+          "key": "clink",
+          "time": 1.2890104173062176,
+          "gain": 0.8,
+          "semitones": -1.2
+        },
+        {
+          "key": "smash",
+          "time": 1.362999479748658,
+          "gain": 1.3,
+          "semitones": 0
+        }
+      ],
+      "sources": [
+        {
+          "id": "xp_orb_v11",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v11.wav",
+          "sha256": "e2c6571ff34348c4a42fa80ea55a1fe471fcdc8f15ac70571686521ec23bb190"
+        },
+        {
+          "id": "xp_orb_v08",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v08.wav",
+          "sha256": "cc97beec9ad8e327cb5e3073f4d484472b1d8ceb4cff2504dde13ef6d52c0946"
+        },
+        {
+          "id": "xp_orb_v10",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v10.wav",
+          "sha256": "ee916d37fe2e75de841a8c6c0e7466f69edc37a231e87a38765c7a2bb22b887e"
+        }
+      ]
+    },
+    {
+      "id": "level_up_v12",
+      "title": "Level up 12 - Orb avalanche",
+      "kind": "sfx",
+      "group": "sfx-level-up-round-3",
+      "status": "candidate",
+      "file": "derived/sfx/pickups/orb-round-3/level_up_v12.wav",
+      "durationSec": 2.715,
+      "peakDb": -7,
+      "rmsDb": -27.79,
+      "model": "local physical orb assembly",
+      "generatedAt": "2026-09-05",
+      "note": "All four textures accumulate from sparse contacts to a dense collision rush, finishing with a smash and settling beads. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "prompt": "All four textures accumulate from sparse contacts to a dense collision rush, finishing with a smash and settling beads. Buildup uses accelerating impacts, increasing gain and overlapping collisions; no synth riser or ascending bloop melody. Small fixed per-hit tuning variation only (+/-1.5 semitones), no pitch sweeps.",
+      "events": [
+        {
+          "key": "clink",
+          "time": 0,
+          "gain": 0.15,
+          "semitones": -1.2
+        },
+        {
+          "key": "bag",
+          "time": 0.21,
+          "gain": 0.16539399637862123,
+          "semitones": 0.6
+        },
+        {
+          "key": "heavy",
+          "time": 0.399,
+          "gain": 0.18924116336257185,
+          "semitones": -0.4
+        },
+        {
+          "key": "smash",
+          "time": 0.5691,
+          "gain": 0.21783675638150313,
+          "semitones": 1.5
+        },
+        {
+          "key": "clink",
+          "time": 0.7221900000000001,
+          "gain": 0.25003048358427443,
+          "semitones": 0
+        },
+        {
+          "key": "bag",
+          "time": 0.859971,
+          "gain": 0.2851950796265703,
+          "semitones": -1.2
+        },
+        {
+          "key": "heavy",
+          "time": 0.9839739000000001,
+          "gain": 0.32292411753782513,
+          "semitones": 0.6
+        },
+        {
+          "key": "smash",
+          "time": 1.0955765100000001,
+          "gain": 0.36292847029345154,
+          "semitones": -0.4
+        },
+        {
+          "key": "clink",
+          "time": 1.196018859,
+          "gain": 0.404989831816444,
+          "semitones": 1.5
+        },
+        {
+          "key": "bag",
+          "time": 1.2864169731000001,
+          "gain": 0.4489363777397205,
+          "semitones": 0
+        },
+        {
+          "key": "heavy",
+          "time": 1.3677752757900001,
+          "gain": 0.4946286509986382,
+          "semitones": -1.2
+        },
+        {
+          "key": "smash",
+          "time": 1.4409977482110001,
+          "gain": 0.5419507547039976,
+          "semitones": 0.6
+        },
+        {
+          "key": "clink",
+          "time": 1.5068979733899002,
+          "gain": 0.5908045434552806,
+          "semitones": -0.4
+        },
+        {
+          "key": "bag",
+          "time": 1.5662081760509101,
+          "gain": 0.6411056218472992,
+          "semitones": 1.5
+        },
+        {
+          "key": "heavy",
+          "time": 1.6195873584458191,
+          "gain": 0.6927804893427051,
+          "semitones": 0
+        },
+        {
+          "key": "smash",
+          "time": 1.6676286226012373,
+          "gain": 0.7457644431657968,
+          "semitones": -1.2
+        },
+        {
+          "key": "clink",
+          "time": 1.7108657603411137,
+          "gain": 0.8,
+          "semitones": 0.6
+        },
+        {
+          "key": "smash",
+          "time": 1.7497791843070023,
+          "gain": 1.25,
+          "semitones": 0
+        },
+        {
+          "key": "bag",
+          "time": 1.8397791843070024,
+          "gain": 0.6,
+          "semitones": 0
+        }
+      ],
+      "sources": [
+        {
+          "id": "xp_orb_v08",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v08.wav",
+          "sha256": "cc97beec9ad8e327cb5e3073f4d484472b1d8ceb4cff2504dde13ef6d52c0946"
+        },
+        {
+          "id": "xp_orb_v09",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v09.wav",
+          "sha256": "b126aefc97a3418bb6c7e291be29248270df72e40ebed4afecf31a94f713db1b"
+        },
+        {
+          "id": "xp_orb_v11",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v11.wav",
+          "sha256": "e2c6571ff34348c4a42fa80ea55a1fe471fcdc8f15ac70571686521ec23bb190"
+        },
+        {
+          "id": "xp_orb_v10",
+          "file": "derived/sfx/pickups/orb-round-3/xp_orb_v10.wav",
+          "sha256": "ee916d37fe2e75de841a8c6c0e7466f69edc37a231e87a38765c7a2bb22b887e"
+        }
+      ]
+    },
+    {
+      "id": "xp_orb_v04",
+      "title": "XP orb 04 — Glass bubble",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v04.wav",
+      "durationSec": 0.38,
+      "peakDb": -9,
+      "rmsDb": -19.72,
+      "model": "local sample blend",
+      "generatedAt": "2026-09-05",
+      "note": "Blend existing XP orb 2 crystal chime (70%) and orb 3 round bloop (30%); align attacks, RMS-match sources, fade to silence. No fresh model generation. Paired with level-up 05.",
+      "prompt": "Blend existing XP orb 2 crystal chime (70%) and orb 3 round bloop (30%); align attacks, RMS-match sources, fade to silence. No fresh model generation.",
+      "sources": [
+        {
+          "id": "xp_orb_v02",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v02.wav",
+          "sha256": "7d98d6cb11b5cefcfa77afb5a68ebc8622d5690d950e3d10ae2b8dfea6f661dd"
+        },
+        {
+          "id": "xp_orb_v03",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v03.wav",
+          "sha256": "941f5930e64ffc864d62d9d71774d59807022b96322ea1c8a540b20d8486e546"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "bbdc8d0ec8b39f97b3e127d72bac113d7ff8969ace026e9ca715ebe830a2971e",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "level_up_v05",
+      "title": "Level up 05 — Glass bubble buildup",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/level_up_v05.wav",
+      "durationSec": 1.18,
+      "peakDb": -7,
+      "rmsDb": -20.18,
+      "model": "local orb cascade",
+      "generatedAt": "2026-09-05",
+      "note": "8 repetitions of xp_orb_v04, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16; initial spacing 0.17s, multiplier 0.91.",
+      "prompt": "8 repetitions of xp_orb_v04, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16; initial spacing 0.17s, multiplier 0.91.",
+      "sources": [
+        {
+          "id": "xp_orb_v04",
+          "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v04.wav",
+          "sha256": "bbdc8d0ec8b39f97b3e127d72bac113d7ff8969ace026e9ca715ebe830a2971e"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "8c93f502bd3599eff14b75dd90f6b761d91655b98525b82a6f14483a4a93543a",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "xp_orb_v05",
+      "title": "XP orb 05 — Crystal bloop",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v05.wav",
+      "durationSec": 0.36,
+      "peakDb": -9,
+      "rmsDb": -19.65,
+      "model": "local sample blend",
+      "generatedAt": "2026-09-05",
+      "note": "Blend existing XP orb 2 crystal chime (55%) and orb 3 round bloop (45%); align attacks, RMS-match sources, fade to silence. No fresh model generation. Paired with level-up 06.",
+      "prompt": "Blend existing XP orb 2 crystal chime (55%) and orb 3 round bloop (45%); align attacks, RMS-match sources, fade to silence. No fresh model generation.",
+      "sources": [
+        {
+          "id": "xp_orb_v02",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v02.wav",
+          "sha256": "7d98d6cb11b5cefcfa77afb5a68ebc8622d5690d950e3d10ae2b8dfea6f661dd"
+        },
+        {
+          "id": "xp_orb_v03",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v03.wav",
+          "sha256": "941f5930e64ffc864d62d9d71774d59807022b96322ea1c8a540b20d8486e546"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "192982f595d2e8ce6f571e76567de7429ab73f63b23b4148d830bd51cea40735",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "level_up_v06",
+      "title": "Level up 06 — Crystal bloop buildup",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/level_up_v06.wav",
+      "durationSec": 1.404,
+      "peakDb": -7,
+      "rmsDb": -19.51,
+      "model": "local orb cascade",
+      "generatedAt": "2026-09-05",
+      "note": "10 repetitions of xp_orb_v05, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16, 19, 21; initial spacing 0.17s, multiplier 0.93.",
+      "prompt": "10 repetitions of xp_orb_v05, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16, 19, 21; initial spacing 0.17s, multiplier 0.93.",
+      "sources": [
+        {
+          "id": "xp_orb_v05",
+          "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v05.wav",
+          "sha256": "192982f595d2e8ce6f571e76567de7429ab73f63b23b4148d830bd51cea40735"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "7c9b4303d19e59d719c0747dd287ef870837a69823258177f54b4fa8f74ab3fd",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "xp_orb_v06",
+      "title": "XP orb 06 — Round sparkle",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v06.wav",
+      "durationSec": 0.34,
+      "peakDb": -9,
+      "rmsDb": -18.83,
+      "model": "local sample blend",
+      "generatedAt": "2026-09-05",
+      "note": "Blend existing XP orb 2 crystal chime (40%) and orb 3 round bloop (60%); align attacks, RMS-match sources, fade to silence. No fresh model generation. Paired with level-up 07.",
+      "prompt": "Blend existing XP orb 2 crystal chime (40%) and orb 3 round bloop (60%); align attacks, RMS-match sources, fade to silence. No fresh model generation.",
+      "sources": [
+        {
+          "id": "xp_orb_v02",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v02.wav",
+          "sha256": "7d98d6cb11b5cefcfa77afb5a68ebc8622d5690d950e3d10ae2b8dfea6f661dd"
+        },
+        {
+          "id": "xp_orb_v03",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v03.wav",
+          "sha256": "941f5930e64ffc864d62d9d71774d59807022b96322ea1c8a540b20d8486e546"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "c9e100090054d33a8de0f1653581935ed614e086d684bc761ff50f9b95a29596",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "level_up_v07",
+      "title": "Level up 07 — Round sparkle buildup",
+      "kind": "sfx",
+      "group": "sfx-pickups",
+      "status": "promoted",
+      "unrealAsset": "/Game/Audio/SFX/Pickups/A_LevelUp.A_LevelUp",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/level_up_v07.wav",
+      "durationSec": 1.4,
+      "peakDb": -7,
+      "rmsDb": -19.48,
+      "model": "local orb cascade",
+      "generatedAt": "2026-09-05",
+      "note": "12 repetitions of xp_orb_v06, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 0, 4, 4, 7, 7, 12, 12, 16, 19, 21, 24; initial spacing 0.16s, multiplier 0.92.",
+      "prompt": "12 repetitions of xp_orb_v06, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 0, 4, 4, 7, 7, 12, 12, 16, 19, 21, 24; initial spacing 0.16s, multiplier 0.92.",
+      "sources": [
+        {
+          "id": "xp_orb_v06",
+          "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v06.wav",
+          "sha256": "c9e100090054d33a8de0f1653581935ed614e086d684bc761ff50f9b95a29596"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "65e1afc825f5c265e256136761e46064854fc811c1b80473806858b6d4859b0b",
+      "archivedAt": "2026-09-05",
+      "review": "Selected for now: Level up 07 - Round sparkle buildup. Earlier round-wide bubble/similarity rejection is superseded for this take only. Exact archived recording promoted to A_LevelUp; the other sounds remain unchanged."
+    },
+    {
+      "id": "xp_orb_v07",
+      "title": "XP orb 07 — Soft bubble",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v07.wav",
+      "durationSec": 0.32,
+      "peakDb": -9,
+      "rmsDb": -17.14,
+      "model": "local sample blend",
+      "generatedAt": "2026-09-05",
+      "note": "Blend existing XP orb 2 crystal chime (25%) and orb 3 round bloop (75%); align attacks, RMS-match sources, fade to silence. No fresh model generation. Paired with level-up 08.",
+      "prompt": "Blend existing XP orb 2 crystal chime (25%) and orb 3 round bloop (75%); align attacks, RMS-match sources, fade to silence. No fresh model generation.",
+      "sources": [
+        {
+          "id": "xp_orb_v02",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v02.wav",
+          "sha256": "7d98d6cb11b5cefcfa77afb5a68ebc8622d5690d950e3d10ae2b8dfea6f661dd"
+        },
+        {
+          "id": "xp_orb_v03",
+          "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v03.wav",
+          "sha256": "941f5930e64ffc864d62d9d71774d59807022b96322ea1c8a540b20d8486e546"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "05525a423222d34cdc7ba79ac9ef93a2b7e0ac40cda845435417b8aeb89ee418",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
+      "id": "level_up_v08",
+      "title": "Level up 08 — Soft bubble buildup",
+      "kind": "sfx",
+      "group": "sfx-orb-round-2-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-2/sfx/pickups/level_up_v08.wav",
+      "durationSec": 1.871,
+      "peakDb": -7,
+      "rmsDb": -19.48,
+      "model": "local orb cascade",
+      "generatedAt": "2026-09-05",
+      "note": "14 repetitions of xp_orb_v07, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24, 26, 28, 31; initial spacing 0.18s, multiplier 0.94.",
+      "prompt": "14 repetitions of xp_orb_v07, rising in pitch and gain with accelerating spacing, ending in three closely layered orb pickups. Every sound is the actual pickup sample; no separate fanfare or instrument. Semitones: 0, 2, 4, 7, 9, 12, 14, 16, 19, 21, 24, 26, 28, 31; initial spacing 0.18s, multiplier 0.94.",
+      "sources": [
+        {
+          "id": "xp_orb_v07",
+          "file": "archive/2026-09-05-orb-round-2/sfx/pickups/xp_orb_v07.wav",
+          "sha256": "05525a423222d34cdc7ba79ac9ef93a2b7e0ac40cda845435417b8aeb89ee418"
+        }
+      ],
+      "previousStatus": "candidate",
+      "sourceSha256": "f48f7e5f9012bb2f0735a1a340d621c3c8c0f87dd96107c56afe0ba4d65bba39",
+      "archivedAt": "2026-09-05",
+      "review": "Rejected: all variants sound too similar and too bubble-like. Keep the buildup idea, but use distinct hard physical orb sounds, including bags and smashes; no bubble sounds."
+    },
+    {
       "id": "battle_clean_slow_120_2m",
       "title": "Track — Slow + clean, six tracks at a time (120 BPM, 2:00)",
       "kind": "music",
@@ -356,41 +1118,50 @@
       "id": "xp_orb_v01",
       "title": "XP orb — coin blip (v01)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/xp_orb_v01.wav",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v01.wav",
       "durationSec": 0.32,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Two-note rising square blip. Built to stack: a cloud of orbs landing plays this a dozen times a second and it should read as a run, not mush.",
-      "prompt": "A classic arcade coin pickup: two quick bright square-wave notes rising a fifth, 8-bit chiptune, crisp attack, instant stop. Single pickup only. No echo, no reverb, no tail, no explosion. ,"
+      "prompt": "A classic arcade coin pickup: two quick bright square-wave notes rising a fifth, 8-bit chiptune, crisp attack, instant stop. Single pickup only. No echo, no reverb, no tail, no explosion. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "022e6f38fe970dd575145170569ed8d9514e2332ec557cc9ec416b37963c3fbc",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "xp_orb_v02",
       "title": "XP orb — crystal chime (v02)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "promoted",
-      "file": "elevenlabs/sfx/pickups/xp_orb_v02.wav",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v02.wav",
       "durationSec": 0.4,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Glass bell with an upward flick. Sweeter and less retro than v01.",
       "prompt": "A tiny glass crystal chime for collecting a glowing energy orb in a video game: one clean bell tone with a fast upward pitch flick and a sparkle of high harmonics, sweet and satisfying, very short. Single pickup. No reverb tail, no echo. ,",
-      "review": "Live in game as A_Pickup_Xp (XP orb collect)."
+      "review": "Live in game as A_Pickup_Xp (XP orb collect).",
+      "previousStatus": "promoted",
+      "sourceSha256": "7d98d6cb11b5cefcfa77afb5a68ebc8622d5690d950e3d10ae2b8dfea6f661dd",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "xp_orb_v03",
       "title": "XP orb — bloop (v03)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/xp_orb_v03.wav",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/xp_orb_v03.wav",
       "durationSec": 0.3,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Round sine pop sliding up with a tick on top. The juiciest of the three, least chiptune.",
-      "prompt": "A bubbly synth 'bloop' pickup blip from a modern arcade game: a soft round sine pop sliding up in pitch with a tiny bright tick on top, playful and juicy, extremely short. Single pickup. No reverb, no echo. ,"
+      "prompt": "A bubbly synth 'bloop' pickup blip from a modern arcade game: a soft round sine pop sliding up in pitch with a tiny bright tick on top, playful and juicy, extremely short. Single pickup. No reverb, no echo. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "941f5930e64ffc864d62d9d71774d59807022b96322ea1c8a540b20d8486e546",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "boost_orb_v01",
@@ -620,53 +1391,65 @@
       "id": "level_up_v01",
       "title": "Level up — arcade fanfare (v01)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/level_up_v01.mp3",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/level_up_v01.mp3",
       "durationSec": 1.6,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Four-note rising arpeggio into a held bright chord with shimmer. 16-bit.",
-      "prompt": "A triumphant retro arcade level-up jingle: a quick ascending four-note synth arpeggio in a major key ending on a bright held chord with a sparkling shimmer, 16-bit console, punchy and joyful, short. Single jingle. No voice, no drums, no long reverb. ,"
+      "prompt": "A triumphant retro arcade level-up jingle: a quick ascending four-note synth arpeggio in a major key ending on a bright held chord with a sparkling shimmer, 16-bit console, punchy and joyful, short. Single jingle. No voice, no drums, no long reverb. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "cb122e44b8812b12b23edb7be09dab79b923e7eda53fc7ee582c83e2cb1f2ac9",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "level_up_v02",
       "title": "Level up — chiptune run (v02)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/level_up_v02.mp3",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/level_up_v02.mp3",
       "durationSec": 1.4,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Six-note square run then two staccato chords. Pure cabinet.",
-      "prompt": "An 8-bit chiptune level up: a fast rising square-wave run of six notes then two bright staccato chords, classic arcade cabinet, tight and celebratory. Single jingle. No voice, no reverb. ,"
+      "prompt": "An 8-bit chiptune level up: a fast rising square-wave run of six notes then two bright staccato chords, classic arcade cabinet, tight and celebratory. Single jingle. No voice, no reverb. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "86cf7aa3d9b4b729fc5bc7c8c3278f65f8d008795ad8f77ab460a41b3c663d5b",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "level_up_v03",
       "title": "Level up — power surge (v03)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/level_up_v03.mp3",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/level_up_v03.mp3",
       "durationSec": 1.8,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Rising energy sweep into a big chord hit with a sparkle cascade. Least musical, most sci-fi.",
-      "prompt": "A spaceship powering up to a new level in an arcade game: a rising energy surge sweep building for a second, then a big bright synth chord hit with a glittering cascade of high sparkles trailing off, triumphant and satisfying. Single event. No voice, no drums. ,"
+      "prompt": "A spaceship powering up to a new level in an arcade game: a rising energy surge sweep building for a second, then a big bright synth chord hit with a glittering cascade of high sparkles trailing off, triumphant and satisfying. Single event. No voice, no drums. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "a10b09704c93bcd517a71104ac0aeed12f5c0d7ec6da309305048046352765c4",
+      "archivedAt": "2026-09-05"
     },
     {
       "id": "level_up_v04",
       "title": "Level up — rank bells (v04)",
       "kind": "sfx",
-      "group": "sfx-pickups",
-      "status": "candidate",
-      "file": "elevenlabs/sfx/pickups/level_up_v04.mp3",
+      "group": "sfx-pickups-archive",
+      "status": "archived",
+      "file": "archive/2026-09-05-orb-round-1/sfx/pickups/level_up_v04.mp3",
       "durationSec": 1.6,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Three ascending bells onto a warm pad swell. Cleanest and calmest.",
-      "prompt": "A rank-up chime for a sci-fi game: three ascending clear bell tones, each brighter than the last, landing on a warm sustained synth pad swell with a soft shimmer, clean and rewarding, short. Single chime. No voice, no drums, no long echo. ,"
+      "prompt": "A rank-up chime for a sci-fi game: three ascending clear bell tones, each brighter than the last, landing on a warm sustained synth pad swell with a soft shimmer, clean and rewarding, short. Single chime. No voice, no drums, no long echo. ,",
+      "previousStatus": "candidate",
+      "sourceSha256": "0e4dc38ddb14811b178691a2e948b5cc68db027302103512c0e0e1014501791f",
+      "archivedAt": "2026-09-05"
     }
   ]
 }

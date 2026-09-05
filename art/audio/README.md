@@ -265,6 +265,36 @@ which the same crossfade the SFX loops use applies here.
 
 ## Generators
 
+- `generate_orb_physical.mjs [clink|bag|smash|heavy] [--dry-run]` generates four
+  independent hard-object recordings, not blends of the previous bubble/chime.
+  Existing sources are kept, including when named explicitly; rerunning spends
+  credits only on missing recordings. Raw takes live under
+  `elevenlabs/sfx/pickups/orb-round-3-sources/`.
+- `build_orb_physical.mjs` edits those recordings into XP 08-11 (glass clink,
+  bag of orbs, orb smash, heavy orb crack), and assembles level-up 09-12 (clink
+  collection, bag overload, crack into smash, orb avalanche). Buildup comes from
+  accelerating contacts, growing gain and density, not a rising bloop melody.
+  There are no old bubble samples or synth risers in these recipes. Small
+  per-contact tuning offsets preserve the physical texture. Outputs are mono
+  44.1 kHz / 16-bit WAV with edge fades and headroom in
+  `derived/sfx/pickups/orb-round-3/`. The wiki groups are `sfx-orb-round-3` and
+  `sfx-level-up-round-3`. These remain audition candidates, not Unreal imports.
+  The builder also archives the eight rejected round-2 blends, verifies their
+  hashes, updates source references, and records the similarity/bubble feedback.
+  They remain playable under `sfx-orb-round-2-archive`.
+- `build_orb_variants.mjs` is the historical round-2 recipe: four XP pickups between the actual v02 crystal
+  chime and v03 bloop, plus four level-up cascades made from those pickups. It
+  uses local sample processing, costs no API credits, and writes candidates to
+  `derived/sfx/pickups/`. `--archive` moves the first XP/level-up round into
+  `archive/2026-09-05-orb-round-1/` and updates its catalog paths while preserving
+  source hashes and prior promotion status. Boost sounds are outside this round.
+  XP 04/05/06/07 pair with level-up 05/06/07/08 respectively. The wiki groups
+  originally grouped these under `sfx-orb-round-2` and `sfx-level-up-round-2`.
+  That round was rejected as too similar/bubble-like, moved into
+  `archive/2026-09-05-orb-round-2/`, and the historical builder now refuses to
+  republish it. Original round-1 takes remain playable in `sfx-pickups-archive`. The existing
+  Unreal XP import still uses archived v02 until a replacement is selected.
+
 - `lib/elevenlabs.mjs` holds the shared API, credit, WAV and loop handling. The
   cue shape is documented at the top of that file.
 - `generate_combat_sfx.mjs [cueName ...]` creates short combat cues in their
@@ -286,6 +316,15 @@ spending credits, which is the cheap way to confirm a selection is right.
 - `probe_credits.mjs` checks the live ElevenLabs allowance.
 
 ## Wiki catalog
+
+Current temporary level-up selection: **Level up 07 - Round sparkle buildup**.
+The exact 1.4-second recording remains at
+`archive/2026-09-05-orb-round-2/sfx/pickups/level_up_v07.wav` to preserve history,
+but its catalog status is now `promoted`, shown in `sfx-pickups` rather than the
+archive group. It imports as `/Game/Audio/SFX/Pickups/A_LevelUp` and plays once
+when an XP collection advances the player's level, at its authored pitch.
+`promote_to_unreal.ps1 -Asset A_LevelUp` imports only this selection; other
+audio assets are left untouched. The round-3 builder skips promoted takes.
 
 `catalog.json` is the record of music/SFX candidates the wiki shows: title,
 status, BPM/key, file path, and the prompt that produced (or will produce)

@@ -10,12 +10,14 @@
 # well as wav, so approved takes are imported as generated rather than
 # regenerated into another format.
 
+param([string[]]$Asset = @())
+
 $ErrorActionPreference = "Stop"
 
 $Engine = "C:\Program Files\Epic Games\UE_5.8"
 $Project = "C:\Projects\_personal\Shattered\game"
 $Candidates = Join-Path $PSScriptRoot "elevenlabs\sfx"
-$Staging = Join-Path $Project "Intermediate\AudioImport"
+$Staging = Join-Path $Project ("Intermediate\AudioImport\" + [guid]::NewGuid().ToString("N"))
 
 # Source candidate -> asset name, destination content path.
 $Promotions = @(
@@ -24,7 +26,8 @@ $Promotions = @(
     @{ Source = "collisions\ship_asteroid_hull_smash_v03.mp3"; Asset = "A_HullSmash_02"; Dest = "/Game/Audio/SFX/Collisions" }
     @{ Source = "movement\engine_hum_drive_v08.wav";          Asset = "A_Engine_Drive"; Dest = "/Game/Audio/SFX/Movement" }
     @{ Source = "movement\engine_boost_burst_v02.wav";        Asset = "A_Boost_Burst";  Dest = "/Game/Audio/SFX/Movement" }
-    @{ Source = "pickups\xp_orb_v02.wav";                     Asset = "A_Pickup_Xp";       Dest = "/Game/Audio/SFX/Pickups" }
+    @{ Source = "..\..\archive\2026-09-05-orb-round-1\sfx\pickups\xp_orb_v02.wav"; Asset = "A_Pickup_Xp"; Dest = "/Game/Audio/SFX/Pickups" }
+    @{ Source = "..\..\archive\2026-09-05-orb-round-2\sfx\pickups\level_up_v07.wav"; Asset = "A_LevelUp"; Dest = "/Game/Audio/SFX/Pickups" }
     @{ Source = "pickups\boost_orb_v03.wav";                  Asset = "A_Pickup_Boost";    Dest = "/Game/Audio/SFX/Pickups" }
     @{ Source = "impacts\enemy_destroyed_v05.mp3";            Asset = "A_Enemy_Destroyed"; Dest = "/Game/Audio/SFX/Impacts" }
     @{ Source = "impacts\asteroid_shatter_v02.mp3";           Asset = "A_Asteroid_Shatter"; Dest = "/Game/Audio/SFX/Impacts" }
@@ -35,7 +38,13 @@ $Promotions = @(
 # IImportSettingsParser, and USoundFactory does not. The pawn sets the flag on
 # load instead; see the engine audio setup in ShatteredPawn.cpp.
 
-if (Test-Path $Staging) { Remove-Item -Recurse -Force $Staging }
+if ($Asset.Count -gt 0) {
+    $Unknown = $Asset | Where-Object { $_ -notin $Promotions.Asset }
+    if ($Unknown) { throw "Unknown promotion asset: $($Unknown -join ', ')" }
+    $Promotions = @($Promotions | Where-Object { $_.Asset -in $Asset })
+}
+# A unique staging directory preserves prior import inputs and avoids deleting
+# unrelated or in-flight staging data when promoting just one selected take.
 New-Item -ItemType Directory -Force -Path $Staging | Out-Null
 
 # The commandlet names each asset after its source file, so staging copies are
