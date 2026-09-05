@@ -568,7 +568,7 @@ const lines = [
   "",
   "## How to use",
   "",
-  "1. Paste the full prompt into ChatGPT Images.",
+  "1. Paste the full prompt into ChatGPT Images with the style master `art/ace.png` attached. Every ship and weapon image uses that one picture as the reference.",
   "2. Check the **one-line silhouette**. If it looks like Ace with new paint, discard it.",
   "3. Count **gold rings** — must match the number in the prompt. Extra gold = discard.",
   "4. Tripo Smart Mesh **6,000 tris**, export **GLB 2K**.",

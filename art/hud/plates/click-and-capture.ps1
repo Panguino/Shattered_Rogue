@@ -8,6 +8,7 @@ param(
     [int]$ClickX = -1,
     [int]$ClickY = -1,
     [int]$SettleMs = 1200,
+    [int]$Wheel = 0,
     [string]$Out = "$PSScriptRoot\plate.png",
     [string]$ProcessName = "UnrealEditor-Cmd"
 )

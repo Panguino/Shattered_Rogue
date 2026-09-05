@@ -1,0 +1,161 @@
+/* ============================================================================
+   Shattered Slop - main menu mockup
+   ----------------------------------------------------------------------------
+   Companion to hud.css. Same palette, same font, same "instrument not web page"
+   rule. Layout is a left rail (the only interactive column) over a generated
+   level backdrop: sun, planet, drifting asteroid belt. Nothing on the right.
+
+   ShatteredMenu.cpp today draws one centred panel with stacked buttons. This is
+   the target it should grow into: keep the three screens, move the column to
+   the left so the ship gets the frame, and give every entry an index and a
+   one-line sub so the list reads as a manifest.
+   ========================================================================== */
+
+.menu-stage { font-family: var(--ui); color: var(--text); letter-spacing: 0.06em; }
+.menu-stage .layer { position: absolute; inset: 0; }
+
+/* --- Backdrop ------------------------------------------------------------- */
+
+#layer-plate { --dim: 0.3; }
+#layer-plate canvas, #layer-plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(calc(1 - var(--dim))); }
+#layer-plate canvas[hidden], #layer-plate img[hidden] { display: none; }
+#layer-plate .vignette {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 15, 0.88) 0%, rgba(5, 9, 15, 0.5) 30%, rgba(5, 9, 15, 0) 55%);
+}
+
+/* --- Corner brackets, same idea as the wiki hero --------------------------- */
+
+.corner { position: absolute; width: 34px; height: 34px; border: 1px solid rgba(111, 223, 249, 0.42); }
+.corner.tl { top: 28px; left: 28px; border-right: 0; border-bottom: 0; }
+.corner.tr { top: 28px; right: 28px; border-left: 0; border-bottom: 0; }
+.corner.bl { bottom: 28px; left: 28px; border-right: 0; border-top: 0; }
+.corner.br { bottom: 28px; right: 28px; border-left: 0; border-top: 0; }
+
+/* --- Ship viewport (Ship Weapon Manager) ----------------------------------- */
+
+#layer-ship3d { pointer-events: none; }
+#layer-ship3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: auto; }
+#layer-ship3d[hidden] { display: none; }
+.ship3d-tag { position: absolute; right: 120px; bottom: 96px; width: 420px; font-size: 11px; letter-spacing: 0.2em; }
+.ship3d-tag .hatch { max-width: 120px; }
+/* Bottom-centre of the preview band (right ~60% of the stage). */
+.ship3d-orbit {
+  position: absolute; left: 70%; bottom: 40px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px; pointer-events: auto; cursor: pointer;
+  font-size: 12px; letter-spacing: 0.2em; color: var(--muted);
+}
+.ship3d-orbit input { appearance: none; width: 14px; height: 14px; border: 1px solid var(--muted); background: rgba(0, 0, 0, 0.4); margin: 0; }
+.ship3d-orbit input:checked { background: var(--gold); border-color: var(--gold); }
+
+/* --- Left rail ------------------------------------------------------------- */
+
+.rail {
+  position: absolute; left: 120px; top: 90px; width: 600px;
+  display: flex; flex-direction: column; gap: 0;
+}
+/* Lockup and mark are the Codex renders with the near-black plate keyed to
+   alpha (luma < 14 clear, > 46 opaque). Source renders stay in art/logo/. */
+.rail .logo { width: 600px; height: auto; margin: -40px 0 0 -30px; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.8)); }
+.rail .logo[hidden] { display: none; }
+.rail.no-logo { top: 100px; }
+.build-tag { font-size: 12px; letter-spacing: 0.32em; color: var(--muted); margin: -22px 0 30px 6px; }
+
+.screen { display: flex; flex-direction: column; gap: 6px; }
+.screen[hidden] { display: none; }
+
+/* One entry = one UButton in the UMG column. The index and sub line are what
+   turn "a button" into "a manifest row". The gold rule on the left is the
+   selection state, so it never depends on colour alone. */
+.entry {
+  all: unset;
+  display: grid; grid-template-columns: 44px 1fr; grid-template-rows: auto auto;
+  column-gap: 14px; align-items: baseline;
+  padding: 10px 16px 10px 12px;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 80ms, background 80ms;
+}
+.entry .idx { grid-row: 1 / 3; font-size: 13px; color: var(--dim); letter-spacing: 0.1em; align-self: center; }
+.entry .lbl { font-size: 30px; letter-spacing: 0.12em; color: var(--text); line-height: 1; }
+.entry .sub { font-size: 10px; letter-spacing: 0.22em; color: var(--dim); margin-top: 6px; }
+.entry:hover { background: rgba(20, 210, 255, 0.05); }
+.entry.sel { border-left-color: var(--gold); background: linear-gradient(90deg, rgba(255, 198, 61, 0.10), transparent 70%); }
+.entry.sel .lbl { color: var(--gold); }
+.entry.sel .idx { color: var(--gold); }
+.entry.sel .sub { color: var(--muted); }
+.entry.quit .lbl { font-size: 22px; color: var(--muted); }
+.entry.back .lbl { font-size: 18px; color: var(--muted); }
+.entry.primary .lbl { color: var(--cyan); }
+.entry.primary.sel .lbl { color: var(--gold); }
+
+/* Planned entries only show when the harness asks. Dimmed and struck so they
+   read as design intent, not as a broken button. */
+.entry.planned { display: none; }
+.show-planned .entry.planned { display: grid; opacity: 0.45; }
+.show-planned .entry.planned .lbl { font-size: 22px; text-decoration: line-through; text-decoration-color: rgba(255, 72, 58, 0.6); }
+
+.screen-head { font-size: 12px; letter-spacing: 0.24em; margin: 0 0 18px 12px; width: 480px; }
+.screen-head .hatch { max-width: 160px; }
+
+/* Settings rows mirror the slider + value pairs the C++ builds. */
+.setting { display: grid; grid-template-columns: 1fr auto; row-gap: 8px; padding: 10px 16px 14px 12px; border-left: 2px solid transparent; }
+.setting .k { font-size: 12px; letter-spacing: 0.22em; color: var(--muted); }
+.setting .v { font-size: 22px; letter-spacing: 0.08em; }
+.setting .slider { grid-column: 1 / 3; appearance: none; height: 4px; background: var(--track); border-radius: 2px; outline: 0; }
+.setting .slider::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; border-radius: 2px; background: var(--gold); cursor: pointer; }
+.seed-row { grid-column: 1 / 3; display: flex; gap: 6px; }
+.chip { font-size: 10px; letter-spacing: 0.18em; padding: 5px 10px; border: 1px solid rgba(111, 223, 249, 0.28); color: var(--muted); }
+.chip.on { border-color: var(--gold); color: var(--gold); }
+
+.setting.compact { padding: 6px 16px 8px 12px; row-gap: 4px; }
+.setting.compact .v { font-size: 16px; }
+.chip.act { cursor: pointer; }
+.chip.act:hover { border-color: var(--cyan); color: var(--text); }
+.chip.dim { opacity: 0.45; }
+.pads .pad .k { font-size: 11px; }
+.screen[data-screen="levelgen"] .setting.compact, .screen[data-screen="loadout"] .setting.compact { padding-top: 4px; padding-bottom: 6px; }
+.screen[data-screen="levelgen"] .slider { height: 3px; }
+
+.hint-row { display: flex; gap: 28px; margin: 36px 0 0 14px; font-size: 10px; letter-spacing: 0.2em; color: var(--dim); }
+.hint-row b { font-weight: 400; color: var(--muted); margin-right: 6px; }
+
+/* --- Footer ---------------------------------------------------------------- */
+
+.footer-bar {
+  position: absolute; left: 120px; right: 120px; bottom: 44px;
+  display: flex; justify-content: space-between;
+  padding-top: 10px; border-top: 1px solid rgba(111, 223, 249, 0.18);
+  font-size: 9px; letter-spacing: 0.22em;
+}
+
+/* Confirm flash: the harness has nowhere to go, so a launch just blinks. */
+#layer-menu.flash .rail { animation: menu-flash 260ms ease-out; }
+@keyframes menu-flash { 0% { filter: brightness(1.8); } 100% { filter: brightness(1); } }
+
+/* --- Ship Weapon Manager rail ------------------------------------------- */
+/* Denser than the other screens: it is a tool, so every row is a chip row. */
+.screen.wm { gap: 4px; }
+.screen.wm .screen-head { margin-bottom: 10px; }
+.lo-sec { display: flex; align-items: center; gap: 10px; margin: 10px 0 4px 12px; font-size: 11px; letter-spacing: 0.22em; }
+.lo-sec .k { color: var(--gold); }
+.lo-sec .hatch { flex: 1 1 auto; height: 1px; background: rgba(111, 223, 249, 0.18); max-width: none; }
+.lo-sec .v { font-size: 11px; letter-spacing: 0.16em; }
+.chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-left: 12px; }
+.chip-row .hatch { flex: 1 1 12px; height: 1px; background: rgba(111, 223, 249, 0.12); }
+.chip.wide { flex: 1 1 auto; text-align: center; }
+.chip.edit { margin-left: 6px; border-style: dashed; }
+.pads .pad { display: grid; grid-template-columns: 120px 1fr; align-items: center; padding: 4px 8px 4px 12px; border-left: 2px solid transparent; }
+.pads .pad.sel { border-left-color: var(--gold); background: linear-gradient(90deg, rgba(255, 198, 61, 0.08), transparent 70%); }
+.pads .pad .k { font-size: 12px; letter-spacing: 0.16em; color: var(--text); }
+.pads .pad.sel .k { color: var(--gold); }
+.lo-readout { font-size: 11px; letter-spacing: 0.1em; margin: 6px 0 0 12px; }
+.lo-hint { font-size: 9px; letter-spacing: 0.08em; margin: 2px 0 6px 12px; line-height: 1.4; max-width: 560px; }
+.nudge-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; row-gap: 3px; margin-left: 12px; }
+.nudge { display: grid; grid-template-columns: 62px repeat(4, 1fr); gap: 3px; align-items: center; }
+.nudge .k { font-size: 10px; letter-spacing: 0.16em; color: var(--muted); }
+.nudge .chip { padding: 3px 0; text-align: center; font-size: 10px; letter-spacing: 0.06em; }
+.setting.sliders { padding-top: 0; padding-bottom: 4px; row-gap: 8px; }
+.entry-row { display: flex; }
+.entry-row .entry { flex: 1 1 0; }

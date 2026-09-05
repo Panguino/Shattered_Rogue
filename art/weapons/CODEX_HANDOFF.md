@@ -1,69 +1,31 @@
-# Weapon Art Prompts
+# Codex handoff: player weapon images
 
-> **Parent:** [00_GAME_DEVELOPMENT_PLAN.md](../00_GAME_DEVELOPMENT_PLAN.md) · **Style family:** Ace materials · **Catalog:** [art/weapons.json](weapons.json) · **Status:** Concept, regenerating for the gimbal mount
+Four images. Style reference is art/ace.png. Save each as 1024x1024 PNG at the path given.
 
-Player weapons are **two parts**. One shared **Gimbal Base** bolts onto a gold ship pad and owns both aim axes. A **Gun Cartridge** seats in the base. Any cartridge fits any base.
+## Option A: one command (non-interactive)
 
-## Why the split
+From the creative/ folder, after codex login:
 
-Auto-aim needs every gun to cover the full sphere around the ship. A gun glued to a pad can only shoot forward. The base owns both rotation axes so every gun cartridge gets 360° yaw and ±90° pitch for free, and gun meshes stay simple.
+    node art/codex-weapon-image.mjs --all
 
-| Axis | Range |
-| --- | --- |
-| Yaw | 360° continuous around the pad axis (the yaw ring) |
-| Pitch | -90° to +90° on the trunnion axis (straight up to straight down) |
+Add --assembled for the turret check shot, --force to overwrite.
 
-Gun cartridges have a charcoal trunnion block with a cream hexagonal axle stub on each side. The stubs drop into the two cream trunnion caps on the base's yoke. Every gun uses the same block, so any gun fits any base.
+## Option B: paste into an interactive Codex session
 
-## Mount spec
-
-**Base, bottom to top.** Gold collar with a dark hex plug on the underside (snaps to the ship pad). Charcoal yaw turntable with cream index ticks, spins a full circle. Crimson drum. Crimson U-yoke with cream cheek plates. A cream trunnion cap with a hex socket on the inside of each arm; the two caps share one horizontal axis about one collar-diameter above the pad. Empty cradle between the arms, open front and top. No barrel, no wells.
-
-**Cartridge, every gun.** Charcoal trunnion block at the rear-bottom. One cream hex axle stub out of each side, on one shared axis. Flat charcoal underside, no collar, no ring, no plug. Most of the mass sits in front of the axle and the rear is short and rounded so +90° and −90° never clip the base. Four empty hex mod wells on the body. Zero gold.
-
-**Motion.** Yaw is the turntable, 360° continuous. Pitch is the trunnion axis, −90° (straight down) to +90° (straight up). 0° is forward along the ship.
-
-## Sockets (for Tripo / UE)
-
-| Socket | Where |
-| --- | --- |
-| **Base origin** | Center of the gold collar underside. Snaps to the ship's hardpoint socket. |
-| **Yaw pivot** | Vertical axis through the collar center. The yoke and anything above it rotate around this. |
-| **Pitch pivot** | Horizontal axis through the two trunnion caps, ~1 collar-diameter above the pad. |
-| **Gun socket** | Same point as the pitch pivot. Gun cartridges parent here. |
-| **Gun origin** | Center of the gun's trunnion axle. Must sit on the pitch pivot so the gun rotates about its stubs. |
-| **Muzzle** | Projectile spawn point at the tip of the barrel, on the gun. |
-
-## How to use
-
-1. Generate the **Gimbal Base** first. Then the three cartridges. Then the **assembled check** to confirm they read as one turret.
-2. Paste the full prompt into ChatGPT Images with the style master `art/ace.png` attached (the same picture every ship uses), or run `node art/codex-weapon-image.mjs gimbal-base` (Codex CLI image generation, Ace attached as reference).
-3. Check the **one-line silhouette**. If two guns could swap names, discard.
-4. Count **gold**. Base: exactly one collar. Cartridges: **zero**. Any gold on a gun = discard.
-5. Count **mod wells** on cartridges: exactly four empty crystal sockets, not gold, nothing inserted. Base has none.
-6. Check the **axle stubs** on every cartridge: two cream hex stubs, one each side, at the rear. Nothing under the gun.
-7. Tripo: Smart Mesh **1,500 tris** for the base (target ~1,000 final) and **2,500 tris** for each cartridge (target 1,500 to 2,000 final), export **GLB 2K**. Ace is 5,686, enemy kit parts average ~700. Wells and axle stubs stay as geometry; panel lines and vents can be normal map. Base origin on the collar underside. Gun origin on the axle center.
-
-## Shared rules (gameplay, not the picture)
-
-| Rule | Value |
-| --- | --- |
-| Ship slot | one gold weapon hardpoint, which takes one Gimbal Base |
-| Levels | 5 |
-| Own cap | 3 of the same type |
-| Mod slots | L1=0, L2=1, L3=2, L4=3, L5=4 |
-| Death | Keep what you entered the run with. Lose unstashed finds. |
-| Stash | End of each level: stash forever, or keep using it on this run. |
+Start codex in creative/ and paste everything below the line.
 
 ---
 
-## Gimbal Base
+Use your image generation tool. Attach and study art/ace.png first: every image must match its art style, materials, camera, and lighting exactly. Generate FOUR separate images and save each one as a 1024x1024 PNG at the exact path in its heading. Do not write or edit any other files. After each save, continue to the next. When all four exist, reply with the four paths.
 
-**Mount** · shared base · one per hardpoint
+Hard rules across all four:
+- The Gimbal Base has exactly ONE gold part, the round collar at the bottom.
+- The three gun cartridges have ZERO gold and NO collar, ring, or pedestal under them. Each has a charcoal trunnion block at the rear with a cream hexagonal axle stub sticking out of each side.
+- Each gun has exactly FOUR empty hexagonal crystal wells. The base has none.
+- Clean light-gray studio background, nothing else in frame.
 
-*Silhouette:* gold collar, charcoal yaw ring with cream index ticks, crimson U-shaped yoke with two cream trunnion caps, empty dark cradle between the arms, no barrel
+### 1. art/weapons/gimbal-base.png
 
-```
 3D game-ready concept of a SINGLE standalone spaceship weapon TURRET BASE with NO gun installed, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.
 
 CAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire part fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.
@@ -81,17 +43,9 @@ NO MOD WELLS: this base has zero hexagonal crystal wells. Wells live on the gun 
 Lighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.
 
 DO NOT INCLUDE: a gun, a barrel, coils, missiles, rockets, muzzle glow, a spaceship, a second part, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, extra gold circles, crystal wells, cropped part.
-```
 
----
+### 2. art/weapons/laser-cannon.png
 
-## Laser Cannon
-
-**Pulse** · gun cartridge · starter · The current Ace pulse gun, hot-orange bolts, rapid fire.
-
-*Silhouette:* long cream pulse barrel, fat crimson receiver, hot-orange muzzle, cream axle stubs at the rear, no gold
-
-```
 3D game-ready concept of a SINGLE standalone spaceship GUN CARTRIDGE, a detachable gun body with no turret base and no mounting collar, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.
 
 CAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire gun fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.
@@ -111,17 +65,9 @@ NO GOLD RULE: there is zero gold on this object. No gold collar, no gold ring, n
 Lighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.
 
 DO NOT INCLUDE: a turret base, a mounting collar, a gold ring, a round pedestal, a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, missiles, rockets, lightning bolts, copper coils, crystals already plugged in, flame exhaust, cropped weapon.
-```
 
----
+### 3. art/weapons/seeker-rocket.png
 
-## Seeker Rocket Launcher
-
-**Missile** · gun cartridge · starter · Not in the live pawn yet. Lock-on rockets, slower than the laser.
-
-*Silhouette:* boxy 2x2 crimson missile pod, four cream rocket noses in charcoal tubes, cream axle stubs at the rear, no gold
-
-```
 3D game-ready concept of a SINGLE standalone spaceship GUN CARTRIDGE, a detachable launcher body with no turret base and no mounting collar, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.
 
 CAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire launcher fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.
@@ -141,17 +87,9 @@ NO GOLD RULE: there is zero gold on this object. No gold collar, no gold ring, n
 Lighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.
 
 DO NOT INCLUDE: a turret base, a mounting collar, a gold ring, a round pedestal, a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, a long cannon barrel, lightning, copper coils, crystals already plugged in, huge exhaust flames, cropped weapon.
-```
 
----
+### 4. art/weapons/lightning-coil.png
 
-## Lightning Coil Gun
-
-**Arc** · gun cartridge · starter · Not in the live pawn yet. Close-range chain arcs.
-
-*Silhouette:* fat stacked cream coils, cyan-white spark cage, short electrode prongs, cream axle stubs at the rear, no gold
-
-```
 3D game-ready concept of a SINGLE standalone spaceship GUN CARTRIDGE, a detachable coil-gun body with no turret base and no mounting collar, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.
 
 CAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire gun fully in frame, centered, no cropping. Slight downward angle like a top-down arcade game. Orthographic isometric product shot.
@@ -171,29 +109,3 @@ NO GOLD RULE: there is zero gold on this object. Coils are cream, not gold. No g
 Lighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.
 
 DO NOT INCLUDE: a turret base, a mounting collar, a gold ring, a round pedestal, a vertical tesla tower, a spaceship, a second weapon, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, missiles, a long cannon barrel, crystals already plugged in, orange engine glow, cropped weapon.
-```
-
-
----
-
-## Assembled check (base + Laser Cannon)
-
-Not a catalog asset. Generate once to confirm the two parts read as one articulated turret.
-
-```
-3D game-ready concept of ONE spaceship turret shown assembled, isolated on a clean light-gray studio background. No ship, no hangar, no scenery.
-
-CAMERA: high 3/4 isometric from above-front-right, same product-shot camera as the crimson Ace interceptor catalog image. Entire turret fully in frame, centered, no cropping. Orthographic isometric product shot.
-
-STYLE: Same locked ART FAMILY as Ace — StarCraft Terran + Ratchet & Clank / Fortnite / Astroneer toyetic. Bright colors, slightly low-poly, thick panel lines, chunky readable shapes. SAME materials language as Ace: crimson-red plates, cream/white plates, charcoal mechanical recesses, stylized toy look. NOT photoreal, NOT grimdark.
-
-WHAT IS SHOWN: a two-part turret. Bottom part is the Gimbal Base: a circular GOLD mounting collar at the very bottom (the only gold anywhere), a charcoal yaw turntable with cream index ticks, a squat crimson drum, and a crimson U-shaped yoke with a cream trunnion cap on the inside of each arm. Top part is a Laser Cannon gun cartridge seated between the yoke arms on its cream hexagonal axle stubs: a chunky crimson receiver with cream cheek plates, four empty hexagonal crystal wells in a row on top (cream bezels, dark glass, not gold), and a long cream barrel with charcoal cooling fins ending in a hot-orange glowing muzzle.
-
-POSE, this matters: the yoke is rotated about 40 degrees to the left of the collar's front so the yaw joint clearly reads as turned, and the gun is pitched UP about 35 degrees so the barrel points up-and-forward. The gun must obviously be pivoting on the two trunnion caps, and the base must obviously be spinning on the turntable. It should look like a turret tracking a target above and to the side.
-
-GOLD RULE: exactly one gold circular collar at the bottom. Turntable is charcoal. Caps and axle stubs are cream. Wells are cream and charcoal. No other gold.
-
-Lighting: bright studio key, soft fill, punchy rim light. Low-poly stylized 3D product render.
-
-DO NOT INCLUDE: a spaceship, a second turret, hangar, stars, nebula, planet, text, logo, watermark, photorealism, grimdark, people, hands, extra gold circles, crystals plugged in, a gun pointing straight forward on an unturned base, cropped turret.
-```

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shattered Slop — main menu mockup</title>
+<link rel="stylesheet" href="fonts/chakra-petch.css">
+<link rel="stylesheet" href="hud.css">
+<link rel="stylesheet" href="menu.css">
+<script type="importmap">{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }</script>
+<style>
+  /* Harness chrome, same scaffolding as index.html. Nothing here ships. */
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0b0e12; color: #c7d4e0; font: 12px/1.5 "Segoe UI", Roboto, sans-serif; overflow: hidden; }
+  #app { display: flex; height: 100%; }
+  #viewer { flex: 1 1 auto; min-width: 0; min-height: 0; display: grid; place-items: center; overflow: hidden;
+    background: repeating-conic-gradient(#15191f 0% 25%, #10141a 0% 50%) 50% / 24px 24px; }
+  #stage-frame { --stage-w: 1920px; --stage-h: 1080px; --fit: 1; position: relative;
+    width: calc(var(--stage-w) * var(--fit)); height: calc(var(--stage-h) * var(--fit)); }
+  #stage { position: absolute; top: 0; left: 0; width: var(--stage-w); height: var(--stage-h);
+    transform: scale(var(--fit)); transform-origin: top left; overflow: hidden; background: #05090f; }
+  #panel { flex: 0 0 300px; overflow: auto; padding: 16px; border-left: 1px solid #1e2630; background: #0e1217; }
+  #panel h1 { font: 700 13px/1.2 "Chakra Petch", sans-serif; letter-spacing: .12em; color: #9fe6ff; margin: 0 0 4px; }
+  #panel h2 { font: 600 10px/1 "Chakra Petch", sans-serif; letter-spacing: .2em; color: #6b7c8c; margin: 18px 0 8px; }
+  #panel p { color: #6b7c8c; margin: 0 0 8px; }
+  .field { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .field label { flex: 1 1 auto; color: #9db0c0; }
+  .field input[type=range] { flex: 0 0 130px; }
+  select, button { background: #1a212a; color: #c7d4e0; border: 1px solid #2c3742; padding: 6px 10px; font: inherit; border-radius: 3px; cursor: pointer; }
+  button:hover, select:hover { border-color: #3d4c5a; background: #202932; }
+  .stack > button { width: 100%; margin-bottom: 6px; }
+  kbd { background: #1a212a; border: 1px solid #2c3742; border-bottom-width: 2px; border-radius: 3px; padding: 1px 5px; font: 11px Consolas, monospace; color: #9db0c0; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="viewer">
+    <div id="stage-frame">
+      <div id="stage" class="menu-stage">
+
+        <!-- Layer 0: the backdrop. In the game this is a live generated level
+             (sun, planet, asteroid field) with a slow camera drift. The canvas
+             below stands in for it: same ingredients, drawn procedurally.
+             Drop a clean capture (Shattered.ShowHUD 0) on the window to use a
+             real plate instead. -->
+        <div class="layer" id="layer-plate">
+          <canvas id="scene" width="1920" height="1080"></canvas>
+          <img id="plate" alt="" hidden>
+          <div class="vignette"></div>
+        </div>
+
+        <!-- Layer 1: ship viewport for the Ship Weapon Manager. three.js loads
+             Ace plus the gimbal base and gun cartridges and parents them to the
+             hardpoint table below, so the mount geometry can be tuned here and
+             copied into the pawn. -->
+        <div class="layer" id="layer-ship3d" hidden>
+          <canvas id="ship3d"></canvas>
+          <div class="ship3d-tag tech-head"><i></i><span id="ship3d-name">ACE // INTERCEPTOR</span><span class="hatch"></span><span class="badge" id="ship3d-status">LOADING</span></div>
+          <!-- Auto-rotate sits under the ship, centred in the preview band, same
+               as the UCheckBox in ShatteredWeaponManagerWidget. -->
+          <label class="ship3d-orbit"><input type="checkbox" id="ship3d-orbit"><span>AUTO ROTATE</span></label>
+        </div>
+
+        <!-- Layer 2: menu chrome. Left rail is the only interactive thing on
+             the screen; everything else is set dressing that never needs a
+             cursor. -->
+        <div class="layer hud" id="layer-menu">
+
+
+          <div class="rail">
+            <img class="logo" src="logo-lockup.png" alt="Shattered Slop" width="1765" height="882">
+
+            <!-- Screen: MAIN. Entries mirror ShatteredMenu::BuildMainMenu.
+                 Planned entries (Hub, Co-op) are hidden until the harness
+                 toggles them; they are design, not build. -->
+            <nav class="screen" data-screen="main">
+              <button class="entry" data-go="raid"><span class="idx">01</span><span class="lbl">NEW GAME</span><span class="sub">PIRATE RAID</span></button>
+              <button class="entry" data-go="training"><span class="idx">02</span><span class="lbl">FLIGHT TRAINING</span><span class="sub">OPEN FIELD, NO HOSTILES</span></button>
+              <button class="entry" data-go="admin"><span class="idx">03</span><span class="lbl">ADMIN / DEBUG</span><span class="sub">GENERATORS, LOADOUT, TUNING</span></button>
+              <button class="entry planned"><span class="idx">--</span><span class="lbl">HUB STATION</span><span class="sub">PLANNED</span></button>
+              <button class="entry planned"><span class="idx">--</span><span class="lbl">CO-OP LOBBY</span><span class="sub">PLANNED</span></button>
+              <button class="entry" data-go="options"><span class="idx">04</span><span class="lbl">OPTIONS</span><span class="sub">VIDEO, AUDIO</span></button>
+              <button class="entry quit" data-go="quit"><span class="idx">05</span><span class="lbl">QUIT</span><span class="sub">TO DESKTOP</span></button>
+            </nav>
+
+            <!-- Screen: PIRATE RAID setup. Mirrors BuildRaidSetup: two sliders
+                 and a launch button. -->
+            <nav class="screen" data-screen="raid" hidden>
+              <div class="screen-head tech-head"><i></i><span>PIRATE RAID</span><span class="hatch"></span><span class="badge">ASTEROID FIELD</span></div>
+              <div class="setting">
+                <div class="k">TOTAL PIRATES</div>
+                <div class="v c-gold" id="v-pirates">6</div>
+                <input class="slider" type="range" min="1" max="20" value="6" data-out="v-pirates">
+              </div>
+              <div class="setting">
+                <div class="k">FLAGSHIP HULL</div>
+                <div class="v c-gold" id="v-flag">2.0x</div>
+                <input class="slider" type="range" min="10" max="40" value="20" data-out="v-flag" data-fmt="x10">
+              </div>
+              <div class="setting">
+                <div class="k">SECTOR SEED</div>
+                <div class="v c-cyan">481516</div>
+                <div class="seed-row"><span class="chip">RANDOMISE</span><span class="chip">LAST</span></div>
+              </div>
+              <button class="entry primary" data-go="launch"><span class="idx">&gt;&gt;</span><span class="lbl">LAUNCH RAID</span><span class="sub">ONE SHIP. ONE ARENA.</span></button>
+              <button class="entry back" data-go="main"><span class="idx">&lt;</span><span class="lbl">BACK</span><span class="sub">ESC</span></button>
+            </nav>
+
+            <!-- Screen: ADMIN / DEBUG. Developer tools hub. Not player-facing;
+                 stripped from shipping builds. -->
+            <nav class="screen" data-screen="admin" hidden>
+              <div class="screen-head tech-head"><i></i><span>ADMIN / DEBUG</span><span class="hatch"></span><span class="badge">DEV ONLY</span></div>
+              <button class="entry" data-go="generator"><span class="idx">A1</span><span class="lbl">ENEMY GENERATOR</span><span class="sub">COLD IRON ASSEMBLY LAB</span></button>
+              <button class="entry" data-go="levelgen"><span class="idx">A2</span><span class="lbl">LEVEL GENERATOR</span><span class="sub">SECTOR RECIPE TUNING</span></button>
+              <button class="entry" data-go="loadout"><span class="idx">A3</span><span class="lbl">SHIP WEAPON MANAGER</span><span class="sub">HARDPOINTS AND MOUNTS</span></button>
+              <button class="entry back" data-go="main"><span class="idx">&lt;</span><span class="lbl">BACK</span><span class="sub">ESC</span></button>
+            </nav>
+
+            <!-- Screen: LEVEL GENERATOR. Every control maps to a field the
+                 recipe already seeds (design/18). The backdrop regenerates live
+                 so limits can be judged by eye before they go into C++. -->
+            <nav class="screen" data-screen="levelgen" hidden>
+              <div class="screen-head tech-head"><i></i><span>LEVEL GENERATOR</span><span class="hatch"></span><span class="badge" id="lg-hash">HASH 00000000</span></div>
+              <div class="setting compact">
+                <div class="k">SEED</div>
+                <div class="v c-cyan" id="lg-seed-v">481516</div>
+                <div class="seed-row"><span class="chip act" data-lg="reseed">RANDOMISE</span><span class="chip act" data-lg="step-">&minus;1</span><span class="chip act" data-lg="step+">+1</span></div>
+              </div>
+              <div class="setting compact">
+                <div class="k">PROFILE</div>
+                <div class="v c-gold" id="lg-profile-v">CLOUD</div>
+                <div class="seed-row" id="lg-profile"><span class="chip on" data-p="cloud">CLOUD</span><span class="chip" data-p="disk">DISK</span><span class="chip" data-p="belt">BELT</span><span class="chip" data-p="clusters">CLUSTERS</span><span class="chip" data-p="sparse">SPARSE</span></div>
+              </div>
+              <div class="setting compact"><div class="k">ASTEROIDS</div><div class="v c-gold" id="lg-count-v">180</div><input class="slider lg" type="range" min="90" max="340" value="180" data-lg-key="count" data-out="lg-count-v"></div>
+              <div class="setting compact"><div class="k">FIELD RADIUS</div><div class="v c-gold" id="lg-radius-v">6000 UU</div><input class="slider lg" type="range" min="4500" max="8200" step="100" value="6000" data-lg-key="radius" data-out="lg-radius-v" data-fmt="uu"></div>
+              <div class="setting compact"><div class="k">HALF HEIGHT</div><div class="v c-gold" id="lg-height-v">1200 UU</div><input class="slider lg" type="range" min="250" max="2200" step="50" value="1200" data-lg-key="height" data-out="lg-height-v" data-fmt="uu"></div>
+              <div class="setting compact"><div class="k">SIZE FLOOR</div><div class="v c-gold" id="lg-floor-v">0.9x</div><input class="slider lg" type="range" min="4" max="20" value="9" data-lg-key="floor" data-out="lg-floor-v" data-fmt="x10"></div>
+              <div class="setting compact"><div class="k">COLOSSAL CHANCE</div><div class="v c-gold" id="lg-colossal-v">28%</div><input class="slider lg" type="range" min="0" max="100" value="28" data-lg-key="colossal" data-out="lg-colossal-v" data-fmt="pct"></div>
+              <div class="setting compact"><div class="k">PLANETS</div><div class="v c-gold" id="lg-planets-v">1</div><input class="slider lg" type="range" min="0" max="3" value="1" data-lg-key="planets" data-out="lg-planets-v"></div>
+              <div class="setting compact"><div class="k">NEBULA MASSES</div><div class="v c-gold" id="lg-nebula-v">2</div><input class="slider lg" type="range" min="0" max="4" value="2" data-lg-key="nebula" data-out="lg-nebula-v"></div>
+              <div class="setting compact">
+                <div class="k">SUN</div>
+                <div class="v c-gold" id="lg-sun-v">ON</div>
+                <div class="seed-row" id="lg-sun"><span class="chip on" data-s="1">PRESENT</span><span class="chip" data-s="0">NONE</span></div>
+              </div>
+              <button class="entry primary" data-go="lg-copy"><span class="idx">&gt;&gt;</span><span class="lbl">COPY RECIPE</span><span class="sub">JSON TO CLIPBOARD</span></button>
+              <button class="entry back" data-go="admin"><span class="idx">&lt;</span><span class="lbl">BACK</span><span class="sub">ESC</span></button>
+            </nav>
+
+            <!-- Screen: SHIP WEAPON MANAGER. Left: one row per gold hardpoint,
+                 pick a cartridge. Right: the ship in 3D with a Gimbal Base and
+                 the chosen gun on every filled pad. -->
+            <nav class="screen wm" data-screen="loadout" hidden>
+              <div class="screen-head tech-head"><i></i><span>SHIP WEAPON MANAGER</span><span class="hatch"></span><span class="badge" id="lo-count">0 / 4 ARMED</span></div>
+
+              <!-- LOADOUT: one row per pad. Gun chips cycle the cartridge,
+                   EDIT makes the row the nudge target (gold rule). -->
+              <div class="lo-sec"><span class="k">LOADOUT</span><span class="hatch"></span><span class="chip on">ACE // INTERCEPTOR</span></div>
+              <div class="pads" id="lo-pads"></div>
+
+              <!-- EDIT TARGET: what the nudges below move. -->
+              <div class="lo-sec"><span class="k">EDIT TARGET</span><span class="hatch"></span><span class="v c-cyan" id="lo-target">HARDPOINT &middot; WING L TOP</span></div>
+              <div class="chip-row" id="lo-targets">
+                <span class="chip act on" data-target="pad">PAD</span>
+                <span class="chip act" data-target="base">BASE MESH</span>
+                <span class="chip act" data-target="gun">GUN MESH</span>
+                <span class="chip act" data-target="pivot">GUN PIVOT</span>
+                <span class="hatch"></span>
+                <span class="chip act" data-act="align">ALIGN +X</span>
+                <span class="chip act" data-act="flip">FLIP 180</span>
+              </div>
+              <div class="lo-readout c-dim" id="lo-readout">pos -34.6 -82.6 30.5 &nbsp; rot 0 0 0 &nbsp; scale 1.00</div>
+              <div class="lo-hint c-dim">PIVOT = pitch axis (cyan ball, tick = +X). MESH = the model around it: axle on the ball, barrel along the tick.</div>
+
+              <!-- NUDGES: position in uu, rotation in degrees, uniform scale. -->
+              <div class="nudge-grid" id="lo-nudges">
+                <div class="nudge"><span class="k">X FWD</span><span class="chip act" data-n="pos.x:-10">-10</span><span class="chip act" data-n="pos.x:-1">-1</span><span class="chip act" data-n="pos.x:1">+1</span><span class="chip act" data-n="pos.x:10">+10</span></div>
+                <div class="nudge"><span class="k">Y RIGHT</span><span class="chip act" data-n="pos.y:-10">-10</span><span class="chip act" data-n="pos.y:-1">-1</span><span class="chip act" data-n="pos.y:1">+1</span><span class="chip act" data-n="pos.y:10">+10</span></div>
+                <div class="nudge"><span class="k">Z UP</span><span class="chip act" data-n="pos.z:-10">-10</span><span class="chip act" data-n="pos.z:-1">-1</span><span class="chip act" data-n="pos.z:1">+1</span><span class="chip act" data-n="pos.z:10">+10</span></div>
+                <div class="nudge"><span class="k">PITCH</span><span class="chip act" data-n="rot.p:-15">-15</span><span class="chip act" data-n="rot.p:-1">-1</span><span class="chip act" data-n="rot.p:1">+1</span><span class="chip act" data-n="rot.p:15">+15</span></div>
+                <div class="nudge"><span class="k">YAW</span><span class="chip act" data-n="rot.y:-15">-15</span><span class="chip act" data-n="rot.y:-1">-1</span><span class="chip act" data-n="rot.y:1">+1</span><span class="chip act" data-n="rot.y:15">+15</span></div>
+                <div class="nudge"><span class="k">ROLL</span><span class="chip act" data-n="rot.r:-15">-15</span><span class="chip act" data-n="rot.r:-1">-1</span><span class="chip act" data-n="rot.r:1">+1</span><span class="chip act" data-n="rot.r:15">+15</span></div>
+                <div class="nudge"><span class="k">SCALE</span><span class="chip act" data-n="scale:-0.1">-0.1</span><span class="chip act" data-n="scale:-0.01">-0.01</span><span class="chip act" data-n="scale:0.01">+0.01</span><span class="chip act" data-n="scale:0.1">+0.1</span></div>
+              </div>
+              <div class="chip-row"><span class="chip act wide" data-act="snap">SNAP PAD Z TO HULL</span></div>
+
+              <!-- GIMBAL TEST: drives every mount at once. -->
+              <div class="lo-sec"><span class="k">GIMBAL TEST</span><span class="hatch"></span><span class="v c-cyan" id="lo-aim-v">YAW 0&deg; PITCH 0&deg;</span></div>
+              <div class="setting compact sliders">
+                <input class="slider" type="range" min="-180" max="180" value="0" id="lo-yaw">
+                <input class="slider" type="range" min="0" max="90" value="0" id="lo-pitch">
+              </div>
+              <div class="chip-row"><span class="chip act" data-act="sweep">SWEEP ON/OFF</span><span class="chip act on" data-act="markers">PAD MARKERS</span></div>
+
+              <button class="entry primary" data-go="lo-copy"><span class="idx">&gt;&gt;</span><span class="lbl">SAVE + COPY JSON</span><span class="sub">SAVED/CONFIG/WEAPONMOUNTS.JSON &middot; CLIPBOARD</span></button>
+              <div class="entry-row">
+                <button class="entry back" data-go="lo-reset"><span class="idx">--</span><span class="lbl">RESET</span><span class="sub">DEFAULTS</span></button>
+                <button class="entry back" data-go="admin"><span class="idx">&lt;</span><span class="lbl">BACK</span><span class="sub">ESC</span></button>
+              </div>
+            </nav>
+
+            <!-- Screen: OPTIONS. Mirrors BuildOptions: volume, quality,
+                 window mode. -->
+            <nav class="screen" data-screen="options" hidden>
+              <div class="screen-head tech-head"><i></i><span>OPTIONS</span><span class="hatch"></span><span class="badge">POC SETTINGS</span></div>
+              <div class="setting">
+                <div class="k">MASTER VOLUME</div>
+                <div class="v c-gold" id="v-vol">80%</div>
+                <input class="slider" type="range" min="0" max="100" value="80" data-out="v-vol" data-fmt="pct">
+              </div>
+              <div class="setting">
+                <div class="k">QUALITY</div>
+                <div class="v c-gold">HIGH</div>
+                <div class="seed-row"><span class="chip">LOW</span><span class="chip">MEDIUM</span><span class="chip on">HIGH</span><span class="chip">EPIC</span></div>
+              </div>
+              <div class="setting">
+                <div class="k">WINDOW MODE</div>
+                <div class="v c-gold">BORDERLESS</div>
+                <div class="seed-row"><span class="chip">FULLSCREEN</span><span class="chip on">BORDERLESS</span><span class="chip">WINDOWED</span></div>
+              </div>
+              <button class="entry primary" data-go="main"><span class="idx">OK</span><span class="lbl">APPLY</span><span class="sub">SAVES TO GAMEUSERSETTINGS</span></button>
+              <button class="entry back" data-go="main"><span class="idx">&lt;</span><span class="lbl">BACK</span><span class="sub">ESC</span></button>
+            </nav>
+
+            <div class="hint-row">
+              <span><b>&uarr;&darr;</b> SELECT</span>
+              <span><b>ENTER</b> CONFIRM</span>
+              <span><b>ESC</b> BACK</span>
+            </div>
+          </div>
+
+          <div class="footer-bar">
+            <span class="c-dim">BUILD 0.1.0</span>
+            <span class="c-dim">SECTOR SEED <span id="v-seed-foot">731348</span> &nbsp;&nbsp; = &nbsp;REROLL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="panel">
+    <h1>MAIN MENU MOCKUP</h1>
+    <p>Three screens, same as ShatteredMenu.cpp. A generated level drifts behind.</p>
+
+    <h2>SCREEN</h2>
+    <div class="stack">
+      <button data-show="main">Main</button>
+      <button data-show="raid">Pirate Raid setup</button>
+      <button data-show="options">Options</button>
+    </div>
+
+    <h2>LAYERS</h2>
+    <div class="field"><label for="tog-planned">Show planned entries</label><input id="tog-planned" type="checkbox"></div>
+    <div class="field"><label for="tog-drift">Camera drift</label><input id="tog-drift" type="checkbox" checked></div>
+    <div class="field"><label for="plate-dim">Backdrop dim</label><input id="plate-dim" type="range" min="0" max="100" value="30"></div>
+    <div class="field"><label for="seed">Level seed</label><input id="seed" type="number" value="731348" style="flex:0 0 100px"></div>
+    <div id="drop-hint">Drop a clean capture PNG here to use a real level plate</div>
+
+    <h2>HARDPOINTS</h2>
+    <p>Ship-local, ship length normalised to 10. X right, Y up, Z back. Y is snapped onto the hull by a downward ray, so only X and Z matter here. Edit, then Apply. Copy Loadout exports the snapped table.</p>
+    <textarea id="hp-json" rows="7" style="width:100%;font:11px Consolas,monospace;background:#0c1014;color:#86e0a8;border:1px solid #1e2630;border-radius:3px;padding:6px"></textarea>
+    <div class="stack" style="margin-top:6px"><button id="hp-apply">Apply hardpoints</button></div>
+    <div class="field"><label for="ship-yaw">Ship facing fix</label>
+      <select id="ship-yaw"><option value="0" selected>auto</option><option value="90">+90&deg;</option><option value="180">180&deg;</option><option value="270">270&deg;</option></select></div>
+    <div class="field"><label for="turret-scale">Turret scale</label><input id="turret-scale" type="range" min="4" max="20" value="9"></div>
+    <div class="field"><label for="gun-fix">Gun facing fix</label>
+      <select id="gun-fix"><option value="0">0&deg;</option><option value="90" selected>90&deg;</option><option value="180">180&deg;</option><option value="270">270&deg;</option></select></div>
+    <div class="field"><label for="tog-orbit">Auto orbit</label><input id="tog-orbit" type="checkbox"></div>
+
+    <h2>FRAMING</h2>
+    <div class="field"><label for="res">Resolution</label>
+      <select id="res">
+        <option value="1920x1080">1920 × 1080 (design)</option>
+        <option value="2560x1080">2560 × 1080 (ultrawide)</option>
+        <option value="3440x1440">3440 × 1440 (ultrawide)</option>
+        <option value="1280x720">1280 × 720</option>
+      </select>
+    </div>
+
+    <h2>KEYS</h2>
+    <p><kbd>↑</kbd> <kbd>↓</kbd> move, <kbd>Enter</kbd> confirm, <kbd>Esc</kbd> back. Click the stage first.</p>
+  </div>
+</div>
+
+<script>
+(() => {
+  const stage = document.getElementById("stage");
+  const frame = document.getElementById("stage-frame");
+  const viewer = document.getElementById("viewer");
+  const layerMenu = document.getElementById("layer-menu");
+
+  // --- fit the 1920x1080 stage into the viewer ----------------------------
+  function fit() {
+    const w = parseFloat(getComputedStyle(frame).getPropertyValue("--stage-w"));
+    const h = parseFloat(getComputedStyle(frame).getPropertyValue("--stage-h"));
+    const f = Math.min((viewer.clientWidth - 40) / w, (viewer.clientHeight - 40) / h, 1);
+    frame.style.setProperty("--fit", f.toFixed(4));
+  }
+  new ResizeObserver(fit).observe(viewer);
+  document.getElementById("res").addEventListener("change", (e) => {
+    const [w, h] = e.target.value.split("x");
+    frame.style.setProperty("--stage-w", w + "px");
+    frame.style.setProperty("--stage-h", h + "px");
+    stage.style.width = w + "px"; stage.style.height = h + "px";
+    fit();
+  });
+  fit();
+
+  // --- screens ---------------------------------------------------------------
+  const screens = [...document.querySelectorAll(".screen")];
+  let current = "main";
+  let cursor = 0;
+
+  function entries() {
+    return [...document.querySelector(`.screen[data-screen="${current}"]`).querySelectorAll(".entry")]
+      .filter((el) => el.offsetParent !== null);
+  }
+  function paint() {
+    const list = entries();
+    cursor = Math.max(0, Math.min(cursor, list.length - 1));
+    list.forEach((el, i) => el.classList.toggle("sel", i === cursor));
+  }
+  function flash() { layerMenu.classList.add("flash"); setTimeout(() => layerMenu.classList.remove("flash"), 260); }
+  function show(name) {
+    current = name;
+    screens.forEach((s) => (s.hidden = s.dataset.screen !== name));
+    // The lockup is the main screen's only. Sub-screens start at the rail top.
+    document.querySelector(".rail .logo").hidden = name !== "main";
+    document.querySelector(".rail").classList.toggle("no-logo", name !== "main");
+    document.getElementById("layer-ship3d").hidden = name !== "loadout";
+    if (name === "loadout" && window.SHIP3D) window.SHIP3D.activate();
+    cursor = 0;
+    paint();
+  }
+  function go(target) {
+    if (target === "lg-copy") { navigator.clipboard && navigator.clipboard.writeText(JSON.stringify(SCENE.recipe(), null, 2)); flash(); return; }
+    if (target === "lo-copy") { navigator.clipboard && navigator.clipboard.writeText(JSON.stringify(LOADOUT.export(), null, 2)); flash(); return; }
+    if (target === "lo-reset") { flash(); return; }
+    if (target === "quit" || target === "launch" || target === "training" || target === "generator") {
+      layerMenu.classList.add("flash");
+      setTimeout(() => layerMenu.classList.remove("flash"), 260);
+      return;
+    }
+    show(target);
+  }
+
+  document.querySelectorAll("[data-show]").forEach((b) => b.addEventListener("click", () => show(b.dataset.show)));
+  document.querySelectorAll(".entry").forEach((el) => {
+    el.addEventListener("mouseenter", () => { const l = entries(); const i = l.indexOf(el); if (i >= 0) { cursor = i; paint(); } });
+    el.addEventListener("click", () => { if (el.dataset.go) go(el.dataset.go); });
+  });
+  stage.setAttribute("tabindex", "0");
+  stage.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown") { cursor++; paint(); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { cursor--; paint(); e.preventDefault(); }
+    else if (e.key === "Enter") { const el = entries()[cursor]; if (el && el.dataset.go) go(el.dataset.go); }
+    else if (e.key === "Escape") { if (current === "levelgen" || current === "loadout") show("admin"); else if (current !== "main") show("main"); }
+  });
+
+  // --- sliders ---------------------------------------------------------------
+  document.querySelectorAll(".slider").forEach((s) => {
+    const out = document.getElementById(s.dataset.out);
+    const fmt = (v) => s.dataset.fmt === "x10" ? (v / 10).toFixed(1) + "x" : s.dataset.fmt === "pct" ? v + "%" : s.dataset.fmt === "uu" ? v + " UU" : String(v);
+    s.addEventListener("input", () => (out.textContent = fmt(+s.value)));
+  });
+
+  // --- harness toggles -------------------------------------------------------
+  const bind = (id, fn) => { const el = document.getElementById(id); el.addEventListener("input", () => fn(el)); fn(el); };
+  bind("tog-planned", (el) => { layerMenu.classList.toggle("show-planned", el.checked); paint(); });
+  bind("plate-dim", (el) => document.getElementById("layer-plate").style.setProperty("--dim", el.value / 100));
+
+  // --- dropped plate: a real capture replaces the canvas ---------------------
+  const plateImg = document.getElementById("plate");
+  document.addEventListener("dragover", (e) => e.preventDefault());
+  document.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (!f || !f.type.startsWith("image/")) return;
+    plateImg.src = URL.createObjectURL(f);
+    plateImg.hidden = false;
+    document.getElementById("scene").hidden = true;
+  });
+
+  // --- procedural level backdrop --------------------------------------------
+  // Stands in for AShatteredEnvironmentDirector: one sun, one planet, a belt of
+  // low-poly asteroids, two star layers. Seeded so a seed gives the same sky.
+  const SCENE = (() => {
+    const cv = document.getElementById("scene");
+    const g = cv.getContext("2d");
+    const W = cv.width, H = cv.height;
+    let rnd, stars, rocks, planets, sun, nebulae, t0 = performance.now();
+    const P = { seed: 481516, profile: "cloud", count: 180, radius: 6000, height: 1200, floor: 9, colossal: 28, planets: 1, nebula: 2, sun: 1 };
+    const S = { drift: true, reseed, params: P, regen: () => reseed(P.seed), recipe: () => ({ ...P, floor: P.floor / 10, hash: hash() }) };
+    function hash() { let x = 0; for (const k of Object.keys(P)) { const v = typeof P[k] === "string" ? P[k].length * 131 : P[k]; x = (Math.imul(x, 16777619) ^ (v | 0)) >>> 0; } return x.toString(16).padStart(8, "0"); }
+    function mulberry(a) { return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+    function rockShape(n) {
+      const pts = [];
+      for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2; const k = 0.72 + rnd() * 0.42; pts.push([Math.cos(a) * k, Math.sin(a) * k]); }
+      return pts;
+    }
+    function reseed(seed) {
+      P.seed = seed;
+      rnd = mulberry(seed);
+      stars = [];
+      for (let i = 0; i < 520; i++) stars.push({ x: rnd() * W, y: rnd() * H, z: rnd() < 0.25 ? 2 : 1, s: 0.6 + rnd() * 1.4, p: rnd() * 6.28 });
+      sun = P.sun ? { x: W * (0.58 + rnd() * 0.12), y: H * (0.12 + rnd() * 0.1), r: 30 + rnd() * 12 } : null;
+      nebulae = [];
+      for (let i = 0; i < P.nebula; i++) nebulae.push({ x: rnd() * W, y: rnd() * H, r: 500 + rnd() * 600, h: [270, 200, 340, 20][i % 4], a: 0.12 + rnd() * 0.14 });
+      planets = [];
+      const hues = [[214, 60, 44], [168, 40, 40], [22, 55, 42], [292, 35, 40]];
+      for (let i = 0; i < P.planets; i++) {
+        const big = i === 0;
+        planets.push({ x: W * (big ? 0.7 + rnd() * 0.14 : 0.3 + rnd() * 0.6), y: H * (big ? 0.55 + rnd() * 0.18 : 0.1 + rnd() * 0.5), r: big ? 240 + rnd() * 140 : 40 + rnd() * 80, hue: hues[Math.floor(rnd() * 4)], ring: rnd() < 0.5, tilt: -0.35 + rnd() * 0.5 });
+      }
+      // The 2D belt is a slice of the 3D field: count scales with the recipe,
+      // spread with radius/height, size floor with floor, one landmark rock on
+      // a colossal roll. Profile shapes where the slice puts them.
+      const n = Math.round(P.count / 7);
+      const spreadX = P.radius / 8200, spreadY = P.height / 2200;
+      rocks = [];
+      const colossal = rnd() * 100 < P.colossal;
+      for (let i = 0; i < n; i++) {
+        const z = 0.35 + rnd() * 1.1;
+        let x = rnd(), y = rnd();
+        if (P.profile === "disk") y = 0.5 + (rnd() - 0.5) * 0.35;
+        else if (P.profile === "belt") { const t = rnd(); x = t; y = 0.25 + t * 0.5 + (rnd() - 0.5) * 0.18; }
+        else if (P.profile === "clusters") { const c = [[0.25, 0.3], [0.6, 0.7], [0.85, 0.25]][i % 3]; x = c[0] + (rnd() - 0.5) * 0.22; y = c[1] + (rnd() - 0.5) * 0.3; }
+        else if (P.profile === "sparse") { if (i % 2) continue; }
+        x = 0.5 + (x - 0.5) * (0.6 + spreadX * 0.6); y = 0.5 + (y - 0.5) * (0.6 + spreadY * 0.6);
+        const size = (P.floor * 2 + rnd() * 60) * z;
+        rocks.push({ x: x * W, y: y * H, z, r: size, rot: rnd() * 6.28, spin: (rnd() - 0.5) * 0.0004, vx: (0.006 + rnd() * 0.012) * z, vy: (rnd() - 0.5) * 0.006 * z, pts: rockShape(7 + Math.floor(rnd() * 5)) });
+      }
+      if (colossal) rocks.push({ x: W * (0.15 + rnd() * 0.7), y: H * (0.2 + rnd() * 0.6), z: 1.5, r: 220 + rnd() * 120, rot: rnd() * 6.28, spin: (rnd() - 0.5) * 0.00006, vx: 0.002, vy: 0, pts: rockShape(11) });
+      rocks.sort((a, b) => a.z - b.z);
+      const hv = document.getElementById("lg-hash"); if (hv) hv.textContent = "HASH " + hash().toUpperCase();
+      const sv = document.getElementById("lg-seed-v"); if (sv) sv.textContent = String(seed);
+    }
+    function draw(now) {
+      const dt = S.drift ? Math.min(now - t0, 50) : 0; t0 = now;
+      const sky = g.createLinearGradient(0, 0, W, H);
+      sky.addColorStop(0, "#07101c"); sky.addColorStop(0.5, "#05090f"); sky.addColorStop(1, "#0b0712");
+      g.fillStyle = sky; g.fillRect(0, 0, W, H);
+      for (const nb of nebulae) {
+        const neb = g.createRadialGradient(nb.x, nb.y, 20, nb.x, nb.y, nb.r);
+        neb.addColorStop(0, "hsla(" + nb.h + ",45%,40%," + nb.a + ")"); neb.addColorStop(1, "hsla(" + nb.h + ",45%,40%,0)");
+        g.fillStyle = neb; g.fillRect(0, 0, W, H);
+      }
+      for (const s of stars) {
+        if (S.drift) { s.x -= 0.004 * dt * s.z; if (s.x < 0) s.x += W; }
+        const tw = 0.6 + 0.4 * Math.sin(now * 0.0012 + s.p);
+        g.fillStyle = s.z === 2 ? "rgba(235,245,255," + (0.85 * tw) + ")" : "rgba(180,200,225," + (0.5 * tw) + ")";
+        g.fillRect(s.x, s.y, s.s * s.z * 0.8, s.s * s.z * 0.8);
+      }
+      const L = sun || { x: W * 0.2, y: -H * 0.3 };
+      if (sun) {
+        const glow = g.createRadialGradient(sun.x, sun.y, 0, sun.x, sun.y, sun.r * 9);
+        glow.addColorStop(0, "rgba(255,244,220,0.95)"); glow.addColorStop(0.08, "rgba(255,214,160,0.55)"); glow.addColorStop(0.35, "rgba(255,150,90,0.12)"); glow.addColorStop(1, "rgba(255,120,60,0)");
+        g.fillStyle = glow; g.fillRect(0, 0, W, H);
+        g.fillStyle = "#fff7e8"; g.beginPath(); g.arc(sun.x, sun.y, sun.r, 0, 6.29); g.fill();
+      }
+      for (const planet of planets) {
+        const lx = L.x - planet.x, ly = L.y - planet.y, ll = Math.hypot(lx, ly);
+        const [ph, ps, pl] = planet.hue;
+        const shade = g.createRadialGradient(planet.x + (lx / ll) * planet.r * 0.55, planet.y + (ly / ll) * planet.r * 0.55, planet.r * 0.1, planet.x, planet.y, planet.r * 1.05);
+        shade.addColorStop(0, "hsl(" + ph + "," + ps + "%," + (pl + 18) + "%)"); shade.addColorStop(0.55, "hsl(" + ph + "," + ps + "%," + (pl - 4) + "%)"); shade.addColorStop(1, "hsl(" + ph + "," + (ps - 10) + "%,6%)");
+        g.fillStyle = shade; g.beginPath(); g.arc(planet.x, planet.y, planet.r, 0, 6.29); g.fill();
+        g.save(); g.beginPath(); g.arc(planet.x, planet.y, planet.r, 0, 6.29); g.clip();
+        g.strokeStyle = "rgba(0,0,0,0.18)"; g.lineWidth = 6;
+        for (let i = -3; i <= 3; i++) { g.beginPath(); g.ellipse(planet.x, planet.y + i * planet.r * 0.28, planet.r, planet.r * 0.12, planet.tilt, 0, 6.29); g.stroke(); }
+        g.restore();
+        if (planet.ring) {
+          g.save(); g.translate(planet.x, planet.y); g.rotate(planet.tilt);
+          g.strokeStyle = "rgba(255,198,61,0.35)"; g.lineWidth = 10; g.beginPath(); g.ellipse(0, 0, planet.r * 1.7, planet.r * 0.32, 0, Math.PI * 1.02, Math.PI * 1.98); g.stroke();
+          g.strokeStyle = "rgba(255,198,61,0.18)"; g.lineWidth = 22; g.beginPath(); g.ellipse(0, 0, planet.r * 1.55, planet.r * 0.29, 0, Math.PI * 1.02, Math.PI * 1.98); g.stroke();
+          g.restore();
+        }
+      }
+      for (const r of rocks) {
+        if (S.drift) { r.x -= r.vx * dt; r.y += r.vy * dt; r.rot += r.spin * dt; if (r.x < -r.r * 2) { r.x = W + r.r * 2; r.y = Math.random() * H; } if (r.y < -r.r * 2) r.y = H + r.r; if (r.y > H + r.r * 2) r.y = -r.r; }
+        const dx = L.x - r.x, dy = L.y - r.y, dl = Math.hypot(dx, dy);
+        g.save(); g.translate(r.x, r.y); g.rotate(r.rot);
+        const lit = g.createLinearGradient(-dx / dl * r.r, -dy / dl * r.r, dx / dl * r.r, dy / dl * r.r);
+        const base = 34 + r.z * 26;
+        lit.addColorStop(0, "rgb(" + (base * 0.35) + "," + (base * 0.38) + "," + (base * 0.5) + ")");
+        lit.addColorStop(1, "rgb(" + (base * 1.5) + "," + (base * 1.55) + "," + (base * 1.9) + ")");
+        g.fillStyle = lit; g.beginPath();
+        r.pts.forEach(([px, py], i) => (i ? g.lineTo(px * r.r, py * r.r) : g.moveTo(px * r.r, py * r.r)));
+        g.closePath(); g.fill();
+        g.strokeStyle = "rgba(0,0,0,0.35)"; g.lineWidth = 1.5; g.stroke();
+        g.restore();
+      }
+      requestAnimationFrame(draw);
+    }
+    reseed(481516);
+    requestAnimationFrame(draw);
+    return S;
+  })();
+
+  bind("tog-drift", (el) => (SCENE.drift = el.checked));
+  bind("seed", (el) => SCENE.reseed(+el.value || 1));
+
+  // --- level generator screen -------------------------------------------------
+  const seedBox = document.getElementById("seed");
+  document.querySelectorAll(".slider.lg").forEach((s) => s.addEventListener("input", () => { SCENE.params[s.dataset.lgKey] = +s.value; SCENE.regen(); }));
+  document.querySelectorAll("[data-lg]").forEach((c) => c.addEventListener("click", () => {
+    const a = c.dataset.lg;
+    if (a === "reseed") SCENE.params.seed = Math.floor(Math.random() * 999999);
+    else if (a === "step+") SCENE.params.seed++;
+    else SCENE.params.seed--;
+    seedBox.value = SCENE.params.seed; SCENE.regen();
+  }));
+  const chipGroup = (id, attr, key, label) => document.querySelectorAll("#" + id + " .chip").forEach((c) => c.addEventListener("click", () => {
+    document.querySelectorAll("#" + id + " .chip").forEach((x) => x.classList.toggle("on", x === c));
+    SCENE.params[key] = attr === "p" ? c.dataset.p : +c.dataset.s;
+    document.getElementById(label).textContent = c.textContent === "PRESENT" ? "ON" : c.textContent === "NONE" ? "OFF" : c.textContent;
+    SCENE.regen();
+  }));
+  chipGroup("lg-profile", "p", "profile", "lg-profile-v");
+  chipGroup("lg-sun", "s", "sun", "lg-sun-v");
+
+  // --- ship weapon manager screen ------------------------------------------------
+  // Hardpoints are Ace's four gold pads. Coordinates are ship-local with the
+  // hull normalised to length 10, so they transfer to any mesh scale.
+  const LOADOUT = (() => {
+    const GUNS = [["none", "EMPTY"], ["laser-cannon", "LASER"], ["seeker-rocket", "SEEKER"], ["lightning-coil", "COIL"]];
+    const pads = [
+      { id: "wing-l", name: "WING L TOP", pos: [-2.8, 0, 1.2] },
+      { id: "wing-r", name: "WING R TOP", pos: [2.8, 0, 1.2] },
+      { id: "nose-l", name: "NOSE L", pos: [-0.6, 0, -2.8] },
+      { id: "nose-r", name: "NOSE R", pos: [0.6, 0, -2.8] },
+    ];
+    const fitted = { "wing-l": "laser-cannon", "wing-r": "laser-cannon", "nose-l": "none", "nose-r": "none" };
+    const host = document.getElementById("lo-pads");
+    const hpBox = document.getElementById("hp-json");
+    // Edit state mirrors UShatteredWeaponManagerWidget: one selected pad, one
+    // target, shared base/gun/pivot transforms in uu (hull L = 291.8 uu, so
+    // one normalised unit is 29.18 uu).
+    const UU = 29.18;
+    const edit = { pad: "wing-l", target: "pad",
+      base: { off: [0, 0, 0], rot: [0, 90, 0], scale: 0.223 },
+      gun: { off: [15, 0, -7], rot: [0, -90, 0], scale: 0.417 },
+      pivot: { off: [1, 0, 19] },
+      padRot: { "wing-l": [0, 0, 0], "wing-r": [0, 0, 0], "nose-l": [0, 0, -60], "nose-r": [0, 0, 60] } };
+    function render() {
+      host.innerHTML = pads.map((p) => `
+        <div class="pad ${edit.pad === p.id ? "sel" : ""}" data-pad="${p.id}">
+          <span class="k">${p.name}</span>
+          <span class="chip-row">${GUNS.map((g) => `<span class="chip act ${fitted[p.id] === g[0] ? "on" : ""}" data-gun="${g[0]}">${g[1]}</span>`).join("")}<span class="chip act edit ${edit.pad === p.id ? "on" : ""}" data-edit="1">EDIT</span></span>
+        </div>`).join("");
+      host.querySelectorAll(".chip[data-gun]").forEach((c) => c.addEventListener("click", () => { fitted[c.closest(".pad").dataset.pad] = c.dataset.gun; render(); push(); }));
+      host.querySelectorAll(".chip[data-edit]").forEach((c) => c.addEventListener("click", () => { edit.pad = c.closest(".pad").dataset.pad; render(); readout(); }));
+      document.getElementById("lo-count").textContent = Object.values(fitted).filter((g) => g !== "none").length + " / 4 ARMED";
+      hpBox.value = JSON.stringify(pads.map((p) => ({ id: p.id, pos: p.pos })), null, 1);
+    }
+    function padUU(p) { return [-p.pos[2] * UU, p.pos[0] * UU, (p.snappedY != null ? p.snappedY : p.pos[1]) * UU]; }
+    function readout() {
+      const p = pads.find((x) => x.id === edit.pad);
+      const names = { pad: "HARDPOINT", base: "GIMBAL BASE MESH (ALL PADS)", gun: "GUN MESH (ALL PADS)", pivot: "GUN PIVOT (ALL PADS)" };
+      document.getElementById("lo-target").innerHTML = names[edit.target] + (edit.target === "pad" ? " &middot; " + p.name : "");
+      const f = (v) => v.map((n, i) => (i < 3 ? (+n).toFixed(1) : n)).join(" ");
+      let t;
+      if (edit.target === "pad") t = "pos " + f(padUU(p)) + " &nbsp; rot " + edit.padRot[p.id].join(" ") + " &nbsp; scale 1.00";
+      else if (edit.target === "pivot") t = "pivot offset " + edit.pivot.off.join(" ") + " &nbsp; (from pad, before yaw)";
+      else { const m = edit[edit.target]; t = "offset " + m.off.join(" ") + " &nbsp; rot " + m.rot.join(" ") + " &nbsp; scale " + m.scale.toFixed(3); }
+      document.getElementById("lo-readout").innerHTML = t;
+      document.querySelectorAll("#lo-targets .chip[data-target]").forEach((c) => c.classList.toggle("on", c.dataset.target === edit.target));
+    }
+    document.querySelectorAll("#lo-targets .chip[data-target]").forEach((c) => c.addEventListener("click", () => { edit.target = c.dataset.target; readout(); }));
+    document.querySelectorAll("#lo-targets .chip[data-act]").forEach((c) => c.addEventListener("click", () => {
+      if (c.dataset.act === "align") edit.gun.rot = [0, -90, 0]; else edit.gun.rot[1] = ((edit.gun.rot[1] + 180 + 540) % 360) - 180;
+      edit.target = "gun"; readout(); flash();
+    }));
+    document.querySelectorAll("#lo-nudges .chip").forEach((c) => c.addEventListener("click", () => {
+      const [key, val] = c.dataset.n.split(":"); const v = +val; const axis = { x: 0, y: 1, z: 2, p: 0, r: 2 }[key.slice(-1)] ?? 1;
+      const p = pads.find((x) => x.id === edit.pad);
+      if (edit.target === "pad") {
+        // Pad space is uu (X fwd, Y right, Z up); the mockup keeps ship-local normalised (X right, Y up, Z back).
+        if (key === "pos.x") p.pos[2] -= v / UU; else if (key === "pos.y") p.pos[0] += v / UU; else if (key === "pos.z") { p.pos[1] = (p.snappedY != null ? p.snappedY : p.pos[1]) + v / UU; p.snappedY = null; }
+        else if (key.startsWith("rot")) edit.padRot[p.id][axis] += v;
+        push();
+      } else if (edit.target === "pivot") { if (key.startsWith("pos")) edit.pivot.off[axis] += v; }
+      else { const m = edit[edit.target]; if (key.startsWith("pos")) m.off[axis] += v; else if (key.startsWith("rot")) m.rot[axis] += v; else m.scale = Math.max(0.01, m.scale + v); }
+      readout();
+    }));
+    document.querySelectorAll(".screen.wm .chip[data-act='snap'], .screen.wm .chip[data-act='sweep'], .screen.wm .chip[data-act='markers']").forEach((c) => c.addEventListener("click", () => {
+      if (c.dataset.act === "snap") { const p = pads.find((x) => x.id === edit.pad); p.snappedY = null; push(); readout(); }
+      else c.classList.toggle("on");
+      flash();
+    }));
+    function push() { if (window.SHIP3D) window.SHIP3D.setLoadout(pads, fitted); }
+    document.getElementById("hp-apply").addEventListener("click", () => {
+      try { const j = JSON.parse(hpBox.value); j.forEach((e) => { const p = pads.find((x) => x.id === e.id); if (p) p.pos = e.pos; }); push(); } catch (err) { alert("Bad JSON: " + err.message); }
+    });
+    const yawEl = document.getElementById("lo-yaw"), pitchEl = document.getElementById("lo-pitch");
+    const aim = () => { document.getElementById("lo-aim-v").textContent = "YAW " + yawEl.value + "\u00b0 PITCH " + pitchEl.value + "\u00b0"; if (window.SHIP3D) window.SHIP3D.setAim(+yawEl.value, +pitchEl.value); };
+    yawEl.addEventListener("input", aim); pitchEl.addEventListener("input", aim);
+    render();
+    readout();
+    window.addEventListener("ship3d-ready", push);
+    return { export: () => ({ hull: "ace", forward: "-Z", lengthNormalised: 10, hardpoints: pads.map((p) => ({ id: p.id, pos: [p.pos[0], p.snappedY != null ? +p.snappedY.toFixed(3) : p.pos[1], p.pos[2]], gun: fitted[p.id] })) }), push };
+  })();
+  bind("ship-yaw", (el) => window.SHIP3D && window.SHIP3D.setShipYaw(+el.value));
+  bind("turret-scale", (el) => window.SHIP3D && window.SHIP3D.setTurretScale(el.value / 10));
+  bind("gun-fix", (el) => window.SHIP3D && window.SHIP3D.setGunFix(+el.value));
+  bind("tog-orbit", (el) => { if (window.SHIP3D) window.SHIP3D.orbit = el.checked; const c = document.getElementById("ship3d-orbit"); if (c) c.checked = el.checked; });
+  document.getElementById("ship3d-orbit").addEventListener("change", (e) => { if (window.SHIP3D) window.SHIP3D.orbit = e.target.checked; document.getElementById("tog-orbit").checked = e.target.checked; });
+  window.addEventListener("ship3d-ready", () => { ["ship-yaw", "turret-scale", "gun-fix", "tog-orbit"].forEach((id) => document.getElementById(id).dispatchEvent(new Event("input"))); });
+
+  // --- clock -----------------------------------------------------------------
+  const seedFoot = document.getElementById("v-seed-foot");
+  const seedInput = document.getElementById("seed");
+  if (seedFoot && seedInput) { seedInput.addEventListener("input", () => { seedFoot.textContent = seedInput.value; }); seedFoot.textContent = seedInput.value; }
+
+  show("main");
+})();
+</script>
+
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+// Ship Weapon Manager viewport. Ace is normalised to length 10 and faces -Z.
+// Each hardpoint gets a Gimbal Base; each base gets the chosen cartridge parented
+// to its trunnion, so yaw spins the base and pitch tilts the gun, exactly the
+// split the pawn will use.
+const canvas = document.getElementById("ship3d");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+// Ship-space X of the turntable. The UMG preview offsets its turntable
+// screen-right of the camera by the same idea; 11 puts the hull in the
+// right band with the rail clear.
+const SHIP_X = 11;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(32, 16 / 9, 0.1, 500);
+camera.position.set(SHIP_X + 12.5, 8, 17);
+const controls = new OrbitControls(camera, canvas);
+controls.target.set(SHIP_X, 0, 0); // ship sits in the right band; the rail owns the left
+controls.enableDamping = true; controls.autoRotate = false; controls.autoRotateSpeed = 0.6;
+scene.add(new THREE.HemisphereLight(0xcfe6ff, 0x1a1208, 1.1));
+const key = new THREE.DirectionalLight(0xfff1dc, 2.6); key.position.set(6, 9, 4); scene.add(key);
+const rim = new THREE.DirectionalLight(0x4ef4ff, 0.9); rim.position.set(-8, 3, -6); scene.add(rim);
+
+const shipRoot = new THREE.Group(); shipRoot.position.x = SHIP_X; scene.add(shipRoot);
+const shipYaw = new THREE.Group(); shipRoot.add(shipYaw);      // ship-local space: forward -Z
+const shipFix = new THREE.Group(); shipYaw.add(shipFix);        // mesh-only facing correction
+const shipLen = 10;
+const loader = new GLTFLoader();
+const cache = {};
+const status = document.getElementById("ship3d-status");
+function load(url) { return cache[url] || (cache[url] = new Promise((res, rej) => loader.load(url, (g) => res(g.scene), undefined, rej))); }
+function normalise(obj, targetLen, axis) {
+  const box = new THREE.Box3().setFromObject(obj); const size = box.getSize(new THREE.Vector3()); const c = box.getCenter(new THREE.Vector3());
+  const longest = axis === "y" ? size.y : Math.max(size.x, size.y, size.z);
+  const s = targetLen / longest; obj.scale.setScalar(s); obj.position.set(-c.x * s, -c.y * s, -c.z * s);
+  return { size: size.multiplyScalar(s), box };
+}
+
+let ship, shipSize, autoYaw = 0;
+// The nose is the narrowest end of the hull. Measure the lateral spread of the
+// outer 15% of vertices at each end of each horizontal axis; the tightest end
+// is the nose. Returns the yaw (deg) that turns that end to -Z.
+function findNoseYaw(obj) {
+  obj.updateMatrixWorld(true);
+  const pts = [];
+  obj.traverse((m) => { if (!m.isMesh) return; const pos = m.geometry.attributes.position; const v = new THREE.Vector3();
+    const step = Math.max(1, Math.floor(pos.count / 20000));
+    for (let i = 0; i < pos.count; i += step) { v.fromBufferAttribute(pos, i); m.localToWorld(v); pts.push([v.x, v.z]); } });
+  const ends = [];
+  for (const ax of [0, 1]) {
+    const vals = pts.map((q) => q[ax]); const lo = Math.min(...vals), hi = Math.max(...vals), span = hi - lo;
+    for (const dir of [-1, 1]) {
+      const sel = pts.filter((q) => dir < 0 ? q[ax] < lo + span * 0.15 : q[ax] > hi - span * 0.15);
+      const other = sel.map((q) => q[1 - ax]); const spread = Math.max(...other) - Math.min(...other);
+      ends.push({ ax, dir, spread });
+    }
+  }
+  ends.sort((a, b) => a.spread - b.spread);
+  const nose = ends[0];
+  // yaw about Y that maps the nose direction to -Z
+  if (nose.ax === 1) return nose.dir < 0 ? 0 : 180;   // z-
+  return nose.dir > 0 ? 90 : 270;                       // x+ -> -Z needs +90
+}
+load("../../ships/interceptor/ace.glb").then((g) => {
+  ship = g; shipSize = normalise(ship, shipLen).size; shipFix.add(ship);
+  autoYaw = findNoseYaw(ship);
+  status.textContent = "ACE " + shipSize.x.toFixed(1) + " x " + shipSize.y.toFixed(1) + " x " + shipSize.z.toFixed(1) + " // NOSE FIX " + autoYaw + "°";
+  window.dispatchEvent(new Event("ship3d-ready"));
+}).catch((e) => { status.textContent = "ACE FAILED: " + e.message; });
+
+const ray = new THREE.Raycaster();
+function hullHeightAt(x, z) {
+  if (!ship) return null;
+  shipYaw.updateMatrixWorld(true);
+  const origin = new THREE.Vector3(x, 8, z).applyMatrix4(shipYaw.matrixWorld);
+  const dir = new THREE.Vector3(0, -1, 0).transformDirection(shipYaw.matrixWorld);
+  ray.set(origin, dir);
+  const hits = ray.intersectObject(shipFix, true);
+  if (!hits.length) return null;
+  return shipYaw.worldToLocal(hits[0].point.clone()).y;
+}
+const turrets = new Map(); // pad id -> { root, yawG, pitchG, gun }
+let turretScale = 0.9, gunFix = 0, aimYaw = 0, aimPitch = 0;
+async function buildTurret(pad, gunId) {
+  let t = turrets.get(pad.id);
+  if (!t) {
+    const root = new THREE.Group(); const yawG = new THREE.Group(); const pitchG = new THREE.Group();
+    root.add(yawG); yawG.add(pitchG); shipYaw.add(root);
+    const base = (await load("../../weapons/gimbal-base.glb")).clone();
+    const nb = normalise(base, 1, "y"); base.position.y += nb.size.y / 2; // collar on the pad
+    yawG.add(base);
+    pitchG.position.y = nb.size.y * 0.78; // trunnion axis, per the mount spec
+    t = { root, yawG, pitchG, gun: null, gunId: null }; turrets.set(pad.id, t);
+  }
+  // Snap to the hull: drop a ray from above the pad and land on the first hit,
+  // so a pad is defined by where it sits on the skin, not by a guessed height.
+  const hitY = hullHeightAt(pad.pos[0], pad.pos[2]);
+  t.root.position.set(pad.pos[0], hitY != null ? hitY : pad.pos[1], pad.pos[2]);
+  pad.snappedY = hitY;
+  t.root.scale.setScalar(turretScale);
+  if (t.gunId !== gunId) {
+    if (t.gun) { t.pitchG.remove(t.gun); t.gun = null; }
+    if (gunId !== "none") {
+      const gun = (await load("../../weapons/" + gunId + ".glb")).clone();
+      const ng = normalise(gun, 1.5); gun.position.z -= ng.size.z * 0.15; // axle sits at the rear third
+      const wrap = new THREE.Group(); wrap.add(gun); wrap.rotation.y = THREE.MathUtils.degToRad(gunFix);
+      t.pitchG.add(wrap); t.gun = wrap;
+    }
+    t.gunId = gunId;
+  }
+  t.yawG.rotation.y = THREE.MathUtils.degToRad(aimYaw);
+  t.pitchG.rotation.x = THREE.MathUtils.degToRad(-aimPitch);
+}
+let lastPads = [], lastFit = {};
+window.SHIP3D = {
+  orbit: false,
+  activate() { resize(); },
+  setLoadout(pads, fitted) { lastPads = pads; lastFit = fitted; pads.forEach((p) => buildTurret(p, fitted[p.id])); },
+  setShipYaw(deg) { shipFix.rotation.y = THREE.MathUtils.degToRad(autoYaw + deg); },
+  setTurretScale(s) { turretScale = s; turrets.forEach((t) => t.root.scale.setScalar(s)); },
+  setGunFix(deg) { gunFix = deg; turrets.forEach((t) => { if (t.gun) t.gun.rotation.y = THREE.MathUtils.degToRad(deg); }); },
+  setAim(y, p) { aimYaw = y; aimPitch = p; turrets.forEach((t) => { t.yawG.rotation.y = THREE.MathUtils.degToRad(y); t.pitchG.rotation.x = THREE.MathUtils.degToRad(-p); }); },
+};
+function resize() {
+  const w = canvas.clientWidth || 1920, hh = canvas.clientHeight || 1080;
+  renderer.setSize(w, hh, false); camera.aspect = w / hh;
+  // The orbit target is the ship, which puts it dead centre. Shifting the
+  // projection window left by a fifth of the width parks the ship in the
+  // right band, centred on the 70% line like the UMG preview.
+  camera.setViewOffset(w, hh, -w * 0.2, 0, w, hh);
+  camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(canvas);
+(function tick() { controls.autoRotate = window.SHIP3D.orbit; controls.update(); renderer.render(scene, camera); requestAnimationFrame(tick); })();
+</script>
+</body>
+</html>

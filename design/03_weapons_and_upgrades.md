@@ -157,11 +157,24 @@ Hull table numbers below are the **Fighter** identity for that family. Other pro
 
 ### ⚔️ Category 1: Weapons
 
-Weapons fill **weapon slots** on the ship — one gold hardpoint each. Concepts: [art/weapons.json](../art/weapons.json). Wiki catalog: [wiki/dist/weapons.html](../wiki/dist/weapons.html).
+Weapons fill **weapon slots** on the ship — one gold hardpoint each. Concepts: [art/weapons.json](../art/weapons.json). Prompts and mount spec: [art/weapon_prompts.md](../art/weapon_prompts.md).
+
+#### Gimbal mount (planned, drives the art)
+
+Every hardpoint takes one shared **Gimbal Base**. The base bolts onto the gold pad, yaws **360°** on a turntable, and pitches **−90° to +90°** on a trunnion yoke. Guns are **cartridges** that drop into the yoke on two hex axle stubs. Any gun fits any base.
+
+This exists for **auto-aim**: a gun glued to a pad can only shoot forward, but a base that owns both axes lets every gun cover the full sphere around the ship. It also keeps gun meshes simple, and the base can gain its own upgrades later (traverse speed, lead prediction, lock range).
+
+| Part | Gold | Owns |
+| --- | --- | --- |
+| Gimbal Base | 1 collar | yaw, pitch, aim logic |
+| Gun Cartridge | 0 | barrel, fire rate, damage, 4 mod wells |
+
+> **Runtime:** nothing in the build articulates yet. The Ace pulse gun fires straight ahead from fixed muzzle sockets. Base yaw/pitch and target selection are the next combat task after flight feel.
 
 #### Starter trio (current)
 
-Three guns to start. Each is a standalone module that bolts onto a gold pad. You can own **at most 3 of the same type**. Every copy levels **1–5** on its own and grows **modifier wells** for **Mod Crystals**.
+Three gun cartridges to start. You can own **at most 3 of the same type**. Every copy levels **1–5** on its own and grows **modifier wells** for **Mod Crystals**.
 
 | Weapon | Reads as | Envelope | Special |
 | --- | --- | --- | --- |
@@ -179,7 +192,7 @@ Three guns to start. Each is a standalone module that bolts onto a gold pad. You
 | 4 | 3 |
 | 5 | 4 |
 
-Empty wells are part of the mesh (cream/charcoal, **never gold**). Gold on the weapon is **only** the circular collar that seats on the ship pad.
+Empty wells are part of the gun mesh (cream/charcoal, **never gold**). Gun cartridges carry **no gold at all**. The only gold in the assembly is the Gimbal Base collar that seats on the ship pad.
 
 #### Run inventory & stash
 

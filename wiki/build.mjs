@@ -33,6 +33,7 @@ const PAGES = [
   { id: "d18", title: "18 · Procedural Environments", group: "Game", source: "design/18_procedural_environments.md", status: "implemented" },
   { id: "d17", title: "17 · Combat & Anti-Kiting", group: "Game", source: "design/17_anti_kiting_combat.md", status: "in-progress" },
   { id: "d16", title: "16 · UI, HUD, VFX", group: "Game", source: "design/16_ui_hud_vfx.md", status: "in-progress" },
+  { id: "mockups", title: "UI Mockups", group: "Game", kind: "mockups", source: "art/hud/mockup", status: "in-progress" },
   { id: "d06", title: "06 · Enemies", group: "Game", source: "design/06_enemy_catalog.md", status: "in-progress" },
   { id: "d14", title: "14 · Lore", group: "Game", source: "design/14_lore_and_narrative.md", status: "in-progress" },
   { id: "d02", title: "02 · Core Loop", group: "Game", source: "design/02_core_mechanics.md", status: "in-progress" },
@@ -290,14 +291,38 @@ function weaponChecklist(w, rules) {
     .map((n, i) => `L${i + 1}=${n}`)
     .join(", ");
   return `
-    <p class="meta inventory">Fills <em>one</em> ship weapon hardpoint. Max ${esc(String(rules.maxOwnedPerType))} owned of this type. ${esc(String(rules.levels))} levels. Mod crystals: ${esc(slots)}.</p>
+    <p class="meta inventory">Gun cartridge. Seats in a Gimbal Base on <em>one</em> ship hardpoint. Max ${esc(String(rules.maxOwnedPerType))} owned of this type. ${esc(String(rules.levels))} levels. Mod crystals: ${esc(slots)}.</p>
     <div class="gold-check">
-      <p class="gold-title">Visible gold — count exactly <strong>1</strong> circular mounting collar (the ship-pad mount). Extra gold = wrong. Four empty crystal wells, never gold.</p>
+      <p class="gold-title">Visible gold — count exactly <strong>0</strong>. A gold collar or round pedestal under the gun = wrong. Two cream hex axle stubs at the rear, four empty crystal wells, never gold.</p>
       <ol class="gold-list">
-        <li class="gold-weapon"><span class="n">1</span><span class="k">Mount</span><span class="d">gold circular collar with dark hexagonal plug</span></li>
+        <li class="gold-weapon"><span class="n">1</span><span class="k">Mount</span><span class="d">charcoal trunnion block with a cream hexagonal axle stub on each side</span></li>
         <li class="gold-engine"><span class="n">2</span><span class="k">Wells</span><span class="d">four empty hexagonal crystal sockets (cream/charcoal, not gold)</span></li>
+        <li class="gold-engine"><span class="n">3</span><span class="k">Balance</span><span class="d">mass in front of the axle, short rear so ±90° pitch never clips the base</span></li>
       </ol>
     </div>`;
+}
+
+function mountChecklist(mount) {
+  const sockets = (mount.sockets || [])
+    .map(([k, d]) => `<tr><td>${esc(k)}</td><td>${esc(d)}</td></tr>`)
+    .join("");
+  const spec = (mount.specLines || [])
+    .map(([k, d]) => `<tr><td>${esc(k)}</td><td>${esc(d)}</td></tr>`)
+    .join("");
+  return `
+    <p class="meta inventory">Shared turret base. One per gold hardpoint. Yaw: ${esc(mount.yaw)}. Pitch: ${esc(mount.pitch)}.</p>
+    <p class="meta">${esc(mount.why)}</p>
+    <p class="meta">${esc(mount.interface)}</p>
+    <div class="gold-check">
+      <p class="gold-title">Visible gold — count exactly <strong>1</strong> circular mounting collar at the bottom. Turntable is charcoal, trunnion caps are cream. No barrel, no wells.</p>
+      <ol class="gold-list">
+        <li class="gold-weapon"><span class="n">1</span><span class="k">Collar</span><span class="d">gold circular collar with dark hexagonal plug underneath</span></li>
+        <li class="gold-engine"><span class="n">2</span><span class="k">Yaw ring</span><span class="d">charcoal turntable with cream index ticks, spins 360°</span></li>
+        <li class="gold-engine"><span class="n">3</span><span class="k">Yoke</span><span class="d">crimson U with a cream trunnion cap on the inside of each arm, empty cradle between</span></li>
+      </ol>
+    </div>
+    <table class="stats"><thead><tr><th>Mount spec</th><th></th></tr></thead><tbody>${spec}</tbody></table>
+    <table class="stats"><thead><tr><th>Socket</th><th>Where</th></tr></thead><tbody>${sockets}</tbody></table>`;
 }
 
 function findWeaponArt(set, id, exts) {
@@ -310,7 +335,29 @@ function findWeaponArt(set, id, exts) {
 
 function weaponEntries(data, art) {
   const rules = data.rules || {};
-  return data.weapons.map((weapon) => ({
+  const entries = [];
+  if (data.mount) {
+    const m = data.mount;
+    entries.push({
+      id: m.id,
+      title: m.name,
+      group: "mount",
+      image: findWeaponArt(art.images, m.id, [".png", ".webp", ".jpg", ".jpeg"]),
+      model: findWeaponArt(art.models, m.id, [".glb", ".gltf"]),
+      preview: null,
+      note: m.read || "",
+      status: "concept",
+      stats: [
+        ["yaw", m.yaw],
+        ["pitch", m.pitch],
+        ["fits", "every gun cartridge"],
+        ["gold", "1 collar"],
+      ],
+      extraHtml: mountChecklist(m),
+      prompt: m.prompt,
+    });
+  }
+  const guns = data.weapons.map((weapon) => ({
     id: weapon.id,
     title: weapon.name,
     group: weapon.family,
@@ -330,6 +377,7 @@ function weaponEntries(data, art) {
     extraHtml: weaponChecklist(weapon, rules),
     prompt: weapon.prompt,
   }));
+  return entries.concat(guns);
 }
 
 function copyShipArt() {
@@ -722,6 +770,66 @@ function catalogData(entries) {
   return JSON.stringify({ entries }).replaceAll("<", "\\u003c");
 }
 
+function styleMasterHtml() {
+  return `
+    <a class="style-master" href="catalogs/style/ace-master.png" target="_blank" rel="noopener">
+      <img src="catalogs/style/ace-master.png" alt="Ace, the style master" width="200" height="160" />
+      <span>
+        <strong>Style master · Ace</strong>
+        Every player ship and weapon image is generated with this picture attached as the reference. Crimson, cream, charcoal, gold only on hardpoints and engine collars, cyan canopy, hot-orange energy. Source: art/ace.png
+      </span>
+    </a>`;
+}
+
+function copyMockups() {
+  const src = path.join(ROOT, "art/hud/mockup");
+  const dst = path.join(DIST, "mockups/hud");
+  fs.mkdirSync(path.join(DIST, "mockups/plates"), { recursive: true });
+  fs.cpSync(src, dst, { recursive: true });
+  fs.copyFileSync(path.join(ROOT, "art/hud/plates/plate_asteroid_field_01.png"), path.join(DIST, "mockups/plates/plate_asteroid_field_01.png"));
+  // The Ship Weapon Manager mockup loads weapon GLBs from ../../weapons/, which
+  // is art/weapons/ at source and this folder in the build.
+  fs.mkdirSync(path.join(DIST, "weapons"), { recursive: true });
+  for (const f of fs.readdirSync(path.join(ROOT, "art/weapons"))) if (f.endsWith(".glb")) fs.copyFileSync(path.join(ROOT, "art/weapons", f), path.join(DIST, "weapons", f));
+}
+
+function mockupsBody(page) {
+  const card = (href, title, blurb, bullets) => `
+    <article class="card mockup-card">
+      <div class="mockup-frame"><iframe src="${href}" loading="lazy" title="${esc(title)}"></iframe></div>
+      <h3><a href="${href}" target="_blank" rel="noopener">${esc(title)}</a></h3>
+      <p>${esc(blurb)}</p>
+      <ul>${bullets.map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+      <p><a class="btn" href="${href}" target="_blank" rel="noopener">Open full size</a></p>
+    </article>`;
+  return `
+    <p class="kicker">Interactive</p>
+    <h1>${esc(page.title)}</h1>
+    <p class="lede">Browser mockups of the in-game UI, built at 1920×1080 with the same font, palette, and canvas-slot geometry the UMG code uses. Iterate here, then copy numbers into C++.</p>
+    ${statusBanner(page)}
+    <div class="mockup-grid">
+      ${card("mockups/hud/index.html", "Flight HUD", "The in-run HUD over a real gameplay plate. Ship carries vitals, frame carries the run.", [
+        "Toggle layers, opacity, plate dim, resolution",
+        "Run state: mode, boss, loadout overlay, reticle, damage flash",
+        "Drag pods, nudge with arrows, copy any pod as C++",
+        "Source: art/hud/mockup/index.html + hud.css",
+      ])}
+      ${card("mockups/hud/menu.html", "Main Menu + Admin tools", "The title screen the current ShatteredMenu should grow into, over a live generated level. Main, Pirate Raid setup, Options, plus an Admin / Debug hub.", [
+        "Level Generator: seed, profile, count, radius, height, size floor, colossal chance, planets, nebula, sun; regenerates the backdrop live and copies the recipe as JSON",
+        "Ship Weapon Manager: Ace in three.js with a Gimbal Base + cartridge on each hardpoint, hull-snapped pads, gimbal yaw/pitch test, copy loadout as JSON",
+        "Planned entries (Hub, Co-op) hidden until toggled",
+        "Source: art/hud/mockup/menu.html + menu.css",
+      ])}
+    </div>
+    <h2>Rules both mockups follow</h2>
+    <ul>
+      <li>1px here equals 1 Slate unit at 1920×1080. Every pod's anchor, alignment, position, and size map straight to a UCanvasPanelSlot.</li>
+      <li>Colours are the hexes in hud.css, converted from the FLinearColors in ShatteredHUDStyle and ShatteredMenuStyle.</li>
+      <li>Chakra Petch everywhere, self-hosted from art/hud/mockup/fonts.</li>
+      <li>Nothing in the harness panel on the right ships. It is the tool, not the design.</li>
+    </ul>`;
+}
+
 function assetCatalogBody(page, entries) {
   const groups = [...new Set(entries.map((entry) => entry.group))];
   const models = entries.filter((entry) => entry.model).length;
@@ -737,6 +845,7 @@ function assetCatalogBody(page, entries) {
     <p class="kicker">Asset wiki</p>
     <h1>${esc(page.title)}</h1>
     <p class="lede">${esc(page.intro ?? "Source images and runtime-ready models in one searchable catalog.")}</p>
+    ${page.styleMaster ? styleMasterHtml() : ""}
     <div class="catalog-summary">
       <span><strong>${entries.length}</strong> assets</span>
       ${
@@ -779,19 +888,24 @@ fs.cpSync(ASSETS_SRC, ASSETS_DST, { recursive: true });
 
 const ships = JSON.parse(fs.readFileSync(path.join(ROOT, "art/ships.json"), "utf8"));
 const shipArt = copyShipArt();
+fs.mkdirSync(path.join(DIST, "catalogs/style"), { recursive: true });
+fs.copyFileSync(path.join(ROOT, "art/ace.png"), path.join(DIST, "catalogs/style/ace-master.png"));
 const weapons = JSON.parse(fs.readFileSync(path.join(ROOT, "art/weapons.json"), "utf8"));
 const weaponArt = copyWeaponArt();
 
 for (const page of PAGES) {
   let body;
   if (page.kind === "home") body = homeBody();
+  else if (page.kind === "mockups") { copyMockups(); body = mockupsBody(page); }
   else if (page.kind === "ships") {
+    page.styleMaster = true;
     page.intro =
       "Thirty hull × profession concepts. Pick a ship to inspect its concept, 3D model, gold-ring checklist, and full generation prompt.";
     body = assetCatalogBody(page, shipEntries(ships, shipArt));
   } else if (page.kind === "weapons") {
+    page.styleMaster = true;
     page.intro =
-      "Starter trio of ship hardpoint weapons. Each bolts onto one gold pad, levels 1–5, and grows empty wells for mod crystals. Copy the prompt to regenerate.";
+      "One shared Gimbal Base per gold pad (360° yaw, ±90° pitch) plus three gun cartridges that seat in it. Guns carry no gold. Old fixed-mount concepts are archived; regenerate from the prompts.";
     body = assetCatalogBody(page, weaponEntries(weapons, weaponArt));
   } else if (page.kind === "asset-catalog") {
     body = assetCatalogBody(page, loadAssetCatalog(page));
