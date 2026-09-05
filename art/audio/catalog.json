@@ -370,13 +370,14 @@
       "title": "XP orb — crystal chime (v02)",
       "kind": "sfx",
       "group": "sfx-pickups",
-      "status": "candidate",
+      "status": "promoted",
       "file": "elevenlabs/sfx/pickups/xp_orb_v02.wav",
       "durationSec": 0.4,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Glass bell with an upward flick. Sweeter and less retro than v01.",
-      "prompt": "A tiny glass crystal chime for collecting a glowing energy orb in a video game: one clean bell tone with a fast upward pitch flick and a sparkle of high harmonics, sweet and satisfying, very short. Single pickup. No reverb tail, no echo. ,"
+      "prompt": "A tiny glass crystal chime for collecting a glowing energy orb in a video game: one clean bell tone with a fast upward pitch flick and a sparkle of high harmonics, sweet and satisfying, very short. Single pickup. No reverb tail, no echo. ,",
+      "review": "Live in game as A_Pickup_Xp (XP orb collect)."
     },
     {
       "id": "xp_orb_v03",
@@ -422,13 +423,14 @@
       "title": "Boost orb — inhale thump (v03)",
       "kind": "sfx",
       "group": "sfx-pickups",
-      "status": "candidate",
+      "status": "promoted",
       "file": "elevenlabs/sfx/pickups/boost_orb_v03.wav",
       "durationSec": 0.7,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Inward whoosh into a warm thump with sparkle. Heaviest of the three.",
-      "prompt": "An energy orb absorbed into a spaceship: a quick bright whoosh sucking inward, then a deep warm synth thump with a glittering high sparkle on top, arcade game reward, punchy, short. Single sound. No long reverb tail. ,"
+      "prompt": "An energy orb absorbed into a spaceship: a quick bright whoosh sucking inward, then a deep warm synth thump with a glittering high sparkle on top, arcade game reward, punchy, short. Single sound. No long reverb tail. ,",
+      "review": "Live in game as A_Pickup_Boost (boost orb collect)."
     },
     {
       "id": "enemy_destroyed_v01",
@@ -487,13 +489,41 @@
       "title": "Flagship destroyed — crumble (v02)",
       "kind": "sfx",
       "group": "sfx-explosions",
-      "status": "candidate",
+      "status": "promoted",
       "file": "elevenlabs/sfx/impacts/flagship_destroyed_v02.mp3",
       "durationSec": 2.4,
       "model": "eleven_text_to_sound_v2",
       "generatedAt": "2026-09-05",
       "note": "Groaning metal into a colossal detonation with sparking tail. Heavier, less musical than v01.",
-      "prompt": "A giant space cruiser breaking apart in a video game: a deep groaning metallic rumble, then a colossal low-frequency detonation with layers of crunching metal and sparking electrical bursts trailing off. Stylised arcade, heavy and satisfying. Single event. No voice, no music. ,"
+      "prompt": "A giant space cruiser breaking apart in a video game: a deep groaning metallic rumble, then a colossal low-frequency detonation with layers of crunching metal and sparking electrical bursts trailing off. Stylised arcade, heavy and satisfying. Single event. No voice, no music. ,",
+      "review": "Live in game as A_Enemy_Destroyed (every hostile kill; flagship plays it slower and louder)."
+    },
+    {
+      "id": "asteroid_shatter_v01",
+      "title": "Asteroid shattered — stony crack (v01)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "promoted",
+      "file": "elevenlabs/sfx/impacts/asteroid_shatter_v01.mp3",
+      "durationSec": 0.9,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "The crumble cut down to a rock: crack, short rubble, gravel chips. Wired in provisionally as A_Asteroid_Shatter.",
+      "prompt": "A space rock cracking apart in a stylised arcade game: a sharp stony crack, a short crunchy rubble crumble with a few gravel chips scattering, dry and punchy, brief. Single break. No explosion, no metal, no reverb tail. ,",
+      "review": "Live in game as A_Asteroid_Shatter (rock breaks apart)."
+    },
+    {
+      "id": "asteroid_shatter_v02",
+      "title": "Asteroid shattered — boulder thud (v02)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/asteroid_shatter_v02.mp3",
+      "durationSec": 0.9,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Low thud into a crackling split and debris tumble. Heavier than v01.",
+      "prompt": "A boulder shattering into pieces, video game style: a deep low thud with a crackling rock split and a quick tumble of debris, chunky and satisfying, short. Single break. No explosion fire, no metal, no long tail. ,"
     }
   ]
 }

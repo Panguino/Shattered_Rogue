@@ -30,6 +30,7 @@ const CUES = {
       "no tail, no explosion.",
   },
   xpChime: {
+    promoted: true,
     file: join("pickups", "xp_orb_v02.wav"),
     duration: 0.5,
     outputFormat: "pcm_44100",
@@ -73,6 +74,7 @@ const CUES = {
       "styled, short. Single sound. No reverb, no echo.",
   },
   boostWhoosh: {
+    promoted: true,
     file: join("pickups", "boost_orb_v03.wav"),
     duration: 0.9,
     outputFormat: "pcm_44100",
@@ -120,6 +122,7 @@ const CUES = {
       "Single event. No voice.",
   },
   flagshipCrumble: {
+    promoted: true,
     file: join("impacts", "flagship_destroyed_v02.mp3"),
     duration: 2.4,
     prompt:
@@ -127,6 +130,26 @@ const CUES = {
       "rumble, then a colossal low-frequency detonation with layers of crunching metal and " +
       "sparking electrical bursts trailing off. Stylised arcade, heavy and satisfying. " +
       "Single event. No voice, no music.",
+  },
+
+  // --- Asteroid shattered: the crumble cut down to a rock. Shorter, drier,
+  // stony rather than metallic, no detonation under it.
+  rockCrumble: {
+    promoted: true,
+    file: join("impacts", "asteroid_shatter_v01.mp3"),
+    duration: 0.9,
+    prompt:
+      "A space rock cracking apart in a stylised arcade game: a sharp stony crack, a short " +
+      "crunchy rubble crumble with a few gravel chips scattering, dry and punchy, brief. " +
+      "Single break. No explosion, no metal, no reverb tail.",
+  },
+  rockCrunch: {
+    file: join("impacts", "asteroid_shatter_v02.mp3"),
+    duration: 0.9,
+    prompt:
+      "A boulder shattering into pieces, video game style: a deep low thud with a crackling " +
+      "rock split and a quick tumble of debris, chunky and satisfying, short. Single break. " +
+      "No explosion fire, no metal, no long tail.",
   },
 };
 

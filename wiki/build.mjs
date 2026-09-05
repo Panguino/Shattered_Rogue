@@ -246,11 +246,8 @@ function shell(page, body) {
   <div class="layout">
     <aside class="sidebar">
       <a class="brand" href="index.html">
-        <img class="brand-mark" src="assets/logo-mark.svg" alt="" width="44" height="44" />
-        <div>
-          <h1>Shattered<br/>Slop</h1>
-          <small>Design wiki</small>
-        </div>
+        <img class="brand-lockup" src="assets/logo-lockup.png" alt="Shattered Slop" width="236" height="118" />
+        <small>Design wiki</small>
       </a>
       <input class="search" id="nav-search" type="search" placeholder="Search nav…" />
       <nav class="nav">${navHtml(page.id)}</nav>
@@ -419,7 +416,7 @@ function homeBody() {
   const row = (p) => `<a class="board-row" href="${hrefFor(p)}"><span>${esc(p.title)}</span>${badge(p)}</a>`;
   return `
   <section class="hero">
-    <img class="hero-logo" src="assets/logo.svg" alt="Shattered Slop" width="560" height="140" />
+    <img class="hero-logo" src="assets/logo-lockup.png" alt="Shattered Slop" width="520" height="260" />
     <p class="lede">A 6DOF roguelite space shooter. Fly a fighter through a galaxy drowning in the Slop, a machine intelligence pouring out of the core and turning everything it touches into more of itself. Reach the core and kill whatever is making it.</p>
     <p class="lede focus"><strong>Right now:</strong> nail the flight feel, a handful of enemy types, one mini boss. Expand by iteration.</p>
     <div class="chips">
