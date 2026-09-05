@@ -615,6 +615,58 @@
       "generatedAt": "2026-09-05",
       "note": "Sheet steel buckling then a part drops off and rolls. Most cartoon.",
       "prompt": "A metal machine crumpling: a crunching buckle of sheet steel then a hollow clank as a part drops off and rolls, cartoonish arcade video game, short and dry. Single event. No explosion, no fire, no echo. ,"
+    },
+    {
+      "id": "level_up_v01",
+      "title": "Level up — arcade fanfare (v01)",
+      "kind": "sfx",
+      "group": "sfx-pickups",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/pickups/level_up_v01.mp3",
+      "durationSec": 1.6,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Four-note rising arpeggio into a held bright chord with shimmer. 16-bit.",
+      "prompt": "A triumphant retro arcade level-up jingle: a quick ascending four-note synth arpeggio in a major key ending on a bright held chord with a sparkling shimmer, 16-bit console, punchy and joyful, short. Single jingle. No voice, no drums, no long reverb. ,"
+    },
+    {
+      "id": "level_up_v02",
+      "title": "Level up — chiptune run (v02)",
+      "kind": "sfx",
+      "group": "sfx-pickups",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/pickups/level_up_v02.mp3",
+      "durationSec": 1.4,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Six-note square run then two staccato chords. Pure cabinet.",
+      "prompt": "An 8-bit chiptune level up: a fast rising square-wave run of six notes then two bright staccato chords, classic arcade cabinet, tight and celebratory. Single jingle. No voice, no reverb. ,"
+    },
+    {
+      "id": "level_up_v03",
+      "title": "Level up — power surge (v03)",
+      "kind": "sfx",
+      "group": "sfx-pickups",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/pickups/level_up_v03.mp3",
+      "durationSec": 1.8,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Rising energy sweep into a big chord hit with a sparkle cascade. Least musical, most sci-fi.",
+      "prompt": "A spaceship powering up to a new level in an arcade game: a rising energy surge sweep building for a second, then a big bright synth chord hit with a glittering cascade of high sparkles trailing off, triumphant and satisfying. Single event. No voice, no drums. ,"
+    },
+    {
+      "id": "level_up_v04",
+      "title": "Level up — rank bells (v04)",
+      "kind": "sfx",
+      "group": "sfx-pickups",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/pickups/level_up_v04.mp3",
+      "durationSec": 1.6,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Three ascending bells onto a warm pad swell. Cleanest and calmest.",
+      "prompt": "A rank-up chime for a sci-fi game: three ascending clear bell tones, each brighter than the last, landing on a warm sustained synth pad swell with a soft shimmer, clean and rewarding, short. Single chime. No voice, no drums, no long echo. ,"
     }
   ]
 }

@@ -223,6 +223,40 @@ const CUES = {
       "part drops off and rolls, cartoonish arcade video game, short and dry. Single event. " +
       "No explosion, no fire, no echo.",
   },
+
+  // --- Level up: the bar filled. A real fanfare moment, one to two seconds.
+  levelFanfare: {
+    file: join("pickups", "level_up_v01.mp3"),
+    duration: 1.6,
+    prompt:
+      "A triumphant retro arcade level-up jingle: a quick ascending four-note synth arpeggio " +
+      "in a major key ending on a bright held chord with a sparkling shimmer, 16-bit console, " +
+      "punchy and joyful, short. Single jingle. No voice, no drums, no long reverb.",
+  },
+  levelChiptune: {
+    file: join("pickups", "level_up_v02.mp3"),
+    duration: 1.4,
+    prompt:
+      "An 8-bit chiptune level up: a fast rising square-wave run of six notes then two " +
+      "bright staccato chords, classic arcade cabinet, tight and celebratory. Single jingle. " +
+      "No voice, no reverb.",
+  },
+  levelPowerSurge: {
+    file: join("pickups", "level_up_v03.mp3"),
+    duration: 1.8,
+    prompt:
+      "A spaceship powering up to a new level in an arcade game: a rising energy surge sweep " +
+      "building for a second, then a big bright synth chord hit with a glittering cascade of " +
+      "high sparkles trailing off, triumphant and satisfying. Single event. No voice, no drums.",
+  },
+  levelBell: {
+    file: join("pickups", "level_up_v04.mp3"),
+    duration: 1.6,
+    prompt:
+      "A rank-up chime for a sci-fi game: three ascending clear bell tones, each brighter than " +
+      "the last, landing on a warm sustained synth pad swell with a soft shimmer, clean and " +
+      "rewarding, short. Single chime. No voice, no drums, no long echo.",
+  },
 };
 
 await runCues({ cues: CUES, outRoot: OUT_ROOT, root: ROOT, argv: process.argv.slice(2) });
