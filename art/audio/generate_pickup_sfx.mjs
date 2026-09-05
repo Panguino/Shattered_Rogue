@@ -87,6 +87,7 @@ const CUES = {
 
   // --- Hostile destroyed: the payoff. Three different weights.
   killArcade8bit: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v01.mp3"),
     duration: 1.1,
     prompt:
@@ -95,6 +96,7 @@ const CUES = {
       "Single explosion. No reverb, no realistic fire, no debris.",
   },
   killPunchy: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v02.mp3"),
     duration: 1.2,
     prompt:
@@ -103,6 +105,7 @@ const CUES = {
       "satisfying and juicy, stylised not realistic. Single explosion. No long tail, no echo.",
   },
   killKaboom: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v03.mp3"),
     duration: 1.4,
     prompt:
@@ -113,6 +116,7 @@ const CUES = {
 
   // --- Flagship: bigger, longer, a real event.
   flagshipBoom: {
+    superseded: true,
     file: join("impacts", "flagship_destroyed_v01.mp3"),
     duration: 2.4,
     prompt:
@@ -122,7 +126,7 @@ const CUES = {
       "Single event. No voice.",
   },
   flagshipCrumble: {
-    promoted: true,
+    superseded: true,
     file: join("impacts", "flagship_destroyed_v02.mp3"),
     duration: 2.4,
     prompt:
@@ -135,7 +139,7 @@ const CUES = {
   // --- Asteroid shattered: the crumble cut down to a rock. Shorter, drier,
   // stony rather than metallic, no detonation under it.
   rockCrumble: {
-    promoted: true,
+    superseded: true,
     file: join("impacts", "asteroid_shatter_v01.mp3"),
     duration: 0.9,
     prompt:
@@ -144,6 +148,7 @@ const CUES = {
       "Single break. No explosion, no metal, no reverb tail.",
   },
   rockCrunch: {
+    promoted: true,
     file: join("impacts", "asteroid_shatter_v02.mp3"),
     duration: 0.9,
     prompt:
@@ -154,6 +159,7 @@ const CUES = {
 
   // --- Asteroid, round two: gravel scrape rather than a crack.
   rockGravelScrape: {
+    superseded: true,
     file: join("impacts", "asteroid_shatter_v03.mp3"),
     duration: 0.9,
     prompt:
@@ -162,6 +168,7 @@ const CUES = {
       "scrape. No explosion, no metal, no reverb.",
   },
   rockGravelCrunch: {
+    superseded: true,
     file: join("impacts", "asteroid_shatter_v04.mp3"),
     duration: 0.9,
     prompt:
@@ -170,6 +177,7 @@ const CUES = {
       "Single sound. No explosion, no metal, no echo.",
   },
   rockGravelSlide: {
+    superseded: true,
     file: join("impacts", "asteroid_shatter_v05.mp3"),
     duration: 1.0,
     prompt:
@@ -180,6 +188,7 @@ const CUES = {
 
   // --- Hostile destroyed, round two: metal clank rather than a boom.
   killClank: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v04.mp3"),
     duration: 1.0,
     prompt:
@@ -188,6 +197,7 @@ const CUES = {
       "enemy destroyed, punchy and satisfying. Single hit. No explosion, no reverb wash.",
   },
   killScrapyard: {
+    promoted: true,
     file: join("impacts", "enemy_destroyed_v05.mp3"),
     duration: 1.1,
     prompt:
@@ -196,6 +206,7 @@ const CUES = {
       "No explosion, no fire, no long echo.",
   },
   killAnvil: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v06.mp3"),
     duration: 1.0,
     prompt:
@@ -204,6 +215,7 @@ const CUES = {
       "satisfying. Single strike. No explosion, no reverb tail.",
   },
   killCrunchClank: {
+    superseded: true,
     file: join("impacts", "enemy_destroyed_v07.mp3"),
     duration: 1.1,
     prompt:
