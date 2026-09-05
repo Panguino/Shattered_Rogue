@@ -134,3 +134,57 @@ Capture and click it with `creative/art/hud/plates/click-and-capture.ps1`
   `PivotOffset.Z`.
 
 ---
+
+## Addendum, later on 2026-09-04: test fire, raid loop, HUD marks, result screens
+
+### Test fire mode (weapon manager)
+- `AShatteredShipPreviewActor::SetTestFire(bool)` swaps to a chase camera,
+  spawns three `AShatteredTargetDrone` flying Lissajous passes ahead of the
+  hull, and every armed mount tracks the nearest reachable drone with
+  `UShatteredGimbalMountComponent::TrackTarget()` and fires from
+  `GetMuzzleTransform()`. Per cartridge: laser = `APulseProjectile`, coil =
+  `AShatteredLightningArc::Strike()` (hit-scan, jittered segments), seeker =
+  `AShatteredSeekerMissile::Launch()` (homing, capped turn). Effects live in
+  `ShatteredWeaponEffects.h/.cpp`. TrackTarget and GetMuzzleTransform are the
+  pieces the pawn's auto-aim should reuse.
+
+### Raid loop
+- `AShatteredGameMode::SpawnWave(n)`: wave 1 = 2 Mortar Column + 1 Bastion
+  Anvil, wave 2 = Relay Cage pair + Mortar, wave 3 = 2 Anvil + Cage pair +
+  2 Mortar, then the flagship. `ShatteredRaidWaveCount` (3) lives in
+  `ShatteredGameState.h`.
+- New `EPirateRole` values in `PiratePawn`: MortarColumn (static, slow
+  dodgeable shells), BastionAnvil (slow follower, fires only inside a
+  front cone), RelayCage (pairs park off the player's flanks and arc
+  lightning when both are in range). Meshes come from
+  `Scripts/import_enemy_kit.py` (cold-iron Tripo GLBs) and must stay in
+  `disable_nanite_kit.py`.
+- Field: `ArenaScale` 1.5, `AsteroidDensityScale` 1.7, every asteroid gets a
+  small random tumble.
+- `AShatteredGameState` now tracks `EnemiesDestroyed`, `WavesCleared`,
+  `RaidStartTime`, `RaidEndTime` for the debrief.
+
+### HUD
+- Hostile brackets with a range label, edge chevrons when off-screen,
+  radar contacts for ships, radar sources persisted across searches with
+  salt-based thinning (the flicker fix), ring-pass ping that flares then
+  decays, asteroids at low rest alpha.
+- Floating damage numbers via `ShatteredCombatEvents::OnDamagePopped()`:
+  gold for damage dealt, coral with a minus for damage taken.
+- Thruster nozzles raised to sit in the Ace's engine bells.
+
+### Result and pause screens
+- `UShatteredRaidOverlayWidget` is now rail-style like the main menu:
+  `MakeScreenHead()` (shared in `ShatteredMenuStyle`), a 64px result word,
+  debrief rows (WAVES CLEARED, HOSTILES DESTROYED, TIME SURVIVED, SECTOR
+  SEED), RETRY RAID (same seed, via `StartPirateRaid`) and BACK TO MAIN
+  MENU entries, footer with build and seed. Pause and its options use the
+  same rail. The flight HUD collapses while a result is shown.
+- Mockup: `menu.html` `data-screen="defeat"`, harness button "Defeat".
+- Verified in a live raid: defeat screen, retry, a full run to a flagship
+  kill, and the victory screen path.
+
+### Next steps
+1. Player auto-aim on `AShatteredPawn` using `TrackTarget`.
+2. Tune enemy pacing (mortar rate, cage spawn sides) from playtests.
+3. Level Generator screen (Admin A2) still a placeholder in-game.

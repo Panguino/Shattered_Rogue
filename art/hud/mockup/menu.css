@@ -159,3 +159,12 @@
 .setting.sliders { padding-top: 0; padding-bottom: 4px; row-gap: 8px; }
 .entry-row { display: flex; }
 .entry-row .entry { flex: 1 1 0; }
+
+/* --- Defeat --------------------------------------------------------------- */
+.result-title { font-size: 64px; letter-spacing: 0.18em; line-height: 1; margin: 6px 0 4px 12px; font-weight: 600; }
+.result-sub { font-size: 12px; letter-spacing: 0.24em; color: var(--muted); margin: 0 0 22px 14px; }
+.debrief { display: flex; flex-direction: column; gap: 8px; margin: 0 16px 26px 12px; padding: 12px 0; border-top: 1px solid rgba(111, 223, 249, 0.18); border-bottom: 1px solid rgba(111, 223, 249, 0.18); }
+.debrief .row { display: flex; align-items: baseline; gap: 12px; font-size: 12px; letter-spacing: 0.2em; }
+.debrief .k { color: var(--dim); }
+.debrief .hatch { flex: 1 1 auto; height: 1px; background: rgba(111, 223, 249, 0.12); align-self: center; }
+.debrief .v { color: var(--text); font-size: 16px; letter-spacing: 0.1em; }

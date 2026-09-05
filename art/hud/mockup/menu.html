@@ -203,6 +203,23 @@
 
             <!-- Screen: OPTIONS. Mirrors BuildOptions: volume, quality,
                  window mode. -->
+            <!-- Screen: DEFEAT. Shown over the frozen raid when the hull goes.
+                 Same rail, coral accent, a short debrief, then retry or leave.
+                 Mirrors UShatteredRaidOverlayWidget::BuildResultScreen. -->
+            <nav class="screen defeat" data-screen="defeat" hidden>
+              <div class="screen-head tech-head"><i></i><span>RAID FAILED</span><span class="hatch"></span><span class="badge">SHIP LOST</span></div>
+              <div class="result-title c-coral">DEFEAT</div>
+              <div class="result-sub">YOUR SHIP WAS LOST &middot; WAVE 2 OF 3</div>
+              <div class="debrief">
+                <div class="row"><span class="k">WAVES CLEARED</span><span class="hatch"></span><span class="v">1 / 3</span></div>
+                <div class="row"><span class="k">HOSTILES DESTROYED</span><span class="hatch"></span><span class="v">4</span></div>
+                <div class="row"><span class="k">TIME SURVIVED</span><span class="hatch"></span><span class="v">01:42</span></div>
+                <div class="row"><span class="k">SECTOR SEED</span><span class="hatch"></span><span class="v c-cyan">731348</span></div>
+              </div>
+              <button class="entry primary" data-go="launch"><span class="idx">&gt;&gt;</span><span class="lbl">RETRY RAID</span><span class="sub">SAME SECTOR, FRESH HULL</span></button>
+              <button class="entry back" data-go="main"><span class="idx">&lt;</span><span class="lbl">BACK TO MAIN MENU</span><span class="sub">ABANDON RUN</span></button>
+            </nav>
+
             <nav class="screen" data-screen="options" hidden>
               <div class="screen-head tech-head"><i></i><span>OPTIONS</span><span class="hatch"></span><span class="badge">POC SETTINGS</span></div>
               <div class="setting">
@@ -249,6 +266,7 @@
     <div class="stack">
       <button data-show="main">Main</button>
       <button data-show="raid">Pirate Raid setup</button>
+      <button data-show="defeat">Defeat</button>
       <button data-show="options">Options</button>
     </div>
 
@@ -330,6 +348,7 @@
     // The lockup is the main screen's only. Sub-screens start at the rail top.
     document.querySelector(".rail .logo").hidden = name !== "main";
     document.querySelector(".rail").classList.toggle("no-logo", name !== "main");
+    document.getElementById("layer-plate").style.setProperty("--dim", name === "defeat" ? "0.62" : "0.3");
     document.getElementById("layer-ship3d").hidden = name !== "loadout";
     if (name === "loadout" && window.SHIP3D) window.SHIP3D.activate();
     cursor = 0;
