@@ -26,8 +26,8 @@ $Promotions = @(
     @{ Source = "movement\engine_boost_burst_v02.wav";        Asset = "A_Boost_Burst";  Dest = "/Game/Audio/SFX/Movement" }
     @{ Source = "pickups\xp_orb_v02.wav";                     Asset = "A_Pickup_Xp";       Dest = "/Game/Audio/SFX/Pickups" }
     @{ Source = "pickups\boost_orb_v03.wav";                  Asset = "A_Pickup_Boost";    Dest = "/Game/Audio/SFX/Pickups" }
-    @{ Source = "impacts\flagship_destroyed_v02.mp3";         Asset = "A_Enemy_Destroyed"; Dest = "/Game/Audio/SFX/Impacts" }
-    @{ Source = "impacts\asteroid_shatter_v01.mp3";           Asset = "A_Asteroid_Shatter"; Dest = "/Game/Audio/SFX/Impacts" }
+    @{ Source = "impacts\enemy_destroyed_v05.mp3";            Asset = "A_Enemy_Destroyed"; Dest = "/Game/Audio/SFX/Impacts" }
+    @{ Source = "impacts\asteroid_shatter_v02.mp3";           Asset = "A_Asteroid_Shatter"; Dest = "/Game/Audio/SFX/Impacts" }
 )
 
 # A_Engine_Drive needs USoundWave::bLooping, which this path cannot author:
