@@ -524,6 +524,97 @@
       "generatedAt": "2026-09-05",
       "note": "Low thud into a crackling split and debris tumble. Heavier than v01.",
       "prompt": "A boulder shattering into pieces, video game style: a deep low thud with a crackling rock split and a quick tumble of debris, chunky and satisfying, short. Single break. No explosion fire, no metal, no long tail. ,"
+    },
+    {
+      "id": "asteroid_shatter_v03",
+      "title": "Asteroid — gravel scrape (v03)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/asteroid_shatter_v03.mp3",
+      "durationSec": 0.9,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Loose gravel sliding against rock with pebbles skittering. Dry and short.",
+      "prompt": "Loose gravel and small stones scraping and sliding against rock, a quick dry grinding scrape with pebbles skittering, short and gritty, stylised for a video game. Single scrape. No explosion, no metal, no reverb. ,"
+    },
+    {
+      "id": "asteroid_shatter_v04",
+      "title": "Asteroid — gravel crunch (v04)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/asteroid_shatter_v04.mp3",
+      "durationSec": 0.9,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "A boot grinding through coarse gravel, sharp start into scattering grit.",
+      "prompt": "A boot grinding through coarse gravel: a crunchy stony scrape that starts sharp and trails into scattering grit, dry, close, brief. Video game asteroid breaking apart. Single sound. No explosion, no metal, no echo. ,"
+    },
+    {
+      "id": "asteroid_shatter_v05",
+      "title": "Asteroid — gravel slide (v05)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/asteroid_shatter_v05.mp3",
+      "durationSec": 1,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "A small rockslide pouring for under a second with a soft rumble under it.",
+      "prompt": "A small rockslide of gravel and rubble pouring and scraping down a stone slope for under a second, gritty and granular with a soft low rumble underneath, stylised. Single slide. No explosion, no metal, no long tail. ,"
+    },
+    {
+      "id": "enemy_destroyed_v04",
+      "title": "Hostile destroyed — hollow clank (v04)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/enemy_destroyed_v04.mp3",
+      "durationSec": 1,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Steel drum struck once, short ring, a couple of pieces clattering after.",
+      "prompt": "A heavy hollow metal clank: a steel drum struck hard once with a short ringing resonance and a couple of smaller metal pieces clattering after it, arcade video game enemy destroyed, punchy and satisfying. Single hit. No explosion, no reverb wash. ,"
+    },
+    {
+      "id": "enemy_destroyed_v05",
+      "title": "Hostile destroyed — scrapyard (v05)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/enemy_destroyed_v05.mp3",
+      "durationSec": 1.1,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Iron clang then a tumble of steel plates and bolts. Busiest of the four.",
+      "prompt": "Scrap metal collapsing in a video game: a sharp iron clang followed by a quick tumble of clanking steel plates and bolts bouncing, dry and chunky, short. Single collapse. No explosion, no fire, no long echo. ,"
+    },
+    {
+      "id": "enemy_destroyed_v06",
+      "title": "Hostile destroyed — anvil strike (v06)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/enemy_destroyed_v06.mp3",
+      "durationSec": 1,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Sledgehammer on an anvil with a crushed thud under it. Tightest of the four.",
+      "prompt": "A blacksmith anvil struck by a sledgehammer with a crushed low thud under it and a brief metallic ring, stylised arcade impact for a robot enemy dying, tight and satisfying. Single strike. No explosion, no reverb tail. ,"
+    },
+    {
+      "id": "enemy_destroyed_v07",
+      "title": "Hostile destroyed — crumple clank (v07)",
+      "kind": "sfx",
+      "group": "sfx-explosions",
+      "status": "candidate",
+      "file": "elevenlabs/sfx/impacts/enemy_destroyed_v07.mp3",
+      "durationSec": 1.1,
+      "model": "eleven_text_to_sound_v2",
+      "generatedAt": "2026-09-05",
+      "note": "Sheet steel buckling then a part drops off and rolls. Most cartoon.",
+      "prompt": "A metal machine crumpling: a crunching buckle of sheet steel then a hollow clank as a part drops off and rolls, cartoonish arcade video game, short and dry. Single event. No explosion, no fire, no echo. ,"
     }
   ]
 }

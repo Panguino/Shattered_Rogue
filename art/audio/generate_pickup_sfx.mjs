@@ -151,6 +151,66 @@ const CUES = {
       "rock split and a quick tumble of debris, chunky and satisfying, short. Single break. " +
       "No explosion fire, no metal, no long tail.",
   },
+
+  // --- Asteroid, round two: gravel scrape rather than a crack.
+  rockGravelScrape: {
+    file: join("impacts", "asteroid_shatter_v03.mp3"),
+    duration: 0.9,
+    prompt:
+      "Loose gravel and small stones scraping and sliding against rock, a quick dry grinding " +
+      "scrape with pebbles skittering, short and gritty, stylised for a video game. Single " +
+      "scrape. No explosion, no metal, no reverb.",
+  },
+  rockGravelCrunch: {
+    file: join("impacts", "asteroid_shatter_v04.mp3"),
+    duration: 0.9,
+    prompt:
+      "A boot grinding through coarse gravel: a crunchy stony scrape that starts sharp and " +
+      "trails into scattering grit, dry, close, brief. Video game asteroid breaking apart. " +
+      "Single sound. No explosion, no metal, no echo.",
+  },
+  rockGravelSlide: {
+    file: join("impacts", "asteroid_shatter_v05.mp3"),
+    duration: 1.0,
+    prompt:
+      "A small rockslide of gravel and rubble pouring and scraping down a stone slope for " +
+      "under a second, gritty and granular with a soft low rumble underneath, stylised. " +
+      "Single slide. No explosion, no metal, no long tail.",
+  },
+
+  // --- Hostile destroyed, round two: metal clank rather than a boom.
+  killClank: {
+    file: join("impacts", "enemy_destroyed_v04.mp3"),
+    duration: 1.0,
+    prompt:
+      "A heavy hollow metal clank: a steel drum struck hard once with a short ringing " +
+      "resonance and a couple of smaller metal pieces clattering after it, arcade video game " +
+      "enemy destroyed, punchy and satisfying. Single hit. No explosion, no reverb wash.",
+  },
+  killScrapyard: {
+    file: join("impacts", "enemy_destroyed_v05.mp3"),
+    duration: 1.1,
+    prompt:
+      "Scrap metal collapsing in a video game: a sharp iron clang followed by a quick tumble " +
+      "of clanking steel plates and bolts bouncing, dry and chunky, short. Single collapse. " +
+      "No explosion, no fire, no long echo.",
+  },
+  killAnvil: {
+    file: join("impacts", "enemy_destroyed_v06.mp3"),
+    duration: 1.0,
+    prompt:
+      "A blacksmith anvil struck by a sledgehammer with a crushed low thud under it and a " +
+      "brief metallic ring, stylised arcade impact for a robot enemy dying, tight and " +
+      "satisfying. Single strike. No explosion, no reverb tail.",
+  },
+  killCrunchClank: {
+    file: join("impacts", "enemy_destroyed_v07.mp3"),
+    duration: 1.1,
+    prompt:
+      "A metal machine crumpling: a crunching buckle of sheet steel then a hollow clank as a " +
+      "part drops off and rolls, cartoonish arcade video game, short and dry. Single event. " +
+      "No explosion, no fire, no echo.",
+  },
 };
 
 await runCues({ cues: CUES, outRoot: OUT_ROOT, root: ROOT, argv: process.argv.slice(2) });
